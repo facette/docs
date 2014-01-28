@@ -1,0 +1,25 @@
+{{ template "common/header.html" . }}{{ $current := .RelPermalink }}{{ $section := .Params.section }}
+<header>
+<a href="/"><img src="/logo.png"></a><h1>
+<a href="/">Facette</a></h1>
+<ul>
+<li><a href="https://github.com/facette/facette/releases"><i class="fa fa-arrow-circle-o-down"></i>Download</a></li>
+<li><a href="https://github.com/facette/facette"><i class="fa fa-github"></i>View on Github</a></li>
+</ul>
+</header>
+
+<nav>
+<dl>
+<dt>Main Menu</dt>{{ range .Site.Indexes.groups.sections.Pages }}
+<dd{{ if eq .RelPermalink $current }} class="active"{{ end }}><a href="{{ .RelPermalink }}">{{ .Title }}</a></dd>{{ end }}
+</dl>{{ range $key, $index := .Site.Indexes.groups }}{{ if eq $key $section }}
+<dl>
+<dt>Related Pages</dt>{{ range $index.Pages }}
+<dd{{ if eq .RelPermalink $current }} class="active"{{ end }}><a href="{{ .RelPermalink }}">{{ .Title }}</a></dd>{{ end }}
+</dl>{{ end }}{{ end }}
+</nav>
+
+<section>
+{{ .Content }}</section>
+
+{{ template "common/footer.html" . }}

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{{ .Title }}{{ if ne .Title .Site.Title }} — {{ .Site.Title }}{{ end }}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">{{ if .Keywords }}
+<meta name="keywords" content="{{ range $keyword := .Keywords }}{{ $keyword }} {{ end }}">{{end}}
+<link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="/style.css" rel="stylesheet">
+</head>
+<body>
