@@ -77,21 +77,21 @@ header {
   left: 0;
   line-height: 3em;
   min-width: 320px;
-  padding: 0.2em 1em 0 1em;
+  padding: 0 1em;
   position: fixed;
   right: 0;
   top: 0;
   z-index: 20;
 }
 
-header::before {
+header::after {
   background: url(./ribbon.svg) 0 0 / 100% no-repeat;
   content: '';
   height: 0.2em;
   left: 0;
   position: absolute;
   right: 0;
-  top: 0;
+  bottom: -0.2em;
 }
 
 header img {
@@ -153,7 +153,7 @@ nav {
   min-width: 220px;
   padding: 3em 2em 3em 5%;
   position: fixed;
-  top: 3.4em;
+  top: 3.2em;
   width: 20%;
   z-index: 10;
 }
