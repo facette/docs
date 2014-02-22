@@ -64,7 +64,7 @@ section {
 
 header {
 	background-color: rgba(51, 51, 51, 0.95);
-	border-bottom: 0.2em solid rgba(34, 34, 34, 0.95);
+	border-bottom: 0.3em solid rgba(34, 34, 34, 0.95);
 	color: #eee;
 	height: 3em;
 	left: 0;
@@ -80,11 +80,11 @@ header {
 header::after {
 	background: url(./ribbon.svg) 0 0 / 100% no-repeat;
 	content: '';
-	height: 0.2em;
+	height: 0.3em;
 	left: 0;
 	position: absolute;
 	right: 0;
-	bottom: -0.2em;
+	bottom: -0.3em;
 }
 
 header img {
@@ -143,7 +143,7 @@ nav {
 	min-width: 220px;
 	padding: 3em 2em 3em 5%;
 	position: fixed;
-	top: 3.2em;
+	top: 3.3em;
 	width: 20%;
 	z-index: 10;
 }
