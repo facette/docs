@@ -1,8 +1,8 @@
 ---
 title: "Authentication"
-section: "config"
+section: "configuration"
 groups:
-   - "config"
+   - "configuration"
 groups_weight: 20
 ---
 
@@ -17,11 +17,11 @@ items creation, resources reload). It uses HTTP Basic authentication as describe
 Right now, the simple authentication handler is still pretty basic and will need some additional work and refine in the
 future. It only stores login and password pairs in a single file.
 
-To create a new user please use the `facettectl` utility (note that you will need to **reload the server** to take into
-account the change, use `facettectl reload`):
+To create a new user please use the `facettectl` utility then reload the server to take into account the change:
 
 ```
 facettectl useradd facette
+facettectl reload
 ```
 
 Example (password being `facette'):

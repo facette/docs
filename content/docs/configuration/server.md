@@ -1,8 +1,8 @@
 ---
 title: "Server Configuration"
-section: "config"
+section: "configuration"
 groups:
-   - "config"
+   - "configuration"
 groups_weight: 10
 ---
 

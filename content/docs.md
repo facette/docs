@@ -15,10 +15,11 @@ subject to heavy changes in the near future.
 
 ## Getting Started
 
- * [Installing Facette](/docs/install)
- * [Configuration](/docs/config)
+ * [Installing Facette](/docs/installing)
+ * [Configuration](/docs/configuration)
  * [Using Facette](/docs/usage)
 
 ## Development Resources
 
+ * [Architecture of Facette](/docs/architecture)
  * [API Documentation](/docs/api)
