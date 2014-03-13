@@ -15,15 +15,15 @@ All library items are identified by an [universally unique identifier][0] (UUID)
 ### List groups
 
 ```
-GET /library/sourcegroups
-GET /library/metricgroups
+GET /library/sourcegroups/
+GET /library/metricgroups/
 ```
 
 Returns an array of objects listing the available groups.
 
 Optional parameters:
 
- * __filter:__ the [pattern](#filter-patterns) pattern to apply on group names (type: `string`)
+ * __filter:__ the [pattern](/docs/api/#filter-patterns) to apply on group names (type: `string`)
  * __limit:__ the maximum number of items to return (type: `integer`)
  * __offset:__ the offset to start fetching from (type: `integer`)
 
@@ -49,7 +49,7 @@ GET /library/sourcegroups/<id>
 GET /library/metricgroups/<id>
 ```
 
-Returns a group object along with its name, description and matching rules entries.
+Returns a group object with its name, description and matching rules entries.
 
 Response:
 
@@ -70,8 +70,8 @@ Response:
 ### Create a new group
 
 ```
-POST /library/sourcegroups
-POST /library/metricgroups
+POST /library/sourcegroups/
+POST /library/metricgroups/
 ```
 
 Takes a group from the request body and stores it in the library, then returns a `Location` HTTP header pointing to the
@@ -155,7 +155,7 @@ Response:
 ### List graphs
 
 ```
-GET /library/graphs
+GET /library/graphs/
 ```
 
 Returns an array of objects listing the available graphs.
@@ -163,7 +163,7 @@ Returns an array of objects listing the available graphs.
 Optional parameters:
 
  * __collection:__ the identifier of the collection to filter on (type: `string`)
- * __filter:__ the [pattern](#filter-patterns) pattern to apply on graph names (type: `string`)
+ * __filter:__ the [pattern](/docs/api/#filter-patterns) to apply on graph names (type: `string`)
  * __limit:__ the maximum number of items to return (type: `integer`)
  * __offset:__ the offset to start fetching from (type: `integer`)
 
@@ -188,7 +188,7 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 GET /library/graphs/<id>
 ```
 
-Returns a graph object along with its name, description, type and stacks definitions.
+Returns a graph object with its name, description, type and stacks definitions.
 
 Response:
 
@@ -224,7 +224,7 @@ Response:
 ### Create a new graph
 
 ```
-POST /library/graphs
+POST /library/graphs/
 ```
 
 Takes a graph from the request body and stores it in the library, then returns a `Location` HTTP header pointing to the
@@ -372,7 +372,7 @@ Response:
 ### List collections
 
 ```
-GET /library/collections
+GET /library/collections/
 ```
 
 Returns an array of objects listing the available collections.
@@ -380,7 +380,7 @@ Returns an array of objects listing the available collections.
 Optional parameters:
 
  * __exclude:__ the identifier of the collection to exclude from listing (type: `string`)
- * __filter:__ the [pattern](#filter-patterns) pattern to apply on collection names (type: `string`)
+ * __filter:__ the [pattern](/docs/api/#filter-patterns) to apply on collection names (type: `string`)
  * __limit:__ the maximum number of items to return (type: `integer`)
  * __offset:__ the offset to start fetching from (type: `integer`)
  * __parent:__ the identifier of the parent collection to filter on (type: `string`)
@@ -408,7 +408,7 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 GET /library/collections/<id>
 ```
 
-Returns a collection object along with its name, description and graphs entries.
+Returns a collection object with its name, description and graphs entries.
 
 Response:
 
@@ -435,7 +435,7 @@ Response:
 ### Create a new collection
 
 ```
-POST /library/collections
+POST /library/collections/
 ```
 
 Takes a collection from the request body and stores it in the library, then returns a `Location` HTTP header pointing to the
