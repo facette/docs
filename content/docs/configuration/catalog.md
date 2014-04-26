@@ -6,7 +6,7 @@ groups:
 groups_weight: 30
 ---
 
-# Catalog overview
+# Catalog Overview
 
 Along with the base server configuration, Facette maintains a catalog of known *origins*, *sources* and *metrics*.
 
@@ -30,10 +30,10 @@ collected by any metering or profiling tool, that will be eventually displayed o
 
 ## Catalog Setup
 
-### Back-end connectors
+### Back-end Connectors
 
-To built its catalog, Facette uses *connectors* bound to *origins* to reach their *sources* and *metrics*. See
-[this page](/connectors/) to view list of available back-end connectors and their documentation.
+To build its catalog, Facette uses *connectors* bound to *origins* to reach their *sources* and *metrics*. See
+[this page](/docs/configuration/catalog/connectors/) to view list of available back-end connectors and their documentation.
 
 ### Filters
 
