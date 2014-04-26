@@ -6,16 +6,44 @@ groups:
 groups_weight: 30
 ---
 
-# Catalog Setup
+# Catalog overview
 
-Along with the base server configuration, Facette maintains a catalog of known origins, sources and metrics.
+Along with the base server configuration, Facette maintains a catalog of known *origins*, *sources* and *metrics*.
 
-An origin represents the location from where the back-end data comes from (e.g. Collectd). Those origins containing a
-set of sources and metrics.
+## Origin
+
+An *origin* represents, as its name suggests, the origin of the back-end time series
+(e.g. [collectd](http://collectd.org/), [Graphite](http://graphite.readthedocs.org/)).
+Those *origins* hold a local set of *sources* and *metrics*.
+
+## Source
+
+A *source* represents an entity that generates *metrics*. These are usually host names, but can be services or
+applications names.
+
+## Metric
+
+A *metric* is a collection of time-based data points (e.g. [RRDtool](http://oss.oetiker.ch/rrdtool/) files) measured or
+collected by any metering or profiling tool, that will be eventually displayed on graphs in Facette.
 
 ![Catalog Schema](/schema-catalog.png)
 
-## Filters
+## Catalog Setup
+
+### Back-end connectors
+
+To built its catalog, Facette uses *connectors* bound to origins to reach their sources and metrics.
+Here are the available connectors:
+
+#### RRD
+
+TBD
+
+#### Graphite
+
+TBD
+
+### Filters
 
 Catalog definition allows defining filtering rules to either rewrite or discard sources and metrics.
 
@@ -48,12 +76,6 @@ Examples:
 }
 ```
 
-## Templates
-
-TBD
-
-## Back-ends
-
-### RRD Handler
+### Templates
 
 TBD
