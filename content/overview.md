@@ -12,8 +12,9 @@ groups_weight: 10
 
 Facette is a graphing web front-end.
 
-At its current development state, Facette only supports RRD files as back-end and has originally been developed as a
-Collectd front-end. But it is planned to have more back-end support in the future (e.g. Whisper or Graphite).
+Facette had originally been developed as a Collectd front-end. And, at its current development state, only supports
+retrieving data from RRD files and Graphite backends through its connectors. But it is planned to provide more
+connectors in the future.
 
 Its code is available at [Github][0], and is licensed under the terms of the [BSD license][1].
 
