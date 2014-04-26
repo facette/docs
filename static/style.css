@@ -196,7 +196,9 @@ code {
 }
 
 pre {
+	overflow: auto;
 	padding: 0.25em 0.5em;
+	text-overflow: ellipsis;
 }
 
 code {
