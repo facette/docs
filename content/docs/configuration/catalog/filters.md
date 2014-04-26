@@ -9,11 +9,11 @@ groups_weight: 30
 # Filters
 
 Facette allows you to describe how *sources* and *metrics* appear in the Facette catalog, and discard the ones you
-don't want to deal with thanks to *filters*. The `filters` section of an *origin* allows you to defined rules that
+don't want to deal with thanks to *filters*. The `filters` section of an *origin* allows you to define rules that
 can rename or discard specific *sources* or *metrics* using regular expressions
 ([RE2 syntax](https://code.google.com/p/re2/wiki/Syntax)).
 
-<span class="fa fa-warning"></span> Caution: in JSON you need to escape the escaping character `\` when writing regular
+<span class="fa fa-warning"></span> Caution: in JSON you need to double the escaping character `\` when writing regular
 expressions (e.g. `\d`&nbsp;→&nbsp;`\\d`).
 
 Filter rule settings:
