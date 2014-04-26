@@ -28,7 +28,7 @@ Supported settings:
 
 * `path`: base path on the local filesystem where the RRDtool files are stored
 * `pattern`: regular expression (using [RE2 syntax](https://code.google.com/p/re2/wiki/Syntax)) describing the pattern
-to map *sources* and *metrics* to the filesystem under the base directory defined with the `path` setting.
+mapping *sources*/*metrics* to the filesystem structure under the base directory defined with the `path` setting.
 `<source>` and `<metric>` regexp named group are mandatory to effectively map a filesystem path to these objects.
 
 ## Graphite
