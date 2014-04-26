@@ -24,6 +24,9 @@ Example origin definition using the `graphite` connector:
 }
 ```
 
+<span class="fa fa-warning"></span> Caution: in JSON you need to escape the escaping character `\` when writing regular
+expressions (e.g. `\d`&nbsp;→&nbsp;`\\d`).
+
 Supported settings:
 
 * `path`: base path on the local filesystem where the RRDtool files are stored

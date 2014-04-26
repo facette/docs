@@ -28,46 +28,38 @@ collected by any metering or profiling tool, that will be eventually displayed o
 
 ![Catalog Schema](/schema-catalog.png)
 
-## Catalog Setup
+## Catalog Origins
+
+Defining *origins* tells Facette where to find *sources* and their *metrics*, and how to add them to its catalog.
+*Origins* are defined by a mandatory *connector* description, and optional *filters*.
 
 ### Back-end Connectors
 
-To build its catalog, Facette uses *connectors* bound to *origins* to reach their *sources* and *metrics*. See
-[this page](/docs/configuration/catalog/connectors/) to view list of available back-end connectors and their documentation.
+Facette uses *connectors* to bind to *origins*, and inventory their local *sources* and *metrics*. See
+[this page](/docs/configuration/catalog/connectors/) to view the list of available back-end connectors and their
+documentation.
 
 ### Filters
 
-Catalog definition allows defining filtering rules to either rewrite or discard sources and metrics.
+By default the inventory mechanism of Facette queries retrieves **all** the *sources* and *metrics* known of the
+*origin*, named following the *origin*'s storage structure or format. You may want to rename *sources*/*metrics* or even
+discard some of them. Enter [filters](/docs/configuration/catalog/filters/).
 
-Filter rule settings:
+## Origin Configuration File
 
- * __pattern__: the rule matching pattern (type: `string`)
- * __rewrite__: the rule replacement pattern (type: `string`)
- * __discard__: the discarding flag (type: `boolean`)
- * __target__: the target to apply rule on (type: `string`)
+Here's what a typical structure of an *origin* looks like (the name of the configuration file containing the *origin*
+definition is used as the name of the *origin*, i.e. in the example below "my_metrics"):
 
-Available targets:
-
- * __source__: apply rule on sources
- * __metric__: apply rule on metrics
- * __both__: apply rule on both sources and metrics
-
-Examples:
-
-```javascript
-{
-    "pattern": "host3.example.net",
-    "discard": true,
-    "target": "source"
-}
-
-{
-    "pattern": "^cpu-(\\d+)\\.cpu-(.+)\\.value$",
-    "rewrite": "cpu.$1.$2",
-    "target": "metric"
-}
 ```
+$ cat /etc/facette/origins/my_metrics.json
+{
+	"connector": {
+		...
+	},
 
-### Templates
+	"filters": [
+		...
+	]
+}
 
-TBD
+```

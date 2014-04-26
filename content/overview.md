@@ -18,7 +18,7 @@ connectors in the future.
 
 Its code is available at [Github][0], and is licensed under the terms of the [BSD license][1].
 
-<i class="fa fa-warning"></i> Important: Facette is currently under development and is **not ready** for a production
+<span class="fa fa-warning"></span> Important: Facette is currently under development and is **not ready** for a production
 environment.
 
 
