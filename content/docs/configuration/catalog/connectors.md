@@ -2,7 +2,7 @@
 title: "Back-end Connectors"
 section: "catalog"
 groups:
-   - "configuration"
+   - "catalog"
 groups_weight: 30
 ---
 
