@@ -30,6 +30,20 @@ Some of the API calls can take a filter as optional parameter, those filters can
  * a [regexp][3] pattern (e.g. `regexp:host[13]\.example\.net`)
  * a simple value (e.g. `host1.example.net`)
 
+### Message Responses
+
+When the API is unable to handle the received request or if an error occurred during its processing, a JSON message
+response is sent along with an HTTP status code.
+
+For example, if an unknown resource (e.g. origin, source…) is requested upon the API, with an HTTP status code being
+`404 Not Found`, the response would look like:
+
+```javascript
+{
+    "message": "Unable to find requested resource"
+}
+```
+
 ## Documents
 
  * [Server API](/docs/api/server): access server related data and methods

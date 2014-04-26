@@ -13,14 +13,14 @@ groups_weight: 20
 ### List origins
 
 ```
-GET /catalog/origins
+GET /catalog/origins/
 ```
 
 Returns an array listing the available origins.
 
 Optional parameters:
 
- * __filter:__ the [pattern](/api/#filter-patterns) to apply on origins names (type: `string`)
+ * __filter:__ the [pattern](/docs/api/#filter-patterns) to apply on origins names (type: `string`)
  * __limit:__ the maximum number of items to return (type: `integer`)
  * __offset:__ the offset to start fetching from (type: `integer`)
 
@@ -41,14 +41,14 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 GET /catalog/origins/<name>
 ```
 
-Returns an origin object along with the date of its last update.
+Returns an origin object with its connector type and date of last update.
 
 Response:
 
 ```javascript
 {
     "name": "origin0",
-    "backend": "rrd",
+    "connector": "rrd",
     "updated": "2013-01-02T12:34:56+01:00"
 }
 ```
@@ -58,17 +58,17 @@ Response:
 ### List sources
 
 ```
-GET /catalog/sources
+GET /catalog/sources/
 ```
 
 Returns an array listing the available sources.
 
 Optional parameters:
 
- * __filter:__ the [pattern](/api/#filter-patterns) pattern to apply on sources names (type: `string`)
+ * __filter:__ the [pattern](/docs/api/#filter-patterns) pattern to apply on sources names (type: `string`)
  * __limit:__ the maximum number of items to return (type: `integerr`)
  * __offset:__ the offset to start fetching from (type: `integer`)
- * __origin:__ the identifier of the origin to filter on (type: `string`)
+ * __origin:__ the name of the origin to filter on (type: `string`)
 
 Response:
 
@@ -87,7 +87,7 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 GET /catalog/sources/<name>
 ```
 
-Returns a source object along with the date of its last update and the list of the associated origins.
+Returns a source object with its associated origins and date of last update.
 
 Response:
 
@@ -106,18 +106,18 @@ Response:
 ### List metrics
 
 ```
-GET /catalog/metrics
+GET /catalog/metrics/
 ```
 
 Returns an array listing the available metrics.
 
 Optional parameters:
 
- * __filter:__ the [pattern](/api/#filter-patterns) pattern to apply on metrics names (type: `string`)
+ * __filter:__ the [pattern](/docs/api/#filter-patterns) pattern to apply on metrics names (type: `string`)
  * __limit:__ the maximum number of items to return (type: `integer`)
  * __offset:__ the offset to start fetching from (type: `integer`)
- * __origin:__ the identifier of the origin to filter on (type: `string`)
- * __source:__ the identifier of the source to filter on (type: `string`)
+ * __origin:__ the name of the origin to filter on (type: `string`)
+ * __source:__ the name of the source to filter on (type: `string`)
 
 Response:
 
@@ -136,7 +136,7 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 GET /catalog/metrics/<name>
 ```
 
-Returns a metric object along with the date of its last update and the list of the associated origins and sources.
+Returns a metric object with its associated origins and sources and tdate of last update.
 
 Response:
 
