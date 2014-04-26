@@ -16,11 +16,7 @@ Not available yet
 
 ### Requirements
 
- * RRD library Go binding: [rrd][0] (along with librrd library and development files)
- * Set package: [set][1]
- * UUID Go package: [gouuid][2]
- * Gopass package: [gopass][3]
- * Stoppable net/http listener package: [stoppableListener][4]
+ * `librrd` library and development files
 
 ### Build Instructions
 
@@ -58,10 +54,3 @@ Clean the building environment:
 ```
 make clean
 ```
-
-
-[0]: https://github.com/ziutek/rrd
-[1]: https://github.com/fatih/set
-[2]: https://github.com/nu7hatch/gouuid
-[3]: https://github.com/howeyc/gopass
-[4]: https://github.com/etix/stoppableListener
