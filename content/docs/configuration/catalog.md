@@ -32,16 +32,8 @@ collected by any metering or profiling tool, that will be eventually displayed o
 
 ### Back-end connectors
 
-To built its catalog, Facette uses *connectors* bound to origins to reach their sources and metrics.
-Here are the available connectors:
-
-#### RRD
-
-TBD
-
-#### Graphite
-
-TBD
+To built its catalog, Facette uses *connectors* bound to *origins* to reach their *sources* and *metrics*. See
+[this page](/connectors/) to view list of available back-end connectors and their documentation.
 
 ### Filters
 
