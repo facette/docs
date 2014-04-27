@@ -10,7 +10,7 @@ groups_weight: 20
 
 ## General Information
 
-This documentation describes Facette web front-end configuration.
+This documentation describes how to configure Facette.
 
 All the configuration files are stored in JSON format as described in the [RFC 4627][0] document.
 
