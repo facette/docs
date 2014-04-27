@@ -11,7 +11,7 @@ groups_weight: 30
 Facette allows you to describe how *sources* and *metrics* appear in the Facette catalog, and discard the ones you
 don't want to deal with thanks to *filters*. The `filters` section of an *origin* allows you to define rules that
 can rename or discard specific *sources* or *metrics* using regular expressions
-([RE2 syntax](https://code.google.com/p/re2/wiki/Syntax)).
+([RE2 syntax][0]).
 
 <span class="fa fa-warning"></span> Caution: in JSON you need to double the escaping character `\` when writing regular
 expressions (e.g. `\d`&nbsp;→&nbsp;`\\d`).
@@ -56,3 +56,6 @@ Rewrite sources (such as "host3_example_net" becomes "host3.example.net"), and m
 Note: filtering rules are evaluated in the order you define them, so watch out for ordering issues when defining
 "chained" rules, as a *source*/*metric* name may have been previously rewritten and a subsequent rule pattern may not
 match its original name.
+
+
+[0]: https://code.google.com/p/re2/wiki/Syntax

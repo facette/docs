@@ -18,7 +18,7 @@ All the configuration files are stored in JSON format as described in the [RFC 4
 
  * [Server Configuration](/docs/configuration/server): configure base server settings
  * [Authentication](/docs/configuration/authentication): manage users authentication methods
- * [Catalog Setup](/docs/configuration/catalog): set up catalog and templates
+ * [Catalog Setup](/docs/configuration/catalog): set up Facette catalog
 
 
 [0]: http://www.ietf.org/rfc/rfc4627.txt
