@@ -20,7 +20,7 @@ many of them, for example if your polling/collect system is sharded into many st
 Here's what a typical structure of an *origin* looks like (the name of the configuration file containing the *origin*
 definition is used as the name of the *origin*, i.e. in the example below "my_metrics"):
 
-```
+```javascript
 $ cat /etc/facette/origins/my_metrics.json
 {
 	"connector": {
