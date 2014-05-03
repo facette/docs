@@ -8,4 +8,45 @@ groups_weight: 40
 
 # Architecture of Facette
 
+Facette is a time series data (called *metrics*) visualisation software, it doesn't collect nor store these data on its
+own. Through [connectors](/docs/configuration/catalog/connectors/), it inventories other collect/storage tools' local
+metrics, and queries those remote storage resources when the user requests time series data to be displayed on a graph.
+
+## The Big Picture
+
+Here is the big picture showing how Facette and its components are architectured, and how they interact with external
+resources:
+
 ![Architecture Schema](/schema-architecture.png)
+
+Facette consists of two components: the *front-end* and the *back-end*. The *back-end* is the component that interacts
+with the resources actually storing time series data or being the canonical interface to access them, called *origins*;
+the *front-end* is a web application that displays time series data fetched by the *back-end* on graphs by querying the
+*back-end*.
+
+## The Catalog
+
+Facette maintains an internal inventory of known *sources* and *metrics* from configured *origins* called the
+**catalog**. Here is a bit of terminology used in the software:
+
+## Origin
+
+An *origin* represents, as its name suggests, the origin of the back-end time series (e.g. [collectd][0],
+[Graphite][1]). Those *origins* hold a local set of *sources* and *metrics*.
+
+## Source
+
+A *source* represents an entity that generates *metrics*. These are usually host names, but can be services or
+applications names.
+
+## Metric
+
+A *metric* is a set of time-based data points (e.g. [RRDtool][2] files) measured or collected by any metering or
+profiling tool, that will be eventually displayed on graphs in Facette.
+
+![Catalog Schema](/schema-catalog.png)
+
+
+[0]: http://collectd.org/
+[1]: http://graphite.readthedocs.org/
+[2]: http://oss.oetiker.ch/rrdtool/
