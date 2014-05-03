@@ -6,11 +6,11 @@ groups:
 groups_weight: 30
 ---
 
-# Catalog setup
+# Catalog Setup
 
 Configuring the catalog consists in defining *origins* to query data from.
 
-## Definining origins
+## Definining Origins
 
 Defining *origins* tells Facette where to find *sources* and their *metrics*, and how to add them to its catalog.
 *Origins* are defined by a mandatory *connector* description, and optional *filters*. The configuration is stored into a
@@ -35,13 +35,13 @@ $ cat /etc/facette/origins/my_metrics.json
 ```
 ## Back-end Connectors
 
-Facette uses *connectors* to bind to *origins*, and inventory their local *sources* and *metrics*. See
+Facette uses *connectors* to bind to *origins*, and to inventory their local *sources* and *metrics*. See
 [this page](/docs/configuration/catalog/connectors/) to view the list of available back-end connectors and their
 documentation.
 
 ## Filters
 
-By default the inventory mechanism of Facette queries retrieves **all** the *sources* and *metrics* known of the
-*origin*, named following the *origin*'s storage structure or format. You may want to rename *sources*/*metrics* or even
+By default the inventory mechanism of Facette retrieves **all** the known *sources* and *metrics* from the *origin*,
+named following the *origin*'s storage structure or format. You may want to rename *sources*/*metrics* or even
 discard some of them. Enter [filters](/docs/configuration/catalog/filters/).
 

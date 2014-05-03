@@ -8,7 +8,7 @@ groups_weight: 40
 
 # Architecture of Facette
 
-Facette is a time series data (called *metrics*) visualisation software, it doesn't collect nor store these data on its
+Facette is a time series data (called *metrics*) visualization software, it doesn't collect nor store these data on its
 own. Through [connectors](/docs/configuration/catalog/connectors/), it inventories other collect/storage tools' local
 metrics, and queries those remote storage resources when the user requests time series data to be displayed on a graph.
 
