@@ -24,7 +24,6 @@ Mandatory settings:
 Optional settings:
 
  * __pid_file__: the path to the pid file (type: `string`)
- * __access_log__: the path to the file to store access logging information (type: `string`, default: `stdout`)
  * __server_log__: the path to the file to store Facette application logging data (type: `string`, default: `stdout`)
  * __url_prefix__: the URL prefix behind which the server is located (type: `string`)
  * __scales__: a list of scaling presets (type: `array`)
@@ -38,7 +37,6 @@ Example:
     "data_dir": "/var/lib/facette",
     "pid_file": "/var/run/facette/facette.pid",
     "origin_dir": "/etc/facette/origins",
-    "access_log": "/var/log/facette/access.log",
     "server_log": "/var/log/facette/server.log",
     "auth": {
         "type": "simple",
