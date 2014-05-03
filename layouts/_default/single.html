@@ -14,8 +14,8 @@
 <dd{{ if eq .RelPermalink $current }} class="active"{{ end }}><a href="{{ .RelPermalink }}">{{ .Title }}</a></dd>{{ end }}
 </dl>{{ range $key, $index := .Site.Indexes.groups }}{{ if eq $key $section }}
 <dl>
-<dt>Related Pages</dt>{{ range $index.Pages }}
-<dd{{ if eq .RelPermalink $current }} class="active"{{ end }}><a href="{{ .RelPermalink }}">{{ .Title }}</a></dd>{{ end }}
+<dt>See Also</dt>{{ range $index.Pages }}{{ if ne .RelPermalink $current }}
+<dd><a href="{{ .RelPermalink }}">{{ .Title }}</a></dd>{{ end }}{{ end }}
 </dl>{{ end }}{{ end }}
 </nav>
 
