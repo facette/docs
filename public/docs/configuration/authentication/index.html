@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Authentication — Facette</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="keywords" content="          ">
+<link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="/style.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+<a href="/"><img src="http://facette.io/logo.png"></a><h1>
+<a href="/">Facette</a></h1>
+<ul>
+<li><a href="https://github.com/facette/facette/releases"><i class="fa fa-arrow-circle-o-down"></i>Download</a></li>
+<li><a href="https://github.com/facette/facette"><i class="fa fa-github"></i>View on Github</a></li>
+</ul>
+</header>
+
+<nav>
+<dl>
+<dt>Main Menu</dt>
+<dd><a href="/overview">Overview</a></dd>
+<dd><a href="/docs">Documentation</a></dd>
+</dl>
+<dl>
+<dt>See Also</dt>
+<dd><a href="/docs/configuration/server">Server Configuration</a></dd>
+<dd><a href="/docs/configuration/catalog">Catalog Setup</a></dd>
+</dl>
+</nav>
+
+<section>
+
+
+<h1 id="toc_0">Authentication</h1>
+
+<p>An authentication is required for all requests modifying the server configuration or altering the stored data (e.g.
+items creation, resources reload). It uses HTTP Basic authentication as described in the 11.1 section of the
+<a href="http://www.ietf.org/rfc/rfc1945.txt">RFC 1945</a> document.</p>
+
+<h2 id="toc_1">Simple Handler</h2>
+
+<p>Right now, the simple authentication handler is still pretty basic and will need some additional work and refine in the
+future. It only stores login and password pairs in a single file.</p>
+
+<p>To create a new user please use the <code>facettectl</code> utility then reload the server to take into account the change:</p>
+
+<pre><code>facettectl useradd facette
+facettectl reload
+</code></pre>
+
+<p>Example (password being `facette&rsquo;):</p>
+
+<pre><code class="javascript">{
+    &quot;facette&quot;: &quot;DEnfb3dCCY/NsuET4TwvX8ojD8fhxrcagGd1lbeXqL0=&quot;
+}
+</code></pre>
+</section>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-27237401-3', 'facette.io');
+ga('send', 'pageview');
+</script>
+</body>
+</html>
+

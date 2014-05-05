@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Back-end Connectors — Facette</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="keywords" content="          ">
+<link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="/style.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+<a href="/"><img src="http://facette.io/logo.png"></a><h1>
+<a href="/">Facette</a></h1>
+<ul>
+<li><a href="https://github.com/facette/facette/releases"><i class="fa fa-arrow-circle-o-down"></i>Download</a></li>
+<li><a href="https://github.com/facette/facette"><i class="fa fa-github"></i>View on Github</a></li>
+</ul>
+</header>
+
+<nav>
+<dl>
+<dt>Main Menu</dt>
+<dd><a href="/overview">Overview</a></dd>
+<dd><a href="/docs">Documentation</a></dd>
+</dl>
+<dl>
+<dt>See Also</dt>
+<dd><a href="/docs/configuration/catalog/filters">Filters</a></dd>
+</dl>
+</nav>
+
+<section>
+
+
+<h1 id="toc_0">Back-end Connectors</h1>
+
+<h2 id="toc_1">RRD</h2>
+
+<p>The <strong>RRD</strong> connector (type <code>rrd</code>) can read <a href="https://oss.oetiker.ch/rrdtool">RRDtool</a> files to extract stored metrics.</p>
+
+<p>Example <em>origin</em> definition using the <strong>RRD</strong> connector:</p>
+
+<pre><code class="javascript">{
+    &quot;connector&quot;: {
+        &quot;type&quot;: &quot;rrd&quot;,
+        &quot;path&quot;: &quot;/var/lib/collectd/rrd&quot;,
+        &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^/]+)/(?P&lt;metric&gt;.+).rrd&quot;
+    }
+}
+</code></pre>
+
+<p><span class="fa fa-warning"></span> Caution: in JSON you need to double the escaping character <code>\</code> when writing regular
+expressions (e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</p>
+
+<p>Supported settings:</p>
+
+<ul>
+<li><code>path</code>: base path on the local filesystem where the RRDtool files are stored</li>
+<li><code>pattern</code>: regular expression (<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>) describing the pattern
+mapping <em>sources</em>/<em>metrics</em> to the filesystem structure under the base directory defined with the <code>path</code> setting.
+<code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a filesystem path to these objects.</li>
+</ul>
+
+<h2 id="toc_2">Graphite</h2>
+
+<p>The <strong>Graphite</strong> connector (type <code>graphite</code>) can query a <a href="https://graphite.readthedocs.org/en/latest/render_api.html">Graphite-web HTTP API</a> to access metrics received by its
+Carbon daemon.</p>
+
+<p>When collecting entries from Graphite, the first level of the metric path of the
+<a href="https://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-plaintext-protocol">Graphite format</a> is mapped to the <em>source</em> and the rest of the metric path to the <em>metric</em> (e.g. for a metric path
+<code>www1.network.eth0.if_octets.tx</code>, <em>source</em> is &ldquo;www1&rdquo; and <em>metric</em> is &ldquo;network.eth0.if_octets.tx&rdquo;).</p>
+
+<p>Example <em>origin</em> definition using the <strong>Graphite</strong> connector:</p>
+
+<pre><code class="javascript">{
+    &quot;connector&quot;: {
+        &quot;type&quot;: &quot;graphite&quot;,
+        &quot;url&quot;: &quot;http://my.graphite.server.example.net/&quot;
+    }
+}
+</code></pre>
+
+<p>Supported settings:</p>
+
+<ul>
+<li><code>url</code>: URL of the Graphite webapp (without the <code>/api</code> path)</li>
+<li><code>allow_insecure_tls</code>: when accessing the Graphite API through HTTPS,
+allow invalid or expired SSL certificates (default: <code>false</code>)</li>
+</ul>
+</section>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-27237401-3', 'facette.io');
+ga('send', 'pageview');
+</script>
+</body>
+</html>
+

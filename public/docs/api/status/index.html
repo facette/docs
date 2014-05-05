@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>HTTP Status Codes — Facette</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="keywords" content="          ">
+<link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="/style.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+<a href="/"><img src="http://facette.io/logo.png"></a><h1>
+<a href="/">Facette</a></h1>
+<ul>
+<li><a href="https://github.com/facette/facette/releases"><i class="fa fa-arrow-circle-o-down"></i>Download</a></li>
+<li><a href="https://github.com/facette/facette"><i class="fa fa-github"></i>View on Github</a></li>
+</ul>
+</header>
+
+<nav>
+<dl>
+<dt>Main Menu</dt>
+<dd><a href="/overview">Overview</a></dd>
+<dd><a href="/docs">Documentation</a></dd>
+</dl>
+<dl>
+<dt>See Also</dt>
+<dd><a href="/docs/api/server">Server API</a></dd>
+<dd><a href="/docs/api/catalog">Catalog API</a></dd>
+<dd><a href="/docs/api/library">Library API</a></dd>
+</dl>
+</nav>
+
+<section>
+
+
+<h1 id="toc_0">HTTP Status Codes</h1>
+
+<h2 id="toc_1">200 OK</h2>
+
+<p>The request was successful and the server is returning data in the response body.</p>
+
+<h2 id="toc_2">201 Created</h2>
+
+<p>The request was successful resulting in the creation of a new item. The response body is empty.</p>
+
+<h2 id="toc_3">400 Bad Request</h2>
+
+<p>The request or the data supplied along with the request is invalid, could not be processed or when mandatory fields are
+not met.</p>
+
+<h2 id="toc_4">401 Unauthorized</h2>
+
+<p>The authentication credentials are missing or invalid.</p>
+
+<h2 id="toc_5">404 Not Found</h2>
+
+<p>The requested item or an item to inherit from could not be found. Could be returned by <code>POST</code> creation requests.</p>
+
+<h2 id="toc_6">405 Method Not Allowed</h2>
+
+<p>The requested method is not supported the API resource.</p>
+
+<h2 id="toc_7">409 Conflict</h2>
+
+<p>An item with the same name and type already exists. Could be returned by <code>POST</code> and <code>PUT</code> creation requests.</p>
+
+<h2 id="toc_8">415 Unsupported Media Type</h2>
+
+<p>The request used a <code>Content-Type</code> not supported by the API resource.</p>
+
+<h2 id="toc_9">503 Service Unavailable</h2>
+
+<p>The server is currently unavailable. Such response is sent when the server is being initialized or reloading its
+configuration.</p>
+</section>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-27237401-3', 'facette.io');
+ga('send', 'pageview');
+</script>
+</body>
+</html>
+

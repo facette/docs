@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Library API — Facette</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="keywords" content="          ">
+<link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="/style.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+<a href="/"><img src="http://facette.io/logo.png"></a><h1>
+<a href="/">Facette</a></h1>
+<ul>
+<li><a href="https://github.com/facette/facette/releases"><i class="fa fa-arrow-circle-o-down"></i>Download</a></li>
+<li><a href="https://github.com/facette/facette"><i class="fa fa-github"></i>View on Github</a></li>
+</ul>
+</header>
+
+<nav>
+<dl>
+<dt>Main Menu</dt>
+<dd><a href="/overview">Overview</a></dd>
+<dd><a href="/docs">Documentation</a></dd>
+</dl>
+<dl>
+<dt>See Also</dt>
+<dd><a href="/docs/api/server">Server API</a></dd>
+<dd><a href="/docs/api/catalog">Catalog API</a></dd>
+<dd><a href="/docs/api/status">HTTP Status Codes</a></dd>
+</dl>
+</nav>
+
+<section>
+
+
+<h1 id="toc_0">Library API</h1>
+
+<p>All library items are identified by an <a href="http://en.wikipedia.org/wiki/Universally_unique_identifier">universally unique identifier</a> (UUID), each 36 characters long.</p>
+
+<h2 id="toc_1">Groups</h2>
+
+<h3 id="toc_2">List groups</h3>
+
+<pre><code>GET /library/sourcegroups/
+GET /library/metricgroups/
+</code></pre>
+
+<p>Returns an array of objects listing the available groups.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><strong>filter:</strong> the <a href="/docs/api/#filter-patterns">pattern</a> to apply on group names (type: <code>string</code>)</li>
+<li><strong>limit:</strong> the maximum number of items to return (type: <code>integer</code>)</li>
+<li><strong>offset:</strong> the offset to start fetching from (type: <code>integer</code>)</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="javascript">[
+    {
+        &quot;id&quot;: &quot;386c8361-517f-404e-6c34-870983ab66e8&quot;,
+        &quot;name&quot;: &quot;group0&quot;,
+        &quot;description&quot;: &quot;A great group description.&quot;,
+        &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+    }
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="toc_3">Get a single group</h3>
+
+<pre><code>GET /library/sourcegroups/&lt;id&gt;
+GET /library/metricgroups/&lt;id&gt;
+</code></pre>
+
+<p>Returns a group object with its name, description and matching rules entries.</p>
+
+<p>Response:</p>
+
+<pre><code class="javascript">{
+    &quot;id&quot;: &quot;386c8361-517f-404e-6c34-870983ab66e8&quot;,
+    &quot;name&quot;: &quot;group0&quot;,
+    &quot;description&quot;: &quot;A great group description.&quot;,
+    &quot;entries&quot;: [
+        {
+            &quot;origin&quot;: &quot;origin0&quot;,
+            &quot;pattern&quot;: &quot;glob:example.*&quot;
+        }
+    ]
+}
+</code></pre>
+
+<h3 id="toc_4">Create a new group</h3>
+
+<pre><code>POST /library/sourcegroups/
+POST /library/metricgroups/
+</code></pre>
+
+<p>Takes a group from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the
+newly created item location.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><strong>inherit:</strong> the UUID of the group item to inherit from (type: <code>string</code>)</li>
+</ul>
+
+<p>Possible status codes:</p>
+
+<ul>
+<li><strong>201 Created:</strong> the group item has been successfully created</li>
+<li><strong>404 Not Found:</strong> the group item to inherit from does not exist</li>
+<li><strong>409 Conflict:</strong> another group with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single group</em> above for group object format.</p>
+
+<h3 id="toc_5">Update an existing group</h3>
+
+<pre><code>PUT /library/sourcegroups/&lt;id&gt;
+PUT /library/metricgroups/&lt;id&gt;
+</code></pre>
+
+<p>Takes a group from the request body and overwrites an existing library group item.</p>
+
+<p>Possible status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to overwrite does not exist</li>
+<li><strong>409 Conflict:</strong> another group with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single group</em> above for group object format.</p>
+
+<h3 id="toc_6">Delete an existing group</h3>
+
+<pre><code>DELETE /library/sourcegroups/&lt;id&gt;
+DELETE /library/metricgroups/&lt;id&gt;
+</code></pre>
+
+<p>Removes an existing group item from the library.</p>
+
+<p>Possible status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to delete does not exist</li>
+</ul>
+
+<h3 id="toc_7">Expand query tuples</h3>
+
+<pre><code>POST /library/expand
+</code></pre>
+
+<p>Takes an array of query tuples from the request body and returns their expanded versions.</p>
+
+<p>A query tuple consists of a list of 3 values: origin, source and metric.</p>
+
+<p>When querying the back-end, both source and metric fields can be a reference to a group, then beginning with <code>group:</code>
+prefix.</p>
+
+<pre><code class="javascript">[
+        [&quot;origin0&quot;, &quot;host1.renm.org&quot;, &quot;group:group0&quot;]
+]
+</code></pre>
+
+<p>Response:</p>
+
+<pre><code class="javascript">[
+    [
+        [&quot;origin0&quot;, &quot;host1.renm.org&quot;, &quot;metric0&quot;],
+        [&quot;origin0&quot;, &quot;host1.renm.org&quot;, &quot;metric1&quot;],
+        [&quot;origin0&quot;, &quot;host1.renm.org&quot;, &quot;metric2&quot;],
+        [&quot;origin0&quot;, &quot;host1.renm.org&quot;, &quot;metric3&quot;]
+    ]
+]
+</code></pre>
+
+<h2 id="toc_8">Graphs</h2>
+
+<h3 id="toc_9">List graphs</h3>
+
+<pre><code>GET /library/graphs/
+</code></pre>
+
+<p>Returns an array of objects listing the available graphs.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><strong>collection:</strong> the identifier of the collection to filter on (type: <code>string</code>)</li>
+<li><strong>filter:</strong> the <a href="/docs/api/#filter-patterns">pattern</a> to apply on graph names (type: <code>string</code>)</li>
+<li><strong>limit:</strong> the maximum number of items to return (type: <code>integer</code>)</li>
+<li><strong>offset:</strong> the offset to start fetching from (type: <code>integer</code>)</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="javascript">[
+    {
+        &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
+        &quot;name&quot;: &quot;graph0&quot;,
+        &quot;description&quot;: &quot;A great graph description.&quot;,
+        &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+    }
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="toc_10">Get a single graph</h3>
+
+<pre><code>GET /library/graphs/&lt;id&gt;
+</code></pre>
+
+<p>Returns a graph object with its name, description, type and stacks definitions.</p>
+
+<p>Response:</p>
+
+<pre><code class="javascript">{
+    &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
+    &quot;name&quot;: &quot;graph0&quot;,
+    &quot;description&quot;: &quot;A great graph description.&quot;,
+    &quot;type&quot;: 1,
+    &quot;stacks&quot;: [
+        {
+            &quot;groups&quot;: [
+                {
+                    &quot;series&quot;: [
+                        {
+                            &quot;metric&quot;: &quot;metric0&quot;,
+                            &quot;source&quot;: &quot;source0&quot;,
+                            &quot;origin&quot;: &quot;origin0&quot;,
+                            &quot;name&quot;: &quot;serie0&quot;
+                        }
+                    ],
+                    &quot;type&quot;: 0,
+                    &quot;name&quot;: &quot;serie0&quot;
+                }
+            ],
+            &quot;name&quot;: &quot;stack0&quot;
+        }
+    ],
+    &quot;stack_mode&quot;: 0
+}
+</code></pre>
+
+<h3 id="toc_11">Create a new graph</h3>
+
+<pre><code>POST /library/graphs/
+</code></pre>
+
+<p>Takes a graph from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the
+newly created item location.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><strong>inherit:</strong> the UUID of the graph item to inherit from (type: <code>string</code>)</li>
+</ul>
+
+<p>Possible status codes:</p>
+
+<ul>
+<li><strong>201 Created:</strong> the graph item has been successfully created</li>
+<li><strong>404 Not Found:</strong> the graph item to inherit from does not exist</li>
+<li><strong>409 Conflict:</strong> another graph with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single graph</em> above for graph object format.</p>
+
+<h3 id="toc_12">Update an existing graph</h3>
+
+<pre><code>PUT /library/graphs/&lt;id&gt;
+</code></pre>
+
+<p>Takes a graph from the request body and overwrites an existing library graph item.</p>
+
+<p>Possible status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to overwrite does not exist</li>
+<li><strong>409 Conflict:</strong> another group with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single graph</em> above for graph object format.</p>
+
+<h3 id="toc_13">Delete an existing graph</h3>
+
+<pre><code>DELETE /library/graphs/&lt;id&gt;
+</code></pre>
+
+<p>Removes an existing graph item from the library.</p>
+
+<p>Possible status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to delete does not exist</li>
+</ul>
+
+<h3 id="toc_14">Get graphs plots values</h3>
+
+<pre><code>POST /library/graphs/plots
+</code></pre>
+
+<p>Takes a plot request from the request body and returns graph series plots values and information.</p>
+
+<p>Possible status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the requested graph template does not exist</li>
+</ul>
+
+<p>Request:</p>
+
+<pre><code class="javascript">{
+    &quot;graph&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
+    &quot;range&quot;: &quot;-1d&quot;
+}
+</code></pre>
+
+<p>Response (plots values are truncated):</p>
+
+<pre><code class="javascript">{
+    &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
+    &quot;name&quot;: &quot;Chart name&quot;,
+    &quot;description&quot;: &quot;A great chart description.&quot;,
+    &quot;type&quot;: 1,
+    &quot;stacks&quot;: [
+        {
+            &quot;series&quot;: [
+                {
+                    &quot;info&quot;: {
+                        &quot;min&quot;: 0,
+                        &quot;max&quot;: 1.023,
+                        &quot;last&quot;: 0.381,
+                        &quot;avg&quot;: 0.109164
+                    },
+                    &quot;plots&quot;: [
+                        0.348,
+                        0.351,
+                        0.42300000000000004,
+                        …
+                        0,
+                        0.10500000000000001,
+                        0.42400000000000004,
+                        0.381,
+                        null
+                    ],
+                    &quot;name&quot;: &quot;serie0&quot;
+                }
+            ],
+            &quot;name&quot;: &quot;stack0&quot;
+        }
+    ],
+    &quot;stack_mode&quot;: 0,
+    &quot;start&quot;: &quot;2013-01-01T12:34:56+01:00&quot;,
+    &quot;end&quot;: &quot;2013-01-02T12:34:56+01:00&quot;,
+    &quot;step&quot;: 9.944751381,
+    &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+}
+</code></pre>
+
+<h3 id="toc_15">Get graphs series values</h3>
+
+<pre><code>POST /library/graphs/values
+</code></pre>
+
+<p>Takes a plot request from the request body and returns graph series information.</p>
+
+<p>Possible status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the requested graph template does not exist</li>
+</ul>
+
+<p>Request:</p>
+
+<pre><code class="javascript">{
+    &quot;graph&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
+    &quot;range&quot;: &quot;-1d&quot;
+}
+</code></pre>
+
+<p>Response:</p>
+
+<pre><code class="javascript">{
+    &quot;serie0&quot;: {
+        &quot;min&quot;: 0.02,
+        &quot;avg&quot;: 0.0315,
+        &quot;max&quot;: 0.043,
+        &quot;last&quot;: 0.02
+    }
+}
+</code></pre>
+
+<h2 id="toc_16">Collections</h2>
+
+<h3 id="toc_17">List collections</h3>
+
+<pre><code>GET /library/collections/
+</code></pre>
+
+<p>Returns an array of objects listing the available collections.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><strong>exclude:</strong> the identifier of the collection to exclude from listing (type: <code>string</code>)</li>
+<li><strong>filter:</strong> the <a href="/docs/api/#filter-patterns">pattern</a> to apply on collection names (type: <code>string</code>)</li>
+<li><strong>limit:</strong> the maximum number of items to return (type: <code>integer</code>)</li>
+<li><strong>offset:</strong> the offset to start fetching from (type: <code>integer</code>)</li>
+<li><strong>parent:</strong> the identifier of the parent collection to filter on (type: <code>string</code>)</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="javascript">[
+    {
+        &quot;id&quot;: &quot;916f955a-752c-468f-61b3-ace173a6d2da&quot;,
+        &quot;name&quot;: &quot;collection0&quot;,
+        &quot;description&quot;: &quot;A great collection description.&quot;,
+        &quot;parent&quot;: null,
+        &quot;has_children&quot;: false,
+        &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+    }
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="toc_18">Get a single collection</h3>
+
+<pre><code>GET /library/collections/&lt;id&gt;
+</code></pre>
+
+<p>Returns a collection object with its name, description and graphs entries.</p>
+
+<p>Response:</p>
+
+<pre><code class="javascript">{
+    &quot;id&quot;: &quot;916f955a-752c-468f-61b3-ace173a6d2da&quot;,
+    &quot;name&quot;: &quot;collection0&quot;,
+    &quot;description&quot;: &quot;A great collection description.&quot;,
+    &quot;entries&quot;: [
+        {
+            &quot;options&quot;: {
+                &quot;title&quot;: &quot;Chart title&quot;,
+                &quot;sample&quot;: &quot;400&quot;,
+                &quot;range&quot;: &quot;-1mo&quot;,
+                &quot;percentiles&quot;: &quot;95&quot;,
+                &quot;constants&quot;: &quot;&quot;
+            },
+            &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;
+        }
+    ]
+}
+</code></pre>
+
+<h3 id="toc_19">Create a new collection</h3>
+
+<pre><code>POST /library/collections/
+</code></pre>
+
+<p>Takes a collection from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the
+newly created item location.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><strong>inherit:</strong> the UUID of the collection item to inherit from (type: <code>string</code>)</li>
+</ul>
+
+<p>Possible status codes:</p>
+
+<ul>
+<li><strong>201 Created:</strong> the collection item has been successfully created</li>
+<li><strong>404 Not Found:</strong> the collection item to inherit from does not exist</li>
+<li><strong>409 Conflict:</strong> another collection with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single collection</em> above for group object format.</p>
+
+<h3 id="toc_20">Update an existing collection</h3>
+
+<pre><code>PUT /library/collections/&lt;id&gt;
+</code></pre>
+
+<p>Takes a collection from the request body and overwrites an existing library collection item.</p>
+
+<p>Possible status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to overwrite does not exist</li>
+<li><strong>409 Conflict:</strong> another group with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single collection</em> above for group object format.</p>
+
+<h3 id="toc_21">Delete an existing collection</h3>
+
+<pre><code>DELETE /library/collections/&lt;id&gt;
+</code></pre>
+
+<p>Removes an existing collection item from the library.</p>
+
+<p>Possible status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to delete does not exist</li>
+</ul>
+</section>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-27237401-3', 'facette.io');
+ga('send', 'pageview');
+</script>
+</body>
+</html>
+
