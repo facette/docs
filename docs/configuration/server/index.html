@@ -46,20 +46,20 @@ default location is <code>/etc/facette/facette.json</code>.</p>
 <p>Mandatory settings:</p>
 
 <ul>
-<li><strong>bind</strong>: the address and port to listen on (type: <code>string</code>)</li>
-<li><strong>base_dir</strong>: the base Facette application directory holding static files (type: <code>string</code>)</li>
-<li><strong>data_dir</strong>: the directory used to store application data (type: <code>string</code>)</li>
-<li><strong>origin_dir</strong>: the path to the folder containing origin configuration files (type: <code>string</code>)</li>
-<li><strong>auth</strong>: the settings used by the authentication back-end (type: <code>object</code>)</li>
+<li><code>bind</code> (type <em>string</em>): network address and port to listen on (format: <code>&quot;[addr]:port&quot;</code>)</li>
+<li><code>base_dir</code> (type <em>string</em>): base Facette application directory holding static files</li>
+<li><code>data_dir</code> (type <em>string</em>): directory used to store application data</li>
+<li><code>origin_dir</code> (type <em>string</em>): path to the folder containing origin configuration files</li>
+<li><code>auth</code> (type <em>string</em>): settings used by the authentication back-end</li>
 </ul>
 
 <p>Optional settings:</p>
 
 <ul>
-<li><strong>pid_file</strong>: the path to the pid file (type: <code>string</code>)</li>
-<li><strong>server_log</strong>: the path to the file to store Facette application logging data (type: <code>string</code>, default: <code>stdout</code>)</li>
-<li><strong>url_prefix</strong>: the URL prefix behind which the server is located (type: <code>string</code>)</li>
-<li><strong>scales</strong>: a list of scaling presets (type: <code>array</code>)</li>
+<li><code>pid_file</code> (type <em>string</em>): path to the PID file</li>
+<li><code>server_log</code> (type <em>string</em>): path to the file to store Facette application logging data (default: <code>&quot;stdout&quot;</code>)</li>
+<li><code>url_prefix</code> (type <em>string</em>): URL prefix behind which the server is located if not running at the root of the HTTP
+virtual host (e.g. <code>&quot;/facette&quot;</code>)</li>
 </ul>
 
 <p>Example:</p>
@@ -71,35 +71,15 @@ default location is <code>/etc/facette/facette.json</code>.</p>
     &quot;pid_file&quot;: &quot;/var/run/facette/facette.pid&quot;,
     &quot;origin_dir&quot;: &quot;/etc/facette/origins&quot;,
     &quot;server_log&quot;: &quot;/var/log/facette/server.log&quot;,
-    &quot;auth&quot;: {
-        &quot;type&quot;: &quot;simple&quot;,
-        &quot;path&quot;: &quot;/etc/facette/auth.json&quot;
-    }
+
+    ...
 }
 </code></pre>
 
-<h2 id="toc_2">Scaling Presets</h2>
+<h2 id="toc_2">Authentication Configuration</h2>
 
-<p>When creating graphs, it is possible to apply <code>scale</code> factor on series and groups. These presets are provided when
-selecting this factor.</p>
-
-<p>The <code>scales</code> setting accepts as value an <code>array</code> of <code>string</code> and <code>float</code> pairs.</p>
-
-<p>Example:</p>
-
-<pre><code class="javascript">&quot;scales&quot;: [
-    [ &quot;Bits → Bytes&quot;, 0.125 ],
-    [ &quot;Bytes → Bits&quot;, 8 ],
-    [ &quot;× 10³&quot;, 1e+3 ],
-    [ &quot;× 10⁶&quot;, 1e+6 ],
-    [ &quot;× 10⁹&quot;, 1e+9 ],
-    [ &quot;× 10¹²&quot;, 1e+12 ],
-    [ &quot;÷ 10³&quot;, 1e-3 ],
-    [ &quot;÷ 10⁶&quot;, 1e-6 ],
-    [ &quot;÷ 10⁹&quot;, 1e-9 ],
-    [ &quot;÷ 10¹²&quot;, 1e-12 ]
-]
-</code></pre>
+<p>Facette implements access restriction to a specific set of users identified by setting up the <code>authentication</code> section
+of the configuration. See <a href="/docs/configuration/authentication/">this page</a> to learn how to set up authentication.</p>
 </section>
 
 <script>

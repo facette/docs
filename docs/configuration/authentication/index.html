@@ -38,22 +38,64 @@
 
 <h1 id="toc_0">Authentication</h1>
 
-<p>An authentication is required for all requests modifying the server configuration or altering the stored data (e.g.
-items creation, resources reload). It uses HTTP Basic authentication as described in the 11.1 section of the
-<a href="http://www.ietf.org/rfc/rfc1945.txt">RFC 1945</a> document.</p>
+<p>An authentication can be required for all requests modifying the server configuration or altering the stored data (e.g.
+items creation, resources reload). It uses HTTP Basic authentication as described in the section 11 of the
+<a href="http://tools.ietf.org/html/rfc2616#section-11">RFC 1945</a> document.</p>
 
-<h2 id="toc_1">Simple Handler</h2>
+<h2 id="toc_1">No authentication</h2>
 
-<p>Right now, the simple authentication handler is still pretty basic and will need some additional work and refine in the
-future. It only stores login and password pairs in a single file.</p>
+<p>If you do not wish to restrict access to the Facette application, set the authentication type to <code>none</code>.</p>
 
-<p>To create a new user please use the <code>facettectl</code> utility then reload the server to take into account the change:</p>
+<p>Example:</p>
 
-<pre><code>facettectl useradd facette
-facettectl reload
+<pre><code class="javascript">{
+    ...
+
+    &quot;auth&quot;: {
+        &quot;type&quot;: &quot;none&quot;
+    },
+
+    ...
+}
 </code></pre>
 
-<p>Example (password being `facette&rsquo;):</p>
+<h2 id="toc_2">Simple authentication</h2>
+
+<p>The <strong>simple</strong> authentication (type <code>simple</code>) restricts access to the application to a specific set of users identified
+by a username and a password defined in a file. This authentication handler is pretty basic and will need
+some additional work and refinement in the future: at the moment, it only stores login and password pairs in a single
+file.</p>
+
+<p>Mandatory settings:</p>
+
+<ul>
+<li><code>path</code> (type <em>string</em>): path to the file containing the users definitions</li>
+</ul>
+
+<p>Example:</p>
+
+<pre><code class="javascript">{
+    ...
+
+    &quot;auth&quot;: {
+        &quot;type&quot;: &quot;simple&quot;,
+        &quot;path&quot;: &quot;/etc/facette/auth.json&quot;
+    },
+
+    ...
+}
+</code></pre>
+
+<p>To create a new user please use the <code>facettectl</code> utility then reload the server to take the change into account:</p>
+
+<pre><code>$ facettectl useradd facette
+Password:
+Repeat Password:
+$ facettectl reload
+</code></pre>
+
+<p>Example output to the <code>/etc/facette/auth.json</code> file (defined by the <code>path</code> setting) after adding the user &ldquo;facette&rdquo;
+(passwords are hashed):</p>
 
 <pre><code class="javascript">{
     &quot;facette&quot;: &quot;DEnfb3dCCY/NsuET4TwvX8ojD8fhxrcagGd1lbeXqL0=&quot;

@@ -55,11 +55,11 @@
 <p><span class="fa fa-warning"></span> Caution: in JSON you need to double the escaping character <code>\</code> when writing regular
 expressions (e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</p>
 
-<p>Supported settings:</p>
+<p>Mandatory settings:</p>
 
 <ul>
-<li><code>path</code>: base path on the local filesystem where the RRDtool files are stored</li>
-<li><code>pattern</code>: regular expression (<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>) describing the pattern
+<li><code>path</code> (type <em>string</em>): base path on the local filesystem where the RRDtool files are stored</li>
+<li><code>pattern</code> (type <em>string</em>): regular expression (<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>) describing the pattern
 mapping <em>sources</em>/<em>metrics</em> to the filesystem structure under the base directory defined with the <code>path</code> setting.
 <code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a filesystem path to these objects.</li>
 </ul>
@@ -86,9 +86,14 @@ Carbon daemon.</p>
 <p>Supported settings:</p>
 
 <ul>
-<li><code>url</code>: URL of the Graphite webapp (without the <code>/api</code> path)</li>
-<li><code>allow_insecure_tls</code>: when accessing the Graphite API through HTTPS,
-allow invalid or expired SSL certificates (default: <code>false</code>)</li>
+<li><code>url</code> (type <em>string</em>): URL of the Graphite webapp (without the <code>/api</code> path)</li>
+</ul>
+
+<p>Optional settings:</p>
+
+<ul>
+<li><code>allow_insecure_tls</code> (type <em>boolean</em>): allow invalid or expired SSL certificates when accessing the Graphite API
+through HTTPS, (default: <code>false</code>)</li>
 </ul>
 </section>
 
