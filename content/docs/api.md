@@ -51,7 +51,7 @@ For example, if an unknown resource (e.g. origin, source…) is requested upon t
  * [Library API](/docs/api/library): manage library items (e.g. groups, charts and collections)
 
 
-[0]: http://www.ietf.org/rfc/rfc4627.txt
-[1]: http://www.ietf.org/rfc/rfc3339.txt
+[0]: http://tools.ietf.org/html/rfc4627
+[1]: http://tools.ietf.org/html/rfc3339
 [2]: http://golang.org/pkg/path/#Match
 [3]: https://code.google.com/p/re2/wiki/Syntax

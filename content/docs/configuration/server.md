@@ -15,18 +15,18 @@ default location is `/etc/facette/facette.json`.
 
 Mandatory settings:
 
- * __bind__: the address and port to listen on (type: `string`)
- * __base_dir__: the base Facette application directory holding static files (type: `string`)
- * __data_dir__: the directory used to store application data (type: `string`)
- * __origin_dir__: the path to the folder containing origin configuration files (type: `string`)
- * __auth__: the settings used by the authentication back-end (type: `object`)
+ * `bind` (type *string*): network address and port to listen on (format: `"[addr]:port"`)
+ * `base_dir` (type *string*): base Facette application directory holding static files
+ * `data_dir` (type *string*): directory used to store application data
+ * `origin_dir` (type *string*): path to the folder containing origin configuration files
+ * `auth` (type *string*): settings used by the authentication back-end
 
 Optional settings:
 
- * __pid_file__: the path to the pid file (type: `string`)
- * __server_log__: the path to the file to store Facette application logging data (type: `string`, default: `stdout`)
- * __url_prefix__: the URL prefix behind which the server is located (type: `string`)
- * __scales__: a list of scaling presets (type: `array`)
+ * `pid_file` (type *string*): path to the PID file
+ * `server_log` (type *string*): path to the file to store Facette application logging data (default: `"stdout"`)
+ * `url_prefix` (type *string*): URL prefix behind which the server is located if not running at the root of the HTTP
+   virtual host (e.g. `"/facette"`)
 
 Example:
 
@@ -38,33 +38,12 @@ Example:
     "pid_file": "/var/run/facette/facette.pid",
     "origin_dir": "/etc/facette/origins",
     "server_log": "/var/log/facette/server.log",
-    "auth": {
-        "type": "simple",
-        "path": "/etc/facette/auth.json"
-    }
+
+    ...
 }
 ```
 
-## Scaling Presets
+## Authentication Configuration
 
-When creating graphs, it is possible to apply `scale` factor on series and groups. These presets are provided when
-selecting this factor.
-
-The `scales` setting accepts as value an `array` of `string` and `float` pairs.
-
-Example:
-
-```javascript
-"scales": [
-    [ "Bits → Bytes", 0.125 ],
-    [ "Bytes → Bits", 8 ],
-    [ "× 10³", 1e+3 ],
-    [ "× 10⁶", 1e+6 ],
-    [ "× 10⁹", 1e+9 ],
-    [ "× 10¹²", 1e+12 ],
-    [ "÷ 10³", 1e-3 ],
-    [ "÷ 10⁶", 1e-6 ],
-    [ "÷ 10⁹", 1e-9 ],
-    [ "÷ 10¹²", 1e-12 ]
-]
-```
+Facette implements access restriction to a specific set of users identified by setting up the `authentication` section
+of the configuration. See [this page](/docs/configuration/authentication/) to learn how to set up authentication.

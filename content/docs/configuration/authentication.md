@@ -8,23 +8,65 @@ groups_weight: 20
 
 # Authentication
 
-An authentication is required for all requests modifying the server configuration or altering the stored data (e.g.
-items creation, resources reload). It uses HTTP Basic authentication as described in the 11.1 section of the
+An authentication can be required for all requests modifying the server configuration or altering the stored data (e.g.
+items creation, resources reload). It uses HTTP Basic authentication as described in the section 11 of the
 [RFC 1945][1] document.
 
-## Simple Handler
+## No authentication
 
-Right now, the simple authentication handler is still pretty basic and will need some additional work and refine in the
-future. It only stores login and password pairs in a single file.
+If you do not wish to restrict access to the Facette application, set the authentication type to `none`.
 
-To create a new user please use the `facettectl` utility then reload the server to take into account the change:
+Example:
+
+```javascript
+{
+    ...
+
+    "auth": {
+        "type": "none"
+    },
+
+    ...
+}
+```
+
+## Simple authentication
+
+The **simple** authentication (type `simple`) restricts access to the application to a specific set of users identified
+by a username and a password defined in a file. This authentication handler is pretty basic and will need
+some additional work and refinement in the future: at the moment, it only stores login and password pairs in a single
+file.
+
+Mandatory settings:
+
+ * `path` (type *string*): path to the file containing the users definitions
+
+Example:
+
+```javascript
+{
+    ...
+
+    "auth": {
+        "type": "simple",
+        "path": "/etc/facette/auth.json"
+    },
+
+    ...
+}
+```
+
+To create a new user please use the `facettectl` utility then reload the server to take the change into account:
 
 ```
-facettectl useradd facette
-facettectl reload
+$ facettectl useradd facette
+Password:
+Repeat Password:
+$ facettectl reload
 ```
 
-Example (password being `facette'):
+Example output to the `/etc/facette/auth.json` file (defined by the `path` setting) after adding the user "facette"
+(passwords are hashed):
 
 ```javascript
 {
@@ -33,4 +75,4 @@ Example (password being `facette'):
 ```
 
 
-[1]: http://www.ietf.org/rfc/rfc1945.txt
+[1]: http://tools.ietf.org/html/rfc2616#section-11

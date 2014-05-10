@@ -27,10 +27,10 @@ Example *origin* definition using the **RRD** connector:
 <span class="fa fa-warning"></span> Caution: in JSON you need to double the escaping character `\` when writing regular
 expressions (e.g. `\d`&nbsp;→&nbsp;`\\d`).
 
-Supported settings:
+Mandatory settings:
 
- * `path`: base path on the local filesystem where the RRDtool files are stored
- * `pattern`: regular expression ([RE2 syntax][1]) describing the pattern
+ * `path` (type *string*): base path on the local filesystem where the RRDtool files are stored
+ * `pattern` (type *string*): regular expression ([RE2 syntax][1]) describing the pattern
     mapping *sources*/*metrics* to the filesystem structure under the base directory defined with the `path` setting.
     `<source>` and `<metric>` regexp named group are mandatory to effectively map a filesystem path to these objects.
 
@@ -56,9 +56,12 @@ Example *origin* definition using the **Graphite** connector:
 
 Supported settings:
 
- * `url`: URL of the Graphite webapp (without the `/api` path)
- * `allow_insecure_tls`: when accessing the Graphite API through HTTPS,
-    allow invalid or expired SSL certificates (default: `false`)
+ * `url` (type *string*): URL of the Graphite webapp (without the `/api` path)
+
+Optional settings:
+
+ * `allow_insecure_tls` (type *boolean*): allow invalid or expired SSL certificates when accessing the Graphite API
+ through HTTPS, (default: `false`)
 
 
 [0]: https://oss.oetiker.ch/rrdtool
