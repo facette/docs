@@ -29,7 +29,9 @@ $ cat /etc/facette/origins/my_metrics.json
 
 	"filters": [
 		...
-	]
+	],
+
+	"refresh_interval": 300
 }
 
 ```
@@ -45,3 +47,6 @@ By default the inventory mechanism of Facette retrieves **all** the known *sourc
 named following the *origin*'s storage structure or format. You may want to rename *sources*/*metrics* or even
 discard some of them. Enter [filters](/docs/configuration/catalog/filters/).
 
+## Optional Origin Settings
+
+ * `refresh_interval` (type *integer*): interval (in seconds) to trigger a periodic refresh of the origin. If `0` (default), no periodic refresh is performed.
