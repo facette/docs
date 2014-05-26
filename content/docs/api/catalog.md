@@ -10,6 +10,30 @@ groups_weight: 20
 
 ## Origins
 
+### Full catalog retrieval
+
+```
+GET /catalog/
+```
+
+Returns a catalog object containing the available origins, sources and metrics.
+
+Response:
+
+```javascript
+[
+    "origin0": {
+        "source0": [ "metric0", "metric1", "metric2" ]
+        "source1": [ "metric0", "metric1" ]
+    },
+    "origin1": {
+        "source2": [ "metric0", "metric1", "metric2" ]
+        "source3": [ "metric0", "metric1" ]
+    }
+]
+
+```
+
 ### List origins
 
 ```
