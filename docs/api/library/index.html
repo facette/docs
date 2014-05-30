@@ -45,8 +45,8 @@
 
 <h3 id="toc_2">List groups</h3>
 
-<pre><code>GET /library/sourcegroups/
-GET /library/metricgroups/
+<pre><code>GET /api/v1/library/sourcegroups/
+GET /api/v1/library/metricgroups/
 </code></pre>
 
 <p>Returns an array of objects listing the available groups.</p>
@@ -75,8 +75,8 @@ GET /library/metricgroups/
 
 <h3 id="toc_3">Get a single group</h3>
 
-<pre><code>GET /library/sourcegroups/&lt;id&gt;
-GET /library/metricgroups/&lt;id&gt;
+<pre><code>GET /api/v1/library/sourcegroups/&lt;id&gt;
+GET /api/v1/library/metricgroups/&lt;id&gt;
 </code></pre>
 
 <p>Returns a group object with its name, description and matching rules entries.</p>
@@ -98,8 +98,8 @@ GET /library/metricgroups/&lt;id&gt;
 
 <h3 id="toc_4">Create a new group</h3>
 
-<pre><code>POST /library/sourcegroups/
-POST /library/metricgroups/
+<pre><code>POST /api/v1/library/sourcegroups/
+POST /api/v1/library/metricgroups/
 </code></pre>
 
 <p>Takes a group from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the
@@ -154,7 +154,7 @@ DELETE /library/metricgroups/&lt;id&gt;
 
 <h3 id="toc_7">Expand query tuples</h3>
 
-<pre><code>POST /library/expand
+<pre><code>POST /api/v1/library/expand
 </code></pre>
 
 <p>Takes an array of query tuples from the request body and returns their expanded versions.</p>
@@ -185,7 +185,7 @@ prefix.</p>
 
 <h3 id="toc_9">List graphs</h3>
 
-<pre><code>GET /library/graphs/
+<pre><code>GET /api/v1/library/graphs/
 </code></pre>
 
 <p>Returns an array of objects listing the available graphs.</p>
@@ -215,7 +215,7 @@ prefix.</p>
 
 <h3 id="toc_10">Get a single graph</h3>
 
-<pre><code>GET /library/graphs/&lt;id&gt;
+<pre><code>GET /api/v1/library/graphs/&lt;id&gt;
 </code></pre>
 
 <p>Returns a graph object with its name, description, type and stacks definitions.</p>
@@ -252,7 +252,7 @@ prefix.</p>
 
 <h3 id="toc_11">Create a new graph</h3>
 
-<pre><code>POST /library/graphs/
+<pre><code>POST /api/v1/library/graphs/
 </code></pre>
 
 <p>Takes a graph from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the
@@ -305,7 +305,7 @@ newly created item location.</p>
 
 <h3 id="toc_14">Get graphs plots values</h3>
 
-<pre><code>POST /library/graphs/plots
+<pre><code>POST /api/v1/library/graphs/plots
 </code></pre>
 
 <p>Takes a plot request from the request body and returns graph series plots values and information.</p>
@@ -368,7 +368,7 @@ newly created item location.</p>
 
 <h3 id="toc_15">Get graphs series values</h3>
 
-<pre><code>POST /library/graphs/values
+<pre><code>POST /api/v1/library/graphs/values
 </code></pre>
 
 <p>Takes a plot request from the request body and returns graph series information.</p>
@@ -403,7 +403,7 @@ newly created item location.</p>
 
 <h3 id="toc_17">List collections</h3>
 
-<pre><code>GET /library/collections/
+<pre><code>GET /api/v1/library/collections/
 </code></pre>
 
 <p>Returns an array of objects listing the available collections.</p>
@@ -436,7 +436,7 @@ newly created item location.</p>
 
 <h3 id="toc_18">Get a single collection</h3>
 
-<pre><code>GET /library/collections/&lt;id&gt;
+<pre><code>GET /api/v1/library/collections/&lt;id&gt;
 </code></pre>
 
 <p>Returns a collection object with its name, description and graphs entries.</p>
@@ -464,7 +464,7 @@ newly created item location.</p>
 
 <h3 id="toc_19">Create a new collection</h3>
 
-<pre><code>POST /library/collections/
+<pre><code>POST /api/v1/library/collections/
 </code></pre>
 
 <p>Takes a collection from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the

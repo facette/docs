@@ -41,9 +41,31 @@
 
 <h2 id="toc_1">Origins</h2>
 
-<h3 id="toc_2">List origins</h3>
+<h3 id="toc_2">Full catalog retrieval</h3>
 
-<pre><code>GET /catalog/origins/
+<pre><code>GET /api/v1/catalog/
+</code></pre>
+
+<p>Returns a catalog object containing the available origins, sources and metrics.</p>
+
+<p>Response:</p>
+
+<pre><code class="javascript">[
+    &quot;origin0&quot;: {
+        &quot;source0&quot;: [ &quot;metric0&quot;, &quot;metric1&quot;, &quot;metric2&quot; ]
+        &quot;source1&quot;: [ &quot;metric0&quot;, &quot;metric1&quot; ]
+    },
+    &quot;origin1&quot;: {
+        &quot;source2&quot;: [ &quot;metric0&quot;, &quot;metric1&quot;, &quot;metric2&quot; ]
+        &quot;source3&quot;: [ &quot;metric0&quot;, &quot;metric1&quot; ]
+    }
+]
+
+</code></pre>
+
+<h3 id="toc_3">List origins</h3>
+
+<pre><code>GET /api/v1/catalog/origins/
 </code></pre>
 
 <p>Returns an array listing the available origins.</p>
@@ -66,9 +88,9 @@
 
 <p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
 
-<h3 id="toc_3">Get a single origin</h3>
+<h3 id="toc_4">Get a single origin</h3>
 
-<pre><code>GET /catalog/origins/&lt;name&gt;
+<pre><code>GET /api/v1/catalog/origins/&lt;name&gt;
 </code></pre>
 
 <p>Returns an origin object with its connector type and date of last update.</p>
@@ -82,11 +104,11 @@
 }
 </code></pre>
 
-<h2 id="toc_4">Sources</h2>
+<h2 id="toc_5">Sources</h2>
 
-<h3 id="toc_5">List sources</h3>
+<h3 id="toc_6">List sources</h3>
 
-<pre><code>GET /catalog/sources/
+<pre><code>GET /api/v1/catalog/sources/
 </code></pre>
 
 <p>Returns an array listing the available sources.</p>
@@ -110,9 +132,9 @@
 
 <p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
 
-<h3 id="toc_6">Get a single source</h3>
+<h3 id="toc_7">Get a single source</h3>
 
-<pre><code>GET /catalog/sources/&lt;name&gt;
+<pre><code>GET /api/v1/catalog/sources/&lt;name&gt;
 </code></pre>
 
 <p>Returns a source object with its associated origins and date of last update.</p>
@@ -128,11 +150,11 @@
 }
 </code></pre>
 
-<h2 id="toc_7">Metrics</h2>
+<h2 id="toc_8">Metrics</h2>
 
-<h3 id="toc_8">List metrics</h3>
+<h3 id="toc_9">List metrics</h3>
 
-<pre><code>GET /catalog/metrics/
+<pre><code>GET /api/v1/catalog/metrics/
 </code></pre>
 
 <p>Returns an array listing the available metrics.</p>
@@ -157,9 +179,9 @@
 
 <p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
 
-<h3 id="toc_9">Get a single metric</h3>
+<h3 id="toc_10">Get a single metric</h3>
 
-<pre><code>GET /catalog/metrics/&lt;name&gt;
+<pre><code>GET /api/v1/catalog/metrics/&lt;name&gt;
 </code></pre>
 
 <p>Returns a metric object with its associated origins and sources and tdate of last update.</p>

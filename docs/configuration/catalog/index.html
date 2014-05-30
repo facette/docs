@@ -58,7 +58,9 @@ definition is used as the name of the <em>origin</em>, i.e. in the example below
 
     &quot;filters&quot;: [
         ...
-    ]
+    ],
+
+    &quot;refresh_interval&quot;: 300
 }
 
 </code></pre>
@@ -74,6 +76,12 @@ documentation.</p>
 <p>By default the inventory mechanism of Facette retrieves <strong>all</strong> the known <em>sources</em> and <em>metrics</em> from the <em>origin</em>,
 named following the <em>origin</em>&rsquo;s storage structure or format. You may want to rename <em>sources</em>/<em>metrics</em> or even
 discard some of them. Enter <a href="/docs/configuration/catalog/filters/">filters</a>.</p>
+
+<h2 id="toc_4">Optional Origin Settings</h2>
+
+<ul>
+<li><code>refresh_interval</code> (type <em>integer</em>): interval (in seconds) to trigger a periodic refresh of the origin. If <code>0</code> (default), no periodic refresh is performed.</li>
+</ul>
 </section>
 
 <script>
