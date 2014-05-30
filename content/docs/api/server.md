@@ -11,7 +11,7 @@ groups_weight: 10
 ## Get Items Statistics
 
 ```
-GET /stats
+GET /api/v1/stats
 ```
 
 Returns a statistics object along with back-end items information.

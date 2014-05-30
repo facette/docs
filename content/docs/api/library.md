@@ -15,8 +15,8 @@ All library items are identified by an [universally unique identifier][0] (UUID)
 ### List groups
 
 ```
-GET /library/sourcegroups/
-GET /library/metricgroups/
+GET /api/v1/library/sourcegroups/
+GET /api/v1/library/metricgroups/
 ```
 
 Returns an array of objects listing the available groups.
@@ -45,8 +45,8 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 ### Get a single group
 
 ```
-GET /library/sourcegroups/<id>
-GET /library/metricgroups/<id>
+GET /api/v1/library/sourcegroups/<id>
+GET /api/v1/library/metricgroups/<id>
 ```
 
 Returns a group object with its name, description and matching rules entries.
@@ -70,8 +70,8 @@ Response:
 ### Create a new group
 
 ```
-POST /library/sourcegroups/
-POST /library/metricgroups/
+POST /api/v1/library/sourcegroups/
+POST /api/v1/library/metricgroups/
 ```
 
 Takes a group from the request body and stores it in the library, then returns a `Location` HTTP header pointing to the
@@ -121,7 +121,7 @@ Possible status codes:
 ### Expand query tuples
 
 ```
-POST /library/expand
+POST /api/v1/library/expand
 ```
 
 Takes an array of query tuples from the request body and returns their expanded versions.
@@ -155,7 +155,7 @@ Response:
 ### List graphs
 
 ```
-GET /library/graphs/
+GET /api/v1/library/graphs/
 ```
 
 Returns an array of objects listing the available graphs.
@@ -185,7 +185,7 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 ### Get a single graph
 
 ```
-GET /library/graphs/<id>
+GET /api/v1/library/graphs/<id>
 ```
 
 Returns a graph object with its name, description, type and stacks definitions.
@@ -224,7 +224,7 @@ Response:
 ### Create a new graph
 
 ```
-POST /library/graphs/
+POST /api/v1/library/graphs/
 ```
 
 Takes a graph from the request body and stores it in the library, then returns a `Location` HTTP header pointing to the
@@ -272,7 +272,7 @@ Possible status codes:
 ### Get graphs plots values
 
 ```
-POST /library/graphs/plots
+POST /api/v1/library/graphs/plots
 ```
 
 Takes a plot request from the request body and returns graph series plots values and information.
@@ -336,7 +336,7 @@ Response (plots values are truncated):
 ### Get graphs series values
 
 ```
-POST /library/graphs/values
+POST /api/v1/library/graphs/values
 ```
 
 Takes a plot request from the request body and returns graph series information.
@@ -372,7 +372,7 @@ Response:
 ### List collections
 
 ```
-GET /library/collections/
+GET /api/v1/library/collections/
 ```
 
 Returns an array of objects listing the available collections.
@@ -405,7 +405,7 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 ### Get a single collection
 
 ```
-GET /library/collections/<id>
+GET /api/v1/library/collections/<id>
 ```
 
 Returns a collection object with its name, description and graphs entries.
@@ -435,7 +435,7 @@ Response:
 ### Create a new collection
 
 ```
-POST /library/collections/
+POST /api/v1/library/collections/
 ```
 
 Takes a collection from the request body and stores it in the library, then returns a `Location` HTTP header pointing to the

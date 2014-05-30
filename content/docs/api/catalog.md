@@ -13,7 +13,7 @@ groups_weight: 20
 ### Full catalog retrieval
 
 ```
-GET /catalog/
+GET /api/v1/catalog/
 ```
 
 Returns a catalog object containing the available origins, sources and metrics.
@@ -37,7 +37,7 @@ Response:
 ### List origins
 
 ```
-GET /catalog/origins/
+GET /api/v1/catalog/origins/
 ```
 
 Returns an array listing the available origins.
@@ -62,7 +62,7 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 ### Get a single origin
 
 ```
-GET /catalog/origins/<name>
+GET /api/v1/catalog/origins/<name>
 ```
 
 Returns an origin object with its connector type and date of last update.
@@ -82,7 +82,7 @@ Response:
 ### List sources
 
 ```
-GET /catalog/sources/
+GET /api/v1/catalog/sources/
 ```
 
 Returns an array listing the available sources.
@@ -108,7 +108,7 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 ### Get a single source
 
 ```
-GET /catalog/sources/<name>
+GET /api/v1/catalog/sources/<name>
 ```
 
 Returns a source object with its associated origins and date of last update.
@@ -130,7 +130,7 @@ Response:
 ### List metrics
 
 ```
-GET /catalog/metrics/
+GET /api/v1/catalog/metrics/
 ```
 
 Returns an array listing the available metrics.
@@ -157,7 +157,7 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 ### Get a single metric
 
 ```
-GET /catalog/metrics/<name>
+GET /api/v1/catalog/metrics/<name>
 ```
 
 Returns a metric object with its associated origins and sources and tdate of last update.
