@@ -81,7 +81,7 @@ Optional parameters:
 
  * __inherit:__ the UUID of the group item to inherit from (type: `string`)
 
-Possible status codes:
+Additional status codes:
 
  * __201 Created:__ the group item has been successfully created
  * __404 Not Found:__ the group item to inherit from does not exist
@@ -98,7 +98,7 @@ PUT /library/metricgroups/<id>
 
 Takes a group from the request body and overwrites an existing library group item.
 
-Possible status codes:
+Additional status codes:
 
  * __404 Not Found:__ the item to overwrite does not exist
  * __409 Conflict:__ another group with the same name already exists
@@ -114,7 +114,7 @@ DELETE /library/metricgroups/<id>
 
 Removes an existing group item from the library.
 
-Possible status codes:
+Additional status codes:
 
  * __404 Not Found:__ the item to delete does not exist
 
@@ -234,7 +234,7 @@ Optional parameters:
 
  * __inherit:__ the UUID of the graph item to inherit from (type: `string`)
 
-Possible status codes:
+Additional status codes:
 
  * __201 Created:__ the graph item has been successfully created
  * __404 Not Found:__ the graph item to inherit from does not exist
@@ -250,7 +250,7 @@ PUT /library/graphs/<id>
 
 Takes a graph from the request body and overwrites an existing library graph item.
 
-Possible status codes:
+Additional status codes:
 
  * __404 Not Found:__ the item to overwrite does not exist
  * __409 Conflict:__ another group with the same name already exists
@@ -265,7 +265,7 @@ DELETE /library/graphs/<id>
 
 Removes an existing graph item from the library.
 
-Possible status codes:
+Additional status codes:
 
  * __404 Not Found:__ the item to delete does not exist
 
@@ -277,7 +277,7 @@ POST /api/v1/library/graphs/plots
 
 Takes a plot request from the request body and returns graph series plots values and information.
 
-Possible status codes:
+Additional status codes:
 
  * __404 Not Found:__ the requested graph template does not exist
 
@@ -341,7 +341,7 @@ POST /api/v1/library/graphs/values
 
 Takes a plot request from the request body and returns graph series information.
 
-Possible status codes:
+Additional status codes:
 
  * __404 Not Found:__ the requested graph template does not exist
 
@@ -445,7 +445,7 @@ Optional parameters:
 
  * __inherit:__ the UUID of the collection item to inherit from (type: `string`)
 
-Possible status codes:
+Additional status codes:
 
  * __201 Created:__ the collection item has been successfully created
  * __404 Not Found:__ the collection item to inherit from does not exist
@@ -461,7 +461,7 @@ PUT /library/collections/<id>
 
 Takes a collection from the request body and overwrites an existing library collection item.
 
-Possible status codes:
+Additional status codes:
 
  * __404 Not Found:__ the item to overwrite does not exist
  * __409 Conflict:__ another group with the same name already exists
@@ -476,7 +476,7 @@ DELETE /library/collections/<id>
 
 Removes an existing collection item from the library.
 
-Possible status codes:
+Additional status codes:
 
  * __404 Not Found:__ the item to delete does not exist
 

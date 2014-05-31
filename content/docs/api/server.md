@@ -38,7 +38,7 @@ GET /reload
 
 Reloads the server configuration files and refreshes back-ends.
 
-Possible status codes:
+Additional status codes:
 
  * __503 Service Unavailable:__ the server is reloading its configuration
 
