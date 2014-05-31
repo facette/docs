@@ -49,4 +49,5 @@ discard some of them. Enter [filters](/docs/configuration/catalog/filters/).
 
 ## Optional Origin Settings
 
- * `refresh_interval` (type *integer*): interval (in seconds) to trigger a periodic refresh of the origin. If `0` (default), no periodic refresh is performed.
+ * `refresh_interval` (type _integer_): interval (in seconds) to trigger a periodic refresh of the origin. If `0`
+(default), no periodic refresh is performed.

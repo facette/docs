@@ -18,12 +18,12 @@ expressions (e.g. `\d`&nbsp;→&nbsp;`\\d`).
 
 Filter rule settings:
 
- * `target` (type: *string*): object to target (`source` or `metric`)
- * `pattern` (type: *string*): pattern to match
- * `rewrite` (type: *string*): replacement pattern
+ * `target` (type: _string_): object to target (`source` or `metric`)
+ * `pattern` (type: _string_): pattern to match
+ * `rewrite` (type: _string_): replacement pattern
  * `discard` (type: *boolean*): discarding flag
 
-Supported `target` values (type *string*):
+Supported `target` values (type _string_):
 
  * `source`: apply filter `pattern` on *source* names only
  * `metric`: apply filter `pattern` on *metric* names only

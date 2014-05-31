@@ -15,16 +15,16 @@ default location is `/etc/facette/facette.json`.
 
 Mandatory settings:
 
- * `bind` (type *string*): network address and port to listen on (format: `"[addr]:port"`)
- * `base_dir` (type *string*): base Facette application directory holding static files
- * `data_dir` (type *string*): directory used to store application data
- * `origin_dir` (type *string*): path to the folder containing origin configuration files
+ * `bind` (type _string_): network address and port to listen on (format: `"[addr]:port"`)
+ * `base_dir` (type _string_): base Facette application directory holding static files
+ * `data_dir` (type _string_): directory used to store application data
+ * `origin_dir` (type _string_): path to the folder containing origin configuration files
 
 Optional settings:
 
- * `pid_file` (type *string*): path to the PID file
- * `server_log` (type *string*): path to the file to store Facette application logging data (default: `"stdout"`)
- * `url_prefix` (type *string*): URL prefix behind which the server is located if not running at the root of the HTTP
+ * `pid_file` (type _string_): path to the PID file
+ * `server_log` (type _string_): path to the file to store Facette application logging data (default: `"-"`)
+ * `url_prefix` (type _string_): URL prefix behind which the server is located if not running at the root of the HTTP
    virtual host (e.g. `"/facette"`)
 
 Example:

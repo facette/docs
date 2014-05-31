@@ -23,9 +23,9 @@ Returns an array of objects listing the available groups.
 
 Optional parameters:
 
- * __filter:__ the [pattern](/docs/api/#filter-patterns) to apply on group names (type: `string`)
- * __limit:__ the maximum number of items to return (type: `integer`)
- * __offset:__ the offset to start fetching from (type: `integer`)
+ * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) to apply on group names
+ * `limit` (type _integer_): the maximum number of items to return
+ * `offset` (type _integer_): the offset to start fetching from
 
 Response:
 
@@ -79,7 +79,7 @@ newly created item location.
 
 Optional parameters:
 
- * __inherit:__ the UUID of the group item to inherit from (type: `string`)
+ * `inherit` (type _string_): the UUID of the group item to inherit from
 
 Additional status codes:
 
@@ -162,10 +162,10 @@ Returns an array of objects listing the available graphs.
 
 Optional parameters:
 
- * __collection:__ the identifier of the collection to filter on (type: `string`)
- * __filter:__ the [pattern](/docs/api/#filter-patterns) to apply on graph names (type: `string`)
- * __limit:__ the maximum number of items to return (type: `integer`)
- * __offset:__ the offset to start fetching from (type: `integer`)
+ * `collection` (type _string_): the identifier of the collection to filter on
+ * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) to apply on graph names
+ * `limit` (type _integer_): the maximum number of items to return
+ * `offset` (type _integer_): the offset to start fetching from
 
 Response:
 
@@ -232,7 +232,7 @@ newly created item location.
 
 Optional parameters:
 
- * __inherit:__ the UUID of the graph item to inherit from (type: `string`)
+ * `inherit` (type _string_): the UUID of the graph item to inherit from
 
 Additional status codes:
 
@@ -379,11 +379,11 @@ Returns an array of objects listing the available collections.
 
 Optional parameters:
 
- * __exclude:__ the identifier of the collection to exclude from listing (type: `string`)
- * __filter:__ the [pattern](/docs/api/#filter-patterns) to apply on collection names (type: `string`)
- * __limit:__ the maximum number of items to return (type: `integer`)
- * __offset:__ the offset to start fetching from (type: `integer`)
- * __parent:__ the identifier of the parent collection to filter on (type: `string`)
+ * `exclude` (type _string_): the identifier of the collection to exclude from listing
+ * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) to apply on collection names
+ * `limit` (type _integer_): the maximum number of items to return
+ * `offset` (type _integer_): the offset to start fetching from
+ * `parent` (type _string_): the identifier of the parent collection to filter on
 
 Response:
 
@@ -443,7 +443,7 @@ newly created item location.
 
 Optional parameters:
 
- * __inherit:__ the UUID of the collection item to inherit from (type: `string`)
+ * `inherit` (type _string_): the UUID of the collection item to inherit from
 
 Additional status codes:
 

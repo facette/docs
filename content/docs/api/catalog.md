@@ -44,9 +44,9 @@ Returns an array listing the available origins.
 
 Optional parameters:
 
- * __filter:__ the [pattern](/docs/api/#filter-patterns) to apply on origins names (type: `string`)
- * __limit:__ the maximum number of items to return (type: `integer`)
- * __offset:__ the offset to start fetching from (type: `integer`)
+ * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) to apply on origins names
+ * `limit` (type _integer_): the maximum number of items to return
+ * `offset` (type _integer_): the offset to start fetching from
 
 Response:
 
@@ -89,10 +89,10 @@ Returns an array listing the available sources.
 
 Optional parameters:
 
- * __filter:__ the [pattern](/docs/api/#filter-patterns) pattern to apply on sources names (type: `string`)
- * __limit:__ the maximum number of items to return (type: `integerr`)
- * __offset:__ the offset to start fetching from (type: `integer`)
- * __origin:__ the name of the origin to filter on (type: `string`)
+ * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) pattern to apply on sources names
+ * `limit` (type _integer_): the maximum number of items to return
+ * `offset` (type _integer_): the offset to start fetching from
+ * `origin` (type _string_): the name of the origin to filter on
 
 Response:
 
@@ -137,11 +137,11 @@ Returns an array listing the available metrics.
 
 Optional parameters:
 
- * __filter:__ the [pattern](/docs/api/#filter-patterns) pattern to apply on metrics names (type: `string`)
- * __limit:__ the maximum number of items to return (type: `integer`)
- * __offset:__ the offset to start fetching from (type: `integer`)
- * __origin:__ the name of the origin to filter on (type: `string`)
- * __source:__ the name of the source to filter on (type: `string`)
+ * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) pattern to apply on metrics names
+ * `limit` (type _integer_): the maximum number of items to return
+ * `offset` (type _integer_): the offset to start fetching from
+ * `origin` (type __string_): the name of the origin to filter on
+ * `source` (type __string_): the name of the source to filter on
 
 Response:
 
