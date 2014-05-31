@@ -28,7 +28,6 @@
 </dl>
 <dl>
 <dt>See Also</dt>
-<dd><a href="/docs/configuration/authentication">Authentication</a></dd>
 <dd><a href="/docs/configuration/catalog">Catalog Setup</a></dd>
 </dl>
 </nav>
@@ -50,7 +49,6 @@ default location is <code>/etc/facette/facette.json</code>.</p>
 <li><code>base_dir</code> (type <em>string</em>): base Facette application directory holding static files</li>
 <li><code>data_dir</code> (type <em>string</em>): directory used to store application data</li>
 <li><code>origin_dir</code> (type <em>string</em>): path to the folder containing origin configuration files</li>
-<li><code>auth</code> (type <em>string</em>): settings used by the authentication back-end</li>
 </ul>
 
 <p>Optional settings:</p>
@@ -75,11 +73,6 @@ virtual host (e.g. <code>&quot;/facette&quot;</code>)</li>
     ...
 }
 </code></pre>
-
-<h2 id="toc_2">Authentication Configuration</h2>
-
-<p>Facette implements access restriction to a specific set of users identified by setting up the <code>authentication</code> section
-of the configuration. See <a href="/docs/configuration/authentication/">this page</a> to learn how to set up authentication.</p>
 </section>
 
 <script>
