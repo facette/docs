@@ -12,9 +12,6 @@ groups_weight: 50
 
 This documentation describes the RESTful web API coming along with Facette web front-end.
 
-An authentication is required when modifying the server configuration or altering the stored data. See
-[Authentication Configuration](/docs/configuration/authentication) for further details.
-
 Unless otherwise stated, all requests and responses bodies use `application/json` as `Content-Type`. The format is
 described in the [RFC 4627][0] document.
 

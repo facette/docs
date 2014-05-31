@@ -17,7 +17,6 @@ All the configuration files are stored in JSON format as described in the [RFC 4
 ## Documents
 
  * [Server Configuration](/docs/configuration/server): configure base server settings
- * [Authentication](/docs/configuration/authentication): manage users authentication methods
  * [Catalog Setup](/docs/configuration/catalog): set up Facette catalog
 
 

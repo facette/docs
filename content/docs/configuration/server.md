@@ -19,7 +19,6 @@ Mandatory settings:
  * `base_dir` (type *string*): base Facette application directory holding static files
  * `data_dir` (type *string*): directory used to store application data
  * `origin_dir` (type *string*): path to the folder containing origin configuration files
- * `auth` (type *string*): settings used by the authentication back-end
 
 Optional settings:
 
@@ -42,8 +41,3 @@ Example:
     ...
 }
 ```
-
-## Authentication Configuration
-
-Facette implements access restriction to a specific set of users identified by setting up the `authentication` section
-of the configuration. See [this page](/docs/configuration/authentication/) to learn how to set up authentication.

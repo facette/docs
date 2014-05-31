@@ -21,10 +21,6 @@ The request was successful resulting in the creation of a new item. The response
 The request or the data supplied along with the request is invalid, could not be processed or when mandatory fields are
 not met.
 
-## 401 Unauthorized
-
-The authentication credentials are missing or invalid.
-
 ## 404 Not Found
 
 The requested item or an item to inherit from could not be found. Could be returned by `POST` creation requests.
