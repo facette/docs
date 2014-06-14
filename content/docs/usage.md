@@ -18,6 +18,7 @@ Options:
    -c  configuration file path
    -d  debugging level
    -h  display this help and exit
+   -l  log file path
 ```
 
 To launch the server, simply run:
@@ -26,4 +27,4 @@ To launch the server, simply run:
 facette -c path/to/facette.json
 ```
 
-Note: if the path to the configuration file is omitted, the default `/etc/facette/facette.json` one will be loaded.
+Note: if the path to the configuration file is omitted, the default `/etc/facette/facette.json` one will be loaded. If the path to log file is omitted, output will be written to *stderr*.
