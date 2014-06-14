@@ -48,14 +48,13 @@ default location is <code>/etc/facette/facette.json</code>.</p>
 <li><code>bind</code> (type <em>string</em>): network address and port to listen on (format: <code>&quot;[addr]:port&quot;</code>)</li>
 <li><code>base_dir</code> (type <em>string</em>): base Facette application directory holding static files</li>
 <li><code>data_dir</code> (type <em>string</em>): directory used to store application data</li>
-<li><code>origin_dir</code> (type <em>string</em>): path to the folder containing origin configuration files</li>
+<li><code>origins_dir</code> (type <em>string</em>): path to the folder containing origin configuration files</li>
 </ul>
 
 <p>Optional settings:</p>
 
 <ul>
 <li><code>pid_file</code> (type <em>string</em>): path to the PID file</li>
-<li><code>server_log</code> (type <em>string</em>): path to the file to store Facette application logging data (default: <code>&quot;-&quot;</code>)</li>
 <li><code>url_prefix</code> (type <em>string</em>): URL prefix behind which the server is located if not running at the root of the HTTP
 virtual host (e.g. <code>&quot;/facette&quot;</code>)</li>
 </ul>
@@ -65,10 +64,9 @@ virtual host (e.g. <code>&quot;/facette&quot;</code>)</li>
 <pre><code class="javascript">{
     &quot;bind&quot;: &quot;:12003&quot;,
     &quot;base_dir&quot;: &quot;/usr/share/facette&quot;,
+    &quot;origins_dir&quot;: &quot;/etc/facette/origins&quot;,
     &quot;data_dir&quot;: &quot;/var/lib/facette&quot;,
     &quot;pid_file&quot;: &quot;/var/run/facette/facette.pid&quot;,
-    &quot;origin_dir&quot;: &quot;/etc/facette/origins&quot;,
-    &quot;server_log&quot;: &quot;/var/log/facette/server.log&quot;,
 
     ...
 }
