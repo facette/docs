@@ -18,7 +18,7 @@ Mandatory settings:
  * `bind` (type _string_): network address and port to listen on (format: `"[addr]:port"`)
  * `base_dir` (type _string_): base Facette application directory holding static files
  * `data_dir` (type _string_): directory used to store application data
- * `origin_dir` (type _string_): path to the folder containing origin configuration files
+ * `origins_dir` (type _string_): path to the folder containing origin configuration files
 
 Optional settings:
 
@@ -32,7 +32,7 @@ Example:
 {
     "bind": ":12003",
     "base_dir": "/usr/share/facette",
-    "origin_dir": "/etc/facette/origins",
+    "origins_dir": "/etc/facette/origins",
     "data_dir": "/var/lib/facette",
     "pid_file": "/var/run/facette/facette.pid",
 

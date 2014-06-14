@@ -14,7 +14,7 @@ Configuring the catalog consists in defining *origins* to query data from.
 
 Defining *origins* tells Facette where to find *sources* and their *metrics*, and how to add them to its catalog.
 *Origins* are defined by a mandatory *connector* description, and optional *filters*. The configuration is stored into a
-dedicated file in the directory pointed by the `origin_dir` setting in the main configuration file; you can have as
+dedicated file in the directory pointed by the `origins_dir` setting in the main configuration file; you can have as
 many of them, for example if your polling/collect system is sharded into many storage backends.
 
 Here's what a typical structure of an *origin* looks like (the name of the configuration file containing the *origin*
