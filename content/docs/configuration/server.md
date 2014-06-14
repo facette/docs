@@ -23,7 +23,6 @@ Mandatory settings:
 Optional settings:
 
  * `pid_file` (type _string_): path to the PID file
- * `server_log` (type _string_): path to the file to store Facette application logging data (default: `"-"`)
  * `url_prefix` (type _string_): URL prefix behind which the server is located if not running at the root of the HTTP
    virtual host (e.g. `"/facette"`)
 
@@ -33,10 +32,9 @@ Example:
 {
     "bind": ":12003",
     "base_dir": "/usr/share/facette",
+    "origin_dir": "/etc/facette/origins",
     "data_dir": "/var/lib/facette",
     "pid_file": "/var/run/facette/facette.pid",
-    "origin_dir": "/etc/facette/origins",
-    "server_log": "/var/log/facette/server.log",
 
     ...
 }
