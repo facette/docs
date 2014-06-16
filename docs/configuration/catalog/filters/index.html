@@ -28,7 +28,7 @@
 </dl>
 <dl>
 <dt>See Also</dt>
-<dd><a href="/docs/configuration/catalog/connectors">Back-end Connectors</a></dd>
+<dd><a href="/docs/configuration/catalog/connectors">Provider Connectors</a></dd>
 </dl>
 </nav>
 
@@ -37,9 +37,8 @@
 
 <h1 id="toc_0">Filters</h1>
 
-<p>Facette allows you to describe how <em>sources</em> and <em>metrics</em> appear in the Facette catalog, and discard the ones you
-don&rsquo;t want to deal with thanks to <em>filters</em>. The <code>filters</code> section of an <em>origin</em> allows you to define rules that
-can rename or discard specific <em>sources</em> or <em>metrics</em> using regular expressions
+<p>Facette <em>filters</em> allows you to change how <em>origins</em>, <em>sources</em> and <em>metrics</em> appear in the Facette catalog, and discard the ones you don&rsquo;t want to deal with. The <code>filters</code> section of a <em>provider</em> definition defines rules that are evaluated
+at <em>origins</em> inventory, renaming or discarding specific <em>sources</em> or <em>metrics</em> using regular expressions
 (<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>).</p>
 
 <p><span class="fa fa-warning"></span> Caution: in JSON you need to double the escaping character <code>\</code> when writing regular
@@ -48,7 +47,7 @@ expressions (e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</p>
 <p>Filter rule settings:</p>
 
 <ul>
-<li><code>target</code> (type: <em>string</em>): object to target (<code>source</code> or <code>metric</code>)</li>
+<li><code>target</code> (type: <em>string</em>): object to target (<code>origin</code>, <code>source</code> or <code>metric</code>)</li>
 <li><code>pattern</code> (type: <em>string</em>): pattern to match</li>
 <li><code>rewrite</code> (type: <em>string</em>): replacement pattern</li>
 <li><code>discard</code> (type: <em>boolean</em>): discarding flag</li>
@@ -57,9 +56,10 @@ expressions (e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</p>
 <p>Supported <code>target</code> values (type <em>string</em>):</p>
 
 <ul>
-<li><code>source</code>: apply filter <code>pattern</code> on <em>source</em> names only</li>
-<li><code>metric</code>: apply filter <code>pattern</code> on <em>metric</em> names only</li>
-<li><code>both</code>: apply rule on both <em>source</em> and <em>metric</em> names (default)</li>
+<li><code>all</code>: match filter <code>pattern</code> on all names (default)</li>
+<li><code>origin</code>: match filter <code>pattern</code> on <em>origin</em> names only</li>
+<li><code>source</code>: match filter <code>pattern</code> on <em>source</em> names only</li>
+<li><code>metric</code>: match filter <code>pattern</code> on <em>metric</em> names only</li>
 </ul>
 
 <h2 id="toc_1">Examples</h2>
@@ -67,6 +67,10 @@ expressions (e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</p>
 <p>Discard all entries whose <em>source</em> match the pattern &ldquo;host3.example.net&rdquo;:</p>
 
 <pre><code class="javascript">{
+    &quot;connector&quot;: {
+        ...
+    },
+
     &quot;filters&quot;: [
         { &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;host3.example.net&quot;, &quot;discard&quot;: true }
     ]
@@ -77,6 +81,10 @@ expressions (e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</p>
 &ldquo;cpu-0.cpu.system.value&rdquo; becomes &ldquo;cpu.0.system&rdquo;):</p>
 
 <pre><code class="javascript">{
+    &quot;connector&quot;: {
+        ...
+    },
+
     &quot;filters&quot;: [
         { &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;_&quot;, &quot;rewrite&quot;: &quot;.&quot; },
         { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^cpu-(\\d+)\\.cpu-(.+)\\.value$&quot;, &quot;rewrite&quot;: &quot;cpu.$1.$2&quot; }
@@ -84,9 +92,9 @@ expressions (e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</p>
 }
 </code></pre>
 
-<p>Note: filtering rules are evaluated in the order you define them, so watch out for ordering issues when defining
-&ldquo;chained&rdquo; rules, as a <em>source</em>/<em>metric</em> name may have been previously rewritten and a subsequent rule pattern may not
-match its original name.</p>
+<p><span class="fa fa-info-circle"></span> Note: filtering rules are evaluated in the order you define them, so watch out for ordering issues when defining
+&ldquo;chained&rdquo; rules, as a <em>origin</em>/<em>source</em>/<em>metric</em> name may have been previously rewritten and a subsequent rule pattern
+may not match its original name.</p>
 </section>
 
 <script>

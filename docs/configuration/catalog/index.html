@@ -37,19 +37,19 @@
 
 <h1 id="toc_0">Catalog Setup</h1>
 
-<p>Configuring the catalog consists in defining <em>origins</em> to query data from.</p>
+<p>Configuring the catalog consists in defining data <em>providers</em>.</p>
 
-<h2 id="toc_1">Definining Origins</h2>
+<h2 id="toc_1">Definining Providers</h2>
 
-<p>Defining <em>origins</em> tells Facette where to find <em>sources</em> and their <em>metrics</em>, and how to add them to its catalog.
-<em>Origins</em> are defined by a mandatory <em>connector</em> description, and optional <em>filters</em>. The configuration is stored into a
-dedicated file in the directory pointed by the <code>origins_dir</code> setting in the main configuration file; you can have as
-many of them, for example if your polling/collect system is sharded into many storage backends.</p>
+<p>Defining <em>providers</em> registers data <em>origins</em> in Facette, i.e. where to find <em>sources</em> and their <em>metrics</em>, and how
+to add them to the <em>catalog</em>. <em>Providers</em> are defined by a mandatory <code>connector</code> description, and optional <code>filters</code>.
+The configuration is stored into a dedicated file in the directory pointed by the <code>providers_dir</code> setting in the main
+configuration file; you can have as many of them, for instance if your polling/collect system is sharded into many
+storage backends.</p>
 
-<p>Here&rsquo;s what a typical structure of an <em>origin</em> looks like (the name of the configuration file containing the <em>origin</em>
-definition is used as the name of the <em>origin</em>, i.e. in the example below &ldquo;my_metrics&rdquo;):</p>
+<p>Here&rsquo;s what a typical structure of a <em>provider</em> looks like:</p>
 
-<pre><code class="javascript">$ cat /etc/facette/origins/my_metrics.json
+<pre><code class="javascript">$ cat /etc/facette/providers/my_metrics.json
 {
     &quot;connector&quot;: {
         ...
@@ -64,22 +64,26 @@ definition is used as the name of the <em>origin</em>, i.e. in the example below
 
 </code></pre>
 
-<h2 id="toc_2">Back-end Connectors</h2>
+<p><span class="fa fa-info-circle"></span> Note: the name of the configuration file containing the definition will be used to name the <em>origin</em> of the data
+obtained from this origin in the catalog, i.e. in the example above &ldquo;my_metrics&rdquo;.</p>
 
-<p>Facette uses <em>connectors</em> to bind to <em>origins</em>, and to inventory their local <em>sources</em> and <em>metrics</em>. See
-<a href="/docs/configuration/catalog/connectors/">this page</a> to view the list of available back-end connectors and their
-documentation.</p>
+<h2 id="toc_2">Connectors</h2>
+
+<p>Facette providers use <em>connectors</em> to know how to bind to <em>origins</em> and to inventory their local <em>sources</em> and
+<em>metrics</em>. See <a href="/docs/configuration/catalog/connectors/">this page</a> to view the list of available connectors and how to
+configure them.</p>
 
 <h2 id="toc_3">Filters</h2>
 
-<p>By default the inventory mechanism of Facette retrieves <strong>all</strong> the known <em>sources</em> and <em>metrics</em> from the <em>origin</em>,
-named following the <em>origin</em>&rsquo;s storage structure or format. You may want to rename <em>sources</em>/<em>metrics</em> or even
-discard some of them. Enter <a href="/docs/configuration/catalog/filters/">filters</a>.</p>
+<p>By default the inventory mechanism of Facette providers retrieves <strong>all</strong> the known <em>sources</em> and <em>metrics</em> from the
+<em>origin</em>, named according to the <em>origin</em>&rsquo;s storage structure/format. You may want to rename some of the
+<em>sources</em>/<em>metrics</em> or even discard some of them to keep the catalog relevant.
+Enter <a href="/docs/configuration/catalog/filters/">filters</a>.</p>
 
-<h2 id="toc_4">Optional Origin Settings</h2>
+<h2 id="toc_4">Optional Provider Settings</h2>
 
 <ul>
-<li><code>refresh_interval</code> (type <em>integer</em>): interval (in seconds) to trigger a periodic refresh of the origin. If <code>0</code>
+<li><code>refresh_interval</code> (type <em>integer</em>): interval (in seconds) to trigger a periodic refresh of the provider. If <code>0</code>
 (default), no periodic refresh is performed.</li>
 </ul>
 </section>

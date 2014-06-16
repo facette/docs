@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Back-end Connectors — Facette</title>
+<title>Provider Connectors — Facette</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <meta name="keywords" content="          ">
@@ -35,20 +35,22 @@
 <section>
 
 
-<h1 id="toc_0">Back-end Connectors</h1>
+<h1 id="toc_0">Provider Connectors</h1>
 
 <h2 id="toc_1">RRD</h2>
 
 <p>The <strong>RRD</strong> connector (type <code>rrd</code>) can read <a href="https://oss.oetiker.ch/rrdtool">RRDtool</a> files to extract stored metrics.</p>
 
-<p>Example <em>origin</em> definition using the <strong>RRD</strong> connector:</p>
+<p>Example <em>provider</em> definition using the <strong>RRD</strong> connector:</p>
 
 <pre><code class="javascript">{
     &quot;connector&quot;: {
         &quot;type&quot;: &quot;rrd&quot;,
         &quot;path&quot;: &quot;/var/lib/collectd/rrd&quot;,
         &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^/]+)/(?P&lt;metric&gt;.+).rrd&quot;
-    }
+    },
+
+    ...
 }
 </code></pre>
 
@@ -73,13 +75,15 @@ Carbon daemon.</p>
 <a href="https://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-plaintext-protocol">Graphite format</a> is mapped to the <em>source</em> and the rest of the metric path to the <em>metric</em> (e.g. for a metric path
 <code>www1.network.eth0.if_octets.tx</code>, <em>source</em> is &ldquo;www1&rdquo; and <em>metric</em> is &ldquo;network.eth0.if_octets.tx&rdquo;).</p>
 
-<p>Example <em>origin</em> definition using the <strong>Graphite</strong> connector:</p>
+<p>Example <em>provider</em> definition using the <strong>Graphite</strong> connector:</p>
 
 <pre><code class="javascript">{
     &quot;connector&quot;: {
         &quot;type&quot;: &quot;graphite&quot;,
         &quot;url&quot;: &quot;http://my.graphite.server.example.net/&quot;
-    }
+    },
+
+    ...
 }
 </code></pre>
 

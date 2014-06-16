@@ -41,7 +41,7 @@
 <h1 id="toc_0">Architecture of Facette</h1>
 
 <p>Facette is a time series data (called <em>metrics</em>) visualization software, it doesn&rsquo;t collect nor store these data on its
-own. Through <a href="/docs/configuration/catalog/connectors/">connectors</a>, it inventories other collect/storage tools&rsquo; local
+own. Through <a href="/docs/configuration/catalog/">providers</a>, it inventories other collect/storage tools&rsquo; local
 metrics, and queries those remote storage resources when the user requests time series data to be displayed on a graph.</p>
 
 <h2 id="toc_1">The Big Picture</h2>
@@ -53,8 +53,8 @@ resources:</p>
 </p>
 
 <p>Facette consists of two components: the <em>front-end</em> and the <em>back-end</em>. The <em>back-end</em> is the component that interacts
-with the resources actually storing time series data or being the canonical interface to access them, called <em>origins</em>;
-the <em>front-end</em> is a web application that displays time series data fetched by the <em>back-end</em> on graphs.</p>
+with the resources actually storing time series data — called <em>origins</em> — or being the canonical interface to access
+them; the <em>front-end</em> is a web application that displays time series data fetched by the <em>back-end</em> on graphs.</p>
 
 <h2 id="toc_2">The Catalog</h2>
 
@@ -63,8 +63,8 @@ the <em>front-end</em> is a web application that displays time series data fetch
 
 <h3 id="toc_3">Origin</h3>
 
-<p>An <em>origin</em> represents, as its name suggests, the origin of the back-end time series (e.g. <a href="http://collectd.org/">collectd</a>,
-<a href="http://graphite.readthedocs.org/">Graphite</a>). Those <em>origins</em> hold a local set of <em>sources</em> and <em>metrics</em>.</p>
+<p>An <em>origin</em> represents, as its name suggests, the origin of the back-end time series (e.g. <a href="http://collectd.org/">collectd</a>, <a href="http://munin-monitoring.org/">Munin</a>,
+<a href="http://graphite.readthedocs.org/">Graphite</a>, <a href="https://code.google.com/p/kairosdb/">KairosDB</a>, <a href="http://influxdb.org/">InfluxDB</a> etc). Those <em>origins</em> hold local sets of <em>sources</em> and <em>metrics</em>.</p>
 
 <h3 id="toc_4">Source</h3>
 
@@ -73,8 +73,8 @@ applications names.</p>
 
 <h3 id="toc_5">Metric</h3>
 
-<p>A <em>metric</em> is a set of time-based data points (e.g. <a href="http://oss.oetiker.ch/rrdtool/">RRDtool</a> files) measured or collected by any metering or
-profiling tool, that will be eventually displayed on graphs in Facette.</p>
+<p>A <em>metric</em> is a set of time-based data points (e.g. <a href="http://oss.oetiker.ch/rrdtool/">RRDtool</a> files) measured or collected by any monitoring or
+metering/profiling tool, that will be eventually displayed on graphs in Facette.</p>
 
 <p><img src="http://facette.io/schema-catalog.png" alt="Catalog Schema" />
 </p>
