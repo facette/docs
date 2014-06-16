@@ -224,15 +224,9 @@ pre code {
 }
 
 .landing {
-  height: 480px;
-  left: 50%;
-  margin: -240px 0 0 -320px;
-  overflow: auto;
-  padding: 1em 0;
-  position: absolute;
+  margin: 0;
+  padding: 0;
   text-align: center;
-  top: 50%;
-  width: 640px;
 }
 
 .landing h1 {
@@ -249,13 +243,9 @@ pre code {
 }
 
 .landing li {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
   color: #fff;
-  float: left;
-  padding: 0.25em;
-  width: 33.33%;
+  margin: 0.5em;
+  display: inline-block;
 }
 
 .landing li a {
@@ -263,6 +253,8 @@ pre code {
   border-radius: 0.5em;
   color: inherit;
   display: block;
+  padding: 0 2em;
+  white-space: nowrap;
 }
 
 .landing li a:hover {
@@ -270,9 +262,15 @@ pre code {
 }
 
 .landing .fa::before {
+  display: inline-block;
   font-size: 1.5em;
-  margin-right: 0.125em;
+  line-height: 1.5em;
+  margin-right: 0.25em;
   vertical-align: middle;
+}
+
+.landing .docs a {
+  background-color: #0088aa;
 }
 
 .landing .download a {

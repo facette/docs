@@ -218,7 +218,7 @@ prefix.</p>
 <pre><code>GET /api/v1/library/graphs/&lt;id&gt;
 </code></pre>
 
-<p>Returns a graph object with its name, description, type and stacks definitions.</p>
+<p>Returns a graph object with its name, description, type and groups definitions.</p>
 
 <p>Response:</p>
 
@@ -227,23 +227,19 @@ prefix.</p>
     &quot;name&quot;: &quot;graph0&quot;,
     &quot;description&quot;: &quot;A great graph description.&quot;,
     &quot;type&quot;: 1,
-    &quot;stacks&quot;: [
+    &quot;groups&quot;: [
         {
-            &quot;groups&quot;: [
+            &quot;series&quot;: [
                 {
-                    &quot;series&quot;: [
-                        {
-                            &quot;metric&quot;: &quot;metric0&quot;,
-                            &quot;source&quot;: &quot;source0&quot;,
-                            &quot;origin&quot;: &quot;origin0&quot;,
-                            &quot;name&quot;: &quot;serie0&quot;
-                        }
-                    ],
-                    &quot;type&quot;: 0,
+                    &quot;metric&quot;: &quot;metric0&quot;,
+                    &quot;source&quot;: &quot;source0&quot;,
+                    &quot;origin&quot;: &quot;origin0&quot;,
                     &quot;name&quot;: &quot;serie0&quot;
                 }
             ],
-            &quot;name&quot;: &quot;stack0&quot;
+            &quot;type&quot;: 0,
+            &quot;stack_id&quot;: 0,
+            &quot;name&quot;: &quot;serie0&quot;
         }
     ],
     &quot;stack_mode&quot;: 0
@@ -324,6 +320,9 @@ newly created item location.</p>
 }
 </code></pre>
 
+<p><span class="fa fa-info-circle"></span> Note: the request could also accept a graph request along with a range instead
+of a <code>graph</code> parameter. See <em>Get a single graph</em> for request structure.</p>
+
 <p>Response (plots values are truncated):</p>
 
 <pre><code class="javascript">{
@@ -331,31 +330,27 @@ newly created item location.</p>
     &quot;name&quot;: &quot;Chart name&quot;,
     &quot;description&quot;: &quot;A great chart description.&quot;,
     &quot;type&quot;: 1,
-    &quot;stacks&quot;: [
+    &quot;series&quot;: [
         {
-            &quot;series&quot;: [
-                {
-                    &quot;info&quot;: {
-                        &quot;min&quot;: 0,
-                        &quot;max&quot;: 1.023,
-                        &quot;last&quot;: 0.381,
-                        &quot;avg&quot;: 0.109164
-                    },
-                    &quot;plots&quot;: [
-                        0.348,
-                        0.351,
-                        0.42300000000000004,
-                        …
-                        0,
-                        0.10500000000000001,
-                        0.42400000000000004,
-                        0.381,
-                        null
-                    ],
-                    &quot;name&quot;: &quot;serie0&quot;
-                }
+            &quot;stack_id&quot;: 0,
+            &quot;info&quot;: {
+                &quot;min&quot;: 0,
+                &quot;max&quot;: 1.023,
+                &quot;last&quot;: 0.381,
+                &quot;avg&quot;: 0.109164
+            },
+            &quot;plots&quot;: [
+                0.348,
+                0.351,
+                0.42300000000000004,
+                …
+                0,
+                0.10500000000000001,
+                0.42400000000000004,
+                0.381,
+                null
             ],
-            &quot;name&quot;: &quot;stack0&quot;
+            &quot;name&quot;: &quot;serie0&quot;
         }
     ],
     &quot;stack_mode&quot;: 0,
