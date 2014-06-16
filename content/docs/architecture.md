@@ -9,7 +9,7 @@ groups_weight: 40
 # Architecture of Facette
 
 Facette is a time series data (called *metrics*) visualization software, it doesn't collect nor store these data on its
-own. Through [connectors](/docs/configuration/catalog/connectors/), it inventories other collect/storage tools' local
+own. Through [providers](/docs/configuration/catalog/), it inventories other collect/storage tools' local
 metrics, and queries those remote storage resources when the user requests time series data to be displayed on a graph.
 
 ## The Big Picture
@@ -20,8 +20,8 @@ resources:
 ![Architecture Schema](/schema-architecture.png)
 
 Facette consists of two components: the *front-end* and the *back-end*. The *back-end* is the component that interacts
-with the resources actually storing time series data or being the canonical interface to access them, called *origins*;
-the *front-end* is a web application that displays time series data fetched by the *back-end* on graphs.
+with the resources actually storing time series data — called *origins* — or being the canonical interface to access
+them; the *front-end* is a web application that displays time series data fetched by the *back-end* on graphs.
 
 ## The Catalog
 
@@ -30,8 +30,8 @@ Facette maintains an internal inventory of known *sources* and *metrics* from co
 
 ### Origin
 
-An *origin* represents, as its name suggests, the origin of the back-end time series (e.g. [collectd][0],
-[Graphite][1]). Those *origins* hold a local set of *sources* and *metrics*.
+An *origin* represents, as its name suggests, the origin of the back-end time series (e.g. [collectd][0], [Munin][1],
+[Graphite][2], [KairosDB][3], [InfluxDB][4] etc). Those *origins* hold local sets of *sources* and *metrics*.
 
 ### Source
 
@@ -40,12 +40,15 @@ applications names.
 
 ### Metric
 
-A *metric* is a set of time-based data points (e.g. [RRDtool][2] files) measured or collected by any metering or
-profiling tool, that will be eventually displayed on graphs in Facette.
+A *metric* is a set of time-based data points (e.g. [RRDtool][5] files) measured or collected by any monitoring or
+metering/profiling tool, that will be eventually displayed on graphs in Facette.
 
 ![Catalog Schema](/schema-catalog.png)
 
 
 [0]: http://collectd.org/
-[1]: http://graphite.readthedocs.org/
-[2]: http://oss.oetiker.ch/rrdtool/
+[1]: http://munin-monitoring.org/
+[2]: http://graphite.readthedocs.org/
+[3]: https://code.google.com/p/kairosdb/
+[4]: http://influxdb.org/
+[5]: http://oss.oetiker.ch/rrdtool/

@@ -27,4 +27,4 @@ To launch the server, simply run:
 facette -c path/to/facette.json
 ```
 
-Note: if the path to the configuration file is omitted, the default `/etc/facette/facette.json` one will be loaded. If the path to log file is omitted, output will be written to *stderr*.
+<span class="fa fa-info-circle"></span> Note: if the path to the configuration file is omitted, the default `/etc/facette/facette.json` one will be loaded. If the path to log file is omitted, output will be written to *stderr*.

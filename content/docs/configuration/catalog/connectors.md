@@ -1,18 +1,18 @@
 ---
-title: "Back-end Connectors"
+title: "Provider Connectors"
 section: "catalog"
 groups:
    - "catalog"
 groups_weight: 30
 ---
 
-# Back-end Connectors
+# Provider Connectors
 
 ## RRD
 
 The **RRD** connector (type `rrd`) can read [RRDtool][0] files to extract stored metrics.
 
-Example *origin* definition using the **RRD** connector:
+Example *provider* definition using the **RRD** connector:
 
 ```javascript
 {
@@ -20,7 +20,9 @@ Example *origin* definition using the **RRD** connector:
         "type": "rrd",
         "path": "/var/lib/collectd/rrd",
         "pattern": "(?P<source>[^/]+)/(?P<metric>.+).rrd"
-    }
+    },
+
+    ...
 }
 ```
 
@@ -43,14 +45,16 @@ When collecting entries from Graphite, the first level of the metric path of the
 [Graphite format][3] is mapped to the *source* and the rest of the metric path to the *metric* (e.g. for a metric path
 `www1.network.eth0.if_octets.tx`, *source* is "www1" and *metric* is "network.eth0.if_octets.tx").
 
-Example *origin* definition using the **Graphite** connector:
+Example *provider* definition using the **Graphite** connector:
 
 ```javascript
 {
     "connector": {
         "type": "graphite",
 		"url": "http://my.graphite.server.example.net/"
-    }
+    },
+
+    ...
 }
 ```
 

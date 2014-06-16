@@ -8,20 +8,20 @@ groups_weight: 30
 
 # Catalog Setup
 
-Configuring the catalog consists in defining *origins* to query data from.
+Configuring the catalog consists in defining data *providers*.
 
-## Definining Origins
+## Definining Providers
 
-Defining *origins* tells Facette where to find *sources* and their *metrics*, and how to add them to its catalog.
-*Origins* are defined by a mandatory *connector* description, and optional *filters*. The configuration is stored into a
-dedicated file in the directory pointed by the `origins_dir` setting in the main configuration file; you can have as
-many of them, for example if your polling/collect system is sharded into many storage backends.
+Defining *providers* registers data *origins* in Facette, i.e. where to find *sources* and their *metrics*, and how
+to add them to the *catalog*. *Providers* are defined by a mandatory `connector` description, and optional `filters`.
+The configuration is stored into a dedicated file in the directory pointed by the `providers_dir` setting in the main
+configuration file; you can have as many of them, for instance if your polling/collect system is sharded into many
+storage backends.
 
-Here's what a typical structure of an *origin* looks like (the name of the configuration file containing the *origin*
-definition is used as the name of the *origin*, i.e. in the example below "my_metrics"):
+Here's what a typical structure of a *provider* looks like:
 
 ```javascript
-$ cat /etc/facette/origins/my_metrics.json
+$ cat /etc/facette/providers/my_metrics.json
 {
 	"connector": {
 		...
@@ -35,19 +35,23 @@ $ cat /etc/facette/origins/my_metrics.json
 }
 
 ```
-## Back-end Connectors
+<span class="fa fa-info-circle"></span> Note: the name of the configuration file containing the definition will be used to name the *origin* of the data
+obtained from this origin in the catalog, i.e. in the example above "my_metrics".
 
-Facette uses *connectors* to bind to *origins*, and to inventory their local *sources* and *metrics*. See
-[this page](/docs/configuration/catalog/connectors/) to view the list of available back-end connectors and their
-documentation.
+## Connectors
+
+Facette providers use *connectors* to know how to bind to *origins* and to inventory their local *sources* and
+*metrics*. See [this page](/docs/configuration/catalog/connectors/) to view the list of available connectors and how to
+configure them.
 
 ## Filters
 
-By default the inventory mechanism of Facette retrieves **all** the known *sources* and *metrics* from the *origin*,
-named following the *origin*'s storage structure or format. You may want to rename *sources*/*metrics* or even
-discard some of them. Enter [filters](/docs/configuration/catalog/filters/).
+By default the inventory mechanism of Facette providers retrieves **all** the known *sources* and *metrics* from the
+*origin*, named according to the *origin*'s storage structure/format. You may want to rename some of the
+*sources*/*metrics* or even discard some of them to keep the catalog relevant.
+Enter [filters](/docs/configuration/catalog/filters/).
 
-## Optional Origin Settings
+## Optional Provider Settings
 
- * `refresh_interval` (type _integer_): interval (in seconds) to trigger a periodic refresh of the origin. If `0`
+ * `refresh_interval` (type _integer_): interval (in seconds) to trigger a periodic refresh of the provider. If `0`
 (default), no periodic refresh is performed.
