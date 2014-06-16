@@ -35,7 +35,6 @@ Example:
     "providers_dir": "/etc/facette/providers",
     "data_dir": "/var/lib/facette",
     "pid_file": "/var/run/facette/facette.pid",
-
-    ...
+    …
 }
 ```

@@ -24,11 +24,11 @@ Here's what a typical structure of a *provider* looks like:
 $ cat /etc/facette/providers/my_metrics.json
 {
 	"connector": {
-		...
+		…
 	},
 
 	"filters": [
-		...
+		…
 	],
 
 	"refresh_interval": 300
