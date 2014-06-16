@@ -188,7 +188,7 @@ A `X-Total-Records` HTTP header containing the total number of records is return
 GET /api/v1/library/graphs/<id>
 ```
 
-Returns a graph object with its name, description, type and stacks definitions.
+Returns a graph object with its name, description, type and groups definitions.
 
 Response:
 
@@ -198,23 +198,19 @@ Response:
     "name": "graph0",
     "description": "A great graph description.",
     "type": 1,
-    "stacks": [
+    "groups": [
         {
-            "groups": [
+            "series": [
                 {
-                    "series": [
-                        {
-                            "metric": "metric0",
-                            "source": "source0",
-                            "origin": "origin0",
-                            "name": "serie0"
-                        }
-                    ],
-                    "type": 0,
+                    "metric": "metric0",
+                    "source": "source0",
+                    "origin": "origin0",
                     "name": "serie0"
                 }
             ],
-            "name": "stack0"
+            "type": 0,
+            "stack_id": 0,
+            "name": "serie0"
         }
     ],
     "stack_mode": 0
@@ -290,6 +286,9 @@ Request:
 }
 ```
 
+<span class="fa fa-info-circle"></span> Note: the request could also accept a graph request along with a range instead
+of a `graph` parameter. See _Get a single graph_ for request structure.
+
 Response (plots values are truncated):
 
 ```javascript
@@ -298,31 +297,27 @@ Response (plots values are truncated):
     "name": "Chart name",
     "description": "A great chart description.",
     "type": 1,
-    "stacks": [
+    "series": [
         {
-            "series": [
-                {
-                    "info": {
-                        "min": 0,
-                        "max": 1.023,
-                        "last": 0.381,
-                        "avg": 0.109164
-                    },
-                    "plots": [
-                        0.348,
-                        0.351,
-                        0.42300000000000004,
-                        …
-                        0,
-                        0.10500000000000001,
-                        0.42400000000000004,
-                        0.381,
-                        null
-                    ],
-                    "name": "serie0"
-                }
+            "stack_id": 0,
+            "info": {
+                "min": 0,
+                "max": 1.023,
+                "last": 0.381,
+                "avg": 0.109164
+            },
+            "plots": [
+                0.348,
+                0.351,
+                0.42300000000000004,
+                …
+                0,
+                0.10500000000000001,
+                0.42400000000000004,
+                0.381,
+                null
             ],
-            "name": "stack0"
+            "name": "serie0"
         }
     ],
     "stack_mode": 0,
