@@ -94,7 +94,7 @@ Carbon daemon.</p>
 }
 </code></pre>
 
-<p>Supported settings:</p>
+<p>Mandatory settings:</p>
 
 <ul>
 <li><code>url</code> (type <em>string</em>): URL of the Graphite webapp (without the <code>/api</code> path)</li>
@@ -105,6 +105,33 @@ Carbon daemon.</p>
 <ul>
 <li><code>allow_insecure_tls</code> (type <em>boolean</em>): allow invalid or expired SSL certificates when accessing the Graphite API
 through HTTPS, (default: <code>false</code>)</li>
+</ul>
+
+<h2 id="toc_3">Facette</h2>
+
+<p>The <strong>Facette</strong> connector (type <code>facette</code>) can query another Facette instance to retrieve and include the upstream
+catalogue to inherit its <em>origins</em>, <em>sources</em> and <em>metrics</em>; the connector then forwards plot queries to the upstream
+instance when remote metrics are requested in a local graph definition.</p>
+
+<p>This feature can be useful in various cases, for exemple when your metrics are sharded into several nodes for
+performance/space reasons, or if your want to aggregate metrics from different tools in the same Facette instance.</p>
+
+<p>Example <em>provider</em> definition using the <strong>Facette</strong> connector:</p>
+
+<pre><code class="javascript">{
+    &quot;connector&quot;: {
+        &quot;type&quot;: &quot;facette&quot;,
+        &quot;upstream&quot;: &quot;http://demo.facette.io/&quot;
+    },
+
+    …
+}
+</code></pre>
+
+<p>Mandatory settings:</p>
+
+<ul>
+<li><code>upstream</code> (type <em>string</em>): URL of the upstream Facette instance</li>
 </ul>
 </section>
 
