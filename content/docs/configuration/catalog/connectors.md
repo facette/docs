@@ -19,7 +19,8 @@ Example *provider* definition using the **RRD** connector:
     "connector": {
         "type": "rrd",
         "path": "/var/lib/collectd/rrd",
-        "pattern": "(?P<source>[^/]+)/(?P<metric>.+).rrd"
+        "pattern": "(?P<source>[^/]+)/(?P<metric>.+).rrd",
+        "daemon": "unix:/var/run/rrdcached.sock"
     },
 
     …
@@ -35,6 +36,10 @@ Mandatory settings:
  * `pattern` (type _string_): regular expression ([RE2 syntax][1]) describing the pattern mapping *sources*/*metrics*
     to the filesystem structure under the base directory defined with the `path` setting.
     `<source>` and `<metric>` regexp named group are mandatory to effectively map a filesystem path to these objects
+
+Optional settings:
+
+ * `daemon` (type _string_): rrdcached daemon socket address, see `-l` option in `rrdcached(1)` manual for details
 
 ## Graphite
 
