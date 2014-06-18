@@ -47,10 +47,11 @@
     &quot;connector&quot;: {
         &quot;type&quot;: &quot;rrd&quot;,
         &quot;path&quot;: &quot;/var/lib/collectd/rrd&quot;,
-        &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^/]+)/(?P&lt;metric&gt;.+).rrd&quot;
+        &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^/]+)/(?P&lt;metric&gt;.+).rrd&quot;,
+        &quot;daemon&quot;: &quot;unix:/var/run/rrdcached.sock&quot;
     },
 
-    ...
+    …
 }
 </code></pre>
 
@@ -61,9 +62,15 @@ expressions (e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</p>
 
 <ul>
 <li><code>path</code> (type <em>string</em>): base path on the local filesystem where the RRDtool files are stored</li>
-<li><code>pattern</code> (type <em>string</em>): regular expression (<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>) describing the pattern
-mapping <em>sources</em>/<em>metrics</em> to the filesystem structure under the base directory defined with the <code>path</code> setting.
-<code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a filesystem path to these objects.</li>
+<li><code>pattern</code> (type <em>string</em>): regular expression (<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>) describing the pattern mapping <em>sources</em>/<em>metrics</em>
+to the filesystem structure under the base directory defined with the <code>path</code> setting.
+<code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a filesystem path to these objects</li>
+</ul>
+
+<p>Optional settings:</p>
+
+<ul>
+<li><code>daemon</code> (type <em>string</em>): rrdcached daemon socket address, see <code>-l</code> option in <code>rrdcached(1)</code> manual for details</li>
 </ul>
 
 <h2 id="toc_2">Graphite</h2>
@@ -73,7 +80,7 @@ Carbon daemon.</p>
 
 <p>When collecting entries from Graphite, the first level of the metric path of the
 <a href="https://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-plaintext-protocol">Graphite format</a> is mapped to the <em>source</em> and the rest of the metric path to the <em>metric</em> (e.g. for a metric path
-<code>www1.network.eth0.if_octets.tx</code>, <em>source</em> is &ldquo;www1&rdquo; and <em>metric</em> is &ldquo;network.eth0.if_octets.tx&rdquo;).</p>
+<code>www1.network.eth0.if_octets.tx</code>, <em>source</em> is “www1” and <em>metric</em> is “network.eth0.if_octets.tx”).</p>
 
 <p>Example <em>provider</em> definition using the <strong>Graphite</strong> connector:</p>
 
@@ -83,7 +90,7 @@ Carbon daemon.</p>
         &quot;url&quot;: &quot;http://my.graphite.server.example.net/&quot;
     },
 
-    ...
+    …
 }
 </code></pre>
 
