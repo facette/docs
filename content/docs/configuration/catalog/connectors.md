@@ -75,7 +75,7 @@ Optional settings:
 ## Facette
 
 The **Facette** connector (type `facette`) can query another Facette instance to retrieve and include the upstream
-catalogue to inherit its *origins*, *sources* and *metrics*; the connector then forwards plot queries to the upstream
+catalog to inherit its *origins*, *sources* and *metrics*; the connector then forwards plot queries to the upstream
 instance when remote metrics are requested in a local graph definition.
 
 This feature can be useful in various cases, for exemple when your metrics are sharded into several nodes for
