@@ -63,7 +63,7 @@ Example *provider* definition using the **Graphite** connector:
 }
 ```
 
-Supported settings:
+Mandatory settings:
 
  * `url` (type _string_): URL of the Graphite webapp (without the `/api` path)
 
@@ -71,6 +71,32 @@ Optional settings:
 
  * `allow_insecure_tls` (type _boolean_): allow invalid or expired SSL certificates when accessing the Graphite API
  through HTTPS, (default: `false`)
+
+## Facette
+
+The **Facette** connector (type `facette`) can query another Facette instance to retrieve and include the upstream
+catalogue to inherit its *origins*, *sources* and *metrics*; the connector then forwards plot queries to the upstream
+instance when remote metrics are requested in a local graph definition.
+
+This feature can be useful in various cases, for exemple when your metrics are sharded into several nodes for
+performance/space reasons, or if your want to aggregate metrics from different tools in the same Facette instance.
+
+Example *provider* definition using the **Facette** connector:
+
+```javascript
+{
+    "connector": {
+        "type": "facette",
+        "upstream": "http://demo.facette.io/"
+    },
+
+    …
+}
+```
+
+Mandatory settings:
+
+ * `upstream` (type _string_): URL of the upstream Facette instance
 
 
 [0]: https://oss.oetiker.ch/rrdtool
