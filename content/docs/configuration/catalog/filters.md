@@ -8,8 +8,9 @@ groups_weight: 30
 
 # Filters
 
-Facette *filters* allows you to change how *origins*, *sources* and *metrics* appear in the Facette catalog, and discard the ones you don't want to deal with. The `filters` section of a *provider* definition defines rules that are evaluated
-at *origins* inventory, renaming or discarding specific *sources* or *metrics* using regular expressions
+Facette *filters* allows you to change how *origins*, *sources* and *metrics* appear in the Facette catalog, and
+discard the ones you don't want to deal with. The `filters` section of a *provider* definition defines rules that are
+evaluated at *origins* inventory, renaming or discarding specific *sources* or *metrics* using regular expressions
 ([RE2 syntax][0]).
 
 <span class="fa fa-warning"></span> Caution: in JSON you need to double the escaping character `\` when writing regular
@@ -31,12 +32,12 @@ Supported `target` values (type _string_):
 
 ## Examples
 
-Discard all entries whose *source* match the pattern "host3.example.net":
+Discard all entries whose *source* match the pattern “host3.example.net”:
 
 ```javascript
 {
     "connector": {
-        ...
+        …
     },
 
     "filters": [
@@ -45,13 +46,13 @@ Discard all entries whose *source* match the pattern "host3.example.net":
 }
 ```
 
-Rewrite sources (such as "host3_example_net" becomes "host3.example.net"), and metrics (such as
-"cpu-0.cpu.system.value" becomes "cpu.0.system"):
+Rewrite sources (such as “host3_example_net” becomes “host3.example.net”), and metrics (such as
+“cpu-0.cpu.system.value” becomes “cpu.0.system”):
 
 ```javascript
 {
     "connector": {
-        ...
+        …
     },
 
     "filters": [
@@ -61,9 +62,9 @@ Rewrite sources (such as "host3_example_net" becomes "host3.example.net"), and m
 }
 ```
 
-<span class="fa fa-info-circle"></span> Note: filtering rules are evaluated in the order you define them, so watch out for ordering issues when defining
-"chained" rules, as a *origin*/*source*/*metric* name may have been previously rewritten and a subsequent rule pattern
-may not match its original name.
+<span class="fa fa-info-circle"></span> Note: filtering rules are evaluated in the order you define them, so watch out
+for ordering issues when defining “chained” rules, as a *origin*/*source*/*metric* name may have been previously
+rewritten and a subsequent rule pattern may not match its original name.
 
 
 [0]: https://code.google.com/p/re2/wiki/Syntax

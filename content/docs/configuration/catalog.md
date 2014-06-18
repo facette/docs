@@ -35,8 +35,8 @@ $ cat /etc/facette/providers/my_metrics.json
 }
 
 ```
-<span class="fa fa-info-circle"></span> Note: the name of the configuration file containing the definition will be used to name the *origin* of the data
-obtained from this origin in the catalog, i.e. in the example above "my_metrics".
+<span class="fa fa-info-circle"></span> Note: the name of the configuration file containing the definition will be used
+to name the *origin* of the data obtained from this origin in the catalog, i.e. in the example above “my_metrics”.
 
 ## Connectors
 

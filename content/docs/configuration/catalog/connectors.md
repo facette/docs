@@ -22,7 +22,7 @@ Example *provider* definition using the **RRD** connector:
         "pattern": "(?P<source>[^/]+)/(?P<metric>.+).rrd"
     },
 
-    ...
+    …
 }
 ```
 
@@ -32,9 +32,9 @@ expressions (e.g. `\d`&nbsp;→&nbsp;`\\d`).
 Mandatory settings:
 
  * `path` (type _string_): base path on the local filesystem where the RRDtool files are stored
- * `pattern` (type _string_): regular expression ([RE2 syntax][1]) describing the pattern
-    mapping *sources*/*metrics* to the filesystem structure under the base directory defined with the `path` setting.
-    `<source>` and `<metric>` regexp named group are mandatory to effectively map a filesystem path to these objects.
+ * `pattern` (type _string_): regular expression ([RE2 syntax][1]) describing the pattern mapping *sources*/*metrics*
+    to the filesystem structure under the base directory defined with the `path` setting.
+    `<source>` and `<metric>` regexp named group are mandatory to effectively map a filesystem path to these objects
 
 ## Graphite
 
@@ -43,7 +43,7 @@ Carbon daemon.
 
 When collecting entries from Graphite, the first level of the metric path of the
 [Graphite format][3] is mapped to the *source* and the rest of the metric path to the *metric* (e.g. for a metric path
-`www1.network.eth0.if_octets.tx`, *source* is "www1" and *metric* is "network.eth0.if_octets.tx").
+`www1.network.eth0.if_octets.tx`, *source* is “www1” and *metric* is “network.eth0.if_octets.tx”).
 
 Example *provider* definition using the **Graphite** connector:
 
@@ -54,7 +54,7 @@ Example *provider* definition using the **Graphite** connector:
 		"url": "http://my.graphite.server.example.net/"
     },
 
-    ...
+    …
 }
 ```
 
