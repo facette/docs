@@ -105,6 +105,7 @@ Carbon daemon.</p>
 <ul>
 <li><code>allow_insecure_tls</code> (type <em>boolean</em>): allow invalid or expired SSL certificates when accessing the Graphite API
 through HTTPS, (default: <code>false</code>)</li>
+<li><code>timeout</code> (type <em>integer</em>): delay in seconds before declaring a timeout (default: <code>10</code>)</li>
 </ul>
 
 <h2 id="toc_3">Facette</h2>
@@ -132,6 +133,12 @@ performance/space reasons, or if your want to aggregate metrics from different t
 
 <ul>
 <li><code>upstream</code> (type <em>string</em>): URL of the upstream Facette instance</li>
+</ul>
+
+<p>Optional settings:</p>
+
+<ul>
+<li><code>timeout</code> (type <em>integer</em>): delay in seconds before declaring a timeout (default: <code>10</code>)</li>
 </ul>
 </section>
 
