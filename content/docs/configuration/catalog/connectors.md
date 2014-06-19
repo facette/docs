@@ -71,6 +71,7 @@ Optional settings:
 
  * `allow_insecure_tls` (type _boolean_): allow invalid or expired SSL certificates when accessing the Graphite API
  through HTTPS, (default: `false`)
+ * `timeout` (type _integer_): delay in seconds before declaring a timeout (default: `10`)
 
 ## Facette
 
@@ -97,6 +98,10 @@ Example *provider* definition using the **Facette** connector:
 Mandatory settings:
 
  * `upstream` (type _string_): URL of the upstream Facette instance
+
+Optional settings:
+
+ * `timeout` (type _integer_): delay in seconds before declaring a timeout (default: `10`)
 
 
 [0]: https://oss.oetiker.ch/rrdtool
