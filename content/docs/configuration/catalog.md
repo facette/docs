@@ -18,6 +18,9 @@ The configuration is stored into a dedicated file in the directory pointed by th
 configuration file; you can have as many of them, for instance if your polling/collect system is sharded into many
 storage backends.
 
+<span class="fa fa-warning"></span> In case of a syntax error or incorrect configuration setting, the server will
+continue its initialization and discard the bogus provider (a warning message will be output in the logs).
+
 Here's what a typical structure of a *provider* looks like:
 
 ```javascript
