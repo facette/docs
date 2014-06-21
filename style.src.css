@@ -277,6 +277,14 @@ pre code {
   background-color: #aad400;
 }
 
+.fa-warning {
+  color: #f39c12;
+}
+
+.fa-info-circle {
+  color: #2980b9;
+}
+
 @media screen and (max-width: 1024px) {
   section {
     margin-left: 220px;
