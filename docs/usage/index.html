@@ -40,24 +40,36 @@
 
 <h1 id="toc_0">Using Facette</h1>
 
-<p>Once built, please make sure either <code>facette</code> is available in your <code>PATH</code> or provide the full path to the binary.</p>
+<p>Once built, please make sure either the <code>facette</code> binary is available in your <code>PATH</code> or provide the full path to the
+binary.</p>
 
 <pre><code>$ facette -h
 Usage: facette [OPTIONS]
 
 Options:
+   -L  logging level
    -c  configuration file path
-   -d  debugging level
    -h  display this help and exit
    -l  log file path
 </code></pre>
 
-<p>To launch the server, simply run:</p>
+<p>Available logging levels:</p>
+
+<ul>
+<li><code>error</code></li>
+<li><code>warning</code> (default)</li>
+<li><code>notice</code></li>
+<li><code>info</code></li>
+<li><code>debug</code></li>
+</ul>
+
+<p>To run the server, simply execute the command:</p>
 
 <pre><code>facette -c path/to/facette.json
 </code></pre>
 
-<p><span class="fa fa-info-circle"></span> Note: if the path to the configuration file is omitted, the default <code>/etc/facette/facette.json</code> one will be loaded. If the path to log file is omitted, output will be written to <em>stderr</em>.</p>
+<p><span class="fa fa-info-circle"></span> If the path to the configuration file is omitted, the default
+<code>/etc/facette/facette.json</code> one will be loaded. If the path to log file is omitted, output will be written to <em>stderr</em>.</p>
 </section>
 
 <script>
