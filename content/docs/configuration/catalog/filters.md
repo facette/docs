@@ -66,5 +66,8 @@ Rewrite sources (such as “host3_example_net” becomes “host3.example.net”
 for ordering issues when defining “chained” rules, as a *origin*/*source*/*metric* name may have been previously
 rewritten and a subsequent rule pattern may not match its original name.
 
+<span class="fa fa-warning"></span> In case of a pattern regexp syntax error, the filter will
+continue its initialization and discard the bogus rule (a warning message will be output in the logs).
+
 
 [0]: https://code.google.com/p/re2/wiki/Syntax
