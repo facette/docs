@@ -4,6 +4,15 @@ section: "docs"
 groups:
    - "docs"
 groups_weight: 50
+description: "Documentation of the RESTful API comming along with Facette web front-end"
+keywords:
+   - "api"
+   - "catalog"
+   - "documentation"
+   - "facette"
+   - "library"
+   - "restful"
+   - "server"
 ---
 
 # API Documentation

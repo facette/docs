@@ -4,6 +4,18 @@ section: "docs"
 groups:
    - "docs"
 groups_weight: 40
+description: "Architecture of Facette time series visualization software"
+keywords:
+   - "architecture"
+   - "components"
+   - "facette"
+   - "graphite"
+   - "metric"
+   - "origin"
+   - "providers"
+   - "schema"
+   - "source"
+   - "time series"
 ---
 
 # Architecture of Facette
