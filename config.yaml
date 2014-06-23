@@ -3,3 +3,4 @@ baseurl: "http://facette.io/"
 title: "Facette"
 indexes:
    group: "groups"
+disablerss: true
