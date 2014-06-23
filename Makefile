@@ -1,6 +1,10 @@
 #!/usr/bin/make -f
 # -*- Makefile -*-
 
+SED ?= sed
+
+GIT ?= git
+
 MYTH ?= myth
 MYTH_ARGS =
 
@@ -8,7 +12,7 @@ UGLIFYCSS ?= uglifycss
 UGLIFYCSS_ARGS =
 
 HUGO ?= hugo
-HUGO_ARGS = 
+HUGO_ARGS =
 
 all: clean build
 
@@ -16,11 +20,12 @@ clean:
 	rm -rf public
 
 build:
-	git checkout master
+	$(GIT) checkout master
 	$(HUGO) $(HUGO_ARGS) -d public
 	$(MYTH) $(MYTH_ARGS) static/style.css public/style.src.css
 	$(UGLIFYCSS) $(UGLIFYCSS_ARGS) public/style.src.css >public/style.css
-	git stash save before-gh-pages
-	git checkout gh-pages
+	$(SED) -e "s/2008-01-01T00:00:00+00:00/`date +%FT%T%:z`/g" -i public/sitemap.xml
+	$(GIT) stash save before-gh-pages
+	$(GIT) checkout gh-pages
 	cp -rf public/* .
 	rm -rf public
