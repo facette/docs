@@ -4,3 +4,6 @@ title: "Facette"
 indexes:
    group: "groups"
 disablerss: true
+sitemap:
+   changefreq: "monthly"
+   priority: 0.5

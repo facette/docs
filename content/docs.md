@@ -11,6 +11,9 @@ keywords:
    - "monitoring"
    - "plot"
    - "time series"
+sitemap:
+   changefreq: weekly
+   priority: 1
 ---
 
 # Documentation
