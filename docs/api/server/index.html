@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Server API — Facette</title>
 <meta charset="utf-8">
+<title>Server API — Facette</title>
+<meta name="keywords" content="api,configuration,documentation,facette,group,server">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-<meta name="keywords" content="          ">
 <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <link href="/style.css" rel="stylesheet">
@@ -64,41 +64,13 @@
 <pre><code>GET /reload
 </code></pre>
 
-<p>Reloads the server configuration files and refreshes back-ends.</p>
+<p>Triggers a server configuration files reload and providers refresh.</p>
 
 <p>Additional status codes:</p>
 
 <ul>
 <li><strong>503 Service Unavailable:</strong> the server is reloading its configuration</li>
 </ul>
-
-<h2 id="toc_3">Get Server Resources</h2>
-
-<pre><code>GET /resources
-</code></pre>
-
-<p>Returns the resources defined in the server configuration. These resources are used by the web front-end.</p>
-
-<p>Response (truncated):</p>
-
-<pre><code class="javascript">{
-    &quot;scales&quot;: [
-        [
-            &quot;Bits → Bytes&quot;,
-            0.125
-        ],
-        [
-            &quot;Bytes → Bits&quot;,
-            8
-        ],
-        [
-            &quot;× 10³&quot;,
-            1000
-        ],
-        …
-    ]
-}
-</code></pre>
 </section>
 
 <script>
