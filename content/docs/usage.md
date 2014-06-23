@@ -4,6 +4,11 @@ section: "docs"
 groups:
    - "docs"
 groups_weight: 30
+keywords:
+   - "facette"
+   - "log"
+   - "server"
+   - "usage"
 ---
 
 # Using Facette

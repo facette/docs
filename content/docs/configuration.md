@@ -4,6 +4,14 @@ section: "docs"
 groups:
    - "docs"
 groups_weight: 20
+keywords:
+   - "catalog"
+   - "configuration"
+   - "facette"
+   - "json"
+   - "metric"
+   - "plot"
+   - "server"
 ---
 
 # Configuration

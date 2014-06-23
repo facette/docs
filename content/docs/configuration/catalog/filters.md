@@ -4,6 +4,19 @@ section: "catalog"
 groups:
    - "catalog"
 groups_weight: 30
+keywords:
+   - "catalog"
+   - "configuration"
+   - "connector"
+   - "discard"
+   - "documentation"
+   - "facette"
+   - "filter"
+   - "origin"
+   - "provider"
+   - "regexp"
+   - "rewrite"
+   - "settings"
 ---
 
 # Filters

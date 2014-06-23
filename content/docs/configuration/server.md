@@ -4,6 +4,15 @@ section: "configuration"
 groups:
    - "configuration"
 groups_weight: 10
+keywords:
+   - "catalog"
+   - "configuration"
+   - "documentation"
+   - "facette"
+   - "http"
+   - "provider"
+   - "server"
+   - "settings"
 ---
 
 # Server Configuration

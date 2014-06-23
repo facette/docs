@@ -4,6 +4,16 @@ section: "configuration"
 groups:
    - "configuration"
 groups_weight: 30
+keywords:
+   - "catalog"
+   - "configuration"
+   - "connector"
+   - "documentation"
+   - "facette"
+   - "filter"
+   - "origin"
+   - "provider"
+   - "settings"
 ---
 
 # Catalog Setup
@@ -44,17 +54,19 @@ to name the *origin* of the data obtained from this origin in the catalog, i.e. 
 ## Connectors
 
 Facette providers use *connectors* to know how to bind to *origins* and to inventory their local *sources* and
-*metrics*. See [this page](/docs/configuration/catalog/connectors/) to view the list of available connectors and how to
-configure them.
+*metrics*. See [this page][0] to view the list of available connectors and how to configure them.
 
 ## Filters
 
 By default the inventory mechanism of Facette providers retrieves **all** the known *sources* and *metrics* from the
 *origin*, named according to the *origin*'s storage structure/format. You may want to rename some of the
-*sources*/*metrics* or even discard some of them to keep the catalog relevant.
-Enter [filters](/docs/configuration/catalog/filters/).
+*sources*/*metrics* or even discard some of them to keep the catalog relevant. Enter [filters][1].
 
 ## Optional Provider Settings
 
  * `refresh_interval` (type _integer_): interval (in seconds) to trigger a periodic refresh of the provider. If `0`
 (default), no periodic refresh is performed.
+
+
+[0]: /docs/configuration/catalog/connectors/
+[1]: /docs/configuration/catalog/filters/

@@ -4,6 +4,13 @@ section: "docs"
 groups:
    - "sections"
 groups_weight: 20
+keywords:
+   - "facette"
+   - "graph"
+   - "metric"
+   - "monitoring"
+   - "plot"
+   - "time series"
 ---
 
 # Documentation

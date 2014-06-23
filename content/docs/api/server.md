@@ -4,6 +4,13 @@ section: "api"
 groups:
    - "api"
 groups_weight: 10
+keywords:
+   - "api"
+   - "configuration"
+   - "documentation"
+   - "facette"
+   - "group"
+   - "server"
 ---
 
 # Server API
@@ -36,38 +43,8 @@ Response:
 GET /reload
 ```
 
-Reloads the server configuration files and refreshes back-ends.
+Triggers a server configuration files reload and providers refresh.
 
 Additional status codes:
 
  * __503 Service Unavailable:__ the server is reloading its configuration
-
-## Get Server Resources
-
-```
-GET /resources
-```
-
-Returns the resources defined in the server configuration. These resources are used by the web front-end.
-
-Response (truncated):
-
-```javascript
-{
-    "scales": [
-        [
-            "Bits → Bytes",
-            0.125
-        ],
-        [
-            "Bytes → Bits",
-            8
-        ],
-        [
-            "× 10³",
-            1000
-        ],
-        …
-    ]
-}
-```

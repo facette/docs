@@ -4,6 +4,17 @@ section: "api"
 groups:
    - "api"
 groups_weight: 30
+keywords:
+   - "api"
+   - "catalog"
+   - "documentation"
+   - "facette"
+   - "group"
+   - "library"
+   - "metric"
+   - "origin"
+   - "plot"
+   - "source"
 ---
 
 # Library API

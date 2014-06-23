@@ -4,6 +4,23 @@ section: "catalog"
 groups:
    - "catalog"
 groups_weight: 30
+keywords:
+   - "catalog"
+   - "configuration"
+   - "connector"
+   - "documentation"
+   - "facette"
+   - "filter"
+   - "graphite"
+   - "https"
+   - "origin"
+   - "provider"
+   - "regexp"
+   - "rrdcached"
+   - "rrdtool"
+   - "settings"
+   - "tls"
+   - "upstream"
 ---
 
 # Provider Connectors
@@ -97,7 +114,7 @@ Example *provider* definition using the **Facette** connector:
 
 Mandatory settings:
 
- * `upstream` (type _string_): URL of the upstream Facette instance
+ * `upstream` (type _string_): URL of the upstream Facette instance (without the `/api` path)
 
 Optional settings:
 

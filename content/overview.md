@@ -4,6 +4,16 @@ section: "overview"
 groups:
    - "sections"
 groups_weight: 10
+keywords:
+   - "collectd"
+   - "facette"
+   - "graph"
+   - "graphite"
+   - "metric"
+   - "open source"
+   - "plot"
+   - "software"
+   - "time series"
 ---
 
 # Overview
@@ -11,12 +21,15 @@ groups_weight: 10
 ## Introduction
 
 Facette is a software to display time series data from several various sources — such as [collectd][0] or
-[Graphite][1] — on graphs in a web application, designed to be easy to setup and to use. To learn more on its architecture, read [this page](/docs/architecture/).
+[Graphite][1] — on graphs in a web application, designed to be easy to setup and to use. To learn more on its
+architecture, read [this page](/docs/architecture/).
 
-The source code is available at [Github][2], licensed under the terms of the [BSD license][3].
+The source code is available at [Github][2], licensed under the terms of the [BSD license][3]. Contributions are
+welcome, but please open an issue at Github to discuss the problem/feature **before** sending any pull request.
 
 <span class="fa fa-warning"></span> Important: Facette is currently under development and is **not ready** for
-a production environment.
+a production environment. Please report any bug or problem by opening an issue at Github.
+
 
 [0]: http://collectd.org/
 [1]: http://graphite.readthedocs.org/

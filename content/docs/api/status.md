@@ -4,6 +4,14 @@ section: "api"
 groups:
    - "api"
 groups_weight: 40
+keywords:
+   - "api"
+   - "configuration"
+   - "documentation"
+   - "facette"
+   - "group"
+   - "http"
+   - "status"
 ---
 
 # HTTP Status Codes

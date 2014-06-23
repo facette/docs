@@ -4,6 +4,14 @@ section: "docs"
 groups:
    - "docs"
 groups_weight: 10
+keywords:
+   - "facette"
+   - "git"
+   - "go"
+   - "golang"
+   - "install"
+   - "librrd"
+   - "rrdtool"
 ---
 
 # Installing Facette
@@ -16,6 +24,7 @@ Not available yet
 
 ### Requirements
 
+ * [Go](http://golang.org/) language environment (>= 1.2)
  * `librrd` library and development files
 
 ### Build Instructions

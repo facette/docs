@@ -10,9 +10,21 @@ keywords:
    - "catalog"
    - "documentation"
    - "facette"
+   - "filter"
+   - "graph"
+   - "http"
+   - "json"
    - "library"
+   - "metric"
+   - "monitoring"
+   - "origin"
+   - "plot"
+   - "regexp"
+   - "rest"
    - "restful"
    - "server"
+   - "source"
+   - "time series"
 ---
 
 # API Documentation

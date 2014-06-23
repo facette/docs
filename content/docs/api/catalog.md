@@ -4,6 +4,15 @@ section: "api"
 groups:
    - "api"
 groups_weight: 20
+keywords:
+   - "api"
+   - "catalog"
+   - "documentation"
+   - "facette"
+   - "metric"
+   - "origin"
+   - "plot"
+   - "source"
 ---
 
 # Catalog API
