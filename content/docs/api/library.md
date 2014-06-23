@@ -428,7 +428,7 @@ Response:
             "options": {
                 "title": "Chart title",
                 "sample": "400",
-                "range": "-1mo",
+                "range": "-30d",
                 "percentiles": "95",
                 "constants": ""
             },

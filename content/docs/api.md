@@ -4,7 +4,7 @@ section: "docs"
 groups:
    - "docs"
 groups_weight: 50
-description: "Documentation of the RESTful API comming along with Facette web front-end"
+description: "Documentation of the RESTful API exposed by the Facette back-end and used by the web front-end"
 keywords:
    - "api"
    - "catalog"
@@ -31,7 +31,7 @@ keywords:
 
 ## General Information
 
-This documentation describes the RESTful web API coming along with Facette web front-end.
+This documentation describes the RESTful web API exposed by the Facette back-end and used by the web front-end.
 
 Unless otherwise stated, all requests and responses bodies use `application/json` as `Content-Type`. The format is
 described in the [RFC 4627][0] document.
@@ -39,6 +39,17 @@ described in the [RFC 4627][0] document.
 ### Dates and Times
 
 The dates returned by the API are using the [RFC 3399][1] timestamp format.
+
+Some of the API calls can specify a `range` parameter accepting the format `[-]<number>{d,h,m,s}`. For example, the last
+day can be expressed with the following expressions:
+
+ * `-1d`
+ * `-24h`
+ * `-1440m`
+ * `-86400s`
+
+It is also possible to combine multiple units, such as `-1h30m`.
+
 
 ### Filter Patterns
 
@@ -58,7 +69,7 @@ For example, if an unknown resource (e.g. origin, source…) is requested upon t
 
 ```javascript
 {
-    "message": "Unable to find requested resource"
+   "message": "Unable to find requested resource"
 }
 ```
 
