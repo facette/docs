@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>API Documentation — Facette</title>
-<meta name="description" content="Documentation of the RESTful API comming along with Facette web front-end">
+<meta name="description" content="Documentation of the RESTful API exposed by the Facette back-end and used by the web front-end">
 <meta name="keywords" content="api,catalog,documentation,facette,filter,graph,http,json,library,metric,monitoring,origin,plot,regexp,rest,restful,server,source,time series">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
@@ -43,7 +43,7 @@
 
 <h2 id="toc_1">General Information</h2>
 
-<p>This documentation describes the RESTful web API coming along with Facette web front-end.</p>
+<p>This documentation describes the RESTful web API exposed by the Facette back-end and used by the web front-end.</p>
 
 <p>Unless otherwise stated, all requests and responses bodies use <code>application/json</code> as <code>Content-Type</code>. The format is
 described in the <a href="http://tools.ietf.org/html/rfc4627">RFC 4627</a> document.</p>
@@ -51,6 +51,18 @@ described in the <a href="http://tools.ietf.org/html/rfc4627">RFC 4627</a> docum
 <h3 id="toc_2">Dates and Times</h3>
 
 <p>The dates returned by the API are using the <a href="http://tools.ietf.org/html/rfc3339">RFC 3399</a> timestamp format.</p>
+
+<p>Some of the API calls can specify a <code>range</code> parameter accepting the format <code>[-]&lt;number&gt;{d,h,m,s}</code>. For example, the last
+day can be expressed with the following expressions:</p>
+
+<ul>
+<li><code>-1d</code></li>
+<li><code>-24h</code></li>
+<li><code>-1440m</code></li>
+<li><code>-86400s</code></li>
+</ul>
+
+<p>It is also possible to combine multiple units, such as <code>-1h30m</code>.</p>
 
 <h3 id="toc_3">Filter Patterns</h3>
 
@@ -71,7 +83,7 @@ response is sent along with an HTTP status code.</p>
 <code>404 Not Found</code>, the response would look like:</p>
 
 <pre><code class="javascript">{
-    &quot;message&quot;: &quot;Unable to find requested resource&quot;
+   &quot;message&quot;: &quot;Unable to find requested resource&quot;
 }
 </code></pre>
 
