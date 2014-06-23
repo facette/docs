@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>API Documentation — Facette</title>
 <meta name="description" content="Documentation of the RESTful API exposed by the Facette back-end and used by the web front-end">
-<meta name="keywords" content="api,catalog,documentation,facette,filter,graph,http,json,library,metric,monitoring,origin,plot,regexp,rest,restful,server,source,time series">
+<meta name="keywords" content="api,catalog,documentation,facette,filter,graph,http,json,library,metric,origin,plot,regexp,rest,restful,source,time series">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -13,7 +13,7 @@
 <body>
 
 <header>
-<a href="/"><img src="http://facette.io/logo.png"></a><h1>
+<a href="/"><img src="/logo.png"></a><h1>
 <a href="/">Facette</a></h1>
 <ul>
 <li><a href="https://github.com/facette/facette/releases"><i class="fa fa-arrow-circle-o-down"></i>Download</a></li>
@@ -52,8 +52,8 @@ described in the <a href="http://tools.ietf.org/html/rfc4627">RFC 4627</a> docum
 
 <p>The dates returned by the API are using the <a href="http://tools.ietf.org/html/rfc3339">RFC 3399</a> timestamp format.</p>
 
-<p>Some of the API calls can specify a <code>range</code> parameter accepting the format <code>[-]&lt;number&gt;{d,h,m,s}</code>. For example, the last
-day can be expressed with the following expressions:</p>
+<p>Some of the API calls can specify a <code>range</code> parameter accepting the format <code>[-]&lt;number&gt;{y,mo,d,h,m,s}</code>. For example,
+the last day can be expressed with the following expressions:</p>
 
 <ul>
 <li><code>-1d</code></li>
