@@ -11,6 +11,8 @@ keywords:
    - "golang"
    - "install"
    - "librrd"
+   - "npm"
+   - "pandoc"
    - "rrdtool"
 ---
 
@@ -26,6 +28,8 @@ Not available yet
 
  * [Go](http://golang.org/) language environment (>= 1.2)
  * `librrd` library and development files
+ * [npm](https://www.npmjs.org/) package manager
+ * [Pandoc](http://johnmacfarlane.net/pandoc/) document converter
 
 ### Build Instructions
 
