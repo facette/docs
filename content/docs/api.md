@@ -16,13 +16,11 @@ keywords:
    - "json"
    - "library"
    - "metric"
-   - "monitoring"
    - "origin"
    - "plot"
    - "regexp"
    - "rest"
    - "restful"
-   - "server"
    - "source"
    - "time series"
 ---
@@ -40,8 +38,8 @@ described in the [RFC 4627][0] document.
 
 The dates returned by the API are using the [RFC 3399][1] timestamp format.
 
-Some of the API calls can specify a `range` parameter accepting the format `[-]<number>{d,h,m,s}`. For example, the last
-day can be expressed with the following expressions:
+Some of the API calls can specify a `range` parameter accepting the format `[-]<number>{y,mo,d,h,m,s}`. For example,
+the last day can be expressed with the following expressions:
 
  * `-1d`
  * `-24h`
