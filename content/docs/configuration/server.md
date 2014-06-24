@@ -27,7 +27,7 @@ Mandatory settings:
  * `bind` (type _string_): network address and port to listen on (format: `"[addr]:port"`)
  * `base_dir` (type _string_): base Facette application directory holding static files
  * `data_dir` (type _string_): directory used to store application data
- * `providers_dir` (type _string_): path to the folder containing providers configuration files
+ * `providers_dir` (type _string_): path to the folder containing providers configuration files (default: `"/etc/facette/providers"`)
 
 Optional settings:
 
