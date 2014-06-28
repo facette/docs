@@ -27,7 +27,8 @@ Not available yet
 ### Requirements
 
  * [Go](http://golang.org/) language environment (>= 1.2)
- * `librrd` library and development files
+ * `librrd` library and development files (>= 1.4.0)
+ * [pkg-config](http://pkgconfig.freedesktop.org/) helper tool
  * [npm](https://www.npmjs.org/) package manager
  * [Pandoc](http://johnmacfarlane.net/pandoc/) document converter
 
