@@ -229,7 +229,7 @@ pre code {
 	font-size: 0.9em;
 	line-height: 2em;
 	padding: 1em 1.5em;
-	position: absolute;
+	position: fixed;
 	right: 2.5em;
 	top: 6.3em;
 	width: 20%;
@@ -304,6 +304,10 @@ pre code {
 }
 
 @media screen and (max-width: 1024px) {
+	.toc {
+		display: none;
+	}
+
 	section {
 		margin-left: 220px;
 		padding-right: 3em;
