@@ -53,7 +53,7 @@ h6 {
 
 ol,
 ul {
-	padding: 0 1.75em;
+	padding: 0 0 0 1.75em;
 }
 
 header,
@@ -136,7 +136,7 @@ header ul li .fa::before {
 	vertical-align: middle;
 }
 
-nav {
+body > nav {
 	background-image: radial-gradient(ellipse 7.5% 50% at right, rgba(34, 34, 34, 0.1), rgba(255, 255, 255, 0));
 	bottom: 0;
 	box-sizing: border-box;
@@ -148,33 +148,33 @@ nav {
 	z-index: 10;
 }
 
-nav dl {
+body > nav dl {
 	line-height: 1.75em;
 	padding: 0;
 }
 
-nav dt {
+body > nav dt {
 	color: #999;
 	text-transform: uppercase;
 }
 
-nav dd {
+body > nav dd {
 	margin: 0.25em 0;
 	padding: 0;
 }
 
-nav dl .active {
+body > nav dl .active {
 	background-color: #eee;
 	border-radius: 0.2em;
 	margin-left: -1em;
 	padding-left: 1em;
 }
 
-nav a {
+body > nav a {
 	color: inherit;
 }
 
-nav a:hover {
+body > nav a:hover {
 	color: #09d;
 }
 
@@ -186,6 +186,17 @@ section {
 
 section > :last-child {
 	margin-bottom: 4em;
+}
+
+section nav ul {
+	color: #aaa;
+	list-style-type: none;
+	margin: 0;
+	padding: 0 0 0 1.5em;
+}
+
+section nav > ul {
+	padding: 0;
 }
 
 pre,
@@ -209,6 +220,25 @@ pre code {
 	background-color: transparent;
 	border-radius: 0;
 	padding: 0;
+}
+
+.toc {
+	background-color: #f6f6f6;
+	border-radius: 0.2em;
+	box-sizing: border-box;
+	font-size: 0.9em;
+	line-height: 2em;
+	padding: 1em 1.5em;
+	position: absolute;
+	right: 2.5em;
+	top: 6.3em;
+	width: 20%;
+}
+
+.toc .title {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-bottom: 0.5em;
 }
 
 .landing {
@@ -281,7 +311,8 @@ pre code {
 }
 
 @media screen and (max-width: 640px) {
-	nav {
+	nav,
+	.toc {
 		display: none;
 	}
 
