@@ -10,7 +10,6 @@ keywords:
    - "go"
    - "golang"
    - "install"
-   - "librrd"
    - "npm"
    - "pandoc"
    - "rrdtool"
@@ -49,7 +48,7 @@ make
 make install
 ```
 
-By default Facette will be built in the `tmp` folder and installed in the `build` one. To change the installation
+By default Facette will be built in the `tmp` folder and installed in the `build` folder. To change the installation
 directory set the `PREFIX` variable:
 
 ```
