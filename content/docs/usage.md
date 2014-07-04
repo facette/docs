@@ -35,11 +35,16 @@ Available logging levels:
  * `info`
  * `debug`
 
-To run the server, simply execute the command:
+To run the server, simply execute the command (`facette` doesn't need to be run as root unless you specify a `bind`
+port lower than 1024):
 
 ```
-facette -c path/to/facette.json
+$ facette -c path/to/facette.json
 ```
 
 <span class="fa fa-info-circle"></span> If the path to the configuration file is omitted, the default
-`/etc/facette/facette.json` one will be loaded. If the path to log file is omitted, output will be written to *stderr*.
+`/etc/facette/facette.json` one will be loaded. If the path to the log file is omitted, output will be written to
+*stderr*.
+
+Distribution packages usually provide an init script to manage the service, please refer to your distribution-specific
+service management system.

@@ -20,39 +20,40 @@ keywords:
 
 ## From Binaries
 
-Not available yet
+This is the preferred method. Binary releases and Linux distribution packages are available on the project releases
+page on [Github][0].
 
 ## From Sources
+
+To build Facette from the sources, you can either use a release tarball available on [Github][0] or retrieve the
+source code by cloning the Git repository:
+
+```
+git clone https://github.com/facette/facette
+```
 
 ### Requirements
 
  * [Go](http://golang.org/) language environment (>= 1.2)
- * `librrd` library and development files (>= 1.4.0)
+ * [RRDtool](http://oss.oetiker.ch/rrdtool/index.en.html) library and development files (>= 1.4.0)
  * [pkg-config](http://pkgconfig.freedesktop.org/) helper tool
  * [npm](https://www.npmjs.org/) package manager
  * [Pandoc](http://johnmacfarlane.net/pandoc/) document converter
 
 ### Build Instructions
 
-Retrieve the source code:
+At the top the sources directory, run the build command:
 
 ```
-git clone https://github.com/facette/facette
-```
-
-Run the building command:
-
-```
-cd facette
 make
 make install
 ```
 
-By default Facette will be built in the `tmp` folder and installed in the `build` one. To change its final location use
-the `PREFIX` variable:
+By default Facette will be built in the `tmp` folder and installed in the `build` one. To change the installation
+directory set the `PREFIX` variable:
 
 ```
-PREFIX=/path/to/folder make install
+sudo make PREFIX=/path/to/folder install
 ```
 
 ### Additional Targets
@@ -68,3 +69,5 @@ Clean the building environment:
 ```
 make clean
 ```
+
+[0]: https://github.com/facette/facette/releases

@@ -18,18 +18,11 @@ sitemap:
 
 # Documentation
 
-## Introduction
-
-This documentation is, as the Facette project, under development and the various information provided here may be
-subject to heavy changes in the near future.
-
-## Getting Started
-
- * [Installing Facette](/docs/installing)
- * [Configuration](/docs/configuration)
- * [Using Facette](/docs/usage)
-
-## Development Resources
+This documentation is, as the Facette project, currently under development and the various information provided here
+may be subject to changes in the near future.
 
  * [Architecture of Facette](/docs/architecture)
+ * [Installation](/docs/installing)
+ * [Configuration](/docs/configuration)
+ * [Using Facette](/docs/usage)
  * [API Documentation](/docs/api)
