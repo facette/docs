@@ -3,36 +3,42 @@
 <head>
 <meta charset="utf-8">
 <title>Installing Facette — Facette</title>
-<meta name="keywords" content="facette,git,go,golang,install,librrd,npm,pandoc,rrdtool">
+<meta name="keywords" content="facette,git,go,golang,install,npm,pandoc,rrdtool">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <link href="/style.css" rel="stylesheet">
 </head>
 <body>
-
 <header>
-<a href="/"><img src="/logo.png"></a><h1>
-<a href="/">Facette</a></h1>
+<a href="/"><img src="/logo.png" alt="Facette"></a>
 <ul>
-<li><a href="https://github.com/facette/facette/releases"><i class="fa fa-arrow-circle-o-down"></i>Download</a></li>
+<li><a href="https://blog.facette.io/"><i class="fa fa-comment"></i>Blog</a></li>
+<li><a href="https://twitter.com/FacetteIO"><i class="fa fa-twitter"></i>Twitter</a></li>
+<li><a href="https://github.com/facette/facette/releases"><i class="fa fa-arrow-circle-o-down"></i>Downloads</a></li>
 <li><a href="https://github.com/facette/facette"><i class="fa fa-github"></i>View on Github</a></li>
 </ul>
 </header>
 
 <nav>
-<dl>
-<dt>Main Menu</dt>
-<dd><a href="/overview">Overview</a></dd>
-<dd><a href="/docs">Documentation</a></dd>
-</dl>
-<dl>
-<dt>See Also</dt>
-<dd><a href="/docs/configuration">Configuration</a></dd>
-<dd><a href="/docs/usage">Using Facette</a></dd>
-<dd><a href="/docs/architecture">Architecture of Facette</a></dd>
-<dd><a href="/docs/api">API Documentation</a></dd>
-</dl>
+<h1>Menu</h1>
+<ul>
+<li>
+<a href="http://docs.facette.io/architecture">Architecture of Facette</a>
+</li>
+<li class="active">
+<a href="http://docs.facette.io/installing">Installing Facette</a>
+</li>
+<li>
+<a href="http://docs.facette.io/configuration">Configuring Facette</a>
+</li>
+<li>
+<a href="http://docs.facette.io/usage">Using Facette</a>
+</li>
+<li>
+<a href="http://docs.facette.io/api">API Documentation</a>
+</li>
+</ul>
 </nav>
 
 <section>
@@ -59,15 +65,22 @@
 
 <h2 id="toc_1">From Binaries</h2>
 
-<p>Not available yet</p>
+<p>This is the preferred method. Binary releases and Linux distribution packages are available on the project releases
+page on <a href="https://github.com/facette/facette/releases">Github</a>.</p>
 
 <h2 id="toc_2">From Sources</h2>
+
+<p>To build Facette from the sources, you can either use a release tarball available on <a href="https://github.com/facette/facette/releases">Github</a> or retrieve the
+source code by cloning the Git repository:</p>
+
+<pre><code>git clone https://github.com/facette/facette.git
+</code></pre>
 
 <h3 id="toc_3">Requirements</h3>
 
 <ul>
 <li><a href="http://golang.org/">Go</a> language environment (&gt;= 1.2)</li>
-<li><code>librrd</code> library and development files (&gt;= 1.4.0)</li>
+<li><a href="http://oss.oetiker.ch/rrdtool/index.en.html">RRDtool</a> library and development files (&gt;= 1.4.0)</li>
 <li><a href="http://pkgconfig.freedesktop.org/">pkg-config</a> helper tool</li>
 <li><a href="https://www.npmjs.org/">npm</a> package manager</li>
 <li><a href="http://johnmacfarlane.net/pandoc/">Pandoc</a> document converter</li>
@@ -75,22 +88,16 @@
 
 <h3 id="toc_4">Build Instructions</h3>
 
-<p>Retrieve the source code:</p>
+<p>At the top the sources directory, run the build command:</p>
 
-<pre><code>git clone https://github.com/facette/facette
-</code></pre>
-
-<p>Run the building command:</p>
-
-<pre><code>cd facette
-make
+<pre><code>make
 make install
 </code></pre>
 
-<p>By default Facette will be built in the <code>tmp</code> folder and installed in the <code>build</code> one. To change its final location use
-the <code>PREFIX</code> variable:</p>
+<p>By default Facette will be built in the <code>tmp</code> folder and installed in the <code>build</code> one. To change the installation
+directory set the <code>PREFIX</code> variable:</p>
 
-<pre><code>PREFIX=/path/to/folder make install
+<pre><code>sudo make PREFIX=/path/to/folder install
 </code></pre>
 
 <h3 id="toc_5">Additional Targets</h3>
@@ -105,7 +112,6 @@ the <code>PREFIX</code> variable:</p>
 <pre><code>make clean
 </code></pre>
 </section>
-
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

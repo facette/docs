@@ -10,28 +10,41 @@
 <link href="/style.css" rel="stylesheet">
 </head>
 <body>
-
 <header>
-<a href="/"><img src="/logo.png"></a><h1>
-<a href="/">Facette</a></h1>
+<a href="/"><img src="/logo.png" alt="Facette"></a>
 <ul>
-<li><a href="https://github.com/facette/facette/releases"><i class="fa fa-arrow-circle-o-down"></i>Download</a></li>
+<li><a href="https://blog.facette.io/"><i class="fa fa-comment"></i>Blog</a></li>
+<li><a href="https://twitter.com/FacetteIO"><i class="fa fa-twitter"></i>Twitter</a></li>
+<li><a href="https://github.com/facette/facette/releases"><i class="fa fa-arrow-circle-o-down"></i>Downloads</a></li>
 <li><a href="https://github.com/facette/facette"><i class="fa fa-github"></i>View on Github</a></li>
 </ul>
 </header>
 
 <nav>
-<dl>
-<dt>Main Menu</dt>
-<dd><a href="/overview">Overview</a></dd>
-<dd><a href="/docs">Documentation</a></dd>
-</dl>
-<dl>
-<dt>See Also</dt>
-<dd><a href="/docs/api/server">Server API</a></dd>
-<dd><a href="/docs/api/library">Library API</a></dd>
-<dd><a href="/docs/api/status">HTTP Status Codes</a></dd>
-</dl>
+<h1>Menu</h1>
+<ul>
+<li>
+<a href="http://docs.facette.io/architecture">Architecture of Facette</a>
+</li>
+<li>
+<a href="http://docs.facette.io/installing">Installing Facette</a>
+</li>
+<li>
+<a href="http://docs.facette.io/configuration">Configuring Facette</a>
+</li>
+<li>
+<a href="http://docs.facette.io/usage">Using Facette</a>
+</li>
+<li>
+<a href="http://docs.facette.io/api">API Documentation</a>
+<ul>
+<li><a href="http://docs.facette.io/api/server">Server API</a></li>
+<li class="active"><a href="http://docs.facette.io/api/catalog">Catalog API</a></li>
+<li><a href="http://docs.facette.io/api/library">Library API</a></li>
+<li><a href="http://docs.facette.io/api/status">HTTP Status Codes</a></li>
+</ul>
+</li>
+</ul>
 </nav>
 
 <section>
@@ -99,7 +112,7 @@
 <p>Optional parameters:</p>
 
 <ul>
-<li><code>filter</code> (type <em>string</em>): the <a href="/docs/api/#filter-patterns">pattern</a> to apply on origins names</li>
+<li><code>filter</code> (type <em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on origins names</li>
 <li><code>limit</code> (type <em>integer</em>): the maximum number of items to return</li>
 <li><code>offset</code> (type <em>integer</em>): the offset to start fetching from</li>
 </ul>
@@ -142,7 +155,7 @@
 <p>Optional parameters:</p>
 
 <ul>
-<li><code>filter</code> (type <em>string</em>): the <a href="/docs/api/#filter-patterns">pattern</a> pattern to apply on sources names</li>
+<li><code>filter</code> (type <em>string</em>): the <a href="/api/#filter-patterns">pattern</a> pattern to apply on sources names</li>
 <li><code>limit</code> (type <em>integer</em>): the maximum number of items to return</li>
 <li><code>offset</code> (type <em>integer</em>): the offset to start fetching from</li>
 <li><code>origin</code> (type <em>string</em>): the name of the origin to filter on</li>
@@ -188,7 +201,7 @@
 <p>Optional parameters:</p>
 
 <ul>
-<li><code>filter</code> (type <em>string</em>): the <a href="/docs/api/#filter-patterns">pattern</a> pattern to apply on metrics names</li>
+<li><code>filter</code> (type <em>string</em>): the <a href="/api/#filter-patterns">pattern</a> pattern to apply on metrics names</li>
 <li><code>limit</code> (type <em>integer</em>): the maximum number of items to return</li>
 <li><code>offset</code> (type <em>integer</em>): the offset to start fetching from</li>
 <li><code>origin</code> (type _<em>string</em>): the name of the origin to filter on</li>
@@ -227,7 +240,6 @@
 }
 </code></pre>
 </section>
-
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
