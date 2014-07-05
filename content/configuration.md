@@ -1,9 +1,8 @@
 ---
-title: "Configuration"
-section: "docs"
-groups:
-   - "docs"
-groups_weight: 20
+title: "Configuring Facette"
+menu:
+  main:
+    weight: 30
 keywords:
    - "catalog"
    - "configuration"
@@ -161,8 +160,8 @@ underscore-escaped hostname dots back with dots; besides, this provider will sel
 ```
 
 [0]: http://www.ietf.org/rfc/rfc4627.txt
-[1]: /docs/configuration/catalog/connectors/
-[2]: /docs/configuration/catalog/filters/
-[3]: /docs/architecture/
+[1]: /configuration/connectors/
+[2]: /configuration/filters/
+[3]: /architecture/
 [4]: http://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_rrdtool
 [5]: http://graphite.readthedocs.org/

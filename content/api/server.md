@@ -1,9 +1,9 @@
 ---
 title: "Server API"
-section: "api"
-groups:
-   - "api"
-groups_weight: 10
+menu:
+  main:
+    parent: "API Documentation"
+    weight: 10
 keywords:
    - "api"
    - "configuration"

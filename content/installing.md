@@ -1,9 +1,8 @@
 ---
 title: "Installing Facette"
-section: "docs"
-groups:
-   - "docs"
-groups_weight: 10
+menu:
+  main:
+    weight: 20
 keywords:
    - "facette"
    - "git"
@@ -28,7 +27,7 @@ To build Facette from the sources, you can either use a release tarball availabl
 source code by cloning the Git repository:
 
 ```
-git clone https://github.com/facette/facette
+git clone https://github.com/facette/facette.git
 ```
 
 ### Requirements
@@ -48,7 +47,7 @@ make
 make install
 ```
 
-By default Facette will be built in the `tmp` folder and installed in the `build` folder. To change the installation
+By default Facette will be built in the `tmp` folder and installed in the `build` one. To change the installation
 directory set the `PREFIX` variable:
 
 ```

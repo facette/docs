@@ -1,9 +1,12 @@
 ---
 title: "Architecture of Facette"
+menu:
+   main:
+      weight: 10
 section: "docs"
 groups:
    - "docs"
-groups_weight: 40
+groups_weight: 10
 description: "Architecture of Facette time series visualization software"
 keywords:
    - "architecture"
@@ -24,7 +27,7 @@ keywords:
 # Architecture of Facette
 
 Facette is a time series data (called *metrics*) visualization software, it doesn’t collect nor store these data on its
-own. Through [providers](/docs/configuration/catalog/), it inventories other collect/storage tools' local
+own. Through [providers](/configuration/), it inventories other collect/storage tools' local
 metrics, and queries those remote storage resources when the user requests time series data to be displayed on a graph.
 
 ## The Big Picture

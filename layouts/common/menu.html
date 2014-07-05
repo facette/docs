@@ -1,0 +1,11 @@
+<nav>
+<h1>Menu</h1>
+<ul>{{ $currentNode := . }}{{ range .Site.Menus.main }}
+<li{{ if $currentNode.IsMenuCurrent "main" . }} class="active"{{ end }}>
+<a href="{{ .Url }}">{{ .Name }}</a>{{ if .HasChildren }}{{ if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }}
+<ul>{{ range .Children }}
+<li{{ if $currentNode.IsMenuCurrent "main" . }} class="active"{{ end }}><a href="{{ .Url }}">{{ .Name }}</a></li>{{ end }}
+</ul>{{ end }}{{ end }}
+</li>{{ end }}
+</ul>
+</nav>

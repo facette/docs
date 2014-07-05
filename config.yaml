@@ -1,8 +1,6 @@
 ---
 baseurl: "http://docs.facette.io/"
 title: "Facette"
-indexes:
-   group: "groups"
 disablerss: true
 sitemap:
    changefreq: "monthly"

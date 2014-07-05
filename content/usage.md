@@ -1,9 +1,8 @@
 ---
 title: "Using Facette"
-section: "docs"
-groups:
-   - "docs"
-groups_weight: 30
+menu:
+  main:
+    weight: 40
 keywords:
    - "facette"
    - "log"

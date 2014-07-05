@@ -1,9 +1,8 @@
 ---
 title: "API Documentation"
-section: "docs"
-groups:
-   - "docs"
-groups_weight: 50
+menu:
+  main:
+    weight: 50
 description: "Documentation of the RESTful API exposed by the Facette back-end and used by the web front-end"
 keywords:
    - "api"
@@ -73,10 +72,10 @@ For example, if an unknown resource (e.g. origin, source…) is requested upon t
 
 ## Documents
 
- * [Server API](/docs/api/server): access server related data and methods
- * [Catalog API](/docs/api/catalog): retrieve information about existing origins, sources and metrics
- * [Library API](/docs/api/library): manage library items (e.g. groups, charts and collections)
- * [Status](/docs/api/status): list of API HTTP response status codes
+ * [Server API](/api/server): access server related data and methods
+ * [Catalog API](/api/catalog): retrieve information about existing origins, sources and metrics
+ * [Library API](/api/library): manage library items (e.g. groups, charts and collections)
+ * [Status](/api/status): list of API HTTP response status codes
 
 
 [0]: http://tools.ietf.org/html/rfc4627

@@ -1,9 +1,9 @@
 ---
 title: "Provider Connectors"
-section: "catalog"
-groups:
-   - "catalog"
-groups_weight: 30
+menu:
+  main:
+    parent: "Configuring Facette"
+    weight: 10
 keywords:
    - "catalog"
    - "configuration"

@@ -1,9 +1,9 @@
 ---
 title: "Library API"
-section: "api"
-groups:
-   - "api"
-groups_weight: 30
+menu:
+  main:
+    parent: "API Documentation"
+    weight: 30
 keywords:
    - "api"
    - "catalog"
@@ -34,7 +34,7 @@ Returns an array of objects listing the available groups.
 
 Optional parameters:
 
- * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) to apply on group names
+ * `filter` (type _string_): the [pattern](/api/#filter-patterns) to apply on group names
  * `limit` (type _integer_): the maximum number of items to return
  * `offset` (type _integer_): the offset to start fetching from
 
@@ -174,7 +174,7 @@ Returns an array of objects listing the available graphs.
 Optional parameters:
 
  * `collection` (type _string_): the identifier of the collection to filter on
- * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) to apply on graph names
+ * `filter` (type _string_): the [pattern](/api/#filter-patterns) to apply on graph names
  * `limit` (type _integer_): the maximum number of items to return
  * `offset` (type _integer_): the offset to start fetching from
 
@@ -386,7 +386,7 @@ Returns an array of objects listing the available collections.
 Optional parameters:
 
  * `exclude` (type _string_): the identifier of the collection to exclude from listing
- * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) to apply on collection names
+ * `filter` (type _string_): the [pattern](/api/#filter-patterns) to apply on collection names
  * `limit` (type _integer_): the maximum number of items to return
  * `offset` (type _integer_): the offset to start fetching from
  * `parent` (type _string_): the identifier of the parent collection to filter on

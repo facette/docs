@@ -1,9 +1,9 @@
 ---
 title: "Catalog API"
-section: "api"
-groups:
-   - "api"
-groups_weight: 20
+menu:
+  main:
+    parent: "API Documentation"
+    weight: 20
 keywords:
    - "api"
    - "catalog"
@@ -53,7 +53,7 @@ Returns an array listing the available origins.
 
 Optional parameters:
 
- * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) to apply on origins names
+ * `filter` (type _string_): the [pattern](/api/#filter-patterns) to apply on origins names
  * `limit` (type _integer_): the maximum number of items to return
  * `offset` (type _integer_): the offset to start fetching from
 
@@ -98,7 +98,7 @@ Returns an array listing the available sources.
 
 Optional parameters:
 
- * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) pattern to apply on sources names
+ * `filter` (type _string_): the [pattern](/api/#filter-patterns) pattern to apply on sources names
  * `limit` (type _integer_): the maximum number of items to return
  * `offset` (type _integer_): the offset to start fetching from
  * `origin` (type _string_): the name of the origin to filter on
@@ -146,7 +146,7 @@ Returns an array listing the available metrics.
 
 Optional parameters:
 
- * `filter` (type _string_): the [pattern](/docs/api/#filter-patterns) pattern to apply on metrics names
+ * `filter` (type _string_): the [pattern](/api/#filter-patterns) pattern to apply on metrics names
  * `limit` (type _integer_): the maximum number of items to return
  * `offset` (type _integer_): the offset to start fetching from
  * `origin` (type __string_): the name of the origin to filter on

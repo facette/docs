@@ -1,9 +1,9 @@
 ---
 title: "HTTP Status Codes"
-section: "api"
-groups:
-   - "api"
-groups_weight: 40
+menu:
+  main:
+    parent: "API Documentation"
+    weight: 40
 keywords:
    - "api"
    - "configuration"

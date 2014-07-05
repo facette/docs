@@ -1,9 +1,9 @@
 ---
 title: "Filters"
-section: "catalog"
-groups:
-   - "catalog"
-groups_weight: 30
+menu:
+  main:
+    parent: "Configuring Facette"
+    weight: 20
 keywords:
    - "catalog"
    - "configuration"

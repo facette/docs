@@ -1,17 +1,14 @@
 {{ template "common/header.html" . }}
-<section class="landing">
-
-<div class="logo">
-<img src="/logo.png">
-<h1>Facette</h1>
-</div>
-
-<ul>
-<li class="docs"><a href="/overview/"><span class="fa fa-book"></span> Documentation</a></li>
-<li class="download"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> Download</a></li>
-<li class="code"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> View on Github</a></li>
+{{ template "common/menu.html" . }}
+<section>
+<h1>Documentation</h1>
+<p>This documentation is, as the <a href="http://facette.io/">Facette</a> project, currently under development and the various information provided here may be subject to changes in the near future.</p>
+<ul>{{ range .Site.Menus.main }}
+<li><a href="{{ .Url }}">{{ .Name }}</a>{{ if .HasChildren }}
+<ul>{{ range .Children }}
+<li><a href="{{ .Url }}">{{ .Name }}</a></li>{{ end }}
+</ul>{{ end }}
+</li>{{ end }}
 </ul>
-
 </section>
-
 {{ template "common/footer.html" . }}
