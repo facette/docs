@@ -1,5 +1,5 @@
 ---
-baseurl: "http://facette.io/"
+baseurl: "http://docs.facette.io/"
 title: "Facette"
 indexes:
    group: "groups"
