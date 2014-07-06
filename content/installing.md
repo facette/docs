@@ -48,11 +48,11 @@ make
 make install
 ```
 
-By default Facette will be built in the `tmp` folder and installed in the `build` folder. To change the installation
-directory set the `PREFIX` variable:
+By default Facette will be built in the `tmp` directory and installed in the `build` directory. To change the
+installation directory set the `PREFIX` variable:
 
 ```
-sudo make PREFIX=/path/to/folder install
+sudo make PREFIX=/path/to/directory install
 ```
 
 ### Additional Targets

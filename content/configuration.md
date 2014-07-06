@@ -33,7 +33,7 @@ default location is `/etc/facette/facette.json`.
  * `base_dir` (type _string_): base Facette application directory holding static files (default: `"/usr/share/facette"`)
  * `data_dir` (type _string_): directory* used to store application data (default: `"/var/lib/facette"`)
  * `pid_file` (type _string_): path* to the PID file (default: `"/var/run/facette/facette.pid"`)
- * `providers_dir` (type _string_): path to the folder containing providers configuration files
+ * `providers_dir` (type _string_): path to the directory containing providers configuration files
    (default: `"/etc/facette/providers"`)
  * `url_prefix` (type _string_): URL prefix behind which the server is located if not running at the root of the HTTP
    virtual host (e.g. `"/facette"`)
