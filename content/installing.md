@@ -32,6 +32,7 @@ git clone https://github.com/facette/facette.git
 
 ### Requirements
 
+ * GNU [Make](http://www.gnu.org/software/make/) util and [GCC](http://www.gnu.org/software/gcc/) C compiler
  * [Go](http://golang.org/) language environment (>= 1.2)
  * [RRDtool](http://oss.oetiker.ch/rrdtool/index.en.html) library and development files (>= 1.4.0)
  * [pkg-config](http://pkgconfig.freedesktop.org/) helper tool
@@ -47,7 +48,7 @@ make
 make install
 ```
 
-By default Facette will be built in the `tmp` folder and installed in the `build` one. To change the installation
+By default Facette will be built in the `tmp` folder and installed in the `build` folder. To change the installation
 directory set the `PREFIX` variable:
 
 ```
