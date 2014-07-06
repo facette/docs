@@ -2,7 +2,9 @@
 {{ template "common/menu.html" . }}
 <section>
 <h1>Documentation</h1>
-<p>This documentation is, as the <a href="http://facette.io/">Facette</a> project, currently under development and the various information provided here may be subject to changes in the near future.</p>
+<p>This documentation is, as the <a href="http://facette.io/">Facette</a> project, currently under development and the various information provided here may be subject to changes in the near future. You can help us making it better by
+opening an issue on <a href="http://github.com/facette/facette-docs/issues">Github</a> if you spot an error or if
+you think of any improvement.</p>
 <ul>{{ range .Site.Menus.main }}
 <li><a href="{{ .Url }}">{{ .Name }}</a>{{ if .HasChildren }}
 <ul>{{ range .Children }}
