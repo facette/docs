@@ -29,7 +29,7 @@ default location is `/etc/facette/facette.json`.
 
 ## Base Settings
 
- * `bind` (type _string_): network address and port to listen on (default: `"localhost:port"`)
+ * `bind` (type _string_): network address and port to listen on (default: `"localhost:12003"`)
  * `base_dir` (type _string_): base Facette application directory holding static files (default: `"/usr/share/facette"`)
  * `data_dir` (type _string_): directory* used to store application data (default: `"/var/lib/facette"`)
  * `pid_file` (type _string_): path* to the PID file (default: `"/var/run/facette/facette.pid"`)
