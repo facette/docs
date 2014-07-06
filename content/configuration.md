@@ -55,8 +55,8 @@ Example:
 
 ## Catalog Setup
 
-Configuring the catalog consists in defining data *providers*. At this point, we strongly recommend you to have read
-about the [architecture of Facette][3] to understand how the catalog works.
+Configuring the catalog consists in defining data *providers*. At this point, we strongly recommend reading about the
+[architecture of Facette][3] to understand how the catalog works.
 
 ### Definining Providers
 

@@ -21,7 +21,7 @@ keywords:
 
 # Filters
 
-Facette *filters* allows you to change how *origins*, *sources* and *metrics* appear in the Facette catalog, and
+Facette *filters* allow you to change how *origins*, *sources* and *metrics* appear in the Facette catalog, and
 discard the ones you don't want to deal with. The `filters` section of a *provider* definition defines rules that are
 evaluated at *origins* inventory, renaming or discarding specific *sources* or *metrics* using regular expressions
 ([RE2 syntax][0]).
