@@ -79,6 +79,7 @@ source code by cloning the Git repository:</p>
 <h3 id="toc_3">Requirements</h3>
 
 <ul>
+<li>GNU <a href="http://www.gnu.org/software/make/">Make</a> util and <a href="http://www.gnu.org/software/gcc/">GCC</a> C compiler</li>
 <li><a href="http://golang.org/">Go</a> language environment (&gt;= 1.2)</li>
 <li><a href="http://oss.oetiker.ch/rrdtool/index.en.html">RRDtool</a> library and development files (&gt;= 1.4.0)</li>
 <li><a href="http://pkgconfig.freedesktop.org/">pkg-config</a> helper tool</li>
@@ -94,10 +95,10 @@ source code by cloning the Git repository:</p>
 make install
 </code></pre>
 
-<p>By default Facette will be built in the <code>tmp</code> folder and installed in the <code>build</code> one. To change the installation
-directory set the <code>PREFIX</code> variable:</p>
+<p>By default Facette will be built in the <code>tmp</code> directory and installed in the <code>build</code> directory. To change the
+installation directory set the <code>PREFIX</code> variable:</p>
 
-<pre><code>sudo make PREFIX=/path/to/folder install
+<pre><code>sudo make PREFIX=/path/to/directory install
 </code></pre>
 
 <h3 id="toc_5">Additional Targets</h3>
