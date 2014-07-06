@@ -3,112 +3,84 @@
   
   <url>
     <loc>http://docs.facette.io/</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://docs.facette.io/docs/api/status</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <loc>http://docs.facette.io/api/server</loc>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://docs.facette.io/docs/configuration/server</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <loc>http://docs.facette.io/api/status</loc>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://docs.facette.io/docs/configuration</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <loc>http://docs.facette.io/api/catalog</loc>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://docs.facette.io/docs/architecture</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <loc>http://docs.facette.io/usage</loc>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://docs.facette.io/docs/installing</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <loc>http://docs.facette.io/configuration/connectors</loc>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://docs.facette.io/docs/configuration/catalog</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <loc>http://docs.facette.io/configuration/filters</loc>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://docs.facette.io/docs/usage</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <loc>http://docs.facette.io/architecture</loc>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://docs.facette.io/overview</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <loc>http://docs.facette.io/installing</loc>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://docs.facette.io/docs</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1</priority>
-  </url>
-  
-  <url>
-    <loc>http://docs.facette.io/docs/api</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <loc>http://docs.facette.io/api</loc>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://docs.facette.io/docs/configuration/catalog/connectors</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <loc>http://docs.facette.io/configuration</loc>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://docs.facette.io/docs/api/server</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://docs.facette.io/docs/configuration/catalog/filters</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://docs.facette.io/docs/api/catalog</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>http://docs.facette.io/docs/api/library</loc>
-    <lastmod>2014-07-05T17:10:38+02:00</lastmod>
+    <loc>http://docs.facette.io/api/library</loc>
+    <lastmod>2014-07-06T09:08:45+02:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
