@@ -21,6 +21,11 @@ keywords:
 This is the preferred method. Binary releases and Linux distribution packages are available on the project releases
 page on [Github][0].
 
+## From Docker Hub
+
+We provide [Docker][1] images for every stable release, so you can try Facette without installing it on your system.
+Check out [our repository][2] for available images and usage instructions.
+
 ## From Sources
 
 To build Facette from the sources, you can either use a release tarball available on [Github][0] or retrieve the
@@ -70,3 +75,5 @@ make clean
 ```
 
 [0]: https://github.com/facette/facette/releases
+[1]: https://www.docker.com/
+[2]: https://registry.hub.docker.com/u/facette/facette/
