@@ -49,11 +49,12 @@
 <li><a href="#toc_0">Installing Facette</a>
 <ul>
 <li><a href="#toc_1">From Binaries</a></li>
-<li><a href="#toc_2">From Sources</a>
+<li><a href="#toc_2">From Docker Hub</a></li>
+<li><a href="#toc_3">From Sources</a>
 <ul>
-<li><a href="#toc_3">Requirements</a></li>
-<li><a href="#toc_4">Build Instructions</a></li>
-<li><a href="#toc_5">Additional Targets</a></li>
+<li><a href="#toc_4">Requirements</a></li>
+<li><a href="#toc_5">Build Instructions</a></li>
+<li><a href="#toc_6">Additional Targets</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -68,7 +69,12 @@
 <p>This is the preferred method. Binary releases and Linux distribution packages are available on the project releases
 page on <a href="https://github.com/facette/facette/releases">Github</a>.</p>
 
-<h2 id="toc_2">From Sources</h2>
+<h2 id="toc_2">From Docker Hub</h2>
+
+<p>We provide <a href="https://www.docker.com/">Docker</a> images for every stable release, so you can try Facette without installing it on your system.
+Check out <a href="https://registry.hub.docker.com/u/facette/facette/">our repository</a> for available images and usage instructions.</p>
+
+<h2 id="toc_3">From Sources</h2>
 
 <p>To build Facette from the sources, you can either use a release tarball available on <a href="https://github.com/facette/facette/releases">Github</a> or retrieve the
 source code by cloning the Git repository:</p>
@@ -76,7 +82,7 @@ source code by cloning the Git repository:</p>
 <pre><code>git clone https://github.com/facette/facette.git
 </code></pre>
 
-<h3 id="toc_3">Requirements</h3>
+<h3 id="toc_4">Requirements</h3>
 
 <ul>
 <li>GNU <a href="http://www.gnu.org/software/make/">Make</a> util and <a href="http://www.gnu.org/software/gcc/">GCC</a> C compiler</li>
@@ -87,7 +93,7 @@ source code by cloning the Git repository:</p>
 <li><a href="http://johnmacfarlane.net/pandoc/">Pandoc</a> document converter</li>
 </ul>
 
-<h3 id="toc_4">Build Instructions</h3>
+<h3 id="toc_5">Build Instructions</h3>
 
 <p>At the top the sources directory, run the build command:</p>
 
@@ -101,7 +107,7 @@ installation directory set the <code>PREFIX</code> variable:</p>
 <pre><code>sudo make PREFIX=/path/to/directory install
 </code></pre>
 
-<h3 id="toc_5">Additional Targets</h3>
+<h3 id="toc_6">Additional Targets</h3>
 
 <p>Run the various test suites:</p>
 
