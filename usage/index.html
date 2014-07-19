@@ -68,12 +68,21 @@ binary.</p>
 Usage: facette [OPTIONS]
 
 Options:
-   -L  logging level (error, warning, notice, info, debug)
-   -V  display software version and exit
+   -L  logging level
    -c  configuration file path
    -h  display this help and exit
    -l  log file path
 </code></pre>
+
+<p>Available logging levels:</p>
+
+<ul>
+<li><code>error</code></li>
+<li><code>warning</code> (default)</li>
+<li><code>notice</code></li>
+<li><code>info</code></li>
+<li><code>debug</code></li>
+</ul>
 
 <p>To run the server, simply execute the command (<code>facette</code> doesn&rsquo;t need to be run as root unless you specify a <code>bind</code>
 port lower than 1024):</p>
