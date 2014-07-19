@@ -25,19 +25,12 @@ $ facette -h
 Usage: facette [OPTIONS]
 
 Options:
-   -L  logging level
+   -L  logging level (error, warning, notice, info, debug)
+   -V  display software version and exit
    -c  configuration file path
    -h  display this help and exit
    -l  log file path
 ```
-
-Available logging levels:
-
- * `error`
- * `warning` (default)
- * `notice`
- * `info`
- * `debug`
 
 To run the server, simply execute the command (`facette` doesn't need to be run as root unless you specify a `bind`
 port lower than 1024):
