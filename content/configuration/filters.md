@@ -17,6 +17,7 @@ keywords:
    - "regexp"
    - "rewrite"
    - "settings"
+   - "sieve"
 ---
 
 # Filters
@@ -35,6 +36,7 @@ Filter rule settings:
  * `pattern` (type: _string_): pattern to match
  * `rewrite` (type: _string_): replacement pattern
  * `discard` (type: *boolean*): if `true`, discard records matching `pattern`
+ * `sieve` (type: *boolean*): if `true`, discard records **not** matching `pattern`
 
 Supported `target` values (type _string_):
 
@@ -75,12 +77,24 @@ Example: discard all entries whose *source* match the pattern “host3.example.n
 ]
 ```
 
+### Sieve
+
+The *sieve* action does the opposite of *discard*: it only lets records whose `target` match `pattern` pass through.
+
+Example: only keep records whose *source* names end with “.prod.example.net”
+
+```javascript
+"filters": [
+  { "target": "source", "pattern": "\\.prod\\.example\\.net$", "sieve": true }
+]
+```
+
 ## Precedence
 
 When evaluating filtering chains, the precedence of actions is the following:
 
 ```
-Discard > Rewrite
+Sieve > Discard > Rewrite
 ```
 
 <span class="fa fa-info-circle"></span> Note: filtering rules are evaluated in the order you define them, so watch out
