@@ -20,7 +20,7 @@ clean:
 	rm -rf public
 
 build:
-	$(GIT) checkout master
+	$(GIT) checkout 0.1
 	$(HUGO) $(HUGO_ARGS) -d public
 	$(MYTH) $(MYTH_ARGS) static/style.css public/style.src.css
 	$(UGLIFYCSS) $(UGLIFYCSS_ARGS) public/style.src.css >public/style.css
