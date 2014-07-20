@@ -163,5 +163,5 @@ underscore-escaped hostname dots back with dots; besides, this provider will sel
 [1]: /configuration/connectors/
 [2]: /configuration/filters/
 [3]: /architecture/
-[4]: http://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_rrdtool
+[4]: https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_rrdtool
 [5]: http://graphite.readthedocs.org/

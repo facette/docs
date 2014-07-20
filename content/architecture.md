@@ -64,7 +64,7 @@ metering/profiling tool, that will be eventually displayed on graphs in Facette.
 ![Catalog Schema](/schema-catalog.png)
 
 
-[0]: http://collectd.org/
+[0]: https://collectd.org/
 [1]: http://munin-monitoring.org/
 [2]: http://graphite.readthedocs.org/
 [3]: https://code.google.com/p/kairosdb/
