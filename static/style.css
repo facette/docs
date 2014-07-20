@@ -246,13 +246,15 @@ pre code {
 .toc {
 	background-color: #f6f6f6;
 	border-radius: 0.2em;
+	bottom: 2.5em;
 	box-sizing: border-box;
 	font-size: 0.9em;
 	line-height: 2em;
+	overflow: auto;
 	padding: 1em 1.5em;
 	position: fixed;
 	right: 2.5em;
-	top: 6.3em;
+	top: 6.35em;
 	width: 20%;
 }
 
