@@ -161,6 +161,123 @@ Response:
 ]
 ```
 
+## Scales
+
+### List scales
+
+```
+GET /api/v1/library/scales/
+```
+
+Returns an array of objects listing the available scales.
+
+Optional parameters:
+
+ * `filter` (_string_): the [pattern](/api/#filter-patterns) to apply on group names
+ * `limit` (_integer_): the maximum number of items to return
+ * `offset` (_integer_): the offset to start fetching from
+
+Response:
+
+```javascript
+[
+    {
+        "id": "95e7f164-9ad1-4e7a-7e44-02783f1f3c2c"
+        "name": "scale0",
+        "description": "A great scale description.",
+        "modified": "2013-01-02T12:34:56+01:00"
+    }
+]
+```
+
+A `X-Total-Records` HTTP header containing the total number of records is returned along with the response.
+
+### Get a single scale
+
+```
+GET /api/v1/library/scales/<id>
+```
+
+Returns a scale object with its name, description and matching rules entries.
+
+Response:
+
+```javascript
+{
+    "id": "95e7f164-9ad1-4e7a-7e44-02783f1f3c2c"
+    "name": "scale0",
+    "description": "A great scale description.",
+    "value": 1.345
+}
+```
+
+### Create a new scale
+
+```
+POST /api/v1/library/scales/
+```
+
+Takes a scale from the request body and stores it in the library, then returns a `Location` HTTP header pointing to the
+newly created item location.
+
+Optional parameters:
+
+ * `inherit` (_string_): the UUID of the scale item to inherit from
+
+Additional status codes:
+
+ * __201 Created:__ the scale item has been successfully created
+ * __404 Not Found:__ the scale item to inherit from does not exist
+ * __409 Conflict:__ another scale with the same name already exists
+
+See _Get a single scale_ above for scale object format.
+
+### Update an existing scale
+
+```
+PUT /library/scales/<id>
+```
+
+Takes a scale from the request body and overwrites an existing library scale item.
+
+Additional status codes:
+
+ * __404 Not Found:__ the item to overwrite does not exist
+ * __409 Conflict:__ another scale with the same name already exists
+
+See _Get a single scale_ above for scale object format.
+
+### Delete an existing scale
+
+```
+DELETE /library/scales/<id>
+```
+
+Removes an existing scale item from the library.
+
+Additional status codes:
+
+ * __404 Not Found:__ the item to delete does not exist
+
+### Get scales values
+
+```
+GET /api/v1/library/scales/values
+```
+
+Returns an array of objects listing the available scales along with their names and values.
+
+Response:
+
+```javascript
+[
+    {
+        "name": "scale0",
+        "value": 1.234
+    }
+]
+```
+
 ## Graphs
 
 ### List graphs
@@ -211,22 +328,40 @@ Response:
     "type": 1,
     "groups": [
         {
-            "series": [
-                {
-                    "metric": "metric0",
-                    "source": "source0",
-                    "origin": "origin0",
-                    "name": "serie0"
-                }
-            ],
+            "name": "serie0",
             "type": 0,
             "stack_id": 0,
-            "name": "serie0"
+            "series": [
+                {
+                    "name": "serie0",
+                    "origin": "origin0",
+                    "source": "source0",
+                    "metric": "metric0"
+                }
+            ],
         }
     ],
-    "stack_mode": 0
+    "stack_mode": 0,
+    "unit_label": "A great label",
+    "unit_type": 2
 }
 ```
+
+Graph types:
+
+ * `1`: area
+ * `2`: line
+
+Stack modes:
+
+ * `1`: none
+ * `2`: mormal
+ * `3`: percent
+
+Unit types:
+
+ * `1`: fixed
+ * `2`: metric system
 
 ### Create a new graph
 
@@ -425,14 +560,14 @@ Response:
     "description": "A great collection description.",
     "entries": [
         {
+            "id": "909fe2df-3064-4ee2-5f52-4eca2c953c76",
             "options": {
                 "title": "Chart title",
                 "sample": "400",
                 "range": "-30d",
                 "percentiles": "95",
                 "constants": ""
-            },
-            "id": "909fe2df-3064-4ee2-5f52-4eca2c953c76"
+            }
         }
     ]
 }
