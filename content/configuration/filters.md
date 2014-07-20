@@ -32,13 +32,13 @@ expressions (e.g. `\d`&nbsp;→&nbsp;`\\d`).
 
 Filter rule settings:
 
- * `target` (type: _string_): object to target (`"origin"`, `"source"`, `"metric"` or `"all"`)
- * `pattern` (type: _string_): pattern to match
- * `rewrite` (type: _string_): replacement pattern
- * `discard` (type: *boolean*): if `true`, discard records matching `pattern`
- * `sieve` (type: *boolean*): if `true`, discard records **not** matching `pattern`
+ * `target` (_string_): object to target (`origin`, `source`, `metric` or `all`)
+ * `pattern` (_string_): pattern to match
+ * `rewrite` (_string_): replacement pattern
+ * `discard` (_boolean_): if `true`, discard records matching `pattern`
+ * `sieve` (_boolean_): if `true`, discard records **not** matching `pattern`
 
-Supported `target` values (type _string_):
+Supported `target` (_string_) values:
 
  * `all`: match filter `pattern` on all names (default)
  * `origin`: match filter `pattern` on *origin* names only

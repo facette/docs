@@ -49,14 +49,14 @@ expressions (e.g. `\d`&nbsp;→&nbsp;`\\d`).
 
 Mandatory settings:
 
- * `path` (type _string_): base path on the local filesystem where the RRDtool files are stored
- * `pattern` (type _string_): regular expression ([RE2 syntax][1]) describing the pattern mapping *sources*/*metrics*
+ * `path` (_string_): base path on the local filesystem where the RRDtool files are stored
+ * `pattern` (_string_): regular expression ([RE2 syntax][1]) describing the pattern mapping *sources*/*metrics*
     to the filesystem structure under the base directory defined with the `path` setting.
     `<source>` and `<metric>` regexp named group are mandatory to effectively map a filesystem path to these objects
 
 Optional settings:
 
- * `daemon` (type _string_): rrdcached daemon socket address, see `-l` option in `rrdcached(1)` manual for details
+ * `daemon` (_string_): rrdcached daemon socket address, see `-l` option in `rrdcached(1)` manual for details
 
 ## Graphite
 
@@ -82,13 +82,13 @@ Example *provider* definition using the **Graphite** connector:
 
 Mandatory settings:
 
- * `url` (type _string_): URL of the Graphite webapp (without the `/api` path)
+ * `url` (_string_): URL of the Graphite webapp (without the `/api` path)
 
 Optional settings:
 
- * `allow_insecure_tls` (type _boolean_): allow invalid or expired SSL certificates when accessing the Graphite API
+ * `allow_insecure_tls` (_boolean_): allow invalid or expired SSL certificates when accessing the Graphite API
  through HTTPS, (default: `false`)
- * `timeout` (type _integer_): delay in seconds before declaring a timeout (default: `10`)
+ * `timeout` (_integer_): delay in seconds before declaring a timeout (default: `10`)
 
 ## Facette
 
@@ -114,11 +114,11 @@ Example *provider* definition using the **Facette** connector:
 
 Mandatory settings:
 
- * `upstream` (type _string_): URL of the upstream Facette instance (without the `/api` path)
+ * `upstream` (_string_): URL of the upstream Facette instance (without the `/api` path)
 
 Optional settings:
 
- * `timeout` (type _integer_): delay in seconds before declaring a timeout (default: `10`)
+ * `timeout` (_integer_): delay in seconds before declaring a timeout (default: `10`)
 
 
 [0]: https://oss.oetiker.ch/rrdtool

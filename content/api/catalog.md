@@ -53,9 +53,9 @@ Returns an array listing the available origins.
 
 Optional parameters:
 
- * `filter` (type _string_): the [pattern](/api/#filter-patterns) to apply on origins names
- * `limit` (type _integer_): the maximum number of items to return
- * `offset` (type _integer_): the offset to start fetching from
+ * `filter` (_string_): the [pattern](/api/#filter-patterns) to apply on origins names
+ * `limit` (_integer_): the maximum number of items to return
+ * `offset` (_integer_): the offset to start fetching from
 
 Response:
 
@@ -98,10 +98,10 @@ Returns an array listing the available sources.
 
 Optional parameters:
 
- * `filter` (type _string_): the [pattern](/api/#filter-patterns) pattern to apply on sources names
- * `limit` (type _integer_): the maximum number of items to return
- * `offset` (type _integer_): the offset to start fetching from
- * `origin` (type _string_): the name of the origin to filter on
+ * `filter` (_string_): the [pattern](/api/#filter-patterns) pattern to apply on sources names
+ * `limit` (_integer_): the maximum number of items to return
+ * `offset` (_integer_): the offset to start fetching from
+ * `origin` (_string_): the name of the origin to filter on
 
 Response:
 
@@ -146,11 +146,11 @@ Returns an array listing the available metrics.
 
 Optional parameters:
 
- * `filter` (type _string_): the [pattern](/api/#filter-patterns) pattern to apply on metrics names
- * `limit` (type _integer_): the maximum number of items to return
- * `offset` (type _integer_): the offset to start fetching from
- * `origin` (type __string_): the name of the origin to filter on
- * `source` (type __string_): the name of the source to filter on
+ * `filter` (_string_): the [pattern](/api/#filter-patterns) pattern to apply on metrics names
+ * `limit` (_integer_): the maximum number of items to return
+ * `offset` (_integer_): the offset to start fetching from
+ * `origin` (__string_): the name of the origin to filter on
+ * `source` (__string_): the name of the source to filter on
 
 Response:
 
