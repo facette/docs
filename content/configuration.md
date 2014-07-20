@@ -37,7 +37,7 @@ default location is `/etc/facette/facette.json`.
    (default: `/etc/facette/providers`)
  * `url_prefix` (_string_): URL prefix behind which the server is located if not running at the root of the HTTP
    virtual host (e.g. `/facette`)
- * `read_only` (_bool_): read-only flag, preventing modifications through API calls (default: `false`)
+ * `read_only` (_boolean_): read-only flag, preventing modifications through API calls (default: `false`)
 
 <span class="fa fa-warning"></span> * : Requires write permissions
 
