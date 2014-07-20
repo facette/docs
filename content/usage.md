@@ -62,10 +62,11 @@ server {
     server_name facette.example.net;
 
     location / {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_pass http://localhost:12003;
     }
 }
-
 ```
 
 ### Apache
@@ -74,11 +75,15 @@ server {
 <VirtualHost *:80>
     ServerName facette.example.net
 
+    RequestHeader set X-Forwarded-Proto "http"
+
     ProxyRequests Off
+    ProxyPreserveHost On
     ProxyPass / http://localhost:12003/
     ProxyPassReverse / http://localhost:12003/
 </VirtualHost>
-
 ```
 
-<span class="fa fa-info-circle"></span> `mod_proxy` and `mod_proxy_http` modules must be enabled
+<span class="fa fa-info-circle"></span> Note: `mod_proxy` and `mod_proxy_http` modules must be enabled. The
+`X-Forwarded-Proto` header must be passed in order to make _OpenSearch_ work properly when using HTTPS (and requires
+`mod_headers` to be enabled in Apache).

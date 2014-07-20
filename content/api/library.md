@@ -278,6 +278,123 @@ Response:
 ]
 ```
 
+## Units _new in version 0.2_
+
+### List units
+
+```
+GET /api/v1/library/units/
+```
+
+Returns an array of objects listing the available units.
+
+Optional parameters:
+
+ * `filter` (_string_): the [pattern](/api/#filter-patterns) to apply on group names
+ * `limit` (_integer_): the maximum number of items to return
+ * `offset` (_integer_): the offset to start fetching from
+
+Response:
+
+```javascript
+[
+    {
+        "id": "8d07dedd-cfaf-4041-a625-12a390e76f86"
+        "name": "unit0",
+        "description": "A great unit description.",
+        "modified": "2013-01-02T12:34:56+01:00"
+    }
+]
+```
+
+A `X-Total-Records` HTTP header containing the total number of records is returned along with the response.
+
+### Get a single unit
+
+```
+GET /api/v1/library/units/<id>
+```
+
+Returns a unit object with its name, description and matching rules entries.
+
+Response:
+
+```javascript
+{
+    "id": "8d07dedd-cfaf-4041-a625-12a390e76f86"
+    "name": "unit0",
+    "description": "A great unit description.",
+    "value": 1.345
+}
+```
+
+### Create a new unit
+
+```
+POST /api/v1/library/units/
+```
+
+Takes a unit from the request body and stores it in the library, then returns a `Location` HTTP header pointing to the
+newly created item location.
+
+Optional parameters:
+
+ * `inherit` (_string_): the UUID of the unit item to inherit from
+
+Additional status codes:
+
+ * __201 Created:__ the unit item has been successfully created
+ * __404 Not Found:__ the unit item to inherit from does not exist
+ * __409 Conflict:__ another unit with the same name already exists
+
+See _Get a single unit_ above for unit object format.
+
+### Update an existing unit
+
+```
+PUT /library/units/<id>
+```
+
+Takes a unit from the request body and overwrites an existing library unit item.
+
+Additional status codes:
+
+ * __404 Not Found:__ the item to overwrite does not exist
+ * __409 Conflict:__ another unit with the same name already exists
+
+See _Get a single unit_ above for unit object format.
+
+### Delete an existing unit
+
+```
+DELETE /library/units/<id>
+```
+
+Removes an existing unit item from the library.
+
+Additional status codes:
+
+ * __404 Not Found:__ the item to delete does not exist
+
+### Get units labels
+
+```
+GET /api/v1/library/units/labels
+```
+
+Returns an array of objects listing the available units along with their names and labels.
+
+Response:
+
+```javascript
+[
+    {
+        "name": "unit0",
+        "label": "A"
+    }
+]
+```
+
 ## Graphs
 
 ### List graphs
@@ -336,13 +453,17 @@ Response:
                     "name": "serie0",
                     "origin": "origin0",
                     "source": "source0",
-                    "metric": "metric0"
+                    "metric": "metric0",
+                    "options": {
+                        "scale": 1.234
+                    }
                 }
             ],
+            "options": {}
         }
     ],
     "stack_mode": 0,
-    "unit_label": "A great label",
+    "unit_legend": "A great legend",
     "unit_type": 2
 }
 ```
@@ -362,6 +483,11 @@ Unit types:
 
  * `1`: fixed
  * `2`: metric system
+
+Group and serie options:
+
+ * `scale` (_float_): scale factor to apply on a serie or a group
+ * `unit` (_string_): legend label to set for a serie or a group
 
 ### Create a new graph
 
