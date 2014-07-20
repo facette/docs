@@ -173,9 +173,9 @@ Returns an array of objects listing the available scales.
 
 Optional parameters:
 
- * `filter` (_string_): the [pattern](/api/#filter-patterns) to apply on group names
- * `limit` (_integer_): the maximum number of items to return
- * `offset` (_integer_): the offset to start fetching from
+ * `filter` (type _string_): the [pattern](/api/#filter-patterns) to apply on group names
+ * `limit` (type _integer_): the maximum number of items to return
+ * `offset` (type _integer_): the offset to start fetching from
 
 Response:
 
@@ -222,7 +222,7 @@ newly created item location.
 
 Optional parameters:
 
- * `inherit` (_string_): the UUID of the scale item to inherit from
+ * `inherit` (type _string_): the UUID of the scale item to inherit from
 
 Additional status codes:
 
