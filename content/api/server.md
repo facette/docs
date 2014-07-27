@@ -27,13 +27,13 @@ Response:
 
 ```javascript
 {
-    "catalog_updated": "2013-01-02T12:34:56+01:00",
-    "groups": 1,
-    "collections": 1,
-    "graphs": 1,
-    "metrics": 353,
+    "origins": 1,
     "sources": 3,
-    "origins": 1
+    "metrics": 353,
+    "graphs": 1,
+    "collections": 1,
+    "sourcegroups": 1,
+    "metricgroups": 4
 }
 ```
 
