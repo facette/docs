@@ -40,7 +40,7 @@ Response:
 ## Reload Server Configuration
 
 ```
-GET /reload
+GET /api/v1/reload
 ```
 
 Triggers a server configuration files reload and providers refresh.
