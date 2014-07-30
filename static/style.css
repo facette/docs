@@ -67,14 +67,14 @@ ul {
 header,
 section {
 	min-width: 320px;
-
 }
 
 header {
 	background-color: rgba(51, 51, 51, 0.95);
 	border-bottom: 0.3em solid rgba(34, 34, 34, 0.95);
+	box-sizing: border-box;
 	color: #eee;
-	height: 3.5em;
+	height: 3.8em;
 	left: 0;
 	line-height: 3.5em;
 	min-width: 320px;
@@ -123,22 +123,22 @@ header ul {
 	padding: 0;
 }
 
-header ul li {
+header li {
 	float: left;
 	margin: 0 0.75em;
 }
 
-header ul li:last-child {
+header li:last-child {
 	margin-right: 0.5em;
 }
 
-header ul li .fa {
+header li .fa {
 	margin-right: 0.35em;
 	text-align: center;
 	width: 1.5em;
 }
 
-header ul li .fa::before {
+header li .fa::before {
 	font-size: 1.5em;
 	vertical-align: middle;
 }
@@ -311,7 +311,8 @@ pre code {
 	}
 
 	header li {
-		height: 3em;
+		height: 3.8em;
+		margin: 0 0.5em;
 		overflow: hidden;
 		width: 1.5em;
 	}
