@@ -553,13 +553,13 @@ Request:
 
 ```javascript
 {
-    "graph": "909fe2df-3064-4ee2-5f52-4eca2c953c76",
+    "id": "909fe2df-3064-4ee2-5f52-4eca2c953c76",
     "range": "-1d"
 }
 ```
 
-<span class="fa fa-info-circle"></span> Note: the request could also accept a graph request along with a range instead
-of a `graph` parameter. See _Get a single graph_ for request structure.
+<span class="fa fa-info-circle"></span> Note: the request could also accept a graph request along with the range,
+replacing `id` by a `graph` parameter. See _Get a single graph_ response example for request structure.
 
 Response (plots values are truncated):
 
@@ -597,40 +597,6 @@ Response (plots values are truncated):
     "end": "2013-01-02T12:34:56+01:00",
     "step": 9.944751381,
     "modified": "2013-01-02T12:34:56+01:00"
-}
-```
-
-### Get graphs series values
-
-```
-POST /api/v1/library/graphs/values
-```
-
-Takes a plot request from the request body and returns graph series information.
-
-Additional status codes:
-
- * __404 Not Found:__ the requested graph template does not exist
-
-Request:
-
-```javascript
-{
-    "graph": "909fe2df-3064-4ee2-5f52-4eca2c953c76",
-    "range": "-1d"
-}
-```
-
-Response:
-
-```javascript
-{
-    "serie0": {
-        "min": 0.02,
-        "avg": 0.0315,
-        "max": 0.043,
-        "last": 0.02
-    }
 }
 ```
 
