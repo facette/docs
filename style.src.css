@@ -258,7 +258,6 @@ pre code {
 .toc {
   background-color: #f6f6f6;
   border-radius: 0.2em;
-  bottom: 2.5em;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -266,10 +265,14 @@ pre code {
   line-height: 2em;
   overflow: auto;
   padding: 1em 1.5em;
-  position: fixed;
+  position: absolute;
   right: 2.5em;
-  top: 6.35em;
-  width: 20%;
+  top: 3.35em;
+  width: 25%;
+}
+
+.toc a em {
+  display: none;
 }
 
 .toc .title {
