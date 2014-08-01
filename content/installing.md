@@ -26,6 +26,14 @@ page on [Github][0].
 We provide [Docker][1] images for every stable release, so you can try Facette without installing it on your system.
 Check out [our repository][2] for available images and usage instructions.
 
+Alternatively, a `Dockerfile` is provided at the root of the sources to allow you to build a Docker image from the tip
+of the sources repository:
+
+```
+git clone https://github.com/facette/facette.git
+docker build -t facette-latest facette/
+```
+
 ## From Sources
 
 To build Facette from the sources, you can either use a release tarball available on [Github][0] or retrieve the
