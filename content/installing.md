@@ -26,13 +26,8 @@ page on [Github][0].
 We provide [Docker][1] images for every stable release, so you can try Facette without installing it on your system.
 Check out [our repository][2] for available images and usage instructions.
 
-Alternatively, a `Dockerfile` is provided at the root of the sources to allow you to build a Docker image from the tip
-of the sources repository:
-
-```
-git clone https://github.com/facette/facette.git
-docker build -t facette-latest facette/
-```
+Alternatively, a `Dockerfile` is provided in the sources tree to allow you to build a Docker image from the tip of the
+sources repository (see "From Sources > Additional Targets" section of this page).
 
 ## From Sources
 
@@ -62,7 +57,7 @@ make install
 ```
 
 By default Facette will be built in the `tmp` directory and installed in the `build` directory. To change the
-installation directory set the `PREFIX` variable:
+installation directory, set the `PREFIX` variable:
 
 ```
 sudo make PREFIX=/path/to/directory install
@@ -70,17 +65,30 @@ sudo make PREFIX=/path/to/directory install
 
 ### Additional Targets
 
-Run the various test suites:
+#### Run the various test suites
 
 ```
 make test
 ```
 
-Clean the building environment:
+#### Clean the building environment
 
 ```
 make clean
 ```
+
+#### Build a Docker image from the current sources tree
+
+```
+make docker
+```
+
+To change the image tag (default: *facette-latest*), set the `DOCKER_TAG` variable:
+
+```
+make DOCKER_TAG=my_company/facette:x.y.z docker
+```
+
 
 [0]: https://github.com/facette/facette/releases
 [1]: https://www.docker.com/
