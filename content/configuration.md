@@ -25,7 +25,8 @@ keywords:
 The main configuration file is passed using `-c` argument when launching the `facette` server. If not specified, its
 default location is `/etc/facette/facette.json`.
 
-<span class="fa fa-info-circle"></span> All the configuration files are stored in [JSON][0] format.
+<span class="fa fa-info-warning"></span> All the configuration files are stored in [JSON][0] format, and **must**
+feature the extension `.json`.
 
 ## Base Settings
 
