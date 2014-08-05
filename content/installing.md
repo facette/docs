@@ -4,14 +4,17 @@ menu:
   main:
     weight: 20
 keywords:
+   - "debian"
    - "facette"
    - "git"
    - "go"
    - "golang"
    - "install"
+   - "nodejs"
    - "npm"
    - "pandoc"
    - "rrdtool"
+   - "ubuntu"
 ---
 
 # Installing Facette
@@ -38,16 +41,20 @@ source code by cloning the Git repository:
 git clone https://github.com/facette/facette.git
 ```
 
-### Requirements
+### Build Requirements
 
  * GNU [Make](http://www.gnu.org/software/make/) util and [GCC](http://www.gnu.org/software/gcc/) C compiler
  * [Go](http://golang.org/) language environment (>= 1.2)
  * [RRDtool](http://oss.oetiker.ch/rrdtool/index.en.html) library and development files (>= 1.4.0)
  * [pkg-config](http://pkgconfig.freedesktop.org/) helper tool
- * [npm](https://www.npmjs.org/) package manager
+ * [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.org/) package manager
  * [Pandoc](http://johnmacfarlane.net/pandoc/) document converter
 
 ### Build Instructions
+
+<span class="fa fa-warning"></span> Note: if using the Debian/Ubuntu distribution-provided `nodejs` package, since
+the shipped binary is `/usr/bin/nodejs` instead of `/usr/bin/node` you have to add an alias using the command
+`sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10` for Facette Node.js dependencies to work.
 
 At the top the sources directory, run the build command:
 
