@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Installing Facette — Facette</title>
-<meta name="keywords" content="facette,git,go,golang,install,npm,pandoc,rrdtool">
+<meta name="keywords" content="debian,facette,git,go,golang,install,nodejs,npm,pandoc,rrdtool,ubuntu">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -52,7 +52,7 @@
 <li><a href="#toc_2">From Docker Hub</a></li>
 <li><a href="#toc_3">From Sources</a>
 <ul>
-<li><a href="#toc_4">Requirements</a></li>
+<li><a href="#toc_4">Build Requirements</a></li>
 <li><a href="#toc_5">Build Instructions</a></li>
 <li><a href="#toc_6">Additional Targets</a></li>
 </ul></li>
@@ -82,18 +82,22 @@ source code by cloning the Git repository:</p>
 <pre><code>git clone https://github.com/facette/facette.git
 </code></pre>
 
-<h3 id="toc_4">Requirements</h3>
+<h3 id="toc_4">Build Requirements</h3>
 
 <ul>
 <li>GNU <a href="http://www.gnu.org/software/make/">Make</a> util and <a href="http://www.gnu.org/software/gcc/">GCC</a> C compiler</li>
 <li><a href="http://golang.org/">Go</a> language environment (&gt;= 1.2)</li>
 <li><a href="http://oss.oetiker.ch/rrdtool/index.en.html">RRDtool</a> library and development files (&gt;= 1.4.0)</li>
 <li><a href="http://pkgconfig.freedesktop.org/">pkg-config</a> helper tool</li>
-<li><a href="https://www.npmjs.org/">npm</a> package manager</li>
+<li><a href="http://nodejs.org/">Node.js</a> and <a href="https://www.npmjs.org/">npm</a> package manager</li>
 <li><a href="http://johnmacfarlane.net/pandoc/">Pandoc</a> document converter</li>
 </ul>
 
 <h3 id="toc_5">Build Instructions</h3>
+
+<p><span class="fa fa-warning"></span> Note: if using the Debian/Ubuntu distribution-provided <code>nodejs</code> package, since
+the shipped binary is <code>/usr/bin/nodejs</code> instead of <code>/usr/bin/node</code> you have to add an alias using the command
+<code>sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10</code> for Facette Node.js dependencies to work.</p>
 
 <p>At the top the sources directory, run the build command:</p>
 
