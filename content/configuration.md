@@ -38,7 +38,8 @@ feature the extension `.json`.
    (default: `/etc/facette/providers`)
  * `url_prefix` (_string_): URL prefix behind which the server is located if not running at the root of the HTTP
    virtual host (e.g. `/facette`)
- * `read_only` (_boolean_): read-only flag, preventing modifications through API calls (default: `false`)
+ * `api.read_only` (_boolean_): read-only flag, preventing modifications through API calls (default: `false`)
+ * `api.disable_reload` (_boolean_): reload disable flag, prevent resources from being reloaded through API calls (default: `false`)
 
 <span class="fa fa-warning"></span> * : Requires write permissions
 
@@ -47,9 +48,13 @@ Example:
 ```javascript
 {
     "bind": "localhost:12003",
-    "base_dir": "/usr/share/facette",
+    "base_dir": "/usr/local/share/facette",
     "data_dir": "/var/lib/facette",
     "pid_file": "/var/run/facette/facette.pid",
+    "api": {
+      "read_only": false,
+      "disable_reload": false
+    },
     "providers_dir": "/etc/facette/providers",
     …
 }
