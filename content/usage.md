@@ -46,6 +46,24 @@ $ facette -c path/to/facette.json
 Distribution packages usually provide an init script to manage the service, please refer to your distribution-specific
 service management system.
 
+## Facette administration utility
+
+Using the `facettectl` utility shipped with the server, you can perform various administrative actions on a running
+Facette instance:
+
+```
+$ facettectl -h
+Usage: facettectl [OPTIONS] COMMAND
+
+Commands:
+   refresh  refresh server catalog and library
+
+Options:
+   -V  display software version and exit
+   -c  configuration file path
+   -h  display this help and exit
+```
+
 ## Use Facette with a HTTP reverse-proxy
 
 You can use a HTTP reverse-proxy in front of Facette if you prefer not to expose the web application directly, for
