@@ -36,15 +36,3 @@ Response:
     "metricgroups": 4
 }
 ```
-
-## Reload Server Configuration
-
-```
-GET /api/v1/reload
-```
-
-Triggers a server configuration files reload and providers refresh.
-
-Additional status codes:
-
- * __503 Service Unavailable:__ the server is reloading its configuration
