@@ -32,11 +32,10 @@ expressions (e.g. `\d`&nbsp;→&nbsp;`\\d`).
 
 Filter rule settings:
 
+ * `action` (_string_): action to perform on the processed records (see "Actions" section)
  * `target` (_string_): object to target (`origin`, `source`, `metric` or `all`)
  * `pattern` (_string_): pattern to match
- * `rewrite` (_string_): replacement pattern
- * `discard` (_boolean_): if `true`, discard records matching `pattern`
- * `sieve` (_boolean_): if `true`, discard records **not** matching `pattern`
+ * `into` (_string_): replacement pattern
 
 Supported `target` (_string_) values:
 
@@ -50,7 +49,7 @@ continue its initialization and discard the bogus rule (a warning message will b
 
 ## Actions
 
-### Rewrite
+### rewrite
 
 Rewrite all received records `target` field by replacing all occurrences of `pattern` with the string value
 specified in the `rewrite` setting (can also be regular expression captured groups references).
@@ -60,12 +59,12 @@ Example: rewrite sources (such as “host3_example_net” becomes “host3.examp
 
 ```javascript
 "filters": [
-  { "target": "source", "pattern": "_", "rewrite": "." },
-  { "target": "metric", "pattern": "^cpu-(\\d+)\\.cpu-(.+)\\.value$", "rewrite": "cpu.$1.$2" }
+  { "action": "rewrite", "target": "source", "pattern": "_", "into": "." },
+  { "action": "rewrite", "target": "metric", "pattern": "^cpu-(\\d+)\\.cpu-(.+)\\.value$", "into": "cpu.$1.$2" }
 ]
 ```
 
-### Discard
+### discard
 
 Discard all received records whose `target` match `pattern`.
 
@@ -73,11 +72,11 @@ Example: discard all entries whose *source* match the pattern “host3.example.n
 
 ```javascript
 "filters": [
-  { "target": "source", "pattern": "host3\\.example\\.net", "discard": true }
+  { "action": "discard", "target": "source", "pattern": "host3\\.example\\.net" }
 ]
 ```
 
-### Sieve
+### sieve
 
 The *sieve* action does the opposite of *discard*: it only lets records whose `target` match `pattern` pass through.
 
@@ -85,7 +84,7 @@ Example: only keep records whose *source* names end with “.prod.example.net”
 
 ```javascript
 "filters": [
-  { "target": "source", "pattern": "\\.prod\\.example\\.net$", "sieve": true }
+  { "action": "sieve", "target": "source", "pattern": "\\.prod\\.example\\.net$" }
 ]
 ```
 
