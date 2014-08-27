@@ -30,12 +30,16 @@ feature the extension `.json`.
 
 ## Base Settings
 
- * `bind` (type _string_): network address and port to listen on (default: `"localhost:12003"`)
- * `base_dir` (type _string_): base Facette application directory holding static files (default: `"/usr/share/facette"`)
- * `data_dir` (type _string_): directory* used to store application data (default: `"/var/lib/facette"`)
- * `pid_file` (type _string_): path* to the PID file (default: `"/var/run/facette/facette.pid"`)
- * `providers_dir` (type _string_): path to the directory containing providers configuration files
-   (default: `"/etc/facette/providers"`)
+Mandatory settings:
+
+ * `bind` (type _string_): network address and port to listen on (format: `"[addr]:port"`)
+ * `base_dir` (type _string_): base Facette application directory holding static files
+ * `data_dir` (type _string_): directory used to store application data
+ * `providers_dir` (type _string_): path to the folder containing providers configuration files
+
+Optional settings:
+
+ * `pid_file` (type _string_): path to the PID file
  * `url_prefix` (type _string_): URL prefix behind which the server is located if not running at the root of the HTTP
    virtual host (e.g. `"/facette"`)
 
