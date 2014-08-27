@@ -4,6 +4,7 @@ menu:
   main:
     weight: 30
 keywords:
+   - "bind"
    - "catalog"
    - "configuration"
    - "connector"
@@ -11,6 +12,9 @@ keywords:
    - "facette"
    - "filter"
    - "http"
+   - "ip"
+   - "ipv4"
+   - "ipv6"
    - "json"
    - "metric"
    - "origin"
@@ -18,6 +22,9 @@ keywords:
    - "provider"
    - "server"
    - "settings"
+   - "socket"
+   - "tcp"
+   - "unix"
 ---
 
 # Configuration
@@ -30,7 +37,8 @@ feature the extension `.json`.
 
 ## Base Settings
 
- * `bind` (_string_): network address and port to listen on (default: `localhost:12003`)
+ * `bind` (_string_): endpoint to listen on (default: `tcp://localhost:12003`). See "Endpoint Binding Configuration"
+ section for for details.
  * `base_dir` (_string_): base Facette application directory holding static files (default: `/usr/share/facette`)
  * `data_dir` (_string_): directory* used to store application data (default: `/var/lib/facette`)
  * `pid_file` (_string_): path* to the PID file (default: `/var/run/facette/facette.pid`)
@@ -39,14 +47,27 @@ feature the extension `.json`.
  * `url_prefix` (_string_): URL prefix behind which the server is located if not running at the root of the HTTP
    virtual host (e.g. `/facette`)
  * `read_only` (_boolean_): read-only flag, preventing modifications through API calls (default: `false`)
+ * `socket_mode` (_string_): when binding to a UNIX socket, socket file mode (e.g. `0400`)
+ * `socket_user` (_string_): when binding to a UNIX socket, socket file owner **numeric ID** (e.g. `65534`)
+ * `socket_group` (_string_): when binding to a UNIX socket, socket file group **numeric ID** (e.g. `65534`)
 
 <span class="fa fa-warning"></span> * : Requires write permissions
+
+### Endpoint Binding Configuration
+
+Facette back-end can listen on different types of endpoints:
+
+ * UNIX socket using the `unix://<absolute path>` format, e.g. `unix:///var/run/facette/facette.sock`
+ * TCP/IP socket using the `<protocol>://<host>:<port>` format, e.g.:
+  * `tcp://localhost:12003` to listen on `localhost` on port 12003 (both IPv4 and IPv6)
+  * `tcp4://localhost:12003` to listen on `localhost` on port 12003 (IPv4 only)
+  * `tcp6://localhost:12003` to listen on `localhost` on port 12003 (IPv6 only)
 
 Example:
 
 ```javascript
 {
-    "bind": "localhost:12003",
+    "bind": "tcp://localhost:12003",
     "base_dir": "/usr/local/share/facette",
     "data_dir": "/var/lib/facette",
     "pid_file": "/var/run/facette/facette.pid",
