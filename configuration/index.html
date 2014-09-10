@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Configuring Facette — Facette</title>
-<meta name="keywords" content="catalog,configuration,connector,documentation,facette,filter,http,json,metric,origin,plot,provider,server,settings">
+<meta name="keywords" content="bind,catalog,configuration,connector,documentation,facette,filter,http,ip,ipv4,ipv6,json,metric,origin,plot,provider,server,settings,socket,tcp,unix">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -54,15 +54,18 @@
 <ul>
 <li><a href="#toc_0">Configuration</a>
 <ul>
-<li><a href="#toc_1">Base Settings</a></li>
-<li><a href="#toc_2">Catalog Setup</a>
+<li><a href="#toc_1">Base Settings</a>
 <ul>
-<li><a href="#toc_3">Definining Providers</a></li>
-<li><a href="#toc_4">Connectors</a></li>
-<li><a href="#toc_5">Filters</a></li>
-<li><a href="#toc_6">Optional Provider Settings</a></li>
-<li><a href="#toc_7">Example: collectd</a></li>
-<li><a href="#toc_8">Example: Graphite</a></li>
+<li><a href="#toc_2">Endpoint Binding Configuration</a></li>
+</ul></li>
+<li><a href="#toc_3">Catalog Setup</a>
+<ul>
+<li><a href="#toc_4">Definining Providers</a></li>
+<li><a href="#toc_5">Connectors</a></li>
+<li><a href="#toc_6">Filters</a></li>
+<li><a href="#toc_7">Optional Provider Settings</a></li>
+<li><a href="#toc_8">Example: collectd</a></li>
+<li><a href="#toc_9">Example: Graphite</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -80,43 +83,58 @@ feature the extension <code>.json</code>.</p>
 
 <h2 id="toc_1">Base Settings</h2>
 
-<p>Mandatory settings:</p>
-
 <ul>
-<li><code>bind</code> (type <em>string</em>): network address and port to listen on (format: <code>&quot;[addr]:port&quot;</code>)</li>
-<li><code>base_dir</code> (type <em>string</em>): base Facette application directory holding static files</li>
-<li><code>data_dir</code> (type <em>string</em>): directory used to store application data</li>
-<li><code>providers_dir</code> (type <em>string</em>): path to the folder containing providers configuration files</li>
-</ul>
-
-<p>Optional settings:</p>
-
-<ul>
-<li><code>pid_file</code> (type <em>string</em>): path to the PID file</li>
-<li><code>url_prefix</code> (type <em>string</em>): URL prefix behind which the server is located if not running at the root of the HTTP
-virtual host (e.g. <code>&quot;/facette&quot;</code>)</li>
+<li><code>bind</code> (<em>string</em>): endpoint to listen on (default: <code>tcp://localhost:12003</code>). See &ldquo;Endpoint Binding Configuration&rdquo;
+section for for details.</li>
+<li><code>base_dir</code> (<em>string</em>): base Facette application directory holding static files (default: <code>/usr/share/facette</code>)</li>
+<li><code>data_dir</code> (<em>string</em>): directory* used to store application data (default: <code>/var/lib/facette</code>)</li>
+<li><code>pid_file</code> (<em>string</em>): path* to the PID file (default: <code>/var/run/facette/facette.pid</code>)</li>
+<li><code>providers_dir</code> (<em>string</em>): path to the directory containing providers configuration files
+(default: <code>/etc/facette/providers</code>)</li>
+<li><code>url_prefix</code> (<em>string</em>): URL prefix behind which the server is located if not running at the root of the HTTP
+virtual host (e.g. <code>/facette</code>)</li>
+<li><code>read_only</code> (<em>boolean</em>): read-only flag, preventing modifications through API calls (default: <code>false</code>)</li>
+<li><code>socket_mode</code> (<em>string</em>): when binding to a UNIX socket, socket file mode (e.g. <code>0400</code>)</li>
+<li><code>socket_user</code> (<em>string</em>): when binding to a UNIX socket, socket file owner <strong>numeric ID</strong> (e.g. <code>65534</code>)</li>
+<li><code>socket_group</code> (<em>string</em>): when binding to a UNIX socket, socket file group <strong>numeric ID</strong> (e.g. <code>65534</code>)</li>
 </ul>
 
 <p><span class="fa fa-warning"></span> * : Requires write permissions</p>
 
+<h3 id="toc_2">Endpoint Binding Configuration</h3>
+
+<p>Facette back-end can listen on different types of endpoints:</p>
+
+<ul>
+<li>UNIX socket using the <code>unix://&lt;absolute path&gt;</code> format, e.g. <code>unix:///var/run/facette/facette.sock</code></li>
+<li>TCP/IP socket using the <code>&lt;protocol&gt;://&lt;host&gt;:&lt;port&gt;</code> format, e.g.:
+
+<ul>
+<li><code>tcp://localhost:12003</code> to listen on <code>localhost</code> on port 12003 (both IPv4 and IPv6)</li>
+<li><code>tcp4://localhost:12003</code> to listen on <code>localhost</code> on port 12003 (IPv4 only)</li>
+<li><code>tcp6://localhost:12003</code> to listen on <code>localhost</code> on port 12003 (IPv6 only)</li>
+</ul></li>
+</ul>
+
 <p>Example:</p>
 
 <pre><code class="javascript">{
-    &quot;bind&quot;: &quot;localhost:12003&quot;,
-    &quot;base_dir&quot;: &quot;/usr/share/facette&quot;,
+    &quot;bind&quot;: &quot;tcp://localhost:12003&quot;,
+    &quot;base_dir&quot;: &quot;/usr/local/share/facette&quot;,
     &quot;data_dir&quot;: &quot;/var/lib/facette&quot;,
     &quot;pid_file&quot;: &quot;/var/run/facette/facette.pid&quot;,
     &quot;providers_dir&quot;: &quot;/etc/facette/providers&quot;,
+    &quot;read_only&quot;: false,
     …
 }
 </code></pre>
 
-<h2 id="toc_2">Catalog Setup</h2>
+<h2 id="toc_3">Catalog Setup</h2>
 
 <p>Configuring the catalog consists in defining data <em>providers</em>. At this point, we strongly recommend reading about the
 <a href="/architecture/">architecture of Facette</a> to understand how the catalog works.</p>
 
-<h3 id="toc_3">Definining Providers</h3>
+<h3 id="toc_4">Definining Providers</h3>
 
 <p>Defining <em>providers</em> registers data <em>origins</em> in Facette, i.e. where to find <em>sources</em> and their <em>metrics</em>, and how
 to add them to the <em>catalog</em>. <em>Providers</em> are defined by a mandatory <code>connector</code> description, and optional <code>filters</code>.
@@ -147,27 +165,27 @@ continue its initialization and discard the bogus provider (a warning message wi
 <p><span class="fa fa-info-circle"></span> The name of the configuration file will be used as <em>origin</em> of the
 <em>sources</em>/<em>metrics</em> retrieved from this origin in the catalog, i.e. in the example above “my_metrics”.</p>
 
-<h3 id="toc_4">Connectors</h3>
+<h3 id="toc_5">Connectors</h3>
 
 <p>Facette providers use <em>connectors</em> to know how to bind to <em>origins</em> and to inventory their local <em>sources</em> and
 <em>metrics</em>. See <a href="/configuration/connectors/">this page</a> to view the list of available connectors and how to configure them.</p>
 
-<h3 id="toc_5">Filters</h3>
+<h3 id="toc_6">Filters</h3>
 
 <p>By default the inventory mechanism of Facette providers retrieves <strong>all</strong> the known <em>sources</em> and <em>metrics</em> from the
 <em>origin</em>, named according to the <em>origin</em>&rsquo;s storage structure/format. You may want to rename some of the
 <em>sources</em>/<em>metrics</em> or even discard some of them to keep the catalog relevant. Enter <a href="/configuration/filters/">filters</a>.</p>
 
-<h3 id="toc_6">Optional Provider Settings</h3>
+<h3 id="toc_7">Optional Provider Settings</h3>
 
 <ul>
-<li><code>refresh_interval</code> (type <em>integer</em>): interval (in seconds) to trigger a periodic refresh of the provider. If <code>0</code>
+<li><code>refresh_interval</code> (<em>integer</em>): interval (in seconds) to trigger a periodic refresh of the provider. If <code>0</code>
 (default), no periodic refresh is performed.</li>
 </ul>
 
-<h3 id="toc_7">Example: collectd</h3>
+<h3 id="toc_8">Example: collectd</h3>
 
-<p>Here is an actual provider configuration for using files created by the <a href="http://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_rrdtool">RRDtool collectd plugin</a>, featuring a few
+<p>Here is an actual provider configuration for using files created by the <a href="https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_rrdtool">RRDtool collectd plugin</a>, featuring a few
 filters to rewrite original metric names in a more friendly way and discard entropy-related metrics:</p>
 
 <pre><code class="javascript">{
@@ -197,7 +215,7 @@ filters to rewrite original metric names in a more friendly way and discard entr
 }
 </code></pre>
 
-<h3 id="toc_8">Example: Graphite</h3>
+<h3 id="toc_9">Example: Graphite</h3>
 
 <p>This configuration snippet shows a provider definition for using a <a href="http://graphite.readthedocs.org/">Graphite webapp</a>, with a filter to rewrite the
 underscore-escaped hostname dots back with dots; besides, this provider will self-refresh every hour.</p>

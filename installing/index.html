@@ -56,7 +56,12 @@
 <ul>
 <li><a href="#toc_4">Build Requirements</a></li>
 <li><a href="#toc_5">Build Instructions</a></li>
-<li><a href="#toc_6">Additional Targets</a></li>
+<li><a href="#toc_6">Additional Targets</a>
+<ul>
+<li><a href="#toc_7">Run the various test suites</a></li>
+<li><a href="#toc_8">Clean the building environment</a></li>
+<li><a href="#toc_9">Build a Docker image from the current sources tree</a></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -75,6 +80,9 @@ page on <a href="https://github.com/facette/facette/releases">Github</a>.</p>
 
 <p>We provide <a href="https://www.docker.com/">Docker</a> images for every stable release, so you can try Facette without installing it on your system.
 Check out <a href="https://registry.hub.docker.com/u/facette/facette/">our repository</a> for available images and usage instructions.</p>
+
+<p>Alternatively, a <code>Dockerfile</code> is provided in the sources tree to allow you to build a Docker image from the tip of the
+sources repository (see &ldquo;From Sources &gt; Additional Targets&rdquo; section of this page).</p>
 
 <h2 id="toc_3">From Sources</h2>
 
@@ -108,21 +116,31 @@ make install
 </code></pre>
 
 <p>By default Facette will be built in the <code>tmp</code> directory and installed in the <code>build</code> directory. To change the
-installation directory set the <code>PREFIX</code> variable:</p>
+installation directory, set the <code>PREFIX</code> variable:</p>
 
 <pre><code>sudo make PREFIX=/path/to/directory install
 </code></pre>
 
 <h3 id="toc_6">Additional Targets</h3>
 
-<p>Run the various test suites:</p>
+<h4 id="toc_7">Run the various test suites</h4>
 
 <pre><code>make test
 </code></pre>
 
-<p>Clean the building environment:</p>
+<h4 id="toc_8">Clean the building environment</h4>
 
 <pre><code>make clean
+</code></pre>
+
+<h4 id="toc_9">Build a Docker image from the current sources tree</h4>
+
+<pre><code>make docker
+</code></pre>
+
+<p>To change the image tag (default: <em>facette-latest</em>), set the <code>DOCKER_TAG</code> variable:</p>
+
+<pre><code>make DOCKER_TAG=my_company/facette:x.y.z docker
 </code></pre>
 </section>
 <script>

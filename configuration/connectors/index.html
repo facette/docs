@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Provider Connectors — Facette</title>
-<meta name="keywords" content="catalog,configuration,connector,documentation,facette,filter,graphite,https,origin,provider,regexp,rrdcached,rrdtool,settings,tls,upstream">
+<meta name="keywords" content="catalog,configuration,connector,documentation,facette,filter,graphite,https,influxdb,origin,provider,regexp,rrdcached,rrdtool,settings,tls,upstream">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -56,7 +56,8 @@
 <ul>
 <li><a href="#toc_1">RRD</a></li>
 <li><a href="#toc_2">Graphite</a></li>
-<li><a href="#toc_3">Facette</a></li>
+<li><a href="#toc_3">InfluxDB</a></li>
+<li><a href="#toc_4">Facette</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -106,16 +107,17 @@ to the filesystem structure under the base directory defined with the <code>path
 <p>The <strong>Graphite</strong> connector (type <code>graphite</code>) can query a <a href="https://graphite.readthedocs.org/en/latest/render_api.html">Graphite-web HTTP API</a> to access metrics received by its
 Carbon daemon.</p>
 
-<p>When collecting entries from Graphite, the first level of the metric path of the
-<a href="https://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-plaintext-protocol">Graphite format</a> is mapped to the <em>source</em> and the rest of the metric path to the <em>metric</em> (e.g. for a metric path
-<code>www1.network.eth0.if_octets.tx</code>, <em>source</em> is “www1” and <em>metric</em> is “network.eth0.if_octets.tx”).</p>
+<p>You have to set a regular expression pattern that matches the Carbon <a href="https://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-plaintext-protocol">metric path format</a> in order to translate
+original Graphite series names into catalog <em>source</em> and <em>metrics</em> (e.g. for a metric path
+<code>www1.network.eth0.if_octets.tx</code>, the <em>source</em> would be “www1” and the <em>metric</em> “network.eth0.if_octets.tx”).</p>
 
 <p>Example <em>provider</em> definition using the <strong>Graphite</strong> connector:</p>
 
 <pre><code class="javascript">{
     &quot;connector&quot;: {
         &quot;type&quot;: &quot;graphite&quot;,
-        &quot;url&quot;: &quot;http://my.graphite.server.example.net/&quot;
+        &quot;url&quot;: &quot;http://my.graphite.server.example.net/&quot;,
+        &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^\\.]+)\\.(?P&lt;metric&gt;.+)&quot;
     },
 
     …
@@ -126,6 +128,9 @@ Carbon daemon.</p>
 
 <ul>
 <li><code>url</code> (type <em>string</em>): URL of the Graphite webapp (without the <code>/api</code> path)</li>
+<li><code>pattern</code> (type <em>string</em>): regular expression (<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>) describing the pattern mapping <em>sources</em>/<em>metrics</em>
+to the metrics series names.
+<code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a series name to these objects</li>
 </ul>
 
 <p>Optional settings:</p>
@@ -136,7 +141,47 @@ through HTTPS, (default: <code>false</code>)</li>
 <li><code>timeout</code> (type <em>integer</em>): delay in seconds before declaring a timeout (default: <code>10</code>)</li>
 </ul>
 
-<h2 id="toc_3">Facette</h2>
+<h2 id="toc_3">InfluxDB</h2>
+
+<p>The <strong>InfluxDB</strong> connector (type <code>influxdb</code>) can query a InfluxDB database through the <a href="http://influxdb.com/docs/v0.8/api/reading_and_writing_data.html">HTTP API</a> to access stored
+metrics.</p>
+
+<p>You have to set a regular expression pattern that matches the InfluxDB series names in order to translate
+them into catalog <em>source</em> and <em>metrics</em> (e.g. for a series named <code>webapp1.req.5xx</code>, the <em>source</em> would be “webapp1”
+and the <em>metric</em> “req.5xx”).</p>
+
+<p>Example <em>provider</em> definition using the <strong>Graphite</strong> connector:</p>
+
+<pre><code class="javascript">{
+    &quot;connector&quot;: {
+        &quot;type&quot;: &quot;influxdb&quot;,
+        &quot;host&quot;: &quot;my.influxdb.server.example.net:8086&quot;,
+        &quot;database&quot;: &quot;webapps&quot;,
+        &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^\\.]+)\\.(?P&lt;metric&gt;.+)&quot;
+    },
+
+    …
+}
+</code></pre>
+
+<p>Mandatory settings:</p>
+
+<ul>
+<li><code>database</code> (type <em>string</em>): InfluxDB database to query series from</li>
+<li><code>pattern</code> (type <em>string</em>): regular expression (<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>) describing the pattern mapping <em>sources</em>/<em>metrics</em>
+to the metrics series names.
+<code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a series name to these objects</li>
+</ul>
+
+<p>Optional settings:</p>
+
+<ul>
+<li><code>host</code> (type <em>string</em>): address of the InfluxDB API (default: <code>&quot;localhost:8086&quot;</code>)</li>
+<li><code>username</code> (type <em>string</em>): username to connect to the database (default: <code>&quot;root&quot;</code>)</li>
+<li><code>password</code> (type <em>string</em>): password to connect to the database (default: <code>&quot;root&quot;</code>)</li>
+</ul>
+
+<h2 id="toc_4">Facette</h2>
 
 <p>The <strong>Facette</strong> connector (type <code>facette</code>) can query another Facette instance to retrieve and include the upstream
 catalog to inherit its <em>origins</em>, <em>sources</em> and <em>metrics</em>; the connector then forwards plot queries to the upstream

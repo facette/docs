@@ -74,22 +74,31 @@
 <li><a href="#toc_13">Delete an existing scale</a></li>
 <li><a href="#toc_14">Get scales values</a></li>
 </ul></li>
-<li><a href="#toc_15">Graphs</a>
+<li><a href="#toc_15">Units <em>new in version 0.2</em></a>
 <ul>
-<li><a href="#toc_16">List graphs</a></li>
-<li><a href="#toc_17">Get a single graph</a></li>
-<li><a href="#toc_18">Create a new graph</a></li>
-<li><a href="#toc_19">Update an existing graph</a></li>
-<li><a href="#toc_20">Delete an existing graph</a></li>
-<li><a href="#toc_21">Get graphs plots values</a></li>
+<li><a href="#toc_16">List units</a></li>
+<li><a href="#toc_17">Get a single unit</a></li>
+<li><a href="#toc_18">Create a new unit</a></li>
+<li><a href="#toc_19">Update an existing unit</a></li>
+<li><a href="#toc_20">Delete an existing unit</a></li>
+<li><a href="#toc_21">Get units labels</a></li>
 </ul></li>
-<li><a href="#toc_22">Collections</a>
+<li><a href="#toc_22">Graphs</a>
 <ul>
-<li><a href="#toc_23">List collections</a></li>
-<li><a href="#toc_24">Get a single collection</a></li>
-<li><a href="#toc_25">Create a new collection</a></li>
-<li><a href="#toc_26">Update an existing collection</a></li>
-<li><a href="#toc_27">Delete an existing collection</a></li>
+<li><a href="#toc_23">List graphs</a></li>
+<li><a href="#toc_24">Get a single graph</a></li>
+<li><a href="#toc_25">Create a new graph</a></li>
+<li><a href="#toc_26">Update an existing graph</a></li>
+<li><a href="#toc_27">Delete an existing graph</a></li>
+<li><a href="#toc_28">Get graphs plots values</a></li>
+</ul></li>
+<li><a href="#toc_29">Collections</a>
+<ul>
+<li><a href="#toc_30">List collections</a></li>
+<li><a href="#toc_31">Get a single collection</a></li>
+<li><a href="#toc_32">Create a new collection</a></li>
+<li><a href="#toc_33">Update an existing collection</a></li>
+<li><a href="#toc_34">Delete an existing collection</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -114,9 +123,9 @@ GET /api/v1/library/metricgroups/
 <p>Optional parameters:</p>
 
 <ul>
-<li><code>filter</code> (type <em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on group names</li>
-<li><code>limit</code> (type <em>integer</em>): the maximum number of items to return</li>
-<li><code>offset</code> (type <em>integer</em>): the offset to start fetching from</li>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on group names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
 </ul>
 
 <p>Response:</p>
@@ -168,7 +177,7 @@ newly created item location.</p>
 <p>Optional parameters:</p>
 
 <ul>
-<li><code>inherit</code> (type <em>string</em>): the UUID of the group item to inherit from</li>
+<li><code>inherit</code> (<em>string</em>): the UUID of the group item to inherit from</li>
 </ul>
 
 <p>Additional status codes:</p>
@@ -253,9 +262,9 @@ prefix.</p>
 <p>Optional parameters:</p>
 
 <ul>
-<li><code>filter</code> (type <em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on group names</li>
-<li><code>limit</code> (type <em>integer</em>): the maximum number of items to return</li>
-<li><code>offset</code> (type <em>integer</em>): the offset to start fetching from</li>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on group names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
 </ul>
 
 <p>Response:</p>
@@ -300,7 +309,7 @@ newly created item location.</p>
 <p>Optional parameters:</p>
 
 <ul>
-<li><code>inherit</code> (type <em>string</em>): the UUID of the scale item to inherit from</li>
+<li><code>inherit</code> (<em>string</em>): the UUID of the scale item to inherit from</li>
 </ul>
 
 <p>Additional status codes:</p>
@@ -359,9 +368,127 @@ newly created item location.</p>
 ]
 </code></pre>
 
-<h2 id="toc_15">Graphs</h2>
+<h2 id="toc_15">Units <em>new in version 0.2</em></h2>
 
-<h3 id="toc_16">List graphs</h3>
+<h3 id="toc_16">List units</h3>
+
+<pre><code>GET /api/v1/library/units/
+</code></pre>
+
+<p>Returns an array of objects listing the available units.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on group names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="javascript">[
+    {
+        &quot;id&quot;: &quot;8d07dedd-cfaf-4041-a625-12a390e76f86&quot;
+        &quot;name&quot;: &quot;unit0&quot;,
+        &quot;description&quot;: &quot;A great unit description.&quot;,
+        &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+    }
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="toc_17">Get a single unit</h3>
+
+<pre><code>GET /api/v1/library/units/&lt;id&gt;
+</code></pre>
+
+<p>Returns a unit object with its name, description and matching rules entries.</p>
+
+<p>Response:</p>
+
+<pre><code class="javascript">{
+    &quot;id&quot;: &quot;8d07dedd-cfaf-4041-a625-12a390e76f86&quot;
+    &quot;name&quot;: &quot;unit0&quot;,
+    &quot;description&quot;: &quot;A great unit description.&quot;,
+    &quot;value&quot;: 1.345
+}
+</code></pre>
+
+<h3 id="toc_18">Create a new unit</h3>
+
+<pre><code>POST /api/v1/library/units/
+</code></pre>
+
+<p>Takes a unit from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the
+newly created item location.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>inherit</code> (<em>string</em>): the UUID of the unit item to inherit from</li>
+</ul>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>201 Created:</strong> the unit item has been successfully created</li>
+<li><strong>404 Not Found:</strong> the unit item to inherit from does not exist</li>
+<li><strong>409 Conflict:</strong> another unit with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single unit</em> above for unit object format.</p>
+
+<h3 id="toc_19">Update an existing unit</h3>
+
+<pre><code>PUT /library/units/&lt;id&gt;
+</code></pre>
+
+<p>Takes a unit from the request body and overwrites an existing library unit item.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to overwrite does not exist</li>
+<li><strong>409 Conflict:</strong> another unit with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single unit</em> above for unit object format.</p>
+
+<h3 id="toc_20">Delete an existing unit</h3>
+
+<pre><code>DELETE /library/units/&lt;id&gt;
+</code></pre>
+
+<p>Removes an existing unit item from the library.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to delete does not exist</li>
+</ul>
+
+<h3 id="toc_21">Get units labels</h3>
+
+<pre><code>GET /api/v1/library/units/labels
+</code></pre>
+
+<p>Returns an array of objects listing the available units along with their names and labels.</p>
+
+<p>Response:</p>
+
+<pre><code class="javascript">[
+    {
+        &quot;name&quot;: &quot;unit0&quot;,
+        &quot;label&quot;: &quot;A&quot;
+    }
+]
+</code></pre>
+
+<h2 id="toc_22">Graphs</h2>
+
+<h3 id="toc_23">List graphs</h3>
 
 <pre><code>GET /api/v1/library/graphs/
 </code></pre>
@@ -371,10 +498,10 @@ newly created item location.</p>
 <p>Optional parameters:</p>
 
 <ul>
-<li><code>collection</code> (type <em>string</em>): the identifier of the collection to filter on</li>
-<li><code>filter</code> (type <em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on graph names</li>
-<li><code>limit</code> (type <em>integer</em>): the maximum number of items to return</li>
-<li><code>offset</code> (type <em>integer</em>): the offset to start fetching from</li>
+<li><code>collection</code> (<em>string</em>): the identifier of the collection to filter on</li>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on graph names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
 </ul>
 
 <p>Response:</p>
@@ -391,7 +518,7 @@ newly created item location.</p>
 
 <p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
 
-<h3 id="toc_17">Get a single graph</h3>
+<h3 id="toc_24">Get a single graph</h3>
 
 <pre><code>GET /api/v1/library/graphs/&lt;id&gt;
 </code></pre>
@@ -415,13 +542,17 @@ newly created item location.</p>
                     &quot;name&quot;: &quot;serie0&quot;,
                     &quot;origin&quot;: &quot;origin0&quot;,
                     &quot;source&quot;: &quot;source0&quot;,
-                    &quot;metric&quot;: &quot;metric0&quot;
+                    &quot;metric&quot;: &quot;metric0&quot;,
+                    &quot;options&quot;: {
+                        &quot;scale&quot;: 1.234
+                    }
                 }
             ],
+            &quot;options&quot;: {}
         }
     ],
     &quot;stack_mode&quot;: 0,
-    &quot;unit_label&quot;: &quot;A great label&quot;,
+    &quot;unit_legend&quot;: &quot;A great legend&quot;,
     &quot;unit_type&quot;: 2
 }
 </code></pre>
@@ -448,7 +579,14 @@ newly created item location.</p>
 <li><code>2</code>: metric system</li>
 </ul>
 
-<h3 id="toc_18">Create a new graph</h3>
+<p>Group and serie options:</p>
+
+<ul>
+<li><code>scale</code> (<em>float</em>): scale factor to apply on a serie or a group</li>
+<li><code>unit</code> (<em>string</em>): legend label to set for a serie or a group</li>
+</ul>
+
+<h3 id="toc_25">Create a new graph</h3>
 
 <pre><code>POST /api/v1/library/graphs/
 </code></pre>
@@ -459,7 +597,7 @@ newly created item location.</p>
 <p>Optional parameters:</p>
 
 <ul>
-<li><code>inherit</code> (type <em>string</em>): the UUID of the graph item to inherit from</li>
+<li><code>inherit</code> (<em>string</em>): the UUID of the graph item to inherit from</li>
 </ul>
 
 <p>Additional status codes:</p>
@@ -472,7 +610,7 @@ newly created item location.</p>
 
 <p>See <em>Get a single graph</em> above for graph object format.</p>
 
-<h3 id="toc_19">Update an existing graph</h3>
+<h3 id="toc_26">Update an existing graph</h3>
 
 <pre><code>PUT /library/graphs/&lt;id&gt;
 </code></pre>
@@ -488,7 +626,7 @@ newly created item location.</p>
 
 <p>See <em>Get a single graph</em> above for graph object format.</p>
 
-<h3 id="toc_20">Delete an existing graph</h3>
+<h3 id="toc_27">Delete an existing graph</h3>
 
 <pre><code>DELETE /library/graphs/&lt;id&gt;
 </code></pre>
@@ -501,7 +639,7 @@ newly created item location.</p>
 <li><strong>404 Not Found:</strong> the item to delete does not exist</li>
 </ul>
 
-<h3 id="toc_21">Get graphs plots values</h3>
+<h3 id="toc_28">Get graphs plots values</h3>
 
 <pre><code>POST /api/v1/library/graphs/plots
 </code></pre>
@@ -563,9 +701,9 @@ replacing <code>id</code> by a <code>graph</code> parameter. See <em>Get a singl
 }
 </code></pre>
 
-<h2 id="toc_22">Collections</h2>
+<h2 id="toc_29">Collections</h2>
 
-<h3 id="toc_23">List collections</h3>
+<h3 id="toc_30">List collections</h3>
 
 <pre><code>GET /api/v1/library/collections/
 </code></pre>
@@ -575,11 +713,11 @@ replacing <code>id</code> by a <code>graph</code> parameter. See <em>Get a singl
 <p>Optional parameters:</p>
 
 <ul>
-<li><code>exclude</code> (type <em>string</em>): the identifier of the collection to exclude from listing</li>
-<li><code>filter</code> (type <em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on collection names</li>
-<li><code>limit</code> (type <em>integer</em>): the maximum number of items to return</li>
-<li><code>offset</code> (type <em>integer</em>): the offset to start fetching from</li>
-<li><code>parent</code> (type <em>string</em>): the identifier of the parent collection to filter on</li>
+<li><code>exclude</code> (<em>string</em>): the identifier of the collection to exclude from listing</li>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on collection names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
+<li><code>parent</code> (<em>string</em>): the identifier of the parent collection to filter on</li>
 </ul>
 
 <p>Response:</p>
@@ -598,7 +736,7 @@ replacing <code>id</code> by a <code>graph</code> parameter. See <em>Get a singl
 
 <p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
 
-<h3 id="toc_24">Get a single collection</h3>
+<h3 id="toc_31">Get a single collection</h3>
 
 <pre><code>GET /api/v1/library/collections/&lt;id&gt;
 </code></pre>
@@ -626,7 +764,7 @@ replacing <code>id</code> by a <code>graph</code> parameter. See <em>Get a singl
 }
 </code></pre>
 
-<h3 id="toc_25">Create a new collection</h3>
+<h3 id="toc_32">Create a new collection</h3>
 
 <pre><code>POST /api/v1/library/collections/
 </code></pre>
@@ -637,7 +775,7 @@ newly created item location.</p>
 <p>Optional parameters:</p>
 
 <ul>
-<li><code>inherit</code> (type <em>string</em>): the UUID of the collection item to inherit from</li>
+<li><code>inherit</code> (<em>string</em>): the UUID of the collection item to inherit from</li>
 </ul>
 
 <p>Additional status codes:</p>
@@ -650,7 +788,7 @@ newly created item location.</p>
 
 <p>See <em>Get a single collection</em> above for group object format.</p>
 
-<h3 id="toc_26">Update an existing collection</h3>
+<h3 id="toc_33">Update an existing collection</h3>
 
 <pre><code>PUT /library/collections/&lt;id&gt;
 </code></pre>
@@ -666,7 +804,7 @@ newly created item location.</p>
 
 <p>See <em>Get a single collection</em> above for group object format.</p>
 
-<h3 id="toc_27">Delete an existing collection</h3>
+<h3 id="toc_34">Delete an existing collection</h3>
 
 <pre><code>DELETE /library/collections/&lt;id&gt;
 </code></pre>

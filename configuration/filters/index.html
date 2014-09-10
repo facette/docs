@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Filters — Facette</title>
-<meta name="keywords" content="catalog,configuration,connector,discard,documentation,facette,filter,origin,provider,regexp,rewrite,settings">
+<meta name="keywords" content="catalog,configuration,connector,discard,documentation,facette,filter,origin,provider,regexp,rewrite,settings,sieve">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -56,10 +56,11 @@
 <ul>
 <li><a href="#toc_1">Actions</a>
 <ul>
-<li><a href="#toc_2">Rewrite</a></li>
-<li><a href="#toc_3">Discard</a></li>
+<li><a href="#toc_2">rewrite</a></li>
+<li><a href="#toc_3">discard</a></li>
+<li><a href="#toc_4">sieve</a></li>
 </ul></li>
-<li><a href="#toc_4">Precedence</a></li>
+<li><a href="#toc_5">Precedence</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -79,13 +80,13 @@ expressions (e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</p>
 <p>Filter rule settings:</p>
 
 <ul>
-<li><code>target</code> (type: <em>string</em>): object to target (<code>&quot;origin&quot;</code>, <code>&quot;source&quot;</code>, <code>&quot;metric&quot;</code> or <code>&quot;all&quot;</code>)</li>
-<li><code>pattern</code> (type: <em>string</em>): pattern to match</li>
-<li><code>rewrite</code> (type: <em>string</em>): replacement pattern</li>
-<li><code>discard</code> (type: <em>boolean</em>): if <code>true</code>, discard records matching <code>pattern</code></li>
+<li><code>action</code> (<em>string</em>): action to perform on the processed records (see &ldquo;Actions&rdquo; section)</li>
+<li><code>target</code> (<em>string</em>): object to target (<code>origin</code>, <code>source</code>, <code>metric</code> or <code>all</code>)</li>
+<li><code>pattern</code> (<em>string</em>): pattern to match</li>
+<li><code>into</code> (<em>string</em>): replacement pattern</li>
 </ul>
 
-<p>Supported <code>target</code> values (type <em>string</em>):</p>
+<p>Supported <code>target</code> (<em>string</em>) values:</p>
 
 <ul>
 <li><code>all</code>: match filter <code>pattern</code> on all names (default)</li>
@@ -99,7 +100,7 @@ continue its initialization and discard the bogus rule (a warning message will b
 
 <h2 id="toc_1">Actions</h2>
 
-<h3 id="toc_2">Rewrite</h3>
+<h3 id="toc_2">rewrite</h3>
 
 <p>Rewrite all received records <code>target</code> field by replacing all occurrences of <code>pattern</code> with the string value
 specified in the <code>rewrite</code> setting (can also be regular expression captured groups references).</p>
@@ -108,27 +109,38 @@ specified in the <code>rewrite</code> setting (can also be regular expression ca
 “cpu-0.cpu.system.value” becomes “cpu.0.system”):</p>
 
 <pre><code class="javascript">&quot;filters&quot;: [
-  { &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;_&quot;, &quot;rewrite&quot;: &quot;.&quot; },
-  { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^cpu-(\\d+)\\.cpu-(.+)\\.value$&quot;, &quot;rewrite&quot;: &quot;cpu.$1.$2&quot; }
+  { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;_&quot;, &quot;into&quot;: &quot;.&quot; },
+  { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^cpu-(\\d+)\\.cpu-(.+)\\.value$&quot;, &quot;into&quot;: &quot;cpu.$1.$2&quot; }
 ]
 </code></pre>
 
-<h3 id="toc_3">Discard</h3>
+<h3 id="toc_3">discard</h3>
 
 <p>Discard all received records whose <code>target</code> match <code>pattern</code>.</p>
 
 <p>Example: discard all entries whose <em>source</em> match the pattern “host3.example.net”</p>
 
 <pre><code class="javascript">&quot;filters&quot;: [
-  { &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;host3\\.example\\.net&quot;, &quot;discard&quot;: true }
+  { &quot;action&quot;: &quot;discard&quot;, &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;host3\\.example\\.net&quot; }
 ]
 </code></pre>
 
-<h2 id="toc_4">Precedence</h2>
+<h3 id="toc_4">sieve</h3>
+
+<p>The <em>sieve</em> action does the opposite of <em>discard</em>: it only lets records whose <code>target</code> match <code>pattern</code> pass through.</p>
+
+<p>Example: only keep records whose <em>source</em> names end with “.prod.example.net”</p>
+
+<pre><code class="javascript">&quot;filters&quot;: [
+  { &quot;action&quot;: &quot;sieve&quot;, &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;\\.prod\\.example\\.net$&quot; }
+]
+</code></pre>
+
+<h2 id="toc_5">Precedence</h2>
 
 <p>When evaluating filtering chains, the precedence of actions is the following:</p>
 
-<pre><code>Discard &gt; Rewrite
+<pre><code>Sieve &gt; Discard &gt; Rewrite
 </code></pre>
 
 <p><span class="fa fa-info-circle"></span> Note: filtering rules are evaluated in the order you define them, so watch out
