@@ -616,7 +616,8 @@ Optional parameters:
  * `filter` (_string_): the [pattern](/api/#filter-patterns) to apply on collection names
  * `limit` (_integer_): the maximum number of items to return
  * `offset` (_integer_): the offset to start fetching from
- * `parent` (_string_): the identifier of the parent collection to filter on
+ * `parent` (_string_): the identifier of the parent collection to filter on (use the string `null` for top-level
+   collections)
 
 Response:
 
