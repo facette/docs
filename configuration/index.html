@@ -196,21 +196,22 @@ filters to rewrite original metric names in a more friendly way and discard entr
   },
 
   &quot;filters&quot;: [
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^entropy&quot;, &quot;discard&quot;: true },
-
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;/&quot;, &quot;rewrite&quot;: &quot;.&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^cpu-(\\d+)\\.cpu-(.+)\\.value$&quot;, &quot;rewrite&quot;: &quot;cpu.$1.$2&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^df-(.+)\\.df_complex-(.+)\\.value&quot;, &quot;rewrite&quot;: &quot;df.$1.$2&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^disk-(.+)\\.disk_(.+)&quot;, &quot;rewrite&quot;: &quot;disk.$1.$2&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^interface-(.+)\\.if_(.+)\\.(.+)$&quot;, &quot;rewrite&quot;: &quot;net.$1.$2.$3&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^irq.irq-(.+)\\.value$&quot;, &quot;rewrite&quot;: &quot;irq.$1&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^load\\.load&quot;, &quot;rewrite&quot;: &quot;load&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^memory\\.memory-(.+)\\.value$&quot;, &quot;rewrite&quot;: &quot;memory.$1&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^processes\\.ps_state-(.+)\\.value$&quot;, &quot;rewrite&quot;: &quot;proc.state.$1&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^processes\\.(.+)\\.value$&quot;, &quot;rewrite&quot;: &quot;proc.$1&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^swap\\.swap-(.+)\\.value$&quot;, &quot;rewrite&quot;: &quot;swap.$1&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^swap\\.swap_io-(.+)\\.value$&quot;, &quot;rewrite&quot;: &quot;swap.io.$1&quot; },
-    { &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^users\\.users\\.value&quot;, &quot;rewrite&quot;: &quot;users.count&quot; }
+    { &quot;action&quot;: &quot;sieve&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;/average$&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;/average$&quot;, &quot;into&quot;: &quot;&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;/&quot;, &quot;into&quot;: &quot;.&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^cpu-(\\d+)\\.cpu-(.+)\\.value$&quot;, &quot;into&quot;: &quot;cpu.$1.$2&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^df-(.+)\\.df_complex-(.+)\\.value&quot;, &quot;into&quot;: &quot;df.$1.$2&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^disk-(.+)\\.disk_(.+)&quot;, &quot;into&quot;: &quot;disk.$1.$2&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^entropy\\.entropy&quot;, &quot;into&quot;: &quot;entropy&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^interface-(.+)\\.if_(.+)\\.(.+)$&quot;, &quot;into&quot;: &quot;net.$1.$2.$3&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^irq.irq-(.+)\\.value$&quot;, &quot;into&quot;: &quot;irq.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^load\\.load&quot;, &quot;into&quot;: &quot;load&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^memory\\.memory-(.+)\\.value$&quot;, &quot;into&quot;: &quot;memory.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^processes\\.ps_state-(.+)\\.value$&quot;, &quot;into&quot;: &quot;proc.state.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^processes\\.(.+)\\.value$&quot;, &quot;into&quot;: &quot;proc.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^swap\\.swap-(.+)\\.value$&quot;, &quot;into&quot;: &quot;swap.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^swap\\.swap_io-(.+)\\.value$&quot;, &quot;into&quot;: &quot;swap.io.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^users\\.users\\.value&quot;, &quot;into&quot;: &quot;users.count&quot; }
   ]
 }
 </code></pre>
