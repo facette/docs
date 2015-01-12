@@ -12,6 +12,7 @@ keywords:
    - "facette"
    - "filter"
    - "graphite"
+   - "kairosdb"
    - "https"
    - "influxdb"
    - "origin"
@@ -95,6 +96,41 @@ Optional settings:
  through HTTPS, (default: `false`)
  * `timeout` (type _integer_): delay in seconds before declaring a timeout (default: `10`)
 
+## KairosDB
+
+The **KairosDB** connector (type `kairosdb`) can query a [KairosDB REST API][5] to access time series.
+
+You don't need pattern matching, because catalog *source* and *metric* are modelled distinguishable in KairosDB.
+The *metric* is accessible directly and the *source* is modelled as a named tag list for each metric. This list defaults to `{"host", "name"}` at the moment. Means that *source* is build from metrics `host` tag or `name` tag if `host` is not applied. Because C*/KairosDB could store high frequency series, it makes sense to retrieve plots by aggregation. The standard aggregation for each metric actually defaults to `{ "name": "max", "sampling": { "value": 5, "unit": "minutes" } }` (the max value for each 5min is returned). Both, source tag list and aggregation function, needs definitely be configurable in the future.
+
+Example *provider* definition using the **KairosDB** connector:
+
+```javascript
+{
+    "connector": {
+        "type": "kairosdb",
+        "url": "http://localhost:8080/",
+    },
+
+    …
+}
+```
+
+Mandatory settings:
+
+ * `url` (type _string_): URL of the KairosDB REST API (without the `/api/...` path)
+ 
+Optional settings:
+
+ * `allow_insecure_tls` (type _boolean_): allow invalid or expired SSL certificates when accessing the Graphite API
+ through HTTPS, (default: `true`)
+ * `timeout` (type _integer_): delay in seconds before declaring a timeout (default: `10`)
+
+API calls used:
+
+ * `/api/v1/metricnames` and `/api/v1/datapoints/query/tags` for populating the catalog
+ * `/api/v1/datapoints/query` for retrieving the plots
+
 ## InfluxDB
 
 The **InfluxDB** connector (type `influxdb`) can query a InfluxDB database through the [HTTP API][4] to access stored
@@ -168,3 +204,4 @@ Optional settings:
 [2]: https://graphite.readthedocs.org/en/latest/render_api.html
 [3]: https://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-plaintext-protocol
 [4]: http://influxdb.com/docs/v0.8/api/reading_and_writing_data.html
+[5]: http://kairosdb.github.io/kairosdocs/restapi/
