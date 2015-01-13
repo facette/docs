@@ -122,7 +122,7 @@ Mandatory settings:
  
 Optional settings:
 
- * `allow_insecure_tls` (type _boolean_): allow invalid or expired SSL certificates when accessing the Graphite API
+ * `allow_insecure_tls` (type _boolean_): allow invalid or expired SSL certificates when accessing the KairosDB API
  through HTTPS, (default: `true`)
  * `timeout` (type _integer_): delay in seconds before declaring a timeout (default: `10`)
 
