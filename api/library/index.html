@@ -99,6 +99,7 @@
 <li><a href="#toc_32">Create a new collection</a></li>
 <li><a href="#toc_33">Update an existing collection</a></li>
 <li><a href="#toc_34">Delete an existing collection</a></li>
+<li><a href="#toc_35">Examples</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -817,6 +818,37 @@ newly created item location.</p>
 <ul>
 <li><strong>404 Not Found:</strong> the item to delete does not exist</li>
 </ul>
+
+<h3 id="toc_35">Examples</h3>
+
+<p>To create a source group using the API:</p>
+
+<pre><code>$ curl -i -X POST -H 'Content-Type: application/json' -d '{
+    &quot;name&quot;: &quot;group0&quot;,
+    &quot;description&quot;: &quot;A great group description.&quot;,
+    &quot;entries&quot;: [
+        {
+            &quot;origin&quot;: &quot;origin0&quot;,
+            &quot;pattern&quot;: &quot;glob:example.*&quot;
+        }
+    ]
+}' http://127.0.0.1:12003/api/v1/library/sourcegroups/
+HTTP/1.1 201 Created
+Cache-Control: private, max-age=0
+Date: Thu, 15 Jan 2015 18:01:05 GMT
+Expires: Thu, 15 Jan 2015 18:01:05 GMT
+Location: /api/v1/library/sourcegroups/9c1133ee-b685-4735-4cf9-529c7eb4bd23
+Content-Length: 0
+Content-Type: text/plain; charset=utf-8
+</code></pre>
+
+<p><span class="fa fa-info-circle"></span> Note: don&rsquo;t specify a <code>id</code> parameter when creating a resource, the back-end assigns an unique identifier at creation.</p>
+
+<p>The URI of the resource created is provided by the <code>Location</code> header. To retrieve the group just created:</p>
+
+<pre><code>$ curl http://127.0.0.1:12003/api/v1/library/sourcegroups/9c1133ee-b685-4735-4cf9-529c7eb4bd23
+{&quot;id&quot;:&quot;9c1133ee-b685-4735-4cf9-529c7eb4bd23&quot;,&quot;name&quot;:&quot;group0&quot;,&quot;description&quot;:&quot;A great group description.&quot;,&quot;entries&quot;:[{&quot;pattern&quot;:&quot;glob:example.*&quot;,&quot;origin&quot;:&quot;origin0&quot;}]}
+</code></pre>
 </section>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
