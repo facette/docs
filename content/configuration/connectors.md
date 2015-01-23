@@ -143,6 +143,7 @@ API calls used:
 
  * `/api/v1/metricnames` and `/api/v1/datapoints/query/tags` for populating the catalog
  * `/api/v1/datapoints/query` for retrieving the plots
+ * `/api/v1/version` for version checking
 
 ## InfluxDB
 
