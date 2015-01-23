@@ -112,8 +112,12 @@ Example *provider* definition using the **KairosDB** connector:
         "srctags": [ "host", "name" ],
         "start_relative": { "value": 6, "unit": "months" },
         "aggregators": [
-          { "metric": "^entropy\\.", "aggregator": { "name": "min", "sampling": { "value": 5, "unit": "minutes" } } },
-          { "metric": "\\.[tr]x$", "aggregator": { "name": "max", "sampling": { "value": 5, "unit": "minutes" } } }
+          { "metric": "^entropy\\.",
+            "aggregator": { "name": "min",
+                            "sampling": { "value": 5, "unit": "minutes" } } },
+          { "metric": "\\.[tr]x$",
+            "aggregator": { "name": "max",
+                            "sampling": { "value": 5, "unit": "minutes" } } }
         ]
     },
 
