@@ -127,13 +127,13 @@ Mandatory settings:
  
 Optional settings:
 
- * `srctags` (type _string Array_): Define the metric tags that defines *sources*. Ordering is important. Means that if a metric is tagged with more than one member from this list, the first one builds the *source*.
+ * `srctags` (type _string Array_): Define the metric tags that defines *sources*. Ordering is important. First hit builds the *source*.
  * `start_absolute` (type _milliseconds_):
  * `end_absolute` (type _milliseconds_):
  * `start_relative` (type _JSON Object_):
  * `end_relative` (type _JSON Object_):  
 Defines the time period for metrics population. Syntax and semantics is one and the same than described by [API Doc][6]. The objects are passed as-is to KairosDB without further syntax checking.
- * `aggregators` (type _JSON Array_): Defines an array of aggregation functions per *metric* pattern. Ordering is important. If a metric matches more than one pattern, the first match is applied. Matches runs against the original metric name. See [API Doc][6] for aggregator details. The `aggregator` object is passed as-is to KairosDB without further syntax checking.
+ * `aggregators` (type _JSON Array_): Defines an array of aggregation functions per *metric* pattern. Ordering is important. First match is applied. Matches runs against the *original* metric name. See [API Doc][6] for aggregator details. The `aggregator` object is passed as-is to KairosDB without further syntax checking.
  * `default_aggregator` (type _JSON Object_): Sets a default aggregation function for each metric. See [API Doc][6] for details. The object is passed as-is to KairosDB without further syntax checking.
  * `allow_insecure_tls` (type _boolean_): allow invalid or expired SSL certificates when accessing the KairosDB API
  through HTTPS, (default: `false`)
