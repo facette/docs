@@ -715,4 +715,37 @@ Additional status codes:
  * __404 Not Found:__ the item to delete does not exist
 
 
+### Examples
+
+To create a source group using the API:
+
+```
+$ curl -i -X POST -H 'Content-Type: application/json' -d '{
+    "name": "group0",
+    "description": "A great group description.",
+    "entries": [
+        {
+            "origin": "origin0",
+            "pattern": "glob:example.*"
+        }
+    ]
+}' http://127.0.0.1:12003/api/v1/library/sourcegroups/
+HTTP/1.1 201 Created
+Cache-Control: private, max-age=0
+Date: Thu, 15 Jan 2015 18:01:05 GMT
+Expires: Thu, 15 Jan 2015 18:01:05 GMT
+Location: /api/v1/library/sourcegroups/9c1133ee-b685-4735-4cf9-529c7eb4bd23
+Content-Length: 0
+Content-Type: text/plain; charset=utf-8
+```
+
+<span class="fa fa-info-circle"></span> Note: don't specify a `id` parameter when creating a resource, the back-end assigns an unique identifier at creation.
+
+The URI of the resource created is provided by the `Location` header. To retrieve the group just created:
+
+```
+$ curl http://127.0.0.1:12003/api/v1/library/sourcegroups/9c1133ee-b685-4735-4cf9-529c7eb4bd23
+{"id":"9c1133ee-b685-4735-4cf9-529c7eb4bd23","name":"group0","description":"A great group description.","entries":[{"pattern":"glob:example.*","origin":"origin0"}]}
+```
+
 [0]: http://en.wikipedia.org/wiki/Universally_unique_identifier
