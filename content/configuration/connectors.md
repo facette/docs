@@ -12,6 +12,7 @@ keywords:
    - "facette"
    - "filter"
    - "graphite"
+   - "kairosdb"
    - "https"
    - "influxdb"
    - "origin"
@@ -95,6 +96,51 @@ Optional settings:
  through HTTPS, (default: `false`)
  * `timeout` (type _integer_): delay in seconds before declaring a timeout (default: `10`)
 
+## KairosDB
+
+The **KairosDB** connector (type `kairosdb`) can query a [KairosDB REST API][5] to access time series.
+
+*source* and *metric* are modelled distinguishable in KairosDB. The *metric* is accessible directly and the *source* is modelled as a named tag list for each metric. The list defaults to `["host", "server", "device"]`. Means that *source* is built from metrics `host` tag or `server` tag if `host` is not applied.
+
+Because C*/KairosDB could store high frequency series, it is possible to retrieve plots by aggregation. The default aggregation for each metric is `none`. Could be overwritten by `default_aggregator`.
+
+Example *provider* definition using the **KairosDB** connector:
+
+```javascript
+{
+    "connector": {
+        "type": "kairosdb",
+        "url": "http://localhost:8080/",
+        "source_tags": [ "host", "name" ],
+        "start_relative": { "value": 6, "unit": "months" },
+        "aggregators": [
+          { "metric": "^entropy\\.",
+            "aggregator": { "name": "min",
+                            "sampling": { "value": 5, "unit": "minutes" } } },
+          { "metric": "\\.[tr]x$",
+            "aggregator": { "name": "max",
+                            "sampling": { "value": 5, "unit": "minutes" } } }
+        ]
+    },
+
+    …
+}
+```
+
+Mandatory settings:
+
+ * `url` (type _string_): URL of the KairosDB REST API (without the `/api/...` path)
+ 
+Optional settings:
+
+ * `source_tags` (type _string Array_): Define the metric tags that defines *sources*. Ordering is important. First hit builds the *source*.
+ * `{start,end}_{absolute,relative}` (type _JSON Object_): Bounds defining the time period for metrics population. Syntax and semantics is one and the same than described in [KairosDB API documentation][6]. The objects are passed as-is to KairosDB without further syntax checking.
+ * `aggregators` (type _JSON Array_): Defines an array of aggregation functions per *metric* pattern. Ordering is important. First match is applied. Matches runs against the *original* metric name. See [KairosDB API documentation][6] for aggregator details. The `aggregator` object is passed as-is to KairosDB without further syntax checking.
+ * `default_aggregator` (type _JSON Object_): Sets a default aggregation function for each metric. See [KairosDB API documentation][6] for details. The object is passed as-is to KairosDB without further syntax checking.
+ * `allow_insecure_tls` (type _boolean_): allow invalid or expired SSL certificates when accessing the KairosDB API
+ through HTTPS, (default: `false`)
+ * `timeout` (type _integer_): delay in seconds before declaring a timeout (default: `10`)
+
 ## InfluxDB
 
 The **InfluxDB** connector (type `influxdb`) can query a InfluxDB database through the [HTTP API][4] to access stored
@@ -168,3 +214,5 @@ Optional settings:
 [2]: https://graphite.readthedocs.org/en/latest/render_api.html
 [3]: https://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-plaintext-protocol
 [4]: http://influxdb.com/docs/v0.8/api/reading_and_writing_data.html
+[5]: http://kairosdb.github.io/kairosdocs/restapi/
+[6]: http://kairosdb.github.io/kairosdocs/restapi/QueryMetrics.html
