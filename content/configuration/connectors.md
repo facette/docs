@@ -177,6 +177,7 @@ Optional settings:
  * `host` (type _string_): address of the InfluxDB API (default: `"localhost:8086"`)
  * `username` (type _string_): username to connect to the database (default: `"root"`)
  * `password` (type _string_): password to connect to the database (default: `"root"`)
+ * `use_tls` (type _boolean_): use SSL/TLS to connect to the InfluxDB API (default: `false`)
 
 ## Facette
 
