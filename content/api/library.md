@@ -525,7 +525,7 @@ Additional status codes:
 
 See _Get a single graph_ above for graph object formats.
 
-#### Templates
+#### Templates _new in version 0.3_
 
 To create a graph template, `template` property must be set to `true`. The following properties are suitable to
 template expansion:
