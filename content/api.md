@@ -75,6 +75,7 @@ For example, if an unknown resource (e.g. origin, source…) is requested upon t
  * [Server API](/api/server): access server related data and methods
  * [Catalog API](/api/catalog): retrieve information about existing origins, sources and metrics
  * [Library API](/api/library): manage library items (e.g. groups, charts and collections)
+ * [Plots API](/api/plots): retrieve graph plots
  * [Status](/api/status): list of API HTTP response status codes
 
 
