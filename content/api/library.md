@@ -468,18 +468,18 @@ Response:
 }
 ```
 
-Requesting a linked graph (using a template):
+or for a graph template instance:
 
 ```javascript
 {
-  "id": "34a15691-5872-462f-7c42-177c18dd8a00",
-  "name": "server1.example.net - load",
-  "description": "Load average for server1.example.net",
-  "template": false,
-  "link": "dcde7cf8-f637-4303-592e-402ba3e9f017",
-  "attributes": {
-    "source": "server1.example.net"
-  }
+    "id": "34a15691-5872-462f-7c42-177c18dd8a00",
+    "name": "server1.example.net - load",
+    "description": "Load average for server1.example.net",
+    "template": false,
+    "link": "dcde7cf8-f637-4303-592e-402ba3e9f017",
+    "attributes": {
+        "source": "server1.example.net"
+    }
 }
 ```
 
@@ -523,7 +523,20 @@ Additional status codes:
  * __404 Not Found:__ the graph item to inherit from does not exist
  * __409 Conflict:__ another graph with the same name already exists
 
-See _Get a single graph_ above for graph object format.
+See _Get a single graph_ above for graph object formats.
+
+#### Templates
+
+To create a graph template, `template` property must be set to `true`. The following properties are suitable to
+template expansion:
+
+ * graph: `title` and `description`
+ * series: `origin`, `source` and `metric`
+
+<span class="fa fa-info-circle"></span> Template attributes must follow Go template syntax (e.g. `{{ .attr1 }}`).
+
+To instantiate a template, both `link` and `attributes` properties must be provided. Being respectively, the identifier
+of the template being instantiated and an object specifying attributes values (see _Get a single graph_ example above).
 
 ### Update an existing graph
 
