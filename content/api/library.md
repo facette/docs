@@ -410,6 +410,7 @@ Optional parameters:
  * `filter` (_string_): the [pattern](/api/#filter-patterns) to apply on graph names
  * `limit` (_integer_): the maximum number of items to return
  * `offset` (_integer_): the offset to start fetching from
+ * `templates` (_integer_): flag for returning graph templates (`1` = yes)
 
 Response:
 
@@ -464,6 +465,21 @@ Response:
     "stack_mode": 0,
     "unit_legend": "A great legend",
     "unit_type": 2
+}
+```
+
+Requesting a linked graph (using a template):
+
+```javascript
+{
+  "id": "34a15691-5872-462f-7c42-177c18dd8a00",
+  "name": "server1.example.net - load",
+  "description": "Load average for server1.example.net",
+  "template": false,
+  "link": "dcde7cf8-f637-4303-592e-402ba3e9f017",
+  "attributes": {
+    "source": "server1.example.net"
+  }
 }
 ```
 
