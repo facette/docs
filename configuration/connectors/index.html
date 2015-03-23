@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Provider Connectors — Facette</title>
-<meta name="keywords" content="catalog,configuration,connector,documentation,facette,filter,graphite,https,influxdb,origin,provider,regexp,rrdcached,rrdtool,settings,tls,upstream">
+<meta name="keywords" content="catalog,configuration,connector,documentation,facette,filter,graphite,kairosdb,https,influxdb,origin,provider,regexp,rrdcached,rrdtool,settings,tls,upstream">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -56,8 +56,9 @@
 <ul>
 <li><a href="#toc_1">RRD</a></li>
 <li><a href="#toc_2">Graphite</a></li>
-<li><a href="#toc_3">InfluxDB</a></li>
-<li><a href="#toc_4">Facette</a></li>
+<li><a href="#toc_3">KairosDB</a></li>
+<li><a href="#toc_4">InfluxDB</a></li>
+<li><a href="#toc_5">Facette</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -141,7 +142,55 @@ through HTTPS, (default: <code>false</code>)</li>
 <li><code>timeout</code> (type <em>integer</em>): delay in seconds before declaring a timeout (default: <code>10</code>)</li>
 </ul>
 
-<h2 id="toc_3">InfluxDB</h2>
+<h2 id="toc_3">KairosDB</h2>
+
+<p>The <strong>KairosDB</strong> connector (type <code>kairosdb</code>) can query a <a href="http://kairosdb.github.io/kairosdocs/restapi/">KairosDB REST API</a> to access time series.</p>
+
+<p><em>source</em> and <em>metric</em> are modelled distinguishable in KairosDB. The <em>metric</em> is accessible directly and the <em>source</em> is modelled as a named tag list for each metric. The list defaults to <code>[&quot;host&quot;, &quot;server&quot;, &quot;device&quot;]</code>. Means that <em>source</em> is built from metrics <code>host</code> tag or <code>server</code> tag if <code>host</code> is not applied.</p>
+
+<p>Because C*/KairosDB could store high frequency series, it is possible to retrieve plots by aggregation. The default aggregation for each metric is <code>none</code>. Could be overwritten by <code>default_aggregator</code>.</p>
+
+<p>Example <em>provider</em> definition using the <strong>KairosDB</strong> connector:</p>
+
+<pre><code class="javascript">{
+    &quot;connector&quot;: {
+        &quot;type&quot;: &quot;kairosdb&quot;,
+        &quot;url&quot;: &quot;http://localhost:8080/&quot;,
+        &quot;source_tags&quot;: [ &quot;host&quot;, &quot;name&quot; ],
+        &quot;start_relative&quot;: { &quot;value&quot;: 6, &quot;unit&quot;: &quot;months&quot; },
+        &quot;aggregators&quot;: [
+          { &quot;metric&quot;: &quot;^entropy\\.&quot;,
+            &quot;aggregator&quot;: { &quot;name&quot;: &quot;min&quot;,
+                            &quot;sampling&quot;: { &quot;value&quot;: 5, &quot;unit&quot;: &quot;minutes&quot; } } },
+          { &quot;metric&quot;: &quot;\\.[tr]x$&quot;,
+            &quot;aggregator&quot;: { &quot;name&quot;: &quot;max&quot;,
+                            &quot;sampling&quot;: { &quot;value&quot;: 5, &quot;unit&quot;: &quot;minutes&quot; } } }
+        ]
+    },
+
+    …
+}
+</code></pre>
+
+<p>Mandatory settings:</p>
+
+<ul>
+<li><code>url</code> (type <em>string</em>): URL of the KairosDB REST API (without the <code>/api/...</code> path)</li>
+</ul>
+
+<p>Optional settings:</p>
+
+<ul>
+<li><code>source_tags</code> (type <em>string Array</em>): Define the metric tags that defines <em>sources</em>. Ordering is important. First hit builds the <em>source</em>.</li>
+<li><code>{start,end}_{absolute,relative}</code> (type <em>JSON Object</em>): Bounds defining the time period for metrics population. Syntax and semantics is one and the same than described in <a href="http://kairosdb.github.io/kairosdocs/restapi/QueryMetrics.html">KairosDB API documentation</a>. The objects are passed as-is to KairosDB without further syntax checking.</li>
+<li><code>aggregators</code> (type <em>JSON Array</em>): Defines an array of aggregation functions per <em>metric</em> pattern. Ordering is important. First match is applied. Matches runs against the <em>original</em> metric name. See <a href="http://kairosdb.github.io/kairosdocs/restapi/QueryMetrics.html">KairosDB API documentation</a> for aggregator details. The <code>aggregator</code> object is passed as-is to KairosDB without further syntax checking.</li>
+<li><code>default_aggregator</code> (type <em>JSON Object</em>): Sets a default aggregation function for each metric. See <a href="http://kairosdb.github.io/kairosdocs/restapi/QueryMetrics.html">KairosDB API documentation</a> for details. The object is passed as-is to KairosDB without further syntax checking.</li>
+<li><code>allow_insecure_tls</code> (type <em>boolean</em>): allow invalid or expired SSL certificates when accessing the KairosDB API
+through HTTPS, (default: <code>false</code>)</li>
+<li><code>timeout</code> (type <em>integer</em>): delay in seconds before declaring a timeout (default: <code>10</code>)</li>
+</ul>
+
+<h2 id="toc_4">InfluxDB</h2>
 
 <p>The <strong>InfluxDB</strong> connector (type <code>influxdb</code>) can query a InfluxDB database through the <a href="http://influxdb.com/docs/v0.8/api/reading_and_writing_data.html">HTTP API</a> to access stored
 metrics.</p>
@@ -179,9 +228,10 @@ to the metrics series names.
 <li><code>host</code> (type <em>string</em>): address of the InfluxDB API (default: <code>&quot;localhost:8086&quot;</code>)</li>
 <li><code>username</code> (type <em>string</em>): username to connect to the database (default: <code>&quot;root&quot;</code>)</li>
 <li><code>password</code> (type <em>string</em>): password to connect to the database (default: <code>&quot;root&quot;</code>)</li>
+<li><code>use_tls</code> (type <em>boolean</em>): use SSL/TLS to connect to the InfluxDB API (default: <code>false</code>)</li>
 </ul>
 
-<h2 id="toc_4">Facette</h2>
+<h2 id="toc_5">Facette</h2>
 
 <p>The <strong>Facette</strong> connector (type <code>facette</code>) can query another Facette instance to retrieve and include the upstream
 catalog to inherit its <em>origins</em>, <em>sources</em> and <em>metrics</em>; the connector then forwards plot queries to the upstream

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Library API — Facette</title>
-<meta name="keywords" content="api,catalog,documentation,facette,group,library,metric,origin,plot,source">
+<meta name="keywords" content="api,catalog,documentation,facette,group,library,metric,origin,source">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link href="//fonts.googleapis.com/css?family=Roboto+Slab:400,300,700|Source+Code+Pro" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -43,6 +43,7 @@
 <li><a href="http://docs.facette.io/api/server">Server API</a></li>
 <li><a href="http://docs.facette.io/api/catalog">Catalog API</a></li>
 <li class="active"><a href="http://docs.facette.io/api/library">Library API</a></li>
+<li><a href="http://docs.facette.io/api/plots">Plots API</a></li>
 <li><a href="http://docs.facette.io/api/status">HTTP Status Codes</a></li>
 </ul>
 </li>
@@ -87,10 +88,12 @@
 <ul>
 <li><a href="#toc_23">List graphs</a></li>
 <li><a href="#toc_24">Get a single graph</a></li>
-<li><a href="#toc_25">Create a new graph</a></li>
-<li><a href="#toc_26">Update an existing graph</a></li>
-<li><a href="#toc_27">Delete an existing graph</a></li>
-<li><a href="#toc_28">Get graphs plots values</a></li>
+<li><a href="#toc_25">Create a new graph</a>
+<ul>
+<li><a href="#toc_26">Templates <em>new in version 0.3</em></a></li>
+</ul></li>
+<li><a href="#toc_27">Update an existing graph</a></li>
+<li><a href="#toc_28">Delete an existing graph</a></li>
 </ul></li>
 <li><a href="#toc_29">Collections</a>
 <ul>
@@ -503,6 +506,7 @@ newly created item location.</p>
 <li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on graph names</li>
 <li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
 <li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
+<li><code>templates</code> (<em>integer</em>): flag for returning graph templates (<code>1</code> = yes)</li>
 </ul>
 
 <p>Response:</p>
@@ -558,6 +562,20 @@ newly created item location.</p>
 }
 </code></pre>
 
+<p>or for a graph template instance:</p>
+
+<pre><code class="javascript">{
+    &quot;id&quot;: &quot;34a15691-5872-462f-7c42-177c18dd8a00&quot;,
+    &quot;name&quot;: &quot;server1.example.net - load&quot;,
+    &quot;description&quot;: &quot;Load average for server1.example.net&quot;,
+    &quot;template&quot;: false,
+    &quot;link&quot;: &quot;dcde7cf8-f637-4303-592e-402ba3e9f017&quot;,
+    &quot;attributes&quot;: {
+        &quot;source&quot;: &quot;server1.example.net&quot;
+    }
+}
+</code></pre>
+
 <p>Graph types:</p>
 
 <ul>
@@ -609,9 +627,24 @@ newly created item location.</p>
 <li><strong>409 Conflict:</strong> another graph with the same name already exists</li>
 </ul>
 
-<p>See <em>Get a single graph</em> above for graph object format.</p>
+<p>See <em>Get a single graph</em> above for graph object formats.</p>
 
-<h3 id="toc_26">Update an existing graph</h3>
+<h4 id="toc_26">Templates <em>new in version 0.3</em></h4>
+
+<p>To create a graph template, <code>template</code> property must be set to <code>true</code>. The following properties are suitable to
+template expansion:</p>
+
+<ul>
+<li>graph: <code>title</code> and <code>description</code></li>
+<li>series: <code>origin</code>, <code>source</code> and <code>metric</code></li>
+</ul>
+
+<p><span class="fa fa-info-circle"></span> Template attributes must follow Go template syntax (e.g. <code>{{ .attr1 }}</code>).</p>
+
+<p>To instantiate a template, both <code>link</code> and <code>attributes</code> properties must be provided. Being respectively, the identifier
+of the template being instantiated and an object specifying attributes values (see <em>Get a single graph</em> example above).</p>
+
+<h3 id="toc_27">Update an existing graph</h3>
 
 <pre><code>PUT /library/graphs/&lt;id&gt;
 </code></pre>
@@ -627,7 +660,7 @@ newly created item location.</p>
 
 <p>See <em>Get a single graph</em> above for graph object format.</p>
 
-<h3 id="toc_27">Delete an existing graph</h3>
+<h3 id="toc_28">Delete an existing graph</h3>
 
 <pre><code>DELETE /library/graphs/&lt;id&gt;
 </code></pre>
@@ -639,68 +672,6 @@ newly created item location.</p>
 <ul>
 <li><strong>404 Not Found:</strong> the item to delete does not exist</li>
 </ul>
-
-<h3 id="toc_28">Get graphs plots values</h3>
-
-<pre><code>POST /api/v1/library/graphs/plots
-</code></pre>
-
-<p>Takes a plot request from the request body and returns graph series plots values and information.</p>
-
-<p>Additional status codes:</p>
-
-<ul>
-<li><strong>404 Not Found:</strong> the requested graph template does not exist</li>
-</ul>
-
-<p>Request:</p>
-
-<pre><code class="javascript">{
-    &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
-    &quot;range&quot;: &quot;-1d&quot;
-}
-</code></pre>
-
-<p><span class="fa fa-info-circle"></span> Note: the request could also accept a graph request along with the range,
-replacing <code>id</code> by a <code>graph</code> parameter. See <em>Get a single graph</em> response example for request structure.</p>
-
-<p>Response (plots values are truncated):</p>
-
-<pre><code class="javascript">{
-    &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
-    &quot;name&quot;: &quot;Chart name&quot;,
-    &quot;description&quot;: &quot;A great chart description.&quot;,
-    &quot;type&quot;: 1,
-    &quot;series&quot;: [
-        {
-            &quot;stack_id&quot;: 0,
-            &quot;info&quot;: {
-                &quot;min&quot;: 0,
-                &quot;max&quot;: 1.023,
-                &quot;last&quot;: 0.381,
-                &quot;avg&quot;: 0.109164
-            },
-            &quot;plots&quot;: [
-                0.348,
-                0.351,
-                0.42300000000000004,
-                …
-                0,
-                0.10500000000000001,
-                0.42400000000000004,
-                0.381,
-                null
-            ],
-            &quot;name&quot;: &quot;serie0&quot;
-        }
-    ],
-    &quot;stack_mode&quot;: 0,
-    &quot;start&quot;: &quot;2013-01-01T12:34:56+01:00&quot;,
-    &quot;end&quot;: &quot;2013-01-02T12:34:56+01:00&quot;,
-    &quot;step&quot;: 9.944751381,
-    &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
-}
-</code></pre>
 
 <h2 id="toc_29">Collections</h2>
 
