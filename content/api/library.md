@@ -102,8 +102,8 @@ See _Get a single group_ above for group object format.
 ### Update an existing group
 
 ```
-PUT /library/sourcegroups/<id>
-PUT /library/metricgroups/<id>
+PUT /api/v1/library/sourcegroups/<id>
+PUT /api/v1/library/metricgroups/<id>
 ```
 
 Takes a group from the request body and overwrites an existing library group item.
@@ -118,8 +118,8 @@ See _Get a single group_ above for group object format.
 ### Delete an existing group
 
 ```
-DELETE /library/sourcegroups/<id>
-DELETE /library/metricgroups/<id>
+DELETE /api/v1/library/sourcegroups/<id>
+DELETE /api/v1/library/metricgroups/<id>
 ```
 
 Removes an existing group item from the library.
@@ -234,7 +234,7 @@ See _Get a single scale_ above for scale object format.
 ### Update an existing scale
 
 ```
-PUT /library/scales/<id>
+PUT /api/v1/library/scales/<id>
 ```
 
 Takes a scale from the request body and overwrites an existing library scale item.
@@ -249,7 +249,7 @@ See _Get a single scale_ above for scale object format.
 ### Delete an existing scale
 
 ```
-DELETE /library/scales/<id>
+DELETE /api/v1/library/scales/<id>
 ```
 
 Removes an existing scale item from the library.
@@ -351,7 +351,7 @@ See _Get a single unit_ above for unit object format.
 ### Update an existing unit
 
 ```
-PUT /library/units/<id>
+PUT /api/v1/library/units/<id>
 ```
 
 Takes a unit from the request body and overwrites an existing library unit item.
@@ -366,7 +366,7 @@ See _Get a single unit_ above for unit object format.
 ### Delete an existing unit
 
 ```
-DELETE /library/units/<id>
+DELETE /api/v1/library/units/<id>
 ```
 
 Removes an existing unit item from the library.
@@ -541,7 +541,7 @@ of the template being instantiated and an object specifying attributes values (s
 ### Update an existing graph
 
 ```
-PUT /library/graphs/<id>
+PUT /api/v1/library/graphs/<id>
 ```
 
 Takes a graph from the request body and overwrites an existing library graph item.
@@ -556,7 +556,7 @@ See _Get a single graph_ above for graph object format.
 ### Delete an existing graph
 
 ```
-DELETE /library/graphs/<id>
+DELETE /api/v1/library/graphs/<id>
 ```
 
 Removes an existing graph item from the library.
@@ -655,7 +655,7 @@ See _Get a single collection_ above for group object format.
 ### Update an existing collection
 
 ```
-PUT /library/collections/<id>
+PUT /api/v1/library/collections/<id>
 ```
 
 Takes a collection from the request body and overwrites an existing library collection item.
@@ -670,7 +670,7 @@ See _Get a single collection_ above for group object format.
 ### Delete an existing collection
 
 ```
-DELETE /library/collections/<id>
+DELETE /api/v1/library/collections/<id>
 ```
 
 Removes an existing collection item from the library.
