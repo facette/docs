@@ -47,6 +47,7 @@ feature the extension `.json`.
  * `url_prefix` (_string_): URL prefix behind which the server is located if not running at the root of the HTTP
    virtual host (e.g. `/facette`)
  * `read_only` (_boolean_): read-only flag, preventing modifications through API calls (default: `false`)
+ * `hide_build_details` (_boolean_): build details display flag, preventing build details from be exposed in the UI (default: `false`)
  * `socket_mode` (_string_): when binding to a UNIX socket, socket file mode (e.g. `0400`)
  * `socket_user` (_string_): when binding to a UNIX socket, socket file owner **numeric ID** (e.g. `65534`)
  * `socket_group` (_string_): when binding to a UNIX socket, socket file group **numeric ID** (e.g. `65534`)
