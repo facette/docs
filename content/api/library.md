@@ -713,4 +713,6 @@ $ curl http://127.0.0.1:12003/api/v1/library/sourcegroups/9c1133ee-b685-4735-4cf
 {"id":"9c1133ee-b685-4735-4cf9-529c7eb4bd23","name":"group0","description":"A great group description.","entries":[{"pattern":"glob:example.*","origin":"origin0"}]}
 ```
 
+To overcome this restriction set `foreign_uuid: true` in *facette.json* and provide a sufficient `id` parameter.
+
 [0]: http://en.wikipedia.org/wiki/Universally_unique_identifier
