@@ -53,8 +53,7 @@ git clone https://github.com/facette/facette.git
 ### Build Instructions
 
 <span class="fa fa-warning"></span> Note: if using the Debian/Ubuntu distribution-provided `nodejs` package, since
-the shipped binary is `/usr/bin/nodejs` instead of `/usr/bin/node` you have to add an alias using the command
-`sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10` for Facette Node.js dependencies to work.
+the shipped binary is `/usr/bin/nodejs` instead of `/usr/bin/node`, you have to install `nodejs-legacy` as well for Facette Node.js dependencies to work.
 
 At the top the sources directory, run the build command:
 
