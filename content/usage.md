@@ -105,3 +105,9 @@ server {
 <span class="fa fa-info-circle"></span> Note: `mod_proxy` and `mod_proxy_http` modules must be enabled. The
 `X-Forwarded-Proto` header must be passed in order to make _OpenSearch_ work properly when using HTTPS (and requires
 `mod_headers` to be enabled in Apache).
+
+## Going further
+
+The Facette blog features [a series of articles][0] showcasing Facette and its web interface.
+
+[0]: https://blog.facette.io/tag/using-facette/
