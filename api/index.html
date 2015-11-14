@@ -27,25 +27,25 @@
 <li><a href="/">Documentation</a></li>
 
 <li>
-<a href="http://docs.facette.io/architecture">Architecture of Facette</a>
+<a href="/architecture/">Architecture of Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/installing">Installing Facette</a>
+<a href="/installing/">Installing Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/configuration">Configuring Facette</a>
+<a href="/configuration/">Configuring Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/usage">Using Facette</a>
+<a href="/usage/">Using Facette</a>
 </li>
 <li class="active">
-<a href="http://docs.facette.io/api">API Documentation</a>
+<a href="/api/">API Documentation</a>
 <ul>
-<li><a href="http://docs.facette.io/api/server">Server API</a></li>
-<li><a href="http://docs.facette.io/api/catalog">Catalog API</a></li>
-<li><a href="http://docs.facette.io/api/library">Library API</a></li>
-<li><a href="http://docs.facette.io/api/plots">Plots API</a></li>
-<li><a href="http://docs.facette.io/api/status">HTTP Status Codes</a></li>
+<li><a href="/api/server/">Server API</a></li>
+<li><a href="/api/catalog/">Catalog API</a></li>
+<li><a href="/api/library/">Library API</a></li>
+<li><a href="/api/plots/">Plots API</a></li>
+<li><a href="/api/status/">HTTP Status Codes</a></li>
 </ul>
 </li>
 </ul>
@@ -56,31 +56,31 @@
 <div class="title">Table of Contents</div>
 <nav id="TableOfContents">
 <ul>
-<li><a href="#toc_0">API Documentation</a>
+<li><a href="#api-documentation:00e71df22262087fd8ad820708997657">API Documentation</a>
 <ul>
-<li><a href="#toc_1">General Information</a>
+<li><a href="#general-information:00e71df22262087fd8ad820708997657">General Information</a>
 <ul>
-<li><a href="#toc_2">Dates and Times</a></li>
-<li><a href="#toc_3">Filter Patterns</a></li>
-<li><a href="#toc_4">Message Responses</a></li>
+<li><a href="#dates-and-times:00e71df22262087fd8ad820708997657">Dates and Times</a></li>
+<li><a href="#filter-patterns:00e71df22262087fd8ad820708997657">Filter Patterns</a></li>
+<li><a href="#message-responses:00e71df22262087fd8ad820708997657">Message Responses</a></li>
 </ul></li>
-<li><a href="#toc_5">Documents</a></li>
+<li><a href="#documents:00e71df22262087fd8ad820708997657">Documents</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 
 
-<h1 id="toc_0">API Documentation</h1>
+<h1 id="api-documentation:00e71df22262087fd8ad820708997657">API Documentation</h1>
 
-<h2 id="toc_1">General Information</h2>
+<h2 id="general-information:00e71df22262087fd8ad820708997657">General Information</h2>
 
 <p>This documentation describes the RESTful web API exposed by the Facette back-end and used by the web front-end.</p>
 
 <p>Unless otherwise stated, all requests and responses bodies use <code>application/json</code> as <code>Content-Type</code>. The format is
 described in the <a href="http://tools.ietf.org/html/rfc4627">RFC 4627</a> document.</p>
 
-<h3 id="toc_2">Dates and Times</h3>
+<h3 id="dates-and-times:00e71df22262087fd8ad820708997657">Dates and Times</h3>
 
 <p>The dates returned by the API are using the <a href="http://tools.ietf.org/html/rfc3339">RFC 3399</a> timestamp format.</p>
 
@@ -96,7 +96,7 @@ the last day can be expressed with the following expressions:</p>
 
 <p>It is also possible to combine multiple units, such as <code>-1h30m</code>.</p>
 
-<h3 id="toc_3">Filter Patterns</h3>
+<h3 id="filter-patterns:00e71df22262087fd8ad820708997657">Filter Patterns</h3>
 
 <p>Some of the API calls can take a filter as optional parameter, those filters can be:</p>
 
@@ -106,7 +106,7 @@ the last day can be expressed with the following expressions:</p>
 <li>a simple value (e.g. <code>host1.example.net</code>)</li>
 </ul>
 
-<h3 id="toc_4">Message Responses</h3>
+<h3 id="message-responses:00e71df22262087fd8ad820708997657">Message Responses</h3>
 
 <p>When the API is unable to handle the received request or if an error occurred during its processing, a JSON message
 response is sent along with an HTTP status code.</p>
@@ -114,12 +114,12 @@ response is sent along with an HTTP status code.</p>
 <p>For example, if an unknown resource (e.g. origin, source…) is requested upon the API, with an HTTP status code being
 <code>404 Not Found</code>, the response would look like:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
    &quot;message&quot;: &quot;Unable to find requested resource&quot;
 }
 </code></pre>
 
-<h2 id="toc_5">Documents</h2>
+<h2 id="documents:00e71df22262087fd8ad820708997657">Documents</h2>
 
 <ul>
 <li><a href="/api/server">Server API</a>: access server related data and methods</li>

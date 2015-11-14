@@ -26,25 +26,25 @@
 <li><a href="/">Documentation</a></li>
 
 <li>
-<a href="http://docs.facette.io/architecture">Architecture of Facette</a>
+<a href="/architecture/">Architecture of Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/installing">Installing Facette</a>
+<a href="/installing/">Installing Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/configuration">Configuring Facette</a>
+<a href="/configuration/">Configuring Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/usage">Using Facette</a>
+<a href="/usage/">Using Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/api">API Documentation</a>
+<a href="/api/">API Documentation</a>
 <ul>
-<li><a href="http://docs.facette.io/api/server">Server API</a></li>
-<li><a href="http://docs.facette.io/api/catalog">Catalog API</a></li>
-<li><a href="http://docs.facette.io/api/library">Library API</a></li>
-<li class="active"><a href="http://docs.facette.io/api/plots">Plots API</a></li>
-<li><a href="http://docs.facette.io/api/status">HTTP Status Codes</a></li>
+<li><a href="/api/server/">Server API</a></li>
+<li><a href="/api/catalog/">Catalog API</a></li>
+<li><a href="/api/library/">Library API</a></li>
+<li class="active"><a href="/api/plots/">Plots API</a></li>
+<li><a href="/api/status/">HTTP Status Codes</a></li>
 </ul>
 </li>
 </ul>
@@ -55,18 +55,18 @@
 <div class="title">Table of Contents</div>
 <nav id="TableOfContents">
 <ul>
-<li><a href="#toc_0">Plots API</a>
+<li><a href="#plots-api:fcc5c500ebb58954ab8c5a4ca5c578f0">Plots API</a>
 <ul>
-<li><a href="#toc_1">Get graphs plots values</a></li>
+<li><a href="#get-graphs-plots-values:fcc5c500ebb58954ab8c5a4ca5c578f0">Get graphs plots values</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 
 
-<h1 id="toc_0">Plots API</h1>
+<h1 id="plots-api:fcc5c500ebb58954ab8c5a4ca5c578f0">Plots API</h1>
 
-<h2 id="toc_1">Get graphs plots values</h2>
+<h2 id="get-graphs-plots-values:fcc5c500ebb58954ab8c5a4ca5c578f0">Get graphs plots values</h2>
 
 <pre><code>POST /api/v1/plots
 </code></pre>
@@ -81,7 +81,7 @@
 
 <p>Request:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
     &quot;range&quot;: &quot;-1d&quot;
 }
@@ -92,7 +92,7 @@ replacing <code>id</code> by a <code>graph</code> parameter. See <em>Get a singl
 
 <p>Response (plots values are truncated):</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
     &quot;name&quot;: &quot;Chart name&quot;,
     &quot;description&quot;: &quot;A great chart description.&quot;,

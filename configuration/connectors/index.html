@@ -26,23 +26,23 @@
 <li><a href="/">Documentation</a></li>
 
 <li>
-<a href="http://docs.facette.io/architecture">Architecture of Facette</a>
+<a href="/architecture/">Architecture of Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/installing">Installing Facette</a>
+<a href="/installing/">Installing Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/configuration">Configuring Facette</a>
+<a href="/configuration/">Configuring Facette</a>
 <ul>
-<li class="active"><a href="http://docs.facette.io/configuration/connectors">Provider Connectors</a></li>
-<li><a href="http://docs.facette.io/configuration/filters">Filters</a></li>
+<li class="active"><a href="/configuration/connectors/">Provider Connectors</a></li>
+<li><a href="/configuration/filters/">Filters</a></li>
 </ul>
 </li>
 <li>
-<a href="http://docs.facette.io/usage">Using Facette</a>
+<a href="/usage/">Using Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/api">API Documentation</a>
+<a href="/api/">API Documentation</a>
 </li>
 </ul>
 </nav>
@@ -52,28 +52,28 @@
 <div class="title">Table of Contents</div>
 <nav id="TableOfContents">
 <ul>
-<li><a href="#toc_0">Provider Connectors</a>
+<li><a href="#provider-connectors:36331316c021a51589fe614a3f875457">Provider Connectors</a>
 <ul>
-<li><a href="#toc_1">RRD</a></li>
-<li><a href="#toc_2">Graphite</a></li>
-<li><a href="#toc_3">KairosDB</a></li>
-<li><a href="#toc_4">InfluxDB</a></li>
-<li><a href="#toc_5">Facette</a></li>
+<li><a href="#rrd:36331316c021a51589fe614a3f875457">RRD</a></li>
+<li><a href="#graphite:36331316c021a51589fe614a3f875457">Graphite</a></li>
+<li><a href="#kairosdb:36331316c021a51589fe614a3f875457">KairosDB</a></li>
+<li><a href="#influxdb:36331316c021a51589fe614a3f875457">InfluxDB</a></li>
+<li><a href="#facette:36331316c021a51589fe614a3f875457">Facette</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 
 
-<h1 id="toc_0">Provider Connectors</h1>
+<h1 id="provider-connectors:36331316c021a51589fe614a3f875457">Provider Connectors</h1>
 
-<h2 id="toc_1">RRD</h2>
+<h2 id="rrd:36331316c021a51589fe614a3f875457">RRD</h2>
 
 <p>The <strong>RRD</strong> connector (type <code>rrd</code>) can read <a href="https://oss.oetiker.ch/rrdtool">RRDtool</a> files to extract stored metrics.</p>
 
 <p>Example <em>provider</em> definition using the <strong>RRD</strong> connector:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;connector&quot;: {
         &quot;type&quot;: &quot;rrd&quot;,
         &quot;path&quot;: &quot;/var/lib/collectd/rrd&quot;,
@@ -103,7 +103,7 @@ to the filesystem structure under the base directory defined with the <code>path
 <li><code>daemon</code> (type <em>string</em>): rrdcached daemon socket address, see <code>-l</code> option in <code>rrdcached(1)</code> manual for details</li>
 </ul>
 
-<h2 id="toc_2">Graphite</h2>
+<h2 id="graphite:36331316c021a51589fe614a3f875457">Graphite</h2>
 
 <p>The <strong>Graphite</strong> connector (type <code>graphite</code>) can query a <a href="https://graphite.readthedocs.org/en/latest/render_api.html">Graphite-web HTTP API</a> to access metrics received by its
 Carbon daemon.</p>
@@ -114,7 +114,7 @@ original Graphite series names into catalog <em>source</em> and <em>metrics</em>
 
 <p>Example <em>provider</em> definition using the <strong>Graphite</strong> connector:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;connector&quot;: {
         &quot;type&quot;: &quot;graphite&quot;,
         &quot;url&quot;: &quot;http://my.graphite.server.example.net/&quot;,
@@ -142,7 +142,7 @@ through HTTPS, (default: <code>false</code>)</li>
 <li><code>timeout</code> (type <em>integer</em>): delay in seconds before declaring a timeout (default: <code>10</code>)</li>
 </ul>
 
-<h2 id="toc_3">KairosDB</h2>
+<h2 id="kairosdb:36331316c021a51589fe614a3f875457">KairosDB</h2>
 
 <p>The <strong>KairosDB</strong> connector (type <code>kairosdb</code>) can query a <a href="http://kairosdb.github.io/kairosdocs/restapi/">KairosDB REST API</a> to access time series.</p>
 
@@ -152,7 +152,7 @@ through HTTPS, (default: <code>false</code>)</li>
 
 <p>Example <em>provider</em> definition using the <strong>KairosDB</strong> connector:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;connector&quot;: {
         &quot;type&quot;: &quot;kairosdb&quot;,
         &quot;url&quot;: &quot;http://localhost:8080/&quot;,
@@ -190,7 +190,7 @@ through HTTPS, (default: <code>false</code>)</li>
 <li><code>timeout</code> (type <em>integer</em>): delay in seconds before declaring a timeout (default: <code>10</code>)</li>
 </ul>
 
-<h2 id="toc_4">InfluxDB</h2>
+<h2 id="influxdb:36331316c021a51589fe614a3f875457">InfluxDB</h2>
 
 <p>The <strong>InfluxDB</strong> connector (type <code>influxdb</code>) can query a InfluxDB database through the <a href="http://influxdb.com/docs/v0.8/api/reading_and_writing_data.html">HTTP API</a> to access stored
 metrics.</p>
@@ -201,7 +201,7 @@ and the <em>metric</em> “req.5xx”).</p>
 
 <p>Example <em>provider</em> definition using the <strong>Graphite</strong> connector:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;connector&quot;: {
         &quot;type&quot;: &quot;influxdb&quot;,
         &quot;host&quot;: &quot;my.influxdb.server.example.net:8086&quot;,
@@ -231,7 +231,7 @@ to the metrics series names.
 <li><code>use_tls</code> (type <em>boolean</em>): use SSL/TLS to connect to the InfluxDB API (default: <code>false</code>)</li>
 </ul>
 
-<h2 id="toc_5">Facette</h2>
+<h2 id="facette:36331316c021a51589fe614a3f875457">Facette</h2>
 
 <p>The <strong>Facette</strong> connector (type <code>facette</code>) can query another Facette instance to retrieve and include the upstream
 catalog to inherit its <em>origins</em>, <em>sources</em> and <em>metrics</em>; the connector then forwards plot queries to the upstream
@@ -242,7 +242,7 @@ performance/space reasons, or if your want to aggregate metrics from different t
 
 <p>Example <em>provider</em> definition using the <strong>Facette</strong> connector:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;connector&quot;: {
         &quot;type&quot;: &quot;facette&quot;,
         &quot;upstream&quot;: &quot;http://demo.facette.io/&quot;

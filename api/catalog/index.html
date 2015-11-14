@@ -26,25 +26,25 @@
 <li><a href="/">Documentation</a></li>
 
 <li>
-<a href="http://docs.facette.io/architecture">Architecture of Facette</a>
+<a href="/architecture/">Architecture of Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/installing">Installing Facette</a>
+<a href="/installing/">Installing Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/configuration">Configuring Facette</a>
+<a href="/configuration/">Configuring Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/usage">Using Facette</a>
+<a href="/usage/">Using Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/api">API Documentation</a>
+<a href="/api/">API Documentation</a>
 <ul>
-<li><a href="http://docs.facette.io/api/server">Server API</a></li>
-<li class="active"><a href="http://docs.facette.io/api/catalog">Catalog API</a></li>
-<li><a href="http://docs.facette.io/api/library">Library API</a></li>
-<li><a href="http://docs.facette.io/api/plots">Plots API</a></li>
-<li><a href="http://docs.facette.io/api/status">HTTP Status Codes</a></li>
+<li><a href="/api/server/">Server API</a></li>
+<li class="active"><a href="/api/catalog/">Catalog API</a></li>
+<li><a href="/api/library/">Library API</a></li>
+<li><a href="/api/plots/">Plots API</a></li>
+<li><a href="/api/status/">HTTP Status Codes</a></li>
 </ul>
 </li>
 </ul>
@@ -55,23 +55,23 @@
 <div class="title">Table of Contents</div>
 <nav id="TableOfContents">
 <ul>
-<li><a href="#toc_0">Catalog API</a>
+<li><a href="#catalog-api:1139a8ee12381622e21bcc703cfa3371">Catalog API</a>
 <ul>
-<li><a href="#toc_1">Origins</a>
+<li><a href="#origins:1139a8ee12381622e21bcc703cfa3371">Origins</a>
 <ul>
-<li><a href="#toc_2">Full catalog retrieval</a></li>
-<li><a href="#toc_3">List origins</a></li>
-<li><a href="#toc_4">Get a single origin</a></li>
+<li><a href="#full-catalog-retrieval:1139a8ee12381622e21bcc703cfa3371">Full catalog retrieval</a></li>
+<li><a href="#list-origins:1139a8ee12381622e21bcc703cfa3371">List origins</a></li>
+<li><a href="#get-a-single-origin:1139a8ee12381622e21bcc703cfa3371">Get a single origin</a></li>
 </ul></li>
-<li><a href="#toc_5">Sources</a>
+<li><a href="#sources:1139a8ee12381622e21bcc703cfa3371">Sources</a>
 <ul>
-<li><a href="#toc_6">List sources</a></li>
-<li><a href="#toc_7">Get a single source</a></li>
+<li><a href="#list-sources:1139a8ee12381622e21bcc703cfa3371">List sources</a></li>
+<li><a href="#get-a-single-source:1139a8ee12381622e21bcc703cfa3371">Get a single source</a></li>
 </ul></li>
-<li><a href="#toc_8">Metrics</a>
+<li><a href="#metrics:1139a8ee12381622e21bcc703cfa3371">Metrics</a>
 <ul>
-<li><a href="#toc_9">List metrics</a></li>
-<li><a href="#toc_10">Get a single metric</a></li>
+<li><a href="#list-metrics:1139a8ee12381622e21bcc703cfa3371">List metrics</a></li>
+<li><a href="#get-a-single-metric:1139a8ee12381622e21bcc703cfa3371">Get a single metric</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -79,11 +79,11 @@
 </div>
 
 
-<h1 id="toc_0">Catalog API</h1>
+<h1 id="catalog-api:1139a8ee12381622e21bcc703cfa3371">Catalog API</h1>
 
-<h2 id="toc_1">Origins</h2>
+<h2 id="origins:1139a8ee12381622e21bcc703cfa3371">Origins</h2>
 
-<h3 id="toc_2">Full catalog retrieval</h3>
+<h3 id="full-catalog-retrieval:1139a8ee12381622e21bcc703cfa3371">Full catalog retrieval</h3>
 
 <pre><code>GET /api/v1/catalog/
 </code></pre>
@@ -92,7 +92,7 @@
 
 <p>Response:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;origin0&quot;: {
         &quot;source0&quot;: [ &quot;metric0&quot;, &quot;metric1&quot;, &quot;metric2&quot; ]
         &quot;source1&quot;: [ &quot;metric0&quot;, &quot;metric1&quot; ]
@@ -105,7 +105,7 @@
 
 </code></pre>
 
-<h3 id="toc_3">List origins</h3>
+<h3 id="list-origins:1139a8ee12381622e21bcc703cfa3371">List origins</h3>
 
 <pre><code>GET /api/v1/catalog/origins/
 </code></pre>
@@ -122,7 +122,7 @@
 
 <p>Response:</p>
 
-<pre><code class="javascript">[
+<pre><code class="language-javascript">[
     &quot;origin0&quot;,
     &quot;origin1&quot;
 ]
@@ -130,7 +130,7 @@
 
 <p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
 
-<h3 id="toc_4">Get a single origin</h3>
+<h3 id="get-a-single-origin:1139a8ee12381622e21bcc703cfa3371">Get a single origin</h3>
 
 <pre><code>GET /api/v1/catalog/origins/&lt;name&gt;
 </code></pre>
@@ -139,16 +139,16 @@
 
 <p>Response:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;name&quot;: &quot;origin0&quot;,
     &quot;connector&quot;: &quot;rrd&quot;,
     &quot;updated&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
 }
 </code></pre>
 
-<h2 id="toc_5">Sources</h2>
+<h2 id="sources:1139a8ee12381622e21bcc703cfa3371">Sources</h2>
 
-<h3 id="toc_6">List sources</h3>
+<h3 id="list-sources:1139a8ee12381622e21bcc703cfa3371">List sources</h3>
 
 <pre><code>GET /api/v1/catalog/sources/
 </code></pre>
@@ -166,7 +166,7 @@
 
 <p>Response:</p>
 
-<pre><code class="javascript">[
+<pre><code class="language-javascript">[
     &quot;source0&quot;,
     &quot;source1&quot;
 ]
@@ -174,7 +174,7 @@
 
 <p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
 
-<h3 id="toc_7">Get a single source</h3>
+<h3 id="get-a-single-source:1139a8ee12381622e21bcc703cfa3371">Get a single source</h3>
 
 <pre><code>GET /api/v1/catalog/sources/&lt;name&gt;
 </code></pre>
@@ -183,7 +183,7 @@
 
 <p>Response:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;name&quot;: &quot;source0&quot;,
     &quot;origins&quot;: [
         &quot;origin0&quot;
@@ -192,9 +192,9 @@
 }
 </code></pre>
 
-<h2 id="toc_8">Metrics</h2>
+<h2 id="metrics:1139a8ee12381622e21bcc703cfa3371">Metrics</h2>
 
-<h3 id="toc_9">List metrics</h3>
+<h3 id="list-metrics:1139a8ee12381622e21bcc703cfa3371">List metrics</h3>
 
 <pre><code>GET /api/v1/catalog/metrics/
 </code></pre>
@@ -213,7 +213,7 @@
 
 <p>Response:</p>
 
-<pre><code class="javascript">[
+<pre><code class="language-javascript">[
     &quot;metric0&quot;,
     &quot;metric1&quot;
 ]
@@ -221,7 +221,7 @@
 
 <p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
 
-<h3 id="toc_10">Get a single metric</h3>
+<h3 id="get-a-single-metric:1139a8ee12381622e21bcc703cfa3371">Get a single metric</h3>
 
 <pre><code>GET /api/v1/catalog/metrics/&lt;name&gt;
 </code></pre>
@@ -230,7 +230,7 @@
 
 <p>Response:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;name&quot;: &quot;metric0&quot;,
     &quot;origins&quot;: [
         &quot;origin0&quot;

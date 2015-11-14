@@ -26,23 +26,23 @@
 <li><a href="/">Documentation</a></li>
 
 <li>
-<a href="http://docs.facette.io/architecture">Architecture of Facette</a>
+<a href="/architecture/">Architecture of Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/installing">Installing Facette</a>
+<a href="/installing/">Installing Facette</a>
 </li>
 <li class="active">
-<a href="http://docs.facette.io/configuration">Configuring Facette</a>
+<a href="/configuration/">Configuring Facette</a>
 <ul>
-<li><a href="http://docs.facette.io/configuration/connectors">Provider Connectors</a></li>
-<li><a href="http://docs.facette.io/configuration/filters">Filters</a></li>
+<li><a href="/configuration/connectors/">Provider Connectors</a></li>
+<li><a href="/configuration/filters/">Filters</a></li>
 </ul>
 </li>
 <li>
-<a href="http://docs.facette.io/usage">Using Facette</a>
+<a href="/usage/">Using Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/api">API Documentation</a>
+<a href="/api/">API Documentation</a>
 </li>
 </ul>
 </nav>
@@ -52,20 +52,20 @@
 <div class="title">Table of Contents</div>
 <nav id="TableOfContents">
 <ul>
-<li><a href="#toc_0">Configuration</a>
+<li><a href="#configuration:a66b35d20295cb764719ac8bd35837ec">Configuration</a>
 <ul>
-<li><a href="#toc_1">Base Settings</a>
+<li><a href="#base-settings:a66b35d20295cb764719ac8bd35837ec">Base Settings</a>
 <ul>
-<li><a href="#toc_2">Endpoint Binding Configuration</a></li>
+<li><a href="#endpoint-binding-configuration:a66b35d20295cb764719ac8bd35837ec">Endpoint Binding Configuration</a></li>
 </ul></li>
-<li><a href="#toc_3">Catalog Setup</a>
+<li><a href="#catalog-setup:a66b35d20295cb764719ac8bd35837ec">Catalog Setup</a>
 <ul>
-<li><a href="#toc_4">Definining Providers</a></li>
-<li><a href="#toc_5">Connectors</a></li>
-<li><a href="#toc_6">Filters</a></li>
-<li><a href="#toc_7">Optional Provider Settings</a></li>
-<li><a href="#toc_8">Example: collectd</a></li>
-<li><a href="#toc_9">Example: Graphite</a></li>
+<li><a href="#definining-providers:a66b35d20295cb764719ac8bd35837ec">Definining Providers</a></li>
+<li><a href="#connectors:a66b35d20295cb764719ac8bd35837ec">Connectors</a></li>
+<li><a href="#filters:a66b35d20295cb764719ac8bd35837ec">Filters</a></li>
+<li><a href="#optional-provider-settings:a66b35d20295cb764719ac8bd35837ec">Optional Provider Settings</a></li>
+<li><a href="#example-collectd:a66b35d20295cb764719ac8bd35837ec">Example: collectd</a></li>
+<li><a href="#example-graphite:a66b35d20295cb764719ac8bd35837ec">Example: Graphite</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -73,7 +73,7 @@
 </div>
 
 
-<h1 id="toc_0">Configuration</h1>
+<h1 id="configuration:a66b35d20295cb764719ac8bd35837ec">Configuration</h1>
 
 <p>The main configuration file is passed using <code>-c</code> argument when launching the <code>facette</code> server. If not specified, its
 default location is <code>/etc/facette/facette.json</code>.</p>
@@ -81,7 +81,7 @@ default location is <code>/etc/facette/facette.json</code>.</p>
 <p><span class="fa fa-warning"></span> All the configuration files are stored in <a href="http://www.ietf.org/rfc/rfc4627.txt">JSON</a> format, and <strong>must</strong>
 feature the extension <code>.json</code>.</p>
 
-<h2 id="toc_1">Base Settings</h2>
+<h2 id="base-settings:a66b35d20295cb764719ac8bd35837ec">Base Settings</h2>
 
 <ul>
 <li><code>bind</code> (<em>string</em>): endpoint to listen on (default: <code>tcp://localhost:12003</code>). See &ldquo;Endpoint Binding Configuration&rdquo;
@@ -94,6 +94,7 @@ section for for details.</li>
 <li><code>url_prefix</code> (<em>string</em>): URL prefix behind which the server is located if not running at the root of the HTTP
 virtual host (e.g. <code>/facette</code>)</li>
 <li><code>read_only</code> (<em>boolean</em>): read-only flag, preventing modifications through API calls (default: <code>false</code>)</li>
+<li><code>hide_build_details</code> (<em>boolean</em>): build details display flag, preventing build details from be exposed in the UI (default: <code>false</code>)</li>
 <li><code>socket_mode</code> (<em>string</em>): when binding to a UNIX socket, socket file mode (e.g. <code>0400</code>)</li>
 <li><code>socket_user</code> (<em>string</em>): when binding to a UNIX socket, socket file owner <strong>numeric ID</strong> (e.g. <code>65534</code>)</li>
 <li><code>socket_group</code> (<em>string</em>): when binding to a UNIX socket, socket file group <strong>numeric ID</strong> (e.g. <code>65534</code>)</li>
@@ -101,7 +102,7 @@ virtual host (e.g. <code>/facette</code>)</li>
 
 <p><span class="fa fa-warning"></span> * : Requires write permissions</p>
 
-<h3 id="toc_2">Endpoint Binding Configuration</h3>
+<h3 id="endpoint-binding-configuration:a66b35d20295cb764719ac8bd35837ec">Endpoint Binding Configuration</h3>
 
 <p>Facette back-end can listen on different types of endpoints:</p>
 
@@ -118,7 +119,7 @@ virtual host (e.g. <code>/facette</code>)</li>
 
 <p>Example:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
     &quot;bind&quot;: &quot;tcp://localhost:12003&quot;,
     &quot;base_dir&quot;: &quot;/usr/local/share/facette&quot;,
     &quot;data_dir&quot;: &quot;/var/lib/facette&quot;,
@@ -129,12 +130,12 @@ virtual host (e.g. <code>/facette</code>)</li>
 }
 </code></pre>
 
-<h2 id="toc_3">Catalog Setup</h2>
+<h2 id="catalog-setup:a66b35d20295cb764719ac8bd35837ec">Catalog Setup</h2>
 
 <p>Configuring the catalog consists in defining data <em>providers</em>. At this point, we strongly recommend reading about the
 <a href="/architecture/">architecture of Facette</a> to understand how the catalog works.</p>
 
-<h3 id="toc_4">Definining Providers</h3>
+<h3 id="definining-providers:a66b35d20295cb764719ac8bd35837ec">Definining Providers</h3>
 
 <p>Defining <em>providers</em> registers data <em>origins</em> in Facette, i.e. where to find <em>sources</em> and their <em>metrics</em>, and how
 to add them to the <em>catalog</em>. <em>Providers</em> are defined by a mandatory <code>connector</code> description, and optional <code>filters</code>.
@@ -147,17 +148,17 @@ continue its initialization and discard the bogus provider (a warning message wi
 
 <p>Here&rsquo;s what a typical structure of a <em>provider</em> looks like:</p>
 
-<pre><code class="javascript">$ cat /etc/facette/providers/my_metrics.json
+<pre><code class="language-javascript">$ cat /etc/facette/providers/my_metrics.json
 {
-    &quot;connector&quot;: {
-        …
-    },
+	&quot;connector&quot;: {
+		…
+	},
 
-    &quot;filters&quot;: [
-        …
-    ],
+	&quot;filters&quot;: [
+		…
+	],
 
-    &quot;refresh_interval&quot;: 300
+	&quot;refresh_interval&quot;: 300
 }
 
 </code></pre>
@@ -165,30 +166,30 @@ continue its initialization and discard the bogus provider (a warning message wi
 <p><span class="fa fa-info-circle"></span> The name of the configuration file will be used as <em>origin</em> of the
 <em>sources</em>/<em>metrics</em> retrieved from this origin in the catalog, i.e. in the example above “my_metrics”.</p>
 
-<h3 id="toc_5">Connectors</h3>
+<h3 id="connectors:a66b35d20295cb764719ac8bd35837ec">Connectors</h3>
 
 <p>Facette providers use <em>connectors</em> to know how to bind to <em>origins</em> and to inventory their local <em>sources</em> and
 <em>metrics</em>. See <a href="/configuration/connectors/">this page</a> to view the list of available connectors and how to configure them.</p>
 
-<h3 id="toc_6">Filters</h3>
+<h3 id="filters:a66b35d20295cb764719ac8bd35837ec">Filters</h3>
 
 <p>By default the inventory mechanism of Facette providers retrieves <strong>all</strong> the known <em>sources</em> and <em>metrics</em> from the
 <em>origin</em>, named according to the <em>origin</em>&rsquo;s storage structure/format. You may want to rename some of the
 <em>sources</em>/<em>metrics</em> or even discard some of them to keep the catalog relevant. Enter <a href="/configuration/filters/">filters</a>.</p>
 
-<h3 id="toc_7">Optional Provider Settings</h3>
+<h3 id="optional-provider-settings:a66b35d20295cb764719ac8bd35837ec">Optional Provider Settings</h3>
 
 <ul>
 <li><code>refresh_interval</code> (<em>integer</em>): interval (in seconds) to trigger a periodic refresh of the provider. If <code>0</code>
 (default), no periodic refresh is performed.</li>
 </ul>
 
-<h3 id="toc_8">Example: collectd</h3>
+<h3 id="example-collectd:a66b35d20295cb764719ac8bd35837ec">Example: collectd</h3>
 
 <p>Here is an actual provider configuration for using files created by the <a href="https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_rrdtool">RRDtool collectd plugin</a>, featuring a few
 filters to rewrite original metric names in a more friendly way and discard entropy-related metrics:</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
   &quot;connector&quot;: {
     &quot;type&quot;: &quot;rrd&quot;,
     &quot;path&quot;: &quot;/var/lib/collectd/rrd&quot;,
@@ -216,12 +217,12 @@ filters to rewrite original metric names in a more friendly way and discard entr
 }
 </code></pre>
 
-<h3 id="toc_9">Example: Graphite</h3>
+<h3 id="example-graphite:a66b35d20295cb764719ac8bd35837ec">Example: Graphite</h3>
 
 <p>This configuration snippet shows a provider definition for using a <a href="http://graphite.readthedocs.org/">Graphite webapp</a>, with a filter to rewrite the
 underscore-escaped hostname dots back with dots; besides, this provider will self-refresh every hour.</p>
 
-<pre><code class="javascript">{
+<pre><code class="language-javascript">{
   &quot;connector&quot;: {
     &quot;type&quot;: &quot;graphite&quot;,
     &quot;url&quot;: &quot;https://graphite.mycorporation.net/&quot;,

@@ -26,23 +26,23 @@
 <li><a href="/">Documentation</a></li>
 
 <li>
-<a href="http://docs.facette.io/architecture">Architecture of Facette</a>
+<a href="/architecture/">Architecture of Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/installing">Installing Facette</a>
+<a href="/installing/">Installing Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/configuration">Configuring Facette</a>
+<a href="/configuration/">Configuring Facette</a>
 <ul>
-<li><a href="http://docs.facette.io/configuration/connectors">Provider Connectors</a></li>
-<li class="active"><a href="http://docs.facette.io/configuration/filters">Filters</a></li>
+<li><a href="/configuration/connectors/">Provider Connectors</a></li>
+<li class="active"><a href="/configuration/filters/">Filters</a></li>
 </ul>
 </li>
 <li>
-<a href="http://docs.facette.io/usage">Using Facette</a>
+<a href="/usage/">Using Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/api">API Documentation</a>
+<a href="/api/">API Documentation</a>
 </li>
 </ul>
 </nav>
@@ -52,22 +52,22 @@
 <div class="title">Table of Contents</div>
 <nav id="TableOfContents">
 <ul>
-<li><a href="#toc_0">Filters</a>
+<li><a href="#filters:61c9fa7ad97bc17a079f0888269ec8e2">Filters</a>
 <ul>
-<li><a href="#toc_1">Actions</a>
+<li><a href="#actions:61c9fa7ad97bc17a079f0888269ec8e2">Actions</a>
 <ul>
-<li><a href="#toc_2">rewrite</a></li>
-<li><a href="#toc_3">discard</a></li>
-<li><a href="#toc_4">sieve</a></li>
+<li><a href="#rewrite:61c9fa7ad97bc17a079f0888269ec8e2">rewrite</a></li>
+<li><a href="#discard:61c9fa7ad97bc17a079f0888269ec8e2">discard</a></li>
+<li><a href="#sieve:61c9fa7ad97bc17a079f0888269ec8e2">sieve</a></li>
 </ul></li>
-<li><a href="#toc_5">Precedence</a></li>
+<li><a href="#precedence:61c9fa7ad97bc17a079f0888269ec8e2">Precedence</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 
 
-<h1 id="toc_0">Filters</h1>
+<h1 id="filters:61c9fa7ad97bc17a079f0888269ec8e2">Filters</h1>
 
 <p>Facette <em>filters</em> allow you to change how <em>origins</em>, <em>sources</em> and <em>metrics</em> appear in the Facette catalog, and
 discard the ones you don&rsquo;t want to deal with. The <code>filters</code> section of a <em>provider</em> definition defines rules that are
@@ -98,9 +98,9 @@ expressions (e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</p>
 <p><span class="fa fa-warning"></span> In case of a pattern regexp syntax error, the filter will
 continue its initialization and discard the bogus rule (a warning message will be output in the logs).</p>
 
-<h2 id="toc_1">Actions</h2>
+<h2 id="actions:61c9fa7ad97bc17a079f0888269ec8e2">Actions</h2>
 
-<h3 id="toc_2">rewrite</h3>
+<h3 id="rewrite:61c9fa7ad97bc17a079f0888269ec8e2">rewrite</h3>
 
 <p>Rewrite all received records <code>target</code> field by replacing all occurrences of <code>pattern</code> with the string value
 specified in the <code>rewrite</code> setting (can also be regular expression captured groups references).</p>
@@ -108,35 +108,35 @@ specified in the <code>rewrite</code> setting (can also be regular expression ca
 <p>Example: rewrite sources (such as “host3_example_net” becomes “host3.example.net”), and metrics (such as
 “cpu-0.cpu.system.value” becomes “cpu.0.system”):</p>
 
-<pre><code class="javascript">&quot;filters&quot;: [
+<pre><code class="language-javascript">&quot;filters&quot;: [
   { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;_&quot;, &quot;into&quot;: &quot;.&quot; },
   { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^cpu-(\\d+)\\.cpu-(.+)\\.value$&quot;, &quot;into&quot;: &quot;cpu.$1.$2&quot; }
 ]
 </code></pre>
 
-<h3 id="toc_3">discard</h3>
+<h3 id="discard:61c9fa7ad97bc17a079f0888269ec8e2">discard</h3>
 
 <p>Discard all received records whose <code>target</code> match <code>pattern</code>.</p>
 
 <p>Example: discard all entries whose <em>source</em> match the pattern “host3.example.net”</p>
 
-<pre><code class="javascript">&quot;filters&quot;: [
+<pre><code class="language-javascript">&quot;filters&quot;: [
   { &quot;action&quot;: &quot;discard&quot;, &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;host3\\.example\\.net&quot; }
 ]
 </code></pre>
 
-<h3 id="toc_4">sieve</h3>
+<h3 id="sieve:61c9fa7ad97bc17a079f0888269ec8e2">sieve</h3>
 
 <p>The <em>sieve</em> action does the opposite of <em>discard</em>: it only lets records whose <code>target</code> match <code>pattern</code> pass through.</p>
 
 <p>Example: only keep records whose <em>source</em> names end with “.prod.example.net”</p>
 
-<pre><code class="javascript">&quot;filters&quot;: [
+<pre><code class="language-javascript">&quot;filters&quot;: [
   { &quot;action&quot;: &quot;sieve&quot;, &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;\\.prod\\.example\\.net$&quot; }
 ]
 </code></pre>
 
-<h2 id="toc_5">Precedence</h2>
+<h2 id="precedence:61c9fa7ad97bc17a079f0888269ec8e2">Precedence</h2>
 
 <p>When evaluating filtering chains, the precedence of actions is the following:</p>
 

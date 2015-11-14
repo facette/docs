@@ -26,25 +26,25 @@
 <li><a href="/">Documentation</a></li>
 
 <li>
-<a href="http://docs.facette.io/architecture">Architecture of Facette</a>
+<a href="/architecture/">Architecture of Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/installing">Installing Facette</a>
+<a href="/installing/">Installing Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/configuration">Configuring Facette</a>
+<a href="/configuration/">Configuring Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/usage">Using Facette</a>
+<a href="/usage/">Using Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/api">API Documentation</a>
+<a href="/api/">API Documentation</a>
 <ul>
-<li><a href="http://docs.facette.io/api/server">Server API</a></li>
-<li><a href="http://docs.facette.io/api/catalog">Catalog API</a></li>
-<li><a href="http://docs.facette.io/api/library">Library API</a></li>
-<li><a href="http://docs.facette.io/api/plots">Plots API</a></li>
-<li class="active"><a href="http://docs.facette.io/api/status">HTTP Status Codes</a></li>
+<li><a href="/api/server/">Server API</a></li>
+<li><a href="/api/catalog/">Catalog API</a></li>
+<li><a href="/api/library/">Library API</a></li>
+<li><a href="/api/plots/">Plots API</a></li>
+<li class="active"><a href="/api/status/">HTTP Status Codes</a></li>
 </ul>
 </li>
 </ul>
@@ -55,54 +55,54 @@
 <div class="title">Table of Contents</div>
 <nav id="TableOfContents">
 <ul>
-<li><a href="#toc_0">HTTP Status Codes</a>
+<li><a href="#http-status-codes:6562fefefc523a921714288dc55fdcdc">HTTP Status Codes</a>
 <ul>
-<li><a href="#toc_1">200 OK</a></li>
-<li><a href="#toc_2">201 Created</a></li>
-<li><a href="#toc_3">400 Bad Request</a></li>
-<li><a href="#toc_4">404 Not Found</a></li>
-<li><a href="#toc_5">405 Method Not Allowed</a></li>
-<li><a href="#toc_6">409 Conflict</a></li>
-<li><a href="#toc_7">415 Unsupported Media Type</a></li>
-<li><a href="#toc_8">503 Service Unavailable</a></li>
+<li><a href="#200-ok:6562fefefc523a921714288dc55fdcdc">200 OK</a></li>
+<li><a href="#201-created:6562fefefc523a921714288dc55fdcdc">201 Created</a></li>
+<li><a href="#400-bad-request:6562fefefc523a921714288dc55fdcdc">400 Bad Request</a></li>
+<li><a href="#404-not-found:6562fefefc523a921714288dc55fdcdc">404 Not Found</a></li>
+<li><a href="#405-method-not-allowed:6562fefefc523a921714288dc55fdcdc">405 Method Not Allowed</a></li>
+<li><a href="#409-conflict:6562fefefc523a921714288dc55fdcdc">409 Conflict</a></li>
+<li><a href="#415-unsupported-media-type:6562fefefc523a921714288dc55fdcdc">415 Unsupported Media Type</a></li>
+<li><a href="#503-service-unavailable:6562fefefc523a921714288dc55fdcdc">503 Service Unavailable</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 
 
-<h1 id="toc_0">HTTP Status Codes</h1>
+<h1 id="http-status-codes:6562fefefc523a921714288dc55fdcdc">HTTP Status Codes</h1>
 
-<h2 id="toc_1">200 OK</h2>
+<h2 id="200-ok:6562fefefc523a921714288dc55fdcdc">200 OK</h2>
 
 <p>The request was successful and the server is returning data in the response body.</p>
 
-<h2 id="toc_2">201 Created</h2>
+<h2 id="201-created:6562fefefc523a921714288dc55fdcdc">201 Created</h2>
 
 <p>The request was successful resulting in the creation of a new item. The response body is empty.</p>
 
-<h2 id="toc_3">400 Bad Request</h2>
+<h2 id="400-bad-request:6562fefefc523a921714288dc55fdcdc">400 Bad Request</h2>
 
 <p>The request or the data supplied along with the request is invalid, could not be processed or when mandatory fields are
 not met.</p>
 
-<h2 id="toc_4">404 Not Found</h2>
+<h2 id="404-not-found:6562fefefc523a921714288dc55fdcdc">404 Not Found</h2>
 
 <p>The requested item or an item to inherit from could not be found. Could be returned by <code>POST</code> creation requests.</p>
 
-<h2 id="toc_5">405 Method Not Allowed</h2>
+<h2 id="405-method-not-allowed:6562fefefc523a921714288dc55fdcdc">405 Method Not Allowed</h2>
 
 <p>The requested method is not supported the API resource.</p>
 
-<h2 id="toc_6">409 Conflict</h2>
+<h2 id="409-conflict:6562fefefc523a921714288dc55fdcdc">409 Conflict</h2>
 
 <p>An item with the same name and type already exists. Could be returned by <code>POST</code> and <code>PUT</code> creation requests.</p>
 
-<h2 id="toc_7">415 Unsupported Media Type</h2>
+<h2 id="415-unsupported-media-type:6562fefefc523a921714288dc55fdcdc">415 Unsupported Media Type</h2>
 
 <p>The request used a <code>Content-Type</code> not supported by the API resource.</p>
 
-<h2 id="toc_8">503 Service Unavailable</h2>
+<h2 id="503-service-unavailable:6562fefefc523a921714288dc55fdcdc">503 Service Unavailable</h2>
 
 <p>The server is currently unavailable. Such response is sent when the server is being initialized or reloading its
 configuration.</p>

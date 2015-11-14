@@ -27,19 +27,19 @@
 <li><a href="/">Documentation</a></li>
 
 <li class="active">
-<a href="http://docs.facette.io/architecture">Architecture of Facette</a>
+<a href="/architecture/">Architecture of Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/installing">Installing Facette</a>
+<a href="/installing/">Installing Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/configuration">Configuring Facette</a>
+<a href="/configuration/">Configuring Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/usage">Using Facette</a>
+<a href="/usage/">Using Facette</a>
 </li>
 <li>
-<a href="http://docs.facette.io/api">API Documentation</a>
+<a href="/api/">API Documentation</a>
 </li>
 </ul>
 </nav>
@@ -49,14 +49,14 @@
 <div class="title">Table of Contents</div>
 <nav id="TableOfContents">
 <ul>
-<li><a href="#toc_0">Architecture of Facette</a>
+<li><a href="#architecture-of-facette:1bf455b3a3c6e1e40be41ef6023b75eb">Architecture of Facette</a>
 <ul>
-<li><a href="#toc_1">The Big Picture</a></li>
-<li><a href="#toc_2">The Catalog</a>
+<li><a href="#the-big-picture:1bf455b3a3c6e1e40be41ef6023b75eb">The Big Picture</a></li>
+<li><a href="#the-catalog:1bf455b3a3c6e1e40be41ef6023b75eb">The Catalog</a>
 <ul>
-<li><a href="#toc_3">Origin</a></li>
-<li><a href="#toc_4">Source</a></li>
-<li><a href="#toc_5">Metric</a></li>
+<li><a href="#origin:1bf455b3a3c6e1e40be41ef6023b75eb">Origin</a></li>
+<li><a href="#source:1bf455b3a3c6e1e40be41ef6023b75eb">Source</a></li>
+<li><a href="#metric:1bf455b3a3c6e1e40be41ef6023b75eb">Metric</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -64,13 +64,13 @@
 </div>
 
 
-<h1 id="toc_0">Architecture of Facette</h1>
+<h1 id="architecture-of-facette:1bf455b3a3c6e1e40be41ef6023b75eb">Architecture of Facette</h1>
 
 <p>Facette is a time series data (called <em>metrics</em>) visualization software, it doesn’t collect nor store these data on its
 own. Through <a href="/configuration/">providers</a>, it inventories other collect/storage tools&rsquo; local
 metrics, and queries those remote storage resources when the user requests time series data to be displayed on a graph.</p>
 
-<h2 id="toc_1">The Big Picture</h2>
+<h2 id="the-big-picture:1bf455b3a3c6e1e40be41ef6023b75eb">The Big Picture</h2>
 
 <p>Here is the big picture showing how Facette and its components are architectured, and how they interact with external
 resources:</p>
@@ -82,22 +82,22 @@ resources:</p>
 with the resources actually storing time series data — called <em>origins</em> — or being the canonical interface to access
 them; the <em>front-end</em> is a web application that displays time series data fetched by the <em>back-end</em> on graphs.</p>
 
-<h2 id="toc_2">The Catalog</h2>
+<h2 id="the-catalog:1bf455b3a3c6e1e40be41ef6023b75eb">The Catalog</h2>
 
 <p>Facette maintains an internal inventory of known <em>sources</em> and <em>metrics</em> from configured <em>origins</em> called the
 <strong>catalog</strong>. Here is a bit of terminology used in the software:</p>
 
-<h3 id="toc_3">Origin</h3>
+<h3 id="origin:1bf455b3a3c6e1e40be41ef6023b75eb">Origin</h3>
 
 <p>An <em>origin</em> represents, as its name suggests, the origin of the back-end time series (e.g. <a href="https://collectd.org/">collectd</a>, <a href="http://munin-monitoring.org/">Munin</a>,
 <a href="http://graphite.readthedocs.org/">Graphite</a>, <a href="https://code.google.com/p/kairosdb/">KairosDB</a>, <a href="http://influxdb.org/">InfluxDB</a> etc). Those <em>origins</em> hold local sets of <em>sources</em> and <em>metrics</em>.</p>
 
-<h3 id="toc_4">Source</h3>
+<h3 id="source:1bf455b3a3c6e1e40be41ef6023b75eb">Source</h3>
 
 <p>A <em>source</em> represents an entity that generates <em>metrics</em>. These are usually host names, but can be services or
 applications names.</p>
 
-<h3 id="toc_5">Metric</h3>
+<h3 id="metric:1bf455b3a3c6e1e40be41ef6023b75eb">Metric</h3>
 
 <p>A <em>metric</em> is a set of time-based data points (e.g. <a href="http://oss.oetiker.ch/rrdtool/">RRDtool</a> files) measured or collected by any monitoring or
 metering/profiling tool, that will be eventually displayed on graphs in Facette.</p>
