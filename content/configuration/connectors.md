@@ -102,7 +102,7 @@ The **KairosDB** connector (type `kairosdb`) can query a [KairosDB REST API][5] 
 
 *source* and *metric* are modelled distinguishable in KairosDB. The *metric* is accessible directly and the *source* is modelled as a named tag list for each metric. The list defaults to `["host", "server", "device"]`. Means that *source* is built from metrics `host` tag or `server` tag if `host` is not applied.
 
-Because C*/KairosDB could store high frequency series, it is possible to retrieve plots by aggregation. The default aggregation for each metric is `none`. Could be overwritten by `default_aggregator`.
+Because KairosDB with a Cassandra backend can store high precision series, it is possible to sample datapoints when retrieving plots – [aggregators][7], in KairosDB terminology. Aggregation functions can be defined matching specific metrics (see the `aggregators` setting), and a default aggregator (`default_aggregator`) can be set to be used as fallback; by default no aggregators are set.
 
 Example *provider* definition using the **KairosDB** connector:
 
@@ -215,5 +215,6 @@ Optional settings:
 [2]: https://graphite.readthedocs.org/en/latest/render_api.html
 [3]: https://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-plaintext-protocol
 [4]: http://influxdb.com/docs/v0.8/api/reading_and_writing_data.html
-[5]: http://kairosdb.github.io/kairosdocs/restapi/
-[6]: http://kairosdb.github.io/kairosdocs/restapi/QueryMetrics.html
+[5]: http://kairosdb.github.io/docs/build/html/restapi/index.html
+[6]: http://kairosdb.github.io/docs/build/html/restapi/QueryMetrics.html
+[7]: http://kairosdb.github.io/docs/build/html/restapi/Aggregators.html
