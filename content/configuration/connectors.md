@@ -185,7 +185,7 @@ The **Facette** connector (type `facette`) can query another Facette instance to
 catalog to inherit its *origins*, *sources* and *metrics*; the connector then forwards plot queries to the upstream
 instance when remote metrics are requested in a local graph definition.
 
-This feature can be useful in various cases, for exemple when your metrics are sharded into several nodes for
+This feature can be useful in various cases, for example when your metrics are sharded into several nodes for
 performance/space reasons, or if your want to aggregate metrics from different tools in the same Facette instance.
 
 Example *provider* definition using the **Facette** connector:
