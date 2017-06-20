@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Library — Facette</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/latest/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/configuration/">Configuration</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/api/">API Documentation</a>
+				<ul class="menu">
+					<li class="menuitem"><a href="/latest/api/bulk/">Bulk</a></li>
+					<li class="menuitem"><a href="/latest/api/catalog/">Catalog</a></li>
+					<li class="menuitem"><a href="/latest/api/points/">Data points</a></li>
+					<li class="menuitem"><a href="/latest/api/expand/">Expand</a></li>
+					<li class="menuitem"><a href="/latest/api/info/">Information</a></li>
+					<li class="menuitem active"><a href="/latest/api/library/">Library</a></li>
+					<li class="menuitem"><a href="/latest/api/providers/">Providers</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="library">Library</h1>
+
+<h2 id="get-library-summary">Get library summary</h2>
+
+<pre><code>GET /api/v1/library/
+</code></pre>
+
+<p>This endpoint returns library items count per type.</p>
+
+<h3 id="responses">Responses</h3>
+
+<h4 id="examples">Examples</h4>
+
+<pre><code class="language-headers">Status: 200 OK
+</code></pre>
+
+<pre><code class="language-javascript">{
+  &quot;collections&quot;: 1,
+  &quot;graphs&quot;: 7,
+  &quot;sourcegroups&quot;: 3,
+  &quot;metricgroups&quot;: 42
+}
+</code></pre>
+
+<h2 id="create-a-library-item">Create a library item</h2>
+
+<pre><code>POST /api/v1/library/:type/
+</code></pre>
+
+<p>This endpoint creates a new item and stores it to the back-end database.</p>
+
+<p>The <code>inherit</code> query parameter can be used to inherit fields from an existing item, then applying new values with
+received body payload.</p>
+
+<p>If the instance is <em>read-only</em> the operation will be rejected with <code>403 Forbidden</code>.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>type<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>type of library items</td>
+</tr>
+
+<tr>
+<td>inherit</td>
+<td><code>string</code></td>
+<td>query</td>
+<td>identifier of the item to inherit from</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-1">Responses</h3>
+
+<pre><code class="language-headers">Status: 201 Created
+</code></pre>
+
+<h2 id="delete-library-items-of-a-given-type">Delete library items of a given type</h2>
+
+<pre><code>DELETE /api/v1/library/:type/
+</code></pre>
+
+<p>This endpoint deletes all items of a given type.</p>
+
+<p>If the request header <code>X-Confirm-Action</code> is not present or if the instance is <em>read-only</em> the operation will be
+rejected with <code>403 Forbidden</code>.</p>
+
+<h3 id="parameters-1">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>type<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>type of library items</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-2">Responses</h3>
+
+<pre><code class="language-headers">Status: 204 No Content
+</code></pre>
+
+<h2 id="list-library-items-of-a-given-type">List library items of a given type</h2>
+
+<pre><code>GET /api/v1/library/:type/
+</code></pre>
+
+<p>This endpoint returns library items of a given type. If a <code>filter</code> query parameter is given, only items having
+their name matching the filter will be returned.</p>
+
+<p>This endpoint supports pagination through the <code>offset</code> and <code>limit</code> query parameters and sorting using <code>sort</code> query
+parameter (separated by commas; prefix field name with &ldquo;-&rdquo; to reverse sort order).</p>
+
+<p>The <code>kind</code> query parameter <em>(available for collections and graphs)</em> can be set in order to target or exclude
+templates from result:</p>
+
+<ul>
+<li><code>all</code>: return all kind of items (default)</li>
+<li><code>raw</code>: only return raw items, thus removing templates from result</li>
+<li><code>template</code>: only return templates</li>
+</ul>
+
+<p>The <code>link</code> parameter <em>(available for collection and graphs)</em> can be set in order to only return items having the
+given item as template reference.</p>
+
+<p>The <code>parent</code> query parameter <em>(only available for collections)</em> can be set in order to only return items having the
+given collection for parent.</p>
+
+<h3 id="parameters-2">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>type<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>type of library items</td>
+</tr>
+
+<tr>
+<td>filter</td>
+<td><code>string</code></td>
+<td>query</td>
+<td>term to filter names on</td>
+</tr>
+
+<tr>
+<td>sort</td>
+<td><code>string</code></td>
+<td>query</td>
+<td>fields to sort results on</td>
+</tr>
+
+<tr>
+<td>offset</td>
+<td><code>integer</code></td>
+<td>query</td>
+<td>offset to return items from</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td><code>integer</code></td>
+<td>query</td>
+<td>number of items to return</td>
+</tr>
+
+<tr>
+<td>kind</td>
+<td><code>string</code></td>
+<td>query</td>
+<td>kind of item to return</td>
+</tr>
+
+<tr>
+<td>link</td>
+<td><code>string</code></td>
+<td>query</td>
+<td>identifier of the linked item</td>
+</tr>
+
+<tr>
+<td>parent</td>
+<td><code>string</code></td>
+<td>query</td>
+<td>identifier of the parent item</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-3">Responses</h3>
+
+<h4 id="examples-1">Examples</h4>
+
+<pre><code class="language-headers">Status: 200 OK
+X-Total-Records: 3
+</code></pre>
+
+<pre><code class="language-javascript">[
+  {
+    &quot;created&quot;: &quot;2017-05-19T15:08:40Z&quot;,
+    &quot;description&quot;: &quot;CPU usage for \&quot;{{ .source }}\&quot;&quot;,
+    &quot;id&quot;: &quot;c1c5ba71-428a-565e-94e3-304c16e9a92f&quot;,
+    &quot;modified&quot;: &quot;2017-06-14T06:17:46Z&quot;,
+    &quot;name&quot;: &quot;cpu&quot;
+  },
+  {
+    &quot;created&quot;: &quot;2017-05-19T15:08:39Z&quot;,
+    &quot;description&quot;: &quot;Disk usage for \&quot;{{ .volume }}\&quot; on \&quot;{{ .source }}\&quot;&quot;,
+    &quot;id&quot;: &quot;c77c2dae-b37f-5210-80b5-5d44ce5f7a97&quot;,
+    &quot;modified&quot;: &quot;2017-06-14T06:17:46Z&quot;,
+    &quot;name&quot;: &quot;df.bytes&quot;
+  },
+  {
+    &quot;created&quot;: &quot;2017-05-19T15:08:39Z&quot;,
+    &quot;description&quot;: &quot;Load average for \&quot;{{ .source }}\&quot;&quot;,
+    &quot;id&quot;: &quot;eccd09c3-aaa9-592b-ad55-3d92b4acf119&quot;,
+    &quot;modified&quot;: &quot;2017-06-14T06:17:46Z&quot;,
+    &quot;name&quot;: &quot;load&quot;
+  }
+]
+</code></pre>
+
+<h2 id="get-a-library-item">Get a library item</h2>
+
+<pre><code>GET /api/v1/library/:type/:id
+</code></pre>
+
+<p>This endpoint returns a library item given its type and identifier.</p>
+
+<p>The <code>expand</code> query parameter <em>(available for collections and graphs)</em> can be set to request item expansion. If the
+item is an instance of a template, all internal references will be resolved.</p>
+
+<h3 id="parameters-3">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>type<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>type of library items</td>
+</tr>
+
+<tr>
+<td>id<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>identifier of the item</td>
+</tr>
+
+<tr>
+<td>expand</td>
+<td><code>boolean</code></td>
+<td>query</td>
+<td>item expansion flag</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-4">Responses</h3>
+
+<h4 id="examples-2">Examples</h4>
+
+<pre><code class="language-headers">Status: 200 OK
+</code></pre>
+
+<pre><code class="language-javascript">{
+  &quot;id&quot;: &quot;eccd09c3-aaa9-592b-ad55-3d92b4acf119&quot;,
+  &quot;name&quot;: &quot;load&quot;,
+  &quot;description&quot;: &quot;Load average for \&quot;{{ .source }}\&quot;&quot;,
+  &quot;created&quot;: &quot;2017-05-19T15:08:39Z&quot;,
+  &quot;modified&quot;: &quot;2017-06-14T06:17:46Z&quot;,
+  &quot;groups&quot;: [
+    {
+      &quot;name&quot;: &quot;&quot;,
+      &quot;operator&quot;: 0,
+      &quot;consolidate&quot;: 1,
+      &quot;series&quot;: [
+        {
+          &quot;name&quot;: &quot;shortterm&quot;,
+          &quot;origin&quot;: &quot;{{ .origin }}&quot;,
+          &quot;source&quot;: &quot;{{ .source }}&quot;,
+          &quot;metric&quot;: &quot;load.shortterm&quot;,
+          &quot;options&quot;: {
+            &quot;color&quot;: &quot;#fff726&quot;
+          }
+        }
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;&quot;,
+      &quot;operator&quot;: 0,
+      &quot;consolidate&quot;: 1,
+      &quot;series&quot;: [
+        {
+          &quot;name&quot;: &quot;midterm&quot;,
+          &quot;origin&quot;: &quot;{{ .origin }}&quot;,
+          &quot;source&quot;: &quot;{{ .source }}&quot;,
+          &quot;metric&quot;: &quot;load.midterm&quot;,
+          &quot;options&quot;: {
+            &quot;color&quot;: &quot;#ff602a&quot;
+          }
+        }
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;&quot;,
+      &quot;operator&quot;: 0,
+      &quot;consolidate&quot;: 1,
+      &quot;series&quot;: [
+        {
+          &quot;name&quot;: &quot;longterm&quot;,
+          &quot;origin&quot;: &quot;{{ .origin }}&quot;,
+          &quot;source&quot;: &quot;{{ .source }}&quot;,
+          &quot;metric&quot;: &quot;load.longterm&quot;,
+          &quot;options&quot;: {
+            &quot;color&quot;: &quot;#be1732&quot;
+          }
+        }
+      ]
+    }
+  ],
+  &quot;options&quot;: {
+    &quot;title&quot;: &quot;{{ .source }} - Load Average&quot;,
+    &quot;type&quot;: &quot;line&quot;,
+    &quot;yaxis_unit&quot;: &quot;fixed&quot;
+  },
+  &quot;template&quot;: true
+}
+</code></pre>
+
+<h2 id="update-a-library-item">Update a library item</h2>
+
+<pre><code>PUT /api/v1/library/:type/:id
+</code></pre>
+
+<p>This endpoint updates a library item given its identifier. The request body is similar to the <em>Create a new library
+item</em> endpoint.</p>
+
+<p>If the instance is <em>read-only</em> the operation will be rejected with <code>403 Forbidden</code>.</p>
+
+<h3 id="parameters-4">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>type<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>type of library items</td>
+</tr>
+
+<tr>
+<td>id<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>identifier of the item</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-5">Responses</h3>
+
+<pre><code class="language-headers">Status: 204 No Content
+</code></pre>
+
+<h2 id="partially-update-a-library-item">Partially update a library item</h2>
+
+<pre><code>PATCH /api/v1/library/:type/:id
+</code></pre>
+
+<p>This endpoint partially updates a library item given its identifier. The request body is similar to the <em>Update a
+library item</em> endpoint, but only specified fields will be modified.</p>
+
+<p>If the instance is <em>read-only</em> the operation will be rejected with <code>403 Forbidden</code>.</p>
+
+<h3 id="parameters-5">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>identifier of the provider</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-6">Responses</h3>
+
+<pre><code class="language-headers">Status: 204 No Content
+</code></pre>
+
+<h2 id="delete-a-library-item">Delete a library item</h2>
+
+<pre><code>DELETE /api/v1/library/:type/:id
+</code></pre>
+
+<p>This endpoint deletes a library item given its type and identifier.</p>
+
+<p>If the instance is <em>read-only</em> the operation will be rejected with <code>403 Forbidden</code>.</p>
+
+<h3 id="parameters-6">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>type<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>type of library items</td>
+</tr>
+
+<tr>
+<td>id<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>identifier of the item</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-7">Responses</h3>
+
+<pre><code class="language-headers">Status: 204 No Content
+</code></pre>
+
+<h2 id="get-collections-tree">Get collections tree</h2>
+
+<pre><code>GET /api/v1/library/collections/tree
+</code></pre>
+
+<p>This endpoint renders the library collections tree.</p>
+
+<h3 id="parameters-7">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>parent</td>
+<td><code>string</code></td>
+<td>query</td>
+<td>parent node to generate the tree from</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="retrieve-template-keys">Retrieve template keys</h2>
+
+<pre><code>POST /api/v1/library/parse
+</code></pre>
+
+<p>This endpoint parses requested library item or received data and returns the template keys.</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>identifier of the item</td>
+</tr>
+
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>type of the item</td>
+</tr>
+
+<tr>
+<td><code>data</code></td>
+<td>string</td>
+<td>arbitrary data to parse</td>
+</tr>
+</tbody>
+</table>
+
+<p>Note: you should either specify <code>id</code> and <code>type</code> or <code>data</code> but not both.</p>
+
+<h3 id="requests">Requests</h3>
+
+<h4 id="examples-3">Examples</h4>
+
+<pre><code class="language-headers">Content-Type: application/json
+</code></pre>
+
+<pre><code class="language-javascript">{
+  &quot;id&quot;: &quot;368b62f2-873d-580c-ba24-440325af0582&quot;,
+  &quot;type&quot;: &quot;collections&quot;
+}
+</code></pre>
+
+<pre><code class="language-headers">Content-Type: application/json
+</code></pre>
+
+<pre><code class="language-javascript">{
+  &quot;data&quot;: &quot;{\&quot;description\&quot;:\&quot;A test string with {{ .key1 }}.\&quot;}&quot;
+}
+</code></pre>
+
+<h3 id="responses-8">Responses</h3>
+
+<h4 id="examples-4">Examples</h4>
+
+<pre><code class="language-headers">Status: 200 OK
+</code></pre>
+
+<pre><code class="language-javascript">[
+  &quot;key1&quot;,
+  &quot;key2&quot;
+]
+</code></pre>
+
+<h2 id="search-library-for-items">Search library for items</h2>
+
+<pre><code>POST /api/v1/library/search
+</code></pre>
+
+<p>This endpoint searches library for items matching a set of types and terms.</p>
+
+<p>This endpoint supports pagination through the <code>offset</code> and <code>limit</code> query parameters and sorting using <code>sort</code> query
+parameter (separated by commas; prefix field name with &ldquo;-&rdquo; to reverse sort order).</p>
+
+<h3 id="parameters-8">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>sort</td>
+<td><code>string</code></td>
+<td>query</td>
+<td>fields to sort results on</td>
+</tr>
+
+<tr>
+<td>offset</td>
+<td><code>integer</code></td>
+<td>query</td>
+<td>offset to return items from</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td><code>integer</code></td>
+<td>query</td>
+<td>number of items to return</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="requests-1">Requests</h3>
+
+<h4 id="examples-5">Examples</h4>
+
+<pre><code class="language-headers">Content-Type: application/json
+</code></pre>
+
+<pre><code class="language-javascript">{
+  &quot;types&quot;: [&quot;collections&quot;, &quot;graphs&quot;],
+  &quot;terms&quot;: {
+    &quot;name&quot;: &quot;glob:*test*&quot;,
+    &quot;template&quot;: false
+  }
+}
+</code></pre>
+
+<h3 id="responses-9">Responses</h3>
+
+<h4 id="headers">Headers</h4>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>X-Total-Records</td>
+<td>total number of library items found</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="examples-6">Examples</h4>
+
+<pre><code class="language-headers">Status: 200 OK
+X-Total-Records: 2
+</code></pre>
+
+<pre><code class="language-javascript">[
+  {
+    &quot;type&quot;: &quot;collections&quot;,
+    &quot;id&quot;: &quot;0f660bc7-c8d7-4beb-497e-f1fdbf14092a&quot;,
+    &quot;name&quot;: &quot;collection1&quot;,
+    &quot;description&quot;: null,
+    &quot;created&quot;: &quot;2017-05-27T11:36:00Z&quot;,
+    &quot;modified&quot;: &quot;2017-06-12T06:18:48Z&quot;
+  },
+  {
+    &quot;type&quot;: &quot;graphs&quot;,
+    &quot;id&quot;: &quot;b3233810-ceb2-5e7a-17df-336b2710eef2&quot;,
+    &quot;name&quot;: &quot;graph3&quot;,
+    &quot;description&quot;: null,
+    &quot;created&quot;: &quot;2017-05-27T11:35:43Z&quot;,
+    &quot;modified&quot;: &quot;2017-06-12T06:18:48Z&quot;
+  }
+]
+</code></pre>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#library">Library</a>
+<ul>
+<li><a href="#get-library-summary">Get library summary</a>
+<ul>
+<li><a href="#responses">Responses</a>
+<ul>
+<li><a href="#examples">Examples</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#create-a-library-item">Create a library item</a>
+<ul>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#responses-1">Responses</a></li>
+</ul></li>
+<li><a href="#delete-library-items-of-a-given-type">Delete library items of a given type</a>
+<ul>
+<li><a href="#parameters-1">Parameters</a></li>
+<li><a href="#responses-2">Responses</a></li>
+</ul></li>
+<li><a href="#list-library-items-of-a-given-type">List library items of a given type</a>
+<ul>
+<li><a href="#parameters-2">Parameters</a></li>
+<li><a href="#responses-3">Responses</a>
+<ul>
+<li><a href="#examples-1">Examples</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#get-a-library-item">Get a library item</a>
+<ul>
+<li><a href="#parameters-3">Parameters</a></li>
+<li><a href="#responses-4">Responses</a>
+<ul>
+<li><a href="#examples-2">Examples</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#update-a-library-item">Update a library item</a>
+<ul>
+<li><a href="#parameters-4">Parameters</a></li>
+<li><a href="#responses-5">Responses</a></li>
+</ul></li>
+<li><a href="#partially-update-a-library-item">Partially update a library item</a>
+<ul>
+<li><a href="#parameters-5">Parameters</a></li>
+<li><a href="#responses-6">Responses</a></li>
+</ul></li>
+<li><a href="#delete-a-library-item">Delete a library item</a>
+<ul>
+<li><a href="#parameters-6">Parameters</a></li>
+<li><a href="#responses-7">Responses</a></li>
+</ul></li>
+<li><a href="#get-collections-tree">Get collections tree</a>
+<ul>
+<li><a href="#parameters-7">Parameters</a></li>
+</ul></li>
+<li><a href="#retrieve-template-keys">Retrieve template keys</a>
+<ul>
+<li><a href="#requests">Requests</a>
+<ul>
+<li><a href="#examples-3">Examples</a></li>
+</ul></li>
+<li><a href="#responses-8">Responses</a>
+<ul>
+<li><a href="#examples-4">Examples</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#search-library-for-items">Search library for items</a>
+<ul>
+<li><a href="#parameters-8">Parameters</a></li>
+<li><a href="#requests-1">Requests</a>
+<ul>
+<li><a href="#examples-5">Examples</a></li>
+</ul></li>
+<li><a href="#responses-9">Responses</a>
+<ul>
+<li><a href="#headers">Headers</a></li>
+<li><a href="#examples-6">Examples</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

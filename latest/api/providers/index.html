@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Providers — Facette</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/latest/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/configuration/">Configuration</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/api/">API Documentation</a>
+				<ul class="menu">
+					<li class="menuitem"><a href="/latest/api/bulk/">Bulk</a></li>
+					<li class="menuitem"><a href="/latest/api/catalog/">Catalog</a></li>
+					<li class="menuitem"><a href="/latest/api/points/">Data points</a></li>
+					<li class="menuitem"><a href="/latest/api/expand/">Expand</a></li>
+					<li class="menuitem"><a href="/latest/api/info/">Information</a></li>
+					<li class="menuitem"><a href="/latest/api/library/">Library</a></li>
+					<li class="menuitem active"><a href="/latest/api/providers/">Providers</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="providers">Providers</h1>
+
+<h2 id="providers-connectors-settings">Providers Connectors Settings</h2>
+
+<p>Catalog providers can be configured with settings and filters:</p>
+
+<h3 id="facette">Facette</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>url</code><br><strong>required</strong></td>
+<td>string</td>
+<td>URL of the upstream Facette instance (without the <code>/api</code> path)</td>
+</tr>
+
+<tr>
+<td><code>timeout</code></td>
+<td>integer</td>
+<td>delay in seconds before declaring a timeout (default: <code>10</code>)</td>
+</tr>
+
+<tr>
+<td><code>allow_insecure_tls</code></td>
+<td>boolean</td>
+<td>allow invalid or expired SSL certificates when accessing the Facette API through HTTPS (default: <code>false</code>)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="graphite">Graphite</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>url</code><br><strong>required</strong></td>
+<td>string</td>
+<td>URL of the Graphite webapp (without the <code>/api</code> path)</td>
+</tr>
+
+<tr>
+<td><code>pattern</code><br><strong>required</strong></td>
+<td>string</td>
+<td>regular expression (RE2 syntax) describing the pattern mapping sources/metrics to the metrics series names. <code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a series name to these objects</td>
+</tr>
+
+<tr>
+<td><code>timeout</code></td>
+<td>integer</td>
+<td>delay in seconds before declaring a timeout (default: <code>10</code>)</td>
+</tr>
+
+<tr>
+<td><code>allow_insecure_tls</code></td>
+<td>boolean</td>
+<td>allow invalid or expired SSL certificates when accessing the Graphite API through HTTPS (default: <code>false</code>)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="influxdb">InfluxDB</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>url</code><br><strong>required</strong></td>
+<td>string</td>
+<td>URL of the InfluxDB instance</td>
+</tr>
+
+<tr>
+<td><code>database</code><br><strong>required</strong></td>
+<td>string</td>
+<td>InfluxDB database to query series from</td>
+</tr>
+
+<tr>
+<td><code>pattern</code></td>
+<td>string</td>
+<td>regular expression (RE2 syntax) describing the pattern mapping <em>sources</em>/<em>metrics</em> to the measurements. <code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a measurement to these objects</td>
+</tr>
+
+<tr>
+<td><code>mapping</code></td>
+<td>object</td>
+<td>measurements and columns to map the objects on (see <em>Mapping parameters</em> below)</td>
+</tr>
+
+<tr>
+<td><code>username</code></td>
+<td>string</td>
+<td>username to connect to the database (default: <em>empty</em>)</td>
+</tr>
+
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>password to connect to the database (default: <em>empty</em>)</td>
+</tr>
+
+<tr>
+<td><code>timeout</code></td>
+<td>integer</td>
+<td>delay in seconds before declaring a timeout (default: <code>10</code>)</td>
+</tr>
+
+<tr>
+<td><code>allow_insecure_tls</code></td>
+<td>boolean</td>
+<td>allow invalid or expired SSL certificates when accessing the InfluxDB API through HTTPS (default: <code>false</code>)</td>
+</tr>
+</tbody>
+</table>
+
+<p>Mapping parameters:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td>array of strings</td>
+<td>list of columns entries to map <em>sources</em> on</td>
+</tr>
+
+<tr>
+<td><code>metric</code></td>
+<td>array of strings</td>
+<td>list of columns entries to map <em>metrics</em> on</td>
+</tr>
+
+<tr>
+<td><code>glue</code></td>
+<td>string</td>
+<td>separator used to join defined columns</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-javascript">{
+  &quot;source&quot;: [&quot;column:host&quot;],
+  &quot;metric&quot;: [&quot;name&quot;, &quot;column:instance&quot;, &quot;column:type&quot;, &quot;column:type_instance&quot;],
+  &quot;glue&quot;: &quot;.&quot;
+}
+</code></pre>
+
+<p>Note: you should either use <code>pattern</code> or <code>mapping</code>, but not both.</p>
+
+<h3 id="kairosdb">KairosDB</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>url</code><br><strong>required</strong></td>
+<td>string</td>
+<td>URL of the KairosDB instance (without the <code>/api</code> path)</td>
+</tr>
+
+<tr>
+<td><code>aggregators</code></td>
+<td>array of strings</td>
+<td>KairosDB <a href="http://kairosdb.github.io/docs/build/html/restapi/Aggregators.html">aggregators</a> to use for sampling (default: <code>[&quot;avg&quot;,&quot;max&quot;,&quot;min&quot;]</code>)</td>
+</tr>
+
+<tr>
+<td><code>source_tags</code></td>
+<td>array of strings</td>
+<td>KairosDB <a href="http://kairosdb.github.io/docs/build/html/restapi/QueryMetricTags.html">tags</a> to look into for sources (default: <code>[&quot;host&quot;,&quot;server&quot;,&quot;device&quot;]</code>)</td>
+</tr>
+
+<tr>
+<td><code>timeout</code></td>
+<td>integer</td>
+<td>delay in seconds before declaring a timeout (default: <code>10</code>)</td>
+</tr>
+
+<tr>
+<td><code>allow_insecure_tls</code></td>
+<td>boolean</td>
+<td>allow invalid or expired SSL certificates when accessing the Facette API through HTTPS (default: <code>false</code>)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="rrdtool">RRDtool</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>path</code><br><strong>required</strong></td>
+<td>string</td>
+<td>base path on the local filesystem where the RRDtool files are stored</td>
+</tr>
+
+<tr>
+<td><code>pattern</code><br><strong>required</strong></td>
+<td>string</td>
+<td>regular expression (RE2 syntax) describing the pattern mapping <em>sources</em>/<em>metrics</em> to the filesystem structure under the base directory defined with the <code>path</code> setting. <code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a filesystem path to these objects</td>
+</tr>
+
+<tr>
+<td><code>daemon</code></td>
+<td>string</td>
+<td>rrdcached daemon socket address, see <code>-l</code> option in <code>rrdcached(1)</code> manual for details</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="provider-filters">Provider Filters</h2>
+
+<p>Provider filters allow changing how <em>sources</em> and <em>metrics</em> appear in the catalog, and discard the ones you don’t
+want to deal with. Filter rule format:</p>
+
+<pre><code class="language-javascript">{
+  &quot;action&quot;: &quot;&lt;action to perform on record (discard|rewrite|sieve)&gt;&quot;,
+  &quot;target&quot;: &quot;&lt;record field to match (any|metric|source)&gt;&quot;,
+  &quot;pattern&quot;: &quot;&lt;regular expression pattern&gt;&quot;
+  &quot;into&quot;: &quot;&lt;replacement value (for \&quot;rewrite\&quot; action)&gt;&quot;
+}
+</code></pre>
+
+<p>Note: regular expressions must follow the <a href="https://github.com/google/re2">RE2 syntax</a>.</p>
+
+<h2 id="create-a-provider">Create a provider</h2>
+
+<pre><code>POST /api/v1/providers/
+</code></pre>
+
+<p>This endpoint creates a new catalog provider. Required fields:</p>
+
+<ul>
+<li><code>name</code> (type <em>string</em>): provider name</li>
+<li><code>connector</code> (type <em>string</em>): provider connector type, see <code>facette -V</code> output to find which connectors are supported</li>
+</ul>
+
+<p>Optional fields:</p>
+
+<ul>
+<li><code>description</code> (type <em>string</em>): a description for the provider</li>
+<li><code>settings</code> (type <em>object</em>): connector settings</li>
+<li><code>filters</code> (type <em>array of objects</em>): list of provider filters</li>
+<li><code>priority</code> (type <em>integer</em>): in case multiple providers expose the same metric, the provider with higher priority wins (default: <code>0</code>)</li>
+<li><code>refresh_internal</code> (type <em>integer</em>): interval (in seconds) to trigger a periodic refresh of the provider (default: <code>0</code>, no refresh)</li>
+</ul>
+
+<p>Caution: in JSON you need to double the escaping character <code>\</code> when writing regular expressions (e.g. <code>\d</code> → <code>\\d</code>).</p>
+
+<h3 id="requests">Requests</h3>
+
+<h4 id="examples">Examples</h4>
+
+<pre><code class="language-headers">Content-Type: application/json
+</code></pre>
+
+<pre><code class="language-javascript">{
+  &quot;name&quot;: &quot;graphite&quot;,
+  &quot;description&quot;: &quot;Metrics from Graphite&quot;,
+  &quot;connector&quot;: &quot;graphite&quot;,
+  &quot;settings&quot;: {
+    &quot;url&quot;: &quot;graphite.example.net:8080&quot;,
+    &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^\\\\.]+)\\\\.(?P&lt;metric&gt;.+)&quot;
+  },
+  &quot;refresh_interval&quot;: 3600,
+  &quot;filters&quot;: [
+    {
+      &quot;action&quot;: &quot;rewrite&quot;,
+      &quot;target&quot;: &quot;source&quot;,
+      &quot;pattern&quot;: &quot;_&quot;,
+      &quot;into&quot;: &quot;.&quot;
+    }
+  ]
+}
+</code></pre>
+
+<h3 id="responses">Responses</h3>
+
+<pre><code class="language-headers">Status: 201 Created
+</code></pre>
+
+<h2 id="delete-all-providers">Delete all providers</h2>
+
+<pre><code>DELETE /api/v1/providers/
+</code></pre>
+
+<p>This endpoint deletes all providers.</p>
+
+<p>If the request header <code>X-Confirm-Action</code> is not present or if the instance is <em>read-only</em> the operation will be
+rejected with <code>403 Forbidden</code>.</p>
+
+<h3 id="requests-1">Requests</h3>
+
+<h4 id="headers">Headers</h4>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>X-Confirm-Action</td>
+<td>action confirmation flag</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-1">Responses</h3>
+
+<pre><code class="language-headers">Status: 204 No Content
+</code></pre>
+
+<h2 id="list-providers">List providers</h2>
+
+<pre><code>GET /api/v1/providers/
+</code></pre>
+
+<p>This endpoint returns providers. If a <code>filter</code> query parameter is given, only providers having
+their name matching the filter will be returned.</p>
+
+<p>This endpoint supports pagination through the <code>offset</code> and <code>limit</code> query parameters and sorting using <code>sort</code> query
+parameter (separated by commas; prefix field name with &ldquo;-&rdquo; to reverse sort order).</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>filter</td>
+<td><code>string</code></td>
+<td>query</td>
+<td>term to filter names on</td>
+</tr>
+
+<tr>
+<td>sort</td>
+<td><code>string</code></td>
+<td>query</td>
+<td>fields to sort results on</td>
+</tr>
+
+<tr>
+<td>offset</td>
+<td><code>integer</code></td>
+<td>query</td>
+<td>offset to return providers from</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td><code>integer</code></td>
+<td>query</td>
+<td>number of providers to return</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-2">Responses</h3>
+
+<h4 id="headers-1">Headers</h4>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>X-Total-Records</td>
+<td>total number of catalog records for this type</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="examples-1">Examples</h4>
+
+<pre><code class="language-headers">Status: 200 OK
+</code></pre>
+
+<pre><code class="language-javascript">[
+  {
+    &quot;created&quot;: &quot;2017-06-14T06:09:19Z&quot;,
+    &quot;description&quot;: null,
+    &quot;enabled&quot;: true,
+    &quot;id&quot;: &quot;e91ac07e-5f74-5845-6a09-4903ecd30995&quot;,
+    &quot;modified&quot;: &quot;2017-06-14T06:12:57Z&quot;,
+    &quot;name&quot;: &quot;collectd&quot;
+  }
+]
+</code></pre>
+
+<h2 id="get-a-provider">Get a provider</h2>
+
+<pre><code>GET /api/v1/providers/:id
+</code></pre>
+
+<p>This endpoint returns a provider given its identifier.</p>
+
+<h3 id="parameters-1">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>identifier of the provider</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-3">Responses</h3>
+
+<h4 id="examples-2">Examples</h4>
+
+<pre><code class="language-headers">Status: 200 OK
+</code></pre>
+
+<pre><code class="language-javascript">{
+  &quot;id&quot;: &quot;4654e374-70e8-5621-afab-ac9c1ff91261&quot;,
+  &quot;name&quot;: &quot;kairosdb&quot;,
+  &quot;description&quot;: null,
+  &quot;created&quot;: &quot;2017-05-11T12:51:07Z&quot;,
+  &quot;modified&quot;: &quot;2017-05-22T07:59:57Z&quot;,
+  &quot;connector&quot;: &quot;kairosdb&quot;,
+  &quot;settings&quot;: {
+    &quot;aggregators&quot;: [
+      &quot;avg&quot;
+    ],
+    &quot;url&quot;: &quot;http://kairosdb.example.net:8080&quot;
+  },
+  &quot;filters&quot;: [
+    {
+      &quot;action&quot;: &quot;discard&quot;,
+      &quot;target&quot;: &quot;metric&quot;,
+      &quot;pattern&quot;: &quot;^kairosdb\\.&quot;,
+      &quot;into&quot;: &quot;&quot;
+    },
+    {
+      &quot;action&quot;: &quot;rewrite&quot;,
+      &quot;target&quot;: &quot;source&quot;,
+      &quot;pattern&quot;: &quot;_&quot;,
+      &quot;into&quot;: &quot;.&quot;
+    },
+    {
+      &quot;action&quot;: &quot;rewrite&quot;,
+      &quot;target&quot;: &quot;metric&quot;,
+      &quot;pattern&quot;: &quot;/avg$&quot;,
+      &quot;into&quot;: &quot;&quot;
+    },
+    {
+      &quot;action&quot;: &quot;rewrite&quot;,
+      &quot;target&quot;: &quot;metric&quot;,
+      &quot;pattern&quot;: &quot;\\.value$&quot;,
+      &quot;into&quot;: &quot;&quot;
+    },
+    {
+      &quot;action&quot;: &quot;rewrite&quot;,
+      &quot;target&quot;: &quot;metric&quot;,
+      &quot;pattern&quot;: &quot;^(.+)\\.(?:derive|gauge|latency)\\.(.+)&quot;,
+      &quot;into&quot;: &quot;$1.$2&quot;
+    }
+  ],
+  &quot;refresh_interval&quot;: 900,
+  &quot;priority&quot;: 0,
+  &quot;enabled&quot;: true
+}
+</code></pre>
+
+<h2 id="update-a-provider">Update a provider</h2>
+
+<pre><code>PUT /api/v1/providers/:id
+</code></pre>
+
+<p>This endpoint updates a provider given its identifier. The request body is similar to the <em>Create a new catalog
+provider</em> endpoint.</p>
+
+<p>If the instance is <em>read-only</em> the operation will be rejected with <code>403 Forbidden</code>.</p>
+
+<h3 id="parameters-2">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>identifier of the provider</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-4">Responses</h3>
+
+<pre><code class="language-headers">Status: 204 No Content
+</code></pre>
+
+<h2 id="partially-update-a-provider">Partially update a provider</h2>
+
+<pre><code>PATCH /api/v1/providers/:id
+</code></pre>
+
+<p>This endpoint partially updates a provider given its identifier. The request body is similar to the <em>Update a
+provider</em> endpoint, but only specified fields will be modified.</p>
+
+<p>If the instance is <em>read-only</em> the operation will be rejected with <code>403 Forbidden</code>.</p>
+
+<h3 id="parameters-3">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>identifier of the provider</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-5">Responses</h3>
+
+<pre><code class="language-headers">Status: 204 No Content
+</code></pre>
+
+<h2 id="delete-a-provider">Delete a provider</h2>
+
+<pre><code>DELETE /api/v1/providers/:id
+</code></pre>
+
+<p>This endpoint deletes a provider given its identifier.</p>
+
+<p>If the instance is <em>read-only</em> the operation will be rejected with <code>403 Forbidden</code>.</p>
+
+<h3 id="parameters-4">Parameters</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>In</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id<br><strong>required</strong></td>
+<td><code>string</code></td>
+<td>path</td>
+<td>identifier of the provider</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="responses-6">Responses</h3>
+
+<pre><code class="language-headers">Status: 204 No Content
+</code></pre>
+
+<h2 id="refresh-a-provider">Refresh a provider</h2>
+
+<pre><code>POST /api/v1/providers/:id/refresh
+</code></pre>
+
+<p>This endpoint triggers a catalog refresh for a provider given its identifier.</p>
+
+<h3 id="responses-7">Responses</h3>
+
+<pre><code class="language-headers">Status: 204 No Content
+</code></pre>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#providers">Providers</a>
+<ul>
+<li><a href="#providers-connectors-settings">Providers Connectors Settings</a>
+<ul>
+<li><a href="#facette">Facette</a></li>
+<li><a href="#graphite">Graphite</a></li>
+<li><a href="#influxdb">InfluxDB</a></li>
+<li><a href="#kairosdb">KairosDB</a></li>
+<li><a href="#rrdtool">RRDtool</a></li>
+</ul></li>
+<li><a href="#provider-filters">Provider Filters</a></li>
+<li><a href="#create-a-provider">Create a provider</a>
+<ul>
+<li><a href="#requests">Requests</a>
+<ul>
+<li><a href="#examples">Examples</a></li>
+</ul></li>
+<li><a href="#responses">Responses</a></li>
+</ul></li>
+<li><a href="#delete-all-providers">Delete all providers</a>
+<ul>
+<li><a href="#requests-1">Requests</a>
+<ul>
+<li><a href="#headers">Headers</a></li>
+</ul></li>
+<li><a href="#responses-1">Responses</a></li>
+</ul></li>
+<li><a href="#list-providers">List providers</a>
+<ul>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#responses-2">Responses</a>
+<ul>
+<li><a href="#headers-1">Headers</a></li>
+<li><a href="#examples-1">Examples</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#get-a-provider">Get a provider</a>
+<ul>
+<li><a href="#parameters-1">Parameters</a></li>
+<li><a href="#responses-3">Responses</a>
+<ul>
+<li><a href="#examples-2">Examples</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#update-a-provider">Update a provider</a>
+<ul>
+<li><a href="#parameters-2">Parameters</a></li>
+<li><a href="#responses-4">Responses</a></li>
+</ul></li>
+<li><a href="#partially-update-a-provider">Partially update a provider</a>
+<ul>
+<li><a href="#parameters-3">Parameters</a></li>
+<li><a href="#responses-5">Responses</a></li>
+</ul></li>
+<li><a href="#delete-a-provider">Delete a provider</a>
+<ul>
+<li><a href="#parameters-4">Parameters</a></li>
+<li><a href="#responses-6">Responses</a></li>
+</ul></li>
+<li><a href="#refresh-a-provider">Refresh a provider</a>
+<ul>
+<li><a href="#responses-7">Responses</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

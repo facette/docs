@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Installing Facette — Facette</title>
+	<meta name="description" content="Installation methods of Facette time series data visualization software (version 0.3)">
+	<meta name="keywords" content="debian,facette,git,go,golang,install,nodejs,npm,pandoc,rrdtool,ubuntu">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/0.3/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem active">
+				<a href="/0.3/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/configuration/">Configuring Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/api/">API Documentation</a>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="installing-facette">Installing Facette</h1>
+
+<h2 id="from-binaries">From Binaries</h2>
+
+<p>This is the preferred method. Binary releases and Linux distribution packages are available on the project releases
+page on <a href="https://github.com/facette/facette/releases">Github</a>.</p>
+
+<h2 id="from-docker-hub">From Docker Hub</h2>
+
+<p>We provide <a href="https://www.docker.com/">Docker</a> images for every stable release, so you can try Facette without installing it on your system.
+Check out <a href="https://registry.hub.docker.com/u/facette/facette/">our repository</a> for available images and usage instructions.</p>
+
+<p>Alternatively, a <code>Dockerfile</code> is provided in the sources tree to allow you to build a Docker image from the tip of the
+sources repository (see &ldquo;From Sources &gt; Additional Targets&rdquo; section of this page).</p>
+
+<h2 id="from-sources">From Sources</h2>
+
+<p>To build Facette from the sources, you can either use a release tarball available on <a href="https://github.com/facette/facette/releases">Github</a> or retrieve the
+source code by cloning the Git repository:</p>
+
+<pre><code>git clone https://github.com/facette/facette.git
+</code></pre>
+
+<h3 id="build-requirements">Build Requirements</h3>
+
+<ul>
+<li>GNU <a href="http://www.gnu.org/software/make/">Make</a> util and <a href="http://www.gnu.org/software/gcc/">GCC</a> C compiler</li>
+<li><a href="http://golang.org/">Go</a> language environment (&gt;= 1.2)</li>
+<li><a href="http://oss.oetiker.ch/rrdtool/index.en.html">RRDtool</a> library and development files (&gt;= 1.4.0)</li>
+<li><a href="http://pkgconfig.freedesktop.org/">pkg-config</a> helper tool</li>
+<li><a href="http://nodejs.org/">Node.js</a> and <a href="https://www.npmjs.org/">npm</a> package manager</li>
+<li><a href="http://johnmacfarlane.net/pandoc/">Pandoc</a> document converter</li>
+</ul>
+
+<h3 id="build-instructions">Build Instructions</h3>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> if using the Debian/Ubuntu
+distribution-provided `nodejs` package, since the shipped binary is `/usr/bin/nodejs` instead of `/usr/bin/node` you
+have to add an alias using the command `sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10` for
+Facette Node.js dependencies to work.</div>
+
+<p>At the top the sources directory, run the build command:</p>
+
+<pre><code>make
+make install
+</code></pre>
+
+<p>By default Facette will be built in the <code>tmp</code> directory and installed in the <code>build</code> directory. To change the
+installation directory, set the <code>PREFIX</code> variable:</p>
+
+<pre><code>sudo make PREFIX=/path/to/directory install
+</code></pre>
+
+<h3 id="additional-targets">Additional Targets</h3>
+
+<h4 id="run-the-various-test-suites">Run the various test suites</h4>
+
+<pre><code>make test
+</code></pre>
+
+<h4 id="clean-the-building-environment">Clean the building environment</h4>
+
+<pre><code>make clean
+</code></pre>
+
+<h4 id="build-a-docker-image-from-the-current-sources-tree">Build a Docker image from the current sources tree</h4>
+
+<pre><code>make docker
+</code></pre>
+
+<p>To change the image tag (default: <em>facette-latest</em>), set the <code>DOCKER_TAG</code> variable:</p>
+
+<pre><code>make DOCKER_TAG=my_company/facette:x.y.z docker
+</code></pre>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#installing-facette">Installing Facette</a>
+<ul>
+<li><a href="#from-binaries">From Binaries</a></li>
+<li><a href="#from-docker-hub">From Docker Hub</a></li>
+<li><a href="#from-sources">From Sources</a>
+<ul>
+<li><a href="#build-requirements">Build Requirements</a></li>
+<li><a href="#build-instructions">Build Instructions</a></li>
+<li><a href="#additional-targets">Additional Targets</a>
+<ul>
+<li><a href="#run-the-various-test-suites">Run the various test suites</a></li>
+<li><a href="#clean-the-building-environment">Clean the building environment</a></li>
+<li><a href="#build-a-docker-image-from-the-current-sources-tree">Build a Docker image from the current sources tree</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

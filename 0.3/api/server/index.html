@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.23" />
 	<meta charset="utf-8">
-	<title>Facette</title>
-	<meta name="description" content="Time series data visualization software">
+	<title>Server API — Facette</title>
+	<meta name="keywords" content="api,configuration,documentation,facette,group,server">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="shortcut icon" href="/assets/images/favicon.png">
 	<link href="/assets/css/vendor.css" rel="stylesheet">
@@ -31,43 +30,66 @@
 	<nav>
 		<ul class="menu">
 			<li class="menuitem">
-				<a href="/latest/architecture/">Architecture of Facette</a>
+				<a href="/0.3/architecture/">Architecture of Facette</a>
 			</li>
 			<li class="menuitem">
-				<a href="/latest/installing/">Installing Facette</a>
+				<a href="/0.3/installing/">Installing Facette</a>
 			</li>
 			<li class="menuitem">
-				<a href="/latest/configuration/">Configuration</a>
+				<a href="/0.3/configuration/">Configuring Facette</a>
 			</li>
 			<li class="menuitem">
-				<a href="/latest/usage/">Using Facette</a>
+				<a href="/0.3/usage/">Using Facette</a>
 			</li>
 			<li class="menuitem">
-				<a href="/latest/api/">API Documentation</a>
+				<a href="/0.3/api/">API Documentation</a>
+				<ul class="menu">
+					<li class="menuitem active"><a href="/0.3/api/server/">Server API</a></li>
+					<li class="menuitem"><a href="/0.3/api/catalog/">Catalog API</a></li>
+					<li class="menuitem"><a href="/0.3/api/library/">Library API</a></li>
+					<li class="menuitem"><a href="/0.3/api/plots/">Plots API</a></li>
+					<li class="menuitem"><a href="/0.3/api/status/">HTTP Status Codes</a></li>
+				</ul>
 			</li>
 		</ul>
 	</nav>
-
-	<div class="note">
-		<span class="fa fa-info-circle"></span> You are reading the very latest version of the documentation. <a href="/0.3/architecture/">Click here</a> to read the previous one.
-	</div>
 </aside>
 
 <section>
 
-<p><img src="/assets/images/logo-main.png" alt="Logo" /></p>
+<h1 id="server-api">Server API</h1>
 
-<h1 id="what-is-facette">What is Facette?</h1>
+<h2 id="get-items-statistics">Get Items Statistics</h2>
 
-<p>Facette is a web application to display time series data from various sources — such as collectd, Graphite, InfluxDB or
-KairosDB — on graphs, designed to be easy to setup and to use.</p>
+<pre><code>GET /api/v1/stats
+</code></pre>
 
-<h2 id="documentation">Documentation</h2>
+<p>Returns a statistics object along with back-end items information.</p>
 
-<p>This documentation is, as the <a href="https://facette.io/">Facette</a> project, currently under development and the various
-information provided here may be subject to changes in the near future. You can help us making it better by opening an
-issue on <a href="http://github.com/facette/facette-docs/issues">Github</a> if you spot an error or if you think of any
-improvement.</p>
+<p>Response:</p>
+
+<pre><code class="language-javascript">{
+    &quot;origins&quot;: 1,
+    &quot;sources&quot;: 3,
+    &quot;metrics&quot;: 353,
+    &quot;graphs&quot;: 1,
+    &quot;collections&quot;: 1,
+    &quot;sourcegroups&quot;: 1,
+    &quot;metricgroups&quot;: 4
+}
+</code></pre>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#server-api">Server API</a>
+<ul>
+<li><a href="#get-items-statistics">Get Items Statistics</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
 
 </section>
 

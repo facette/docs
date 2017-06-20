@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Plots API — Facette</title>
+	<meta name="keywords" content="api,documentation,facette,graph,library,plot">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/0.3/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/configuration/">Configuring Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/api/">API Documentation</a>
+				<ul class="menu">
+					<li class="menuitem"><a href="/0.3/api/server/">Server API</a></li>
+					<li class="menuitem"><a href="/0.3/api/catalog/">Catalog API</a></li>
+					<li class="menuitem"><a href="/0.3/api/library/">Library API</a></li>
+					<li class="menuitem active"><a href="/0.3/api/plots/">Plots API</a></li>
+					<li class="menuitem"><a href="/0.3/api/status/">HTTP Status Codes</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="plots-api">Plots API</h1>
+
+<h2 id="get-graphs-plots-values">Get graphs plots values</h2>
+
+<pre><code>POST /api/v1/plots
+</code></pre>
+
+<p>Takes a plot request from the request body and returns graph series plots values and information.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the requested graph template does not exist</li>
+</ul>
+
+<p>Request:</p>
+
+<pre><code class="language-javascript">{
+    &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
+    &quot;range&quot;: &quot;-1d&quot;
+}
+</code></pre>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> the request could also accept a graph
+request along with the range, replacing <code>id</code> by a <code>graph</code> parameter. See
+<em>Get a single graph</em> example response in the library API section for request structure.</div>
+
+<p>Response (plots values are truncated):</p>
+
+<pre><code class="language-javascript">{
+    &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
+    &quot;name&quot;: &quot;Chart name&quot;,
+    &quot;description&quot;: &quot;A great chart description.&quot;,
+    &quot;type&quot;: 1,
+    &quot;series&quot;: [
+        {
+            &quot;stack_id&quot;: 0,
+            &quot;info&quot;: {
+                &quot;min&quot;: 0,
+                &quot;max&quot;: 1.023,
+                &quot;last&quot;: 0.381,
+                &quot;avg&quot;: 0.109164
+            },
+            &quot;plots&quot;: [
+                0.348,
+                0.351,
+                0.42300000000000004,
+                …
+                0,
+                0.10500000000000001,
+                0.42400000000000004,
+                0.381,
+                null
+            ],
+            &quot;name&quot;: &quot;serie0&quot;
+        }
+    ],
+    &quot;stack_mode&quot;: 0,
+    &quot;start&quot;: &quot;2013-01-01T12:34:56+01:00&quot;,
+    &quot;end&quot;: &quot;2013-01-02T12:34:56+01:00&quot;,
+    &quot;step&quot;: 9.944751381,
+    &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+}
+</code></pre>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#plots-api">Plots API</a>
+<ul>
+<li><a href="#get-graphs-plots-values">Get graphs plots values</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

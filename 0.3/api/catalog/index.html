@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Catalog API — Facette</title>
+	<meta name="keywords" content="api,catalog,documentation,facette,metric,origin,plot,source">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/0.3/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/configuration/">Configuring Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/api/">API Documentation</a>
+				<ul class="menu">
+					<li class="menuitem"><a href="/0.3/api/server/">Server API</a></li>
+					<li class="menuitem active"><a href="/0.3/api/catalog/">Catalog API</a></li>
+					<li class="menuitem"><a href="/0.3/api/library/">Library API</a></li>
+					<li class="menuitem"><a href="/0.3/api/plots/">Plots API</a></li>
+					<li class="menuitem"><a href="/0.3/api/status/">HTTP Status Codes</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="catalog-api">Catalog API</h1>
+
+<h2 id="origins">Origins</h2>
+
+<h3 id="full-catalog-retrieval">Full catalog retrieval</h3>
+
+<pre><code>GET /api/v1/catalog/
+</code></pre>
+
+<p>Returns a catalog object containing the available origins, sources and metrics.</p>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">{
+    &quot;origin0&quot;: {
+        &quot;source0&quot;: [ &quot;metric0&quot;, &quot;metric1&quot;, &quot;metric2&quot; ]
+        &quot;source1&quot;: [ &quot;metric0&quot;, &quot;metric1&quot; ]
+    },
+    &quot;origin1&quot;: {
+        &quot;source2&quot;: [ &quot;metric0&quot;, &quot;metric1&quot;, &quot;metric2&quot; ]
+        &quot;source3&quot;: [ &quot;metric0&quot;, &quot;metric1&quot; ]
+    }
+}
+
+</code></pre>
+
+<h3 id="list-origins">List origins</h3>
+
+<pre><code>GET /api/v1/catalog/origins/
+</code></pre>
+
+<p>Returns an array listing the available origins.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on origins names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">[
+    &quot;origin0&quot;,
+    &quot;origin1&quot;
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="get-a-single-origin">Get a single origin</h3>
+
+<pre><code>GET /api/v1/catalog/origins/&lt;name&gt;
+</code></pre>
+
+<p>Returns an origin object with its connector type and date of last update.</p>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">{
+    &quot;name&quot;: &quot;origin0&quot;,
+    &quot;connector&quot;: &quot;rrd&quot;,
+    &quot;updated&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+}
+</code></pre>
+
+<h2 id="sources">Sources</h2>
+
+<h3 id="list-sources">List sources</h3>
+
+<pre><code>GET /api/v1/catalog/sources/
+</code></pre>
+
+<p>Returns an array listing the available sources.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> pattern to apply on sources names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
+<li><code>origin</code> (<em>string</em>): the name of the origin to filter on</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">[
+    &quot;source0&quot;,
+    &quot;source1&quot;
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="get-a-single-source">Get a single source</h3>
+
+<pre><code>GET /api/v1/catalog/sources/&lt;name&gt;
+</code></pre>
+
+<p>Returns a source object with its associated origins and date of last update.</p>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">{
+    &quot;name&quot;: &quot;source0&quot;,
+    &quot;origins&quot;: [
+        &quot;origin0&quot;
+    ],
+    &quot;updated&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+}
+</code></pre>
+
+<h2 id="metrics">Metrics</h2>
+
+<h3 id="list-metrics">List metrics</h3>
+
+<pre><code>GET /api/v1/catalog/metrics/
+</code></pre>
+
+<p>Returns an array listing the available metrics.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> pattern to apply on metrics names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
+<li><code>origin</code> (_<em>string</em>): the name of the origin to filter on</li>
+<li><code>source</code> (_<em>string</em>): the name of the source to filter on</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">[
+    &quot;metric0&quot;,
+    &quot;metric1&quot;
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="get-a-single-metric">Get a single metric</h3>
+
+<pre><code>GET /api/v1/catalog/metrics/&lt;name&gt;
+</code></pre>
+
+<p>Returns a metric object with its associated origins and sources and tdate of last update.</p>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">{
+    &quot;name&quot;: &quot;metric0&quot;,
+    &quot;origins&quot;: [
+        &quot;origin0&quot;
+    ],
+    &quot;sources&quot;: [
+        &quot;source0&quot;,
+        &quot;source1&quot;
+    ],
+    &quot;updated&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+}
+</code></pre>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#catalog-api">Catalog API</a>
+<ul>
+<li><a href="#origins">Origins</a>
+<ul>
+<li><a href="#full-catalog-retrieval">Full catalog retrieval</a></li>
+<li><a href="#list-origins">List origins</a></li>
+<li><a href="#get-a-single-origin">Get a single origin</a></li>
+</ul></li>
+<li><a href="#sources">Sources</a>
+<ul>
+<li><a href="#list-sources">List sources</a></li>
+<li><a href="#get-a-single-source">Get a single source</a></li>
+</ul></li>
+<li><a href="#metrics">Metrics</a>
+<ul>
+<li><a href="#list-metrics">List metrics</a></li>
+<li><a href="#get-a-single-metric">Get a single metric</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Configuring Facette — Facette</title>
+	<meta name="description" content="Configuration of Facette time series data visualization software (version 0.3)">
+	<meta name="keywords" content="bind,catalog,configuration,connector,documentation,facette,filter,http,ip,ipv4,ipv6,json,metric,origin,plot,provider,server,settings,socket,tcp,unix">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/0.3/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem active">
+				<a href="/0.3/configuration/">Configuring Facette</a>
+				<ul class="menu">
+					<li class="menuitem"><a href="/0.3/configuration/connectors/">Provider Connectors</a></li>
+					<li class="menuitem"><a href="/0.3/configuration/filters/">Filters</a></li>
+				</ul>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/api/">API Documentation</a>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="configuration">Configuration</h1>
+
+<p>The main configuration file is passed using <code>-c</code> argument when launching the <code>facette</code> server. If not specified, its
+default location is <code>/etc/facette/facette.json</code>.</p>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> all the configuration files are stored
+in JSON format, and <strong>must</strong> feature the extension <code>.json</code>.</div>
+
+<h2 id="base-settings">Base Settings</h2>
+
+<ul>
+<li><code>bind</code> (<em>string</em>): endpoint to listen on (default: <code>tcp://localhost:12003</code>). See &ldquo;Endpoint Binding Configuration&rdquo;
+section for for details.</li>
+<li><code>base_dir</code> (<em>string</em>): base Facette application directory holding static files (default: <code>/usr/share/facette</code>)</li>
+<li><code>data_dir</code> (<em>string</em>): directory* used to store application data (default: <code>/var/lib/facette</code>)</li>
+<li><code>pid_file</code> (<em>string</em>): path* to the PID file (default: <code>/var/run/facette/facette.pid</code>)</li>
+<li><code>providers_dir</code> (<em>string</em>): path to the directory containing providers configuration files
+(default: <code>/etc/facette/providers</code>)</li>
+<li><code>url_prefix</code> (<em>string</em>): URL prefix behind which the server is located if not running at the root of the HTTP
+virtual host (e.g. <code>/facette</code>)</li>
+<li><code>read_only</code> (<em>boolean</em>): read-only flag, preventing modifications through API calls (default: <code>false</code>)</li>
+<li><code>hide_build_details</code> (<em>boolean</em>): build details display flag, preventing build details from be exposed in the UI (default: <code>false</code>)</li>
+<li><code>socket_mode</code> (<em>string</em>): when binding to a UNIX socket, socket file mode (e.g. <code>0400</code>)</li>
+<li><code>socket_user</code> (<em>string</em>): when binding to a UNIX socket, socket file owner <strong>numeric ID</strong> (e.g. <code>65534</code>)</li>
+<li><code>socket_group</code> (<em>string</em>): when binding to a UNIX socket, socket file group <strong>numeric ID</strong> (e.g. <code>65534</code>)</li>
+</ul>
+
+<p><strong>*</strong> Requires write permissions</p>
+
+<h3 id="endpoint-binding-configuration">Endpoint Binding Configuration</h3>
+
+<p>Facette back-end can listen on different types of endpoints:</p>
+
+<ul>
+<li>UNIX socket using the <code>unix://&lt;absolute path&gt;</code> format, e.g. <code>unix:///var/run/facette/facette.sock</code></li>
+<li>TCP/IP socket using the <code>&lt;protocol&gt;://&lt;host&gt;:&lt;port&gt;</code> format, e.g.:
+
+<ul>
+<li><code>tcp://localhost:12003</code> to listen on <code>localhost</code> on port 12003 (both IPv4 and IPv6)</li>
+<li><code>tcp4://localhost:12003</code> to listen on <code>localhost</code> on port 12003 (IPv4 only)</li>
+<li><code>tcp6://localhost:12003</code> to listen on <code>localhost</code> on port 12003 (IPv6 only)</li>
+</ul></li>
+</ul>
+
+<p>Example:</p>
+
+<pre><code class="language-javascript">{
+    &quot;bind&quot;: &quot;tcp://localhost:12003&quot;,
+    &quot;base_dir&quot;: &quot;/usr/local/share/facette&quot;,
+    &quot;data_dir&quot;: &quot;/var/lib/facette&quot;,
+    &quot;pid_file&quot;: &quot;/var/run/facette/facette.pid&quot;,
+    &quot;providers_dir&quot;: &quot;/etc/facette/providers&quot;,
+    &quot;read_only&quot;: false,
+    …
+}
+</code></pre>
+
+<h2 id="catalog-setup">Catalog Setup</h2>
+
+<p>Configuring the catalog consists in defining data <em>providers</em>. At this point, we strongly recommend reading about the
+<a href="/architecture/">architecture of Facette</a> to understand how the catalog works.</p>
+
+<h3 id="definining-providers">Definining Providers</h3>
+
+<p>Defining <em>providers</em> registers data <em>origins</em> in Facette, i.e. where to find <em>sources</em> and their <em>metrics</em>, and how
+to add them to the <em>catalog</em>. <em>Providers</em> are defined by a mandatory <code>connector</code> description, and optional <code>filters</code>.
+The configuration is stored in a dedicated file in the directory defined by the <code>providers_dir</code> setting in the main
+configuration file; you can have as many definition files as your want, for instance if your polling/collect system is
+sharded on many storage backends.</p>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> in case of a syntax error or incorrect
+configuration setting, the server will continue its initialization and discard the bogus provider (a warning message
+will be logged).</div>
+
+<p>Here&rsquo;s what a typical structure of a <em>provider</em> looks like:</p>
+
+<pre><code class="language-javascript">$ cat /etc/facette/providers/my_metrics.json
+{
+	&quot;connector&quot;: {
+		…
+	},
+
+	&quot;filters&quot;: [
+		…
+	],
+
+	&quot;refresh_interval&quot;: 300
+}
+
+</code></pre>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> the name of the configuration file
+will be used as <em>origin</em> of the <em>sources</em>/<em>metrics</em> retrieved from this origin in the catalog,
+i.e. in the example above "my_metrics".</div>
+
+<h3 id="connectors">Connectors</h3>
+
+<p>Facette providers use <em>connectors</em> to know how to bind to <em>origins</em> and to inventory their local <em>sources</em> and
+<em>metrics</em>. See <a href="/configuration/connectors/">this page</a> to view the list of available connectors and how to configure them.</p>
+
+<h3 id="filters">Filters</h3>
+
+<p>By default the inventory mechanism of Facette providers retrieves <strong>all</strong> the known <em>sources</em> and <em>metrics</em> from the
+<em>origin</em>, named according to the <em>origin</em>&rsquo;s storage structure/format. You may want to rename some of the
+<em>sources</em>/<em>metrics</em> or even discard some of them to keep the catalog relevant. Enter <a href="/configuration/filters/">filters</a>.</p>
+
+<h3 id="optional-provider-settings">Optional Provider Settings</h3>
+
+<ul>
+<li><code>refresh_interval</code> (<em>integer</em>): interval (in seconds) to trigger a periodic refresh of the provider. If <code>0</code>
+(default), no periodic refresh is performed.</li>
+</ul>
+
+<h3 id="example-collectd">Example: collectd</h3>
+
+<p>Here is an actual provider configuration for using files created by the <a href="https://collectd.org/documentation/manpages/collectd.conf.5.shtml#plugin_rrdtool">RRDtool collectd plugin</a>, featuring a few
+filters to rewrite original metric names in a more friendly way and discard entropy-related metrics:</p>
+
+<pre><code class="language-javascript">{
+  &quot;connector&quot;: {
+    &quot;type&quot;: &quot;rrd&quot;,
+    &quot;path&quot;: &quot;/var/lib/collectd/rrd&quot;,
+    &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^/]+)/(?P&lt;metric&gt;.+).rrd&quot;
+  },
+
+  &quot;filters&quot;: [
+    { &quot;action&quot;: &quot;sieve&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;/average$&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;/average$&quot;, &quot;into&quot;: &quot;&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;/&quot;, &quot;into&quot;: &quot;.&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^cpu-(\\d+)\\.cpu-(.+)\\.value$&quot;, &quot;into&quot;: &quot;cpu.$1.$2&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^df-(.+)\\.df_complex-(.+)\\.value&quot;, &quot;into&quot;: &quot;df.$1.$2&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^disk-(.+)\\.disk_(.+)&quot;, &quot;into&quot;: &quot;disk.$1.$2&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^entropy\\.entropy&quot;, &quot;into&quot;: &quot;entropy&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^interface-(.+)\\.if_(.+)\\.(.+)$&quot;, &quot;into&quot;: &quot;net.$1.$2.$3&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^irq.irq-(.+)\\.value$&quot;, &quot;into&quot;: &quot;irq.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^load\\.load&quot;, &quot;into&quot;: &quot;load&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^memory\\.memory-(.+)\\.value$&quot;, &quot;into&quot;: &quot;memory.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^processes\\.ps_state-(.+)\\.value$&quot;, &quot;into&quot;: &quot;proc.state.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^processes\\.(.+)\\.value$&quot;, &quot;into&quot;: &quot;proc.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^swap\\.swap-(.+)\\.value$&quot;, &quot;into&quot;: &quot;swap.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^swap\\.swap_io-(.+)\\.value$&quot;, &quot;into&quot;: &quot;swap.io.$1&quot; },
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^users\\.users\\.value&quot;, &quot;into&quot;: &quot;users.count&quot; }
+  ]
+}
+</code></pre>
+
+<h3 id="example-graphite">Example: Graphite</h3>
+
+<p>This configuration snippet shows a provider definition for using a <a href="http://graphite.readthedocs.org/">Graphite webapp</a>, with a filter to rewrite the
+underscore-escaped hostname dots back with dots; besides, this provider will self-refresh every hour.</p>
+
+<pre><code class="language-javascript">{
+  &quot;connector&quot;: {
+    &quot;type&quot;: &quot;graphite&quot;,
+    &quot;url&quot;: &quot;https://graphite.mycorporation.net/&quot;,
+    &quot;allow_insecure_tls&quot;: true
+  },
+
+  &quot;filters&quot;: [
+    { &quot;pattern&quot;: &quot;_&quot;, &quot;rewrite&quot;: &quot;.&quot;, &quot;target&quot;: &quot;source&quot; }
+  ],
+
+  &quot;refresh_interval&quot;: 3600
+}
+</code></pre>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#configuration">Configuration</a>
+<ul>
+<li><a href="#base-settings">Base Settings</a>
+<ul>
+<li><a href="#endpoint-binding-configuration">Endpoint Binding Configuration</a></li>
+</ul></li>
+<li><a href="#catalog-setup">Catalog Setup</a>
+<ul>
+<li><a href="#definining-providers">Definining Providers</a></li>
+<li><a href="#connectors">Connectors</a></li>
+<li><a href="#filters">Filters</a></li>
+<li><a href="#optional-provider-settings">Optional Provider Settings</a></li>
+<li><a href="#example-collectd">Example: collectd</a></li>
+<li><a href="#example-graphite">Example: Graphite</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>HTTP Status Codes — Facette</title>
+	<meta name="keywords" content="api,configuration,documentation,facette,group,http,status">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/0.3/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/configuration/">Configuring Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/api/">API Documentation</a>
+				<ul class="menu">
+					<li class="menuitem"><a href="/0.3/api/server/">Server API</a></li>
+					<li class="menuitem"><a href="/0.3/api/catalog/">Catalog API</a></li>
+					<li class="menuitem"><a href="/0.3/api/library/">Library API</a></li>
+					<li class="menuitem"><a href="/0.3/api/plots/">Plots API</a></li>
+					<li class="menuitem active"><a href="/0.3/api/status/">HTTP Status Codes</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="http-status-codes">HTTP Status Codes</h1>
+
+<h2 id="200-ok">200 OK</h2>
+
+<p>The request was successful and the server is returning data in the response body.</p>
+
+<h2 id="201-created">201 Created</h2>
+
+<p>The request was successful resulting in the creation of a new item. The response body is empty.</p>
+
+<h2 id="400-bad-request">400 Bad Request</h2>
+
+<p>The request or the data supplied along with the request is invalid, could not be processed or when mandatory fields are
+not met.</p>
+
+<h2 id="404-not-found">404 Not Found</h2>
+
+<p>The requested item or an item to inherit from could not be found. Could be returned by <code>POST</code> creation requests.</p>
+
+<h2 id="405-method-not-allowed">405 Method Not Allowed</h2>
+
+<p>The requested method is not supported the API resource.</p>
+
+<h2 id="409-conflict">409 Conflict</h2>
+
+<p>An item with the same name and type already exists. Could be returned by <code>POST</code> and <code>PUT</code> creation requests.</p>
+
+<h2 id="415-unsupported-media-type">415 Unsupported Media Type</h2>
+
+<p>The request used a <code>Content-Type</code> not supported by the API resource.</p>
+
+<h2 id="503-service-unavailable">503 Service Unavailable</h2>
+
+<p>The server is currently unavailable. Such response is sent when the server is being initialized or reloading its
+configuration.</p>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#http-status-codes">HTTP Status Codes</a>
+<ul>
+<li><a href="#200-ok">200 OK</a></li>
+<li><a href="#201-created">201 Created</a></li>
+<li><a href="#400-bad-request">400 Bad Request</a></li>
+<li><a href="#404-not-found">404 Not Found</a></li>
+<li><a href="#405-method-not-allowed">405 Method Not Allowed</a></li>
+<li><a href="#409-conflict">409 Conflict</a></li>
+<li><a href="#415-unsupported-media-type">415 Unsupported Media Type</a></li>
+<li><a href="#503-service-unavailable">503 Service Unavailable</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Library API — Facette</title>
+	<meta name="keywords" content="api,catalog,documentation,facette,group,library,metric,origin,source">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/0.3/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/configuration/">Configuring Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/api/">API Documentation</a>
+				<ul class="menu">
+					<li class="menuitem"><a href="/0.3/api/server/">Server API</a></li>
+					<li class="menuitem"><a href="/0.3/api/catalog/">Catalog API</a></li>
+					<li class="menuitem active"><a href="/0.3/api/library/">Library API</a></li>
+					<li class="menuitem"><a href="/0.3/api/plots/">Plots API</a></li>
+					<li class="menuitem"><a href="/0.3/api/status/">HTTP Status Codes</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="library-api">Library API</h1>
+
+<p>All library items are identified by an <a href="http://en.wikipedia.org/wiki/Universally_unique_identifier">universally unique identifier</a> (UUID), each 36 characters long.</p>
+
+<h2 id="groups">Groups</h2>
+
+<h3 id="list-groups">List groups</h3>
+
+<pre><code>GET /api/v1/library/sourcegroups/
+GET /api/v1/library/metricgroups/
+</code></pre>
+
+<p>Returns an array of objects listing the available groups.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on group names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">[
+    {
+        &quot;id&quot;: &quot;386c8361-517f-404e-6c34-870983ab66e8&quot;,
+        &quot;name&quot;: &quot;group0&quot;,
+        &quot;description&quot;: &quot;A great group description.&quot;,
+        &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+    }
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="get-a-single-group">Get a single group</h3>
+
+<pre><code>GET /api/v1/library/sourcegroups/&lt;id&gt;
+GET /api/v1/library/metricgroups/&lt;id&gt;
+</code></pre>
+
+<p>Returns a group object with its name, description and matching rules entries.</p>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">{
+    &quot;id&quot;: &quot;386c8361-517f-404e-6c34-870983ab66e8&quot;,
+    &quot;name&quot;: &quot;group0&quot;,
+    &quot;description&quot;: &quot;A great group description.&quot;,
+    &quot;entries&quot;: [
+        {
+            &quot;origin&quot;: &quot;origin0&quot;,
+            &quot;pattern&quot;: &quot;glob:example.*&quot;
+        }
+    ]
+}
+</code></pre>
+
+<h3 id="create-a-new-group">Create a new group</h3>
+
+<pre><code>POST /api/v1/library/sourcegroups/
+POST /api/v1/library/metricgroups/
+</code></pre>
+
+<p>Takes a group from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the
+newly created item location.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>inherit</code> (<em>string</em>): the UUID of the group item to inherit from</li>
+</ul>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>201 Created:</strong> the group item has been successfully created</li>
+<li><strong>404 Not Found:</strong> the group item to inherit from does not exist</li>
+<li><strong>409 Conflict:</strong> another group with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single group</em> above for group object format.</p>
+
+<h3 id="update-an-existing-group">Update an existing group</h3>
+
+<pre><code>PUT /library/sourcegroups/&lt;id&gt;
+PUT /library/metricgroups/&lt;id&gt;
+</code></pre>
+
+<p>Takes a group from the request body and overwrites an existing library group item.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to overwrite does not exist</li>
+<li><strong>409 Conflict:</strong> another group with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single group</em> above for group object format.</p>
+
+<h3 id="delete-an-existing-group">Delete an existing group</h3>
+
+<pre><code>DELETE /library/sourcegroups/&lt;id&gt;
+DELETE /library/metricgroups/&lt;id&gt;
+</code></pre>
+
+<p>Removes an existing group item from the library.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to delete does not exist</li>
+</ul>
+
+<h3 id="expand-query-tuples">Expand query tuples</h3>
+
+<pre><code>POST /api/v1/library/expand
+</code></pre>
+
+<p>Takes an array of query tuples from the request body and returns their expanded versions.</p>
+
+<p>A query tuple consists of a list of 3 values: origin, source and metric.</p>
+
+<p>When querying the back-end, both source and metric fields can be a reference to a group, then beginning with <code>group:</code>
+prefix.</p>
+
+<pre><code class="language-javascript">[
+        [&quot;origin0&quot;, &quot;host1.renm.org&quot;, &quot;group:group0&quot;]
+]
+</code></pre>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">[
+    [
+        [&quot;origin0&quot;, &quot;host1.renm.org&quot;, &quot;metric0&quot;],
+        [&quot;origin0&quot;, &quot;host1.renm.org&quot;, &quot;metric1&quot;],
+        [&quot;origin0&quot;, &quot;host1.renm.org&quot;, &quot;metric2&quot;],
+        [&quot;origin0&quot;, &quot;host1.renm.org&quot;, &quot;metric3&quot;]
+    ]
+]
+</code></pre>
+
+<h2 id="scales">Scales</h2>
+
+<h3 id="list-scales">List scales</h3>
+
+<pre><code>GET /api/v1/library/scales/
+</code></pre>
+
+<p>Returns an array of objects listing the available scales.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on group names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">[
+    {
+        &quot;id&quot;: &quot;95e7f164-9ad1-4e7a-7e44-02783f1f3c2c&quot;
+        &quot;name&quot;: &quot;scale0&quot;,
+        &quot;description&quot;: &quot;A great scale description.&quot;,
+        &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+    }
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="get-a-single-scale">Get a single scale</h3>
+
+<pre><code>GET /api/v1/library/scales/&lt;id&gt;
+</code></pre>
+
+<p>Returns a scale object with its name, description and matching rules entries.</p>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">{
+    &quot;id&quot;: &quot;95e7f164-9ad1-4e7a-7e44-02783f1f3c2c&quot;
+    &quot;name&quot;: &quot;scale0&quot;,
+    &quot;description&quot;: &quot;A great scale description.&quot;,
+    &quot;value&quot;: 1.345
+}
+</code></pre>
+
+<h3 id="create-a-new-scale">Create a new scale</h3>
+
+<pre><code>POST /api/v1/library/scales/
+</code></pre>
+
+<p>Takes a scale from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the
+newly created item location.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>inherit</code> (<em>string</em>): the UUID of the scale item to inherit from</li>
+</ul>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>201 Created:</strong> the scale item has been successfully created</li>
+<li><strong>404 Not Found:</strong> the scale item to inherit from does not exist</li>
+<li><strong>409 Conflict:</strong> another scale with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single scale</em> above for scale object format.</p>
+
+<h3 id="update-an-existing-scale">Update an existing scale</h3>
+
+<pre><code>PUT /library/scales/&lt;id&gt;
+</code></pre>
+
+<p>Takes a scale from the request body and overwrites an existing library scale item.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to overwrite does not exist</li>
+<li><strong>409 Conflict:</strong> another scale with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single scale</em> above for scale object format.</p>
+
+<h3 id="delete-an-existing-scale">Delete an existing scale</h3>
+
+<pre><code>DELETE /library/scales/&lt;id&gt;
+</code></pre>
+
+<p>Removes an existing scale item from the library.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to delete does not exist</li>
+</ul>
+
+<h3 id="get-scales-values">Get scales values</h3>
+
+<pre><code>GET /api/v1/library/scales/values
+</code></pre>
+
+<p>Returns an array of objects listing the available scales along with their names and values.</p>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">[
+    {
+        &quot;name&quot;: &quot;scale0&quot;,
+        &quot;value&quot;: 1.234
+    }
+]
+</code></pre>
+
+<h2 id="units-new-in-version-0-2">Units <em>new in version 0.2</em></h2>
+
+<h3 id="list-units">List units</h3>
+
+<pre><code>GET /api/v1/library/units/
+</code></pre>
+
+<p>Returns an array of objects listing the available units.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on group names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">[
+    {
+        &quot;id&quot;: &quot;8d07dedd-cfaf-4041-a625-12a390e76f86&quot;
+        &quot;name&quot;: &quot;unit0&quot;,
+        &quot;description&quot;: &quot;A great unit description.&quot;,
+        &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+    }
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="get-a-single-unit">Get a single unit</h3>
+
+<pre><code>GET /api/v1/library/units/&lt;id&gt;
+</code></pre>
+
+<p>Returns a unit object with its name, description and matching rules entries.</p>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">{
+    &quot;id&quot;: &quot;8d07dedd-cfaf-4041-a625-12a390e76f86&quot;
+    &quot;name&quot;: &quot;unit0&quot;,
+    &quot;description&quot;: &quot;A great unit description.&quot;,
+    &quot;value&quot;: 1.345
+}
+</code></pre>
+
+<h3 id="create-a-new-unit">Create a new unit</h3>
+
+<pre><code>POST /api/v1/library/units/
+</code></pre>
+
+<p>Takes a unit from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the
+newly created item location.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>inherit</code> (<em>string</em>): the UUID of the unit item to inherit from</li>
+</ul>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>201 Created:</strong> the unit item has been successfully created</li>
+<li><strong>404 Not Found:</strong> the unit item to inherit from does not exist</li>
+<li><strong>409 Conflict:</strong> another unit with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single unit</em> above for unit object format.</p>
+
+<h3 id="update-an-existing-unit">Update an existing unit</h3>
+
+<pre><code>PUT /library/units/&lt;id&gt;
+</code></pre>
+
+<p>Takes a unit from the request body and overwrites an existing library unit item.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to overwrite does not exist</li>
+<li><strong>409 Conflict:</strong> another unit with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single unit</em> above for unit object format.</p>
+
+<h3 id="delete-an-existing-unit">Delete an existing unit</h3>
+
+<pre><code>DELETE /library/units/&lt;id&gt;
+</code></pre>
+
+<p>Removes an existing unit item from the library.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to delete does not exist</li>
+</ul>
+
+<h3 id="get-units-labels">Get units labels</h3>
+
+<pre><code>GET /api/v1/library/units/labels
+</code></pre>
+
+<p>Returns an array of objects listing the available units along with their names and labels.</p>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">[
+    {
+        &quot;name&quot;: &quot;unit0&quot;,
+        &quot;label&quot;: &quot;A&quot;
+    }
+]
+</code></pre>
+
+<h2 id="graphs">Graphs</h2>
+
+<h3 id="list-graphs">List graphs</h3>
+
+<pre><code>GET /api/v1/library/graphs/
+</code></pre>
+
+<p>Returns an array of objects listing the available graphs.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>collection</code> (<em>string</em>): the identifier of the collection to filter on</li>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on graph names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
+<li><code>templates</code> (<em>integer</em>): flag for returning graph templates (<code>1</code> = yes)</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">[
+    {
+        &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
+        &quot;name&quot;: &quot;graph0&quot;,
+        &quot;description&quot;: &quot;A great graph description.&quot;,
+        &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+    }
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="get-a-single-graph">Get a single graph</h3>
+
+<pre><code>GET /api/v1/library/graphs/&lt;id&gt;
+</code></pre>
+
+<p>Returns a graph object with its name, description, type and groups definitions.</p>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">{
+    &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
+    &quot;name&quot;: &quot;graph0&quot;,
+    &quot;description&quot;: &quot;A great graph description.&quot;,
+    &quot;type&quot;: 1,
+    &quot;groups&quot;: [
+        {
+            &quot;name&quot;: &quot;serie0&quot;,
+            &quot;type&quot;: 0,
+            &quot;stack_id&quot;: 0,
+            &quot;series&quot;: [
+                {
+                    &quot;name&quot;: &quot;serie0&quot;,
+                    &quot;origin&quot;: &quot;origin0&quot;,
+                    &quot;source&quot;: &quot;source0&quot;,
+                    &quot;metric&quot;: &quot;metric0&quot;,
+                    &quot;options&quot;: {
+                        &quot;scale&quot;: 1.234
+                    }
+                }
+            ],
+            &quot;options&quot;: {}
+        }
+    ],
+    &quot;stack_mode&quot;: 0,
+    &quot;unit_legend&quot;: &quot;A great legend&quot;,
+    &quot;unit_type&quot;: 2
+}
+</code></pre>
+
+<p>or for a graph template instance:</p>
+
+<pre><code class="language-javascript">{
+    &quot;id&quot;: &quot;34a15691-5872-462f-7c42-177c18dd8a00&quot;,
+    &quot;name&quot;: &quot;server1.example.net - load&quot;,
+    &quot;description&quot;: &quot;Load average for server1.example.net&quot;,
+    &quot;template&quot;: false,
+    &quot;link&quot;: &quot;dcde7cf8-f637-4303-592e-402ba3e9f017&quot;,
+    &quot;attributes&quot;: {
+        &quot;source&quot;: &quot;server1.example.net&quot;
+    }
+}
+</code></pre>
+
+<p>Graph types:</p>
+
+<ul>
+<li><code>1</code>: area</li>
+<li><code>2</code>: line</li>
+</ul>
+
+<p>Stack modes:</p>
+
+<ul>
+<li><code>1</code>: none</li>
+<li><code>2</code>: mormal</li>
+<li><code>3</code>: percent</li>
+</ul>
+
+<p>Unit types:</p>
+
+<ul>
+<li><code>1</code>: fixed</li>
+<li><code>2</code>: metric system</li>
+</ul>
+
+<p>Group and serie options:</p>
+
+<ul>
+<li><code>scale</code> (<em>float</em>): scale factor to apply on a serie or a group</li>
+<li><code>unit</code> (<em>string</em>): legend label to set for a serie or a group</li>
+</ul>
+
+<h3 id="create-a-new-graph">Create a new graph</h3>
+
+<pre><code>POST /api/v1/library/graphs/
+</code></pre>
+
+<p>Takes a graph from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the
+newly created item location.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>inherit</code> (<em>string</em>): the UUID of the graph item to inherit from</li>
+</ul>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>201 Created:</strong> the graph item has been successfully created</li>
+<li><strong>404 Not Found:</strong> the graph item to inherit from does not exist</li>
+<li><strong>409 Conflict:</strong> another graph with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single graph</em> above for graph object formats.</p>
+
+<h4 id="templates-new-in-version-0-3">Templates <em>new in version 0.3</em></h4>
+
+<p>To create a graph template, <code>template</code> property must be set to <code>true</code>. The following properties are suitable to
+template expansion:</p>
+
+<ul>
+<li>graph: <code>title</code> and <code>description</code></li>
+<li>series: <code>origin</code>, <code>source</code> and <code>metric</code></li>
+</ul>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> Template attributes must follow Go
+template syntax (e.g. <code>{{ .attr1 }}</code>).</div>
+
+<p>To instantiate a template, both <code>link</code> and <code>attributes</code> properties must be provided. Being respectively, the identifier
+of the template being instantiated and an object specifying attributes values (see <em>Get a single graph</em> example above).</p>
+
+<h3 id="update-an-existing-graph">Update an existing graph</h3>
+
+<pre><code>PUT /library/graphs/&lt;id&gt;
+</code></pre>
+
+<p>Takes a graph from the request body and overwrites an existing library graph item.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to overwrite does not exist</li>
+<li><strong>409 Conflict:</strong> another group with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single graph</em> above for graph object format.</p>
+
+<h3 id="delete-an-existing-graph">Delete an existing graph</h3>
+
+<pre><code>DELETE /library/graphs/&lt;id&gt;
+</code></pre>
+
+<p>Removes an existing graph item from the library.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to delete does not exist</li>
+</ul>
+
+<h2 id="collections">Collections</h2>
+
+<h3 id="list-collections">List collections</h3>
+
+<pre><code>GET /api/v1/library/collections/
+</code></pre>
+
+<p>Returns an array of objects listing the available collections.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>exclude</code> (<em>string</em>): the identifier of the collection to exclude from listing</li>
+<li><code>filter</code> (<em>string</em>): the <a href="/api/#filter-patterns">pattern</a> to apply on collection names</li>
+<li><code>limit</code> (<em>integer</em>): the maximum number of items to return</li>
+<li><code>offset</code> (<em>integer</em>): the offset to start fetching from</li>
+<li><code>parent</code> (<em>string</em>): the identifier of the parent collection to filter on (use the string <code>null</code> for top-level
+collections)</li>
+</ul>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">[
+    {
+        &quot;id&quot;: &quot;916f955a-752c-468f-61b3-ace173a6d2da&quot;,
+        &quot;name&quot;: &quot;collection0&quot;,
+        &quot;description&quot;: &quot;A great collection description.&quot;,
+        &quot;parent&quot;: null,
+        &quot;has_children&quot;: false,
+        &quot;modified&quot;: &quot;2013-01-02T12:34:56+01:00&quot;
+    }
+]
+</code></pre>
+
+<p>A <code>X-Total-Records</code> HTTP header containing the total number of records is returned along with the response.</p>
+
+<h3 id="get-a-single-collection">Get a single collection</h3>
+
+<pre><code>GET /api/v1/library/collections/&lt;id&gt;
+</code></pre>
+
+<p>Returns a collection object with its name, description and graphs entries.</p>
+
+<p>Response:</p>
+
+<pre><code class="language-javascript">{
+    &quot;id&quot;: &quot;916f955a-752c-468f-61b3-ace173a6d2da&quot;,
+    &quot;name&quot;: &quot;collection0&quot;,
+    &quot;description&quot;: &quot;A great collection description.&quot;,
+    &quot;entries&quot;: [
+        {
+            &quot;id&quot;: &quot;909fe2df-3064-4ee2-5f52-4eca2c953c76&quot;,
+            &quot;options&quot;: {
+                &quot;title&quot;: &quot;Chart title&quot;,
+                &quot;sample&quot;: &quot;400&quot;,
+                &quot;range&quot;: &quot;-30d&quot;,
+                &quot;percentiles&quot;: &quot;95&quot;,
+                &quot;constants&quot;: &quot;&quot;
+            }
+        }
+    ]
+}
+</code></pre>
+
+<h3 id="create-a-new-collection">Create a new collection</h3>
+
+<pre><code>POST /api/v1/library/collections/
+</code></pre>
+
+<p>Takes a collection from the request body and stores it in the library, then returns a <code>Location</code> HTTP header pointing to the
+newly created item location.</p>
+
+<p>Optional parameters:</p>
+
+<ul>
+<li><code>inherit</code> (<em>string</em>): the UUID of the collection item to inherit from</li>
+</ul>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>201 Created:</strong> the collection item has been successfully created</li>
+<li><strong>404 Not Found:</strong> the collection item to inherit from does not exist</li>
+<li><strong>409 Conflict:</strong> another collection with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single collection</em> above for group object format.</p>
+
+<h3 id="update-an-existing-collection">Update an existing collection</h3>
+
+<pre><code>PUT /library/collections/&lt;id&gt;
+</code></pre>
+
+<p>Takes a collection from the request body and overwrites an existing library collection item.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to overwrite does not exist</li>
+<li><strong>409 Conflict:</strong> another group with the same name already exists</li>
+</ul>
+
+<p>See <em>Get a single collection</em> above for group object format.</p>
+
+<h3 id="delete-an-existing-collection">Delete an existing collection</h3>
+
+<pre><code>DELETE /library/collections/&lt;id&gt;
+</code></pre>
+
+<p>Removes an existing collection item from the library.</p>
+
+<p>Additional status codes:</p>
+
+<ul>
+<li><strong>404 Not Found:</strong> the item to delete does not exist</li>
+</ul>
+
+<h3 id="examples">Examples</h3>
+
+<p>To create a source group using the API:</p>
+
+<pre><code>$ curl -i -X POST -H 'Content-Type: application/json' -d '{
+    &quot;name&quot;: &quot;group0&quot;,
+    &quot;description&quot;: &quot;A great group description.&quot;,
+    &quot;entries&quot;: [
+        {
+            &quot;origin&quot;: &quot;origin0&quot;,
+            &quot;pattern&quot;: &quot;glob:example.*&quot;
+        }
+    ]
+}' http://127.0.0.1:12003/api/v1/library/sourcegroups/
+HTTP/1.1 201 Created
+Cache-Control: private, max-age=0
+Date: Thu, 15 Jan 2015 18:01:05 GMT
+Expires: Thu, 15 Jan 2015 18:01:05 GMT
+Location: /api/v1/library/sourcegroups/9c1133ee-b685-4735-4cf9-529c7eb4bd23
+Content-Length: 0
+Content-Type: text/plain; charset=utf-8
+</code></pre>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> don't specify a <code>id</code>
+parameter when creating a resource, the back-end assigns an unique identifier at creation.</div>
+
+<p>The URI of the resource created is provided by the <code>Location</code> header. To retrieve the group just created:</p>
+
+<pre><code>$ curl http://127.0.0.1:12003/api/v1/library/sourcegroups/9c1133ee-b685-4735-4cf9-529c7eb4bd23
+{&quot;id&quot;:&quot;9c1133ee-b685-4735-4cf9-529c7eb4bd23&quot;,&quot;name&quot;:&quot;group0&quot;,&quot;description&quot;:&quot;A great group description.&quot;,&quot;entries&quot;:[{&quot;pattern&quot;:&quot;glob:example.*&quot;,&quot;origin&quot;:&quot;origin0&quot;}]}
+</code></pre>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#library-api">Library API</a>
+<ul>
+<li><a href="#groups">Groups</a>
+<ul>
+<li><a href="#list-groups">List groups</a></li>
+<li><a href="#get-a-single-group">Get a single group</a></li>
+<li><a href="#create-a-new-group">Create a new group</a></li>
+<li><a href="#update-an-existing-group">Update an existing group</a></li>
+<li><a href="#delete-an-existing-group">Delete an existing group</a></li>
+<li><a href="#expand-query-tuples">Expand query tuples</a></li>
+</ul></li>
+<li><a href="#scales">Scales</a>
+<ul>
+<li><a href="#list-scales">List scales</a></li>
+<li><a href="#get-a-single-scale">Get a single scale</a></li>
+<li><a href="#create-a-new-scale">Create a new scale</a></li>
+<li><a href="#update-an-existing-scale">Update an existing scale</a></li>
+<li><a href="#delete-an-existing-scale">Delete an existing scale</a></li>
+<li><a href="#get-scales-values">Get scales values</a></li>
+</ul></li>
+<li><a href="#units-new-in-version-0-2">Units <em>new in version 0.2</em></a>
+<ul>
+<li><a href="#list-units">List units</a></li>
+<li><a href="#get-a-single-unit">Get a single unit</a></li>
+<li><a href="#create-a-new-unit">Create a new unit</a></li>
+<li><a href="#update-an-existing-unit">Update an existing unit</a></li>
+<li><a href="#delete-an-existing-unit">Delete an existing unit</a></li>
+<li><a href="#get-units-labels">Get units labels</a></li>
+</ul></li>
+<li><a href="#graphs">Graphs</a>
+<ul>
+<li><a href="#list-graphs">List graphs</a></li>
+<li><a href="#get-a-single-graph">Get a single graph</a></li>
+<li><a href="#create-a-new-graph">Create a new graph</a>
+<ul>
+<li><a href="#templates-new-in-version-0-3">Templates <em>new in version 0.3</em></a></li>
+</ul></li>
+<li><a href="#update-an-existing-graph">Update an existing graph</a></li>
+<li><a href="#delete-an-existing-graph">Delete an existing graph</a></li>
+</ul></li>
+<li><a href="#collections">Collections</a>
+<ul>
+<li><a href="#list-collections">List collections</a></li>
+<li><a href="#get-a-single-collection">Get a single collection</a></li>
+<li><a href="#create-a-new-collection">Create a new collection</a></li>
+<li><a href="#update-an-existing-collection">Update an existing collection</a></li>
+<li><a href="#delete-an-existing-collection">Delete an existing collection</a></li>
+<li><a href="#examples">Examples</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

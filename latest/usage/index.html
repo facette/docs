@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Using Facette — Facette</title>
+	<meta name="description" content="Usage of Facette time series data visualization software">
+	<meta name="keywords" content="backup,catalog,documentation,dump,facette,facettectl,library,maintenance,refresh,restore,service,usage,utility">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/latest/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/configuration/">Configuration</a>
+			</li>
+			<li class="menuitem active">
+				<a href="/latest/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/api/">API Documentation</a>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="using-facette">Using Facette</h1>
+
+<p>Once installed, please make sure either the <code>facette</code> binary is available in your <code>PATH</code> or provide the full path to
+the binary. Then display its usage by running:</p>
+
+<pre><code>$ facette -h
+Time series data visualization software
+
+Usage:
+      facette [FLAG]...
+
+Flags:
+      -c, --config   Configuration file path (default: /etc/facette/facette.yaml)
+      -h, --help     Display this help and exit
+      -V, --version  Display version information and exit
+</code></pre>
+
+<h2 id="starting-the-service">Starting the Service</h2>
+
+<p>To start the service, simply run the <code>facette</code> command:</p>
+
+<pre><code>$ facette -c path/to/facette.yaml
+</code></pre>
+
+<div class="warning"><span class="fa fa-warning"></span> <strong>Attention:</strong> Facette doesn't need to run as
+<strong>root</strong> unless you want it to bind to a port lower than 1024.</div>
+
+<p>If you installed Facette through a distribution package, it usually provides an init script to manage the service,
+please refer to your distribution service management system.</p>
+
+<h2 id="maintenance-tasks">Maintenance Tasks</h2>
+
+<p>The various maintenance tasks to run on running Facette instances can be achieve via the <code>facettectl</code> utility. It can
+work on both local or remote Facette instances (see <code>-a</code> flag).</p>
+
+<pre><code>$ facettectl -h
+Facette control utility
+
+Usage:
+      facettectl [FLAG|SET]...
+
+Flags:
+      -a, --address  Upstream socket address (default: http://localhost:12003)
+      -h, --help     Display this help and exit
+      -t, --timeout  Upstream connection timeout (default: 30)
+      -V, --version  Display version information and exit
+      -q, --quiet    Run in quiet mode
+
+Sets:
+      catalog      Manage catalog operations
+      library      Manage library operations
+</code></pre>
+
+<h3 id="refreshing-catalog">Refreshing catalog</h3>
+
+<p>To refresh all the providers configured that are enabled on a Facette instance, run the following command:</p>
+
+<pre><code>$ facettectl catalog refresh
+</code></pre>
+
+<h3 id="dumping-and-restoring-library">Dumping and restoring library</h3>
+
+<p>For backup and restoration purpose, the <code>facettectl</code> can dump Facette&rsquo;s library into a compressed tarball, just run:</p>
+
+<pre><code>$ facettectl library dump -o path/to/dump.tar.gz
+</code></pre>
+
+<p>To restore an existing dump (by default the existing library will be replaced, use
+<code>-m</code> to merge), execute the following command:</p>
+
+<pre><code>$ facettectl library restore -i path/to/dump.tar.gz
+</code></pre>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> library items are dumped giving a
+specific order to prevent issues when restoring items relying on preexisting ones. <u>Edit the dump at your own
+risks!</u></div>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#using-facette">Using Facette</a>
+<ul>
+<li><a href="#starting-the-service">Starting the Service</a></li>
+<li><a href="#maintenance-tasks">Maintenance Tasks</a>
+<ul>
+<li><a href="#refreshing-catalog">Refreshing catalog</a></li>
+<li><a href="#dumping-and-restoring-library">Dumping and restoring library</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

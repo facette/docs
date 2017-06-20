@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Provider Connectors — Facette</title>
+	<meta name="keywords" content="catalog,configuration,connector,documentation,facette,filter,graphite,kairosdb,https,influxdb,origin,provider,regexp,rrdcached,rrdtool,settings,tls,upstream">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/0.3/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/configuration/">Configuring Facette</a>
+				<ul class="menu">
+					<li class="menuitem active"><a href="/0.3/configuration/connectors/">Provider Connectors</a></li>
+					<li class="menuitem"><a href="/0.3/configuration/filters/">Filters</a></li>
+				</ul>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/api/">API Documentation</a>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="provider-connectors">Provider Connectors</h1>
+
+<h2 id="rrd">RRD</h2>
+
+<p>The <strong>RRD</strong> connector (type <code>rrd</code>) can read <a href="https://oss.oetiker.ch/rrdtool">RRDtool</a> files to extract stored metrics.</p>
+
+<p>Example <em>provider</em> definition using the <strong>RRD</strong> connector:</p>
+
+<pre><code class="language-javascript">{
+    &quot;connector&quot;: {
+        &quot;type&quot;: &quot;rrd&quot;,
+        &quot;path&quot;: &quot;/var/lib/collectd/rrd&quot;,
+        &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^/]+)/(?P&lt;metric&gt;.+).rrd&quot;,
+        &quot;daemon&quot;: &quot;unix:/var/run/rrdcached.sock&quot;
+    },
+
+    …
+}
+</code></pre>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> in JSON you need to double the
+escaping character <code>\</code> when writing regular expressions
+(e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</div>
+
+<p>Mandatory settings:</p>
+
+<ul>
+<li><code>path</code> (type <em>string</em>): base path on the local filesystem where the RRDtool files are stored</li>
+<li><code>pattern</code> (type <em>string</em>): regular expression (<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>) describing the pattern mapping <em>sources</em>/<em>metrics</em>
+to the filesystem structure under the base directory defined with the <code>path</code> setting.
+<code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a filesystem path to these objects</li>
+</ul>
+
+<p>Optional settings:</p>
+
+<ul>
+<li><code>daemon</code> (type <em>string</em>): rrdcached daemon socket address, see <code>-l</code> option in <code>rrdcached(1)</code> manual for details</li>
+</ul>
+
+<h2 id="graphite">Graphite</h2>
+
+<p>The <strong>Graphite</strong> connector (type <code>graphite</code>) can query a <a href="https://graphite.readthedocs.org/en/latest/render_api.html">Graphite-web HTTP API</a> to access metrics received by its
+Carbon daemon.</p>
+
+<p>You have to set a regular expression pattern that matches the Carbon <a href="https://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-plaintext-protocol">metric path format</a> in order to translate
+original Graphite series names into catalog <em>source</em> and <em>metrics</em> (e.g. for a metric path
+<code>www1.network.eth0.if_octets.tx</code>, the <em>source</em> would be &ldquo;www1&rdquo; and the <em>metric</em> &ldquo;network.eth0.if_octets.tx&rdquo;).</p>
+
+<p>Example <em>provider</em> definition using the <strong>Graphite</strong> connector:</p>
+
+<pre><code class="language-javascript">{
+    &quot;connector&quot;: {
+        &quot;type&quot;: &quot;graphite&quot;,
+        &quot;url&quot;: &quot;http://my.graphite.server.example.net/&quot;,
+        &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^\\.]+)\\.(?P&lt;metric&gt;.+)&quot;
+    },
+
+    …
+}
+</code></pre>
+
+<p>Mandatory settings:</p>
+
+<ul>
+<li><code>url</code> (type <em>string</em>): URL of the Graphite webapp (without the <code>/api</code> path)</li>
+<li><code>pattern</code> (type <em>string</em>): regular expression (<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>) describing the pattern mapping <em>sources</em>/<em>metrics</em>
+to the metrics series names.
+<code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a series name to these objects</li>
+</ul>
+
+<p>Optional settings:</p>
+
+<ul>
+<li><code>allow_insecure_tls</code> (type <em>boolean</em>): allow invalid or expired SSL certificates when accessing the Graphite API
+through HTTPS, (default: <code>false</code>)</li>
+<li><code>timeout</code> (type <em>integer</em>): delay in seconds before declaring a timeout (default: <code>10</code>)</li>
+</ul>
+
+<h2 id="kairosdb">KairosDB</h2>
+
+<p>The <strong>KairosDB</strong> connector (type <code>kairosdb</code>) can query a <a href="http://kairosdb.github.io/kairosdocs/restapi/">KairosDB REST API</a> to access time series.</p>
+
+<p><em>source</em> and <em>metric</em> are modelled distinguishable in KairosDB. The <em>metric</em> is accessible directly and the <em>source</em> is modelled as a named tag list for each metric. The list defaults to <code>[&quot;host&quot;, &quot;server&quot;, &quot;device&quot;]</code>. Means that <em>source</em> is built from metrics <code>host</code> tag or <code>server</code> tag if <code>host</code> is not applied.</p>
+
+<p>Because C*/KairosDB could store high frequency series, it is possible to retrieve plots by aggregation. The default aggregation for each metric is <code>none</code>. Could be overwritten by <code>default_aggregator</code>.</p>
+
+<p>Example <em>provider</em> definition using the <strong>KairosDB</strong> connector:</p>
+
+<pre><code class="language-javascript">{
+    &quot;connector&quot;: {
+        &quot;type&quot;: &quot;kairosdb&quot;,
+        &quot;url&quot;: &quot;http://localhost:8080/&quot;,
+        &quot;source_tags&quot;: [ &quot;host&quot;, &quot;name&quot; ],
+        &quot;start_relative&quot;: { &quot;value&quot;: 6, &quot;unit&quot;: &quot;months&quot; },
+        &quot;aggregators&quot;: [
+          { &quot;metric&quot;: &quot;^entropy\\.&quot;,
+            &quot;aggregator&quot;: { &quot;name&quot;: &quot;min&quot;,
+                            &quot;sampling&quot;: { &quot;value&quot;: 5, &quot;unit&quot;: &quot;minutes&quot; } } },
+          { &quot;metric&quot;: &quot;\\.[tr]x$&quot;,
+            &quot;aggregator&quot;: { &quot;name&quot;: &quot;max&quot;,
+                            &quot;sampling&quot;: { &quot;value&quot;: 5, &quot;unit&quot;: &quot;minutes&quot; } } }
+        ]
+    },
+
+    …
+}
+</code></pre>
+
+<p>Mandatory settings:</p>
+
+<ul>
+<li><code>url</code> (type <em>string</em>): URL of the KairosDB REST API (without the <code>/api/...</code> path)</li>
+</ul>
+
+<p>Optional settings:</p>
+
+<ul>
+<li><code>source_tags</code> (type <em>string Array</em>): Define the metric tags that defines <em>sources</em>. Ordering is important. First hit builds the <em>source</em>.</li>
+<li><code>{start,end}_{absolute,relative}</code> (type <em>JSON Object</em>): Bounds defining the time period for metrics population. Syntax and semantics is one and the same than described in <a href="http://kairosdb.github.io/kairosdocs/restapi/QueryMetrics.html">KairosDB API documentation</a>. The objects are passed as-is to KairosDB without further syntax checking.</li>
+<li><code>aggregators</code> (type <em>JSON Array</em>): Defines an array of aggregation functions per <em>metric</em> pattern. Ordering is important. First match is applied. Matches runs against the <em>original</em> metric name. See <a href="http://kairosdb.github.io/kairosdocs/restapi/QueryMetrics.html">KairosDB API documentation</a> for aggregator details. The <code>aggregator</code> object is passed as-is to KairosDB without further syntax checking.</li>
+<li><code>default_aggregator</code> (type <em>JSON Object</em>): Sets a default aggregation function for each metric. See <a href="http://kairosdb.github.io/kairosdocs/restapi/QueryMetrics.html">KairosDB API documentation</a> for details. The object is passed as-is to KairosDB without further syntax checking.</li>
+<li><code>allow_insecure_tls</code> (type <em>boolean</em>): allow invalid or expired SSL certificates when accessing the KairosDB API
+through HTTPS, (default: <code>false</code>)</li>
+<li><code>timeout</code> (type <em>integer</em>): delay in seconds before declaring a timeout (default: <code>10</code>)</li>
+</ul>
+
+<h2 id="influxdb">InfluxDB</h2>
+
+<p>The <strong>InfluxDB</strong> connector (type <code>influxdb</code>) can query a InfluxDB database through the <a href="http://influxdb.com/docs/v0.8/api/reading_and_writing_data.html">HTTP API</a> to access stored
+metrics.</p>
+
+<p>You have to set a regular expression pattern that matches the InfluxDB series names in order to translate
+them into catalog <em>source</em> and <em>metrics</em> (e.g. for a series named <code>webapp1.req.5xx</code>, the <em>source</em> would be &ldquo;webapp1&rdquo;
+and the <em>metric</em> &ldquo;req.5xx&rdquo;).</p>
+
+<p>Example <em>provider</em> definition using the <strong>Graphite</strong> connector:</p>
+
+<pre><code class="language-javascript">{
+    &quot;connector&quot;: {
+        &quot;type&quot;: &quot;influxdb&quot;,
+        &quot;host&quot;: &quot;my.influxdb.server.example.net:8086&quot;,
+        &quot;database&quot;: &quot;webapps&quot;,
+        &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^\\.]+)\\.(?P&lt;metric&gt;.+)&quot;
+    },
+
+    …
+}
+</code></pre>
+
+<p>Mandatory settings:</p>
+
+<ul>
+<li><code>database</code> (type <em>string</em>): InfluxDB database to query series from</li>
+<li><code>pattern</code> (type <em>string</em>): regular expression (<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>) describing the pattern mapping <em>sources</em>/<em>metrics</em>
+to the metrics series names.
+<code>&lt;source&gt;</code> and <code>&lt;metric&gt;</code> regexp named group are mandatory to effectively map a series name to these objects</li>
+</ul>
+
+<p>Optional settings:</p>
+
+<ul>
+<li><code>host</code> (type <em>string</em>): address of the InfluxDB API (default: <code>&quot;localhost:8086&quot;</code>)</li>
+<li><code>username</code> (type <em>string</em>): username to connect to the database (default: <code>&quot;root&quot;</code>)</li>
+<li><code>password</code> (type <em>string</em>): password to connect to the database (default: <code>&quot;root&quot;</code>)</li>
+<li><code>use_tls</code> (type <em>boolean</em>): use SSL/TLS to connect to the InfluxDB API (default: <code>false</code>)</li>
+</ul>
+
+<h2 id="facette">Facette</h2>
+
+<p>The <strong>Facette</strong> connector (type <code>facette</code>) can query another Facette instance to retrieve and include the upstream
+catalog to inherit its <em>origins</em>, <em>sources</em> and <em>metrics</em>; the connector then forwards plot queries to the upstream
+instance when remote metrics are requested in a local graph definition.</p>
+
+<p>This feature can be useful in various cases, for exemple when your metrics are sharded into several nodes for
+performance/space reasons, or if your want to aggregate metrics from different tools in the same Facette instance.</p>
+
+<p>Example <em>provider</em> definition using the <strong>Facette</strong> connector:</p>
+
+<pre><code class="language-javascript">{
+    &quot;connector&quot;: {
+        &quot;type&quot;: &quot;facette&quot;,
+        &quot;upstream&quot;: &quot;http://demo.facette.io/&quot;
+    },
+
+    …
+}
+</code></pre>
+
+<p>Mandatory settings:</p>
+
+<ul>
+<li><code>upstream</code> (type <em>string</em>): URL of the upstream Facette instance (without the <code>/api</code> path)</li>
+</ul>
+
+<p>Optional settings:</p>
+
+<ul>
+<li><code>timeout</code> (type <em>integer</em>): delay in seconds before declaring a timeout (default: <code>10</code>)</li>
+</ul>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#provider-connectors">Provider Connectors</a>
+<ul>
+<li><a href="#rrd">RRD</a></li>
+<li><a href="#graphite">Graphite</a></li>
+<li><a href="#kairosdb">KairosDB</a></li>
+<li><a href="#influxdb">InfluxDB</a></li>
+<li><a href="#facette">Facette</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

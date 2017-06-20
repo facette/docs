@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Using Facette — Facette</title>
+	<meta name="description" content="Usage of Facette time series data visualization software (version 0.3)">
+	<meta name="keywords" content="apache,facette,log,nginx,reverse proxy,server,ssl,tls,usage">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/0.3/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/configuration/">Configuring Facette</a>
+			</li>
+			<li class="menuitem active">
+				<a href="/0.3/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/api/">API Documentation</a>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="using-facette">Using Facette</h1>
+
+<p>Once built, please make sure either the <code>facette</code> binary is available in your <code>PATH</code> or provide the full path to the
+binary.</p>
+
+<pre><code>$ facette -h
+Usage: facette [OPTIONS]
+
+Options:
+   -L  logging level (error, warning, notice, info, debug)
+   -V  display software version and exit
+   -c  configuration file path
+   -h  display this help and exit
+   -l  log file path
+</code></pre>
+
+<p>To run the server, simply execute the command (<code>facette</code> doesn&rsquo;t need to be run as root unless you specify a <code>bind</code>
+port lower than 1024):</p>
+
+<pre><code>$ facette -c path/to/facette.json
+</code></pre>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> if the path to the configuration file
+is omitted, the default <code>/etc/facette/facette.json</code> one will be loaded. If the path to the log file is
+omitted, output will be written to <em>stderr</em>.</div>
+
+<p>Distribution packages usually provide an init script to manage the service, please refer to your distribution-specific
+service management system.</p>
+
+<h2 id="facette-administration-utility">Facette administration utility</h2>
+
+<p>Using the <code>facettectl</code> utility shipped with the server, you can perform various administrative actions on a running
+Facette instance:</p>
+
+<pre><code>$ facettectl -h
+Usage: facettectl [OPTIONS] COMMAND
+
+Commands:
+   refresh  refresh server catalog and library
+
+Options:
+   -V  display software version and exit
+   -c  configuration file path
+   -h  display this help and exit
+</code></pre>
+
+<h2 id="use-facette-with-a-http-reverse-proxy">Use Facette with a HTTP reverse-proxy</h2>
+
+<p>You can use a HTTP reverse-proxy in front of Facette if you prefer not to expose the web application directly, for
+example if you want to secure it with SSL/TLS or enforce user access control.</p>
+
+<p>Here are basic configuration sample to get you started:</p>
+
+<h3 id="nginx">Nginx</h3>
+
+<pre><code>server {
+    listen 80;
+
+    server_name facette.example.net;
+
+    location / {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://localhost:12003;
+    }
+}
+</code></pre>
+
+<h3 id="apache">Apache</h3>
+
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName facette.example.net
+
+    RequestHeader set X-Forwarded-Proto &quot;http&quot;
+
+    ProxyRequests Off
+    ProxyPreserveHost On
+    ProxyPass / http://localhost:12003/
+    ProxyPassReverse / http://localhost:12003/
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> <code>mod_proxy</code> and
+<code>mod_proxy_http</code> modules must be enabled. The <code>X-Forwarded-Proto</code> header must be passed in order
+to make <em>OpenSearch</em> work properly when using HTTPS (and requires <code>mod_headers</code> to be enabled in
+Apache).</div>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#using-facette">Using Facette</a>
+<ul>
+<li><a href="#facette-administration-utility">Facette administration utility</a></li>
+<li><a href="#use-facette-with-a-http-reverse-proxy">Use Facette with a HTTP reverse-proxy</a>
+<ul>
+<li><a href="#nginx">Nginx</a></li>
+<li><a href="#apache">Apache</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

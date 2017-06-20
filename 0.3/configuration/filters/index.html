@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Filters — Facette</title>
+	<meta name="keywords" content="catalog,configuration,connector,discard,documentation,facette,filter,origin,provider,regexp,rewrite,settings,sieve">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/0.3/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/configuration/">Configuring Facette</a>
+				<ul class="menu">
+					<li class="menuitem"><a href="/0.3/configuration/connectors/">Provider Connectors</a></li>
+					<li class="menuitem active"><a href="/0.3/configuration/filters/">Filters</a></li>
+				</ul>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/0.3/api/">API Documentation</a>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="filters">Filters</h1>
+
+<p>Facette <em>filters</em> allow you to change how <em>origins</em>, <em>sources</em> and <em>metrics</em> appear in the Facette catalog, and
+discard the ones you don&rsquo;t want to deal with. The <code>filters</code> section of a <em>provider</em> definition defines rules that are
+evaluated at <em>origins</em> inventory, renaming or discarding specific <em>sources</em> or <em>metrics</em> using regular expressions
+(<a href="https://code.google.com/p/re2/wiki/Syntax">RE2 syntax</a>).</p>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> in JSON you need to double the
+escaping character <code>\</code> when writing regular expressions
+(e.g. <code>\d</code>&nbsp;→&nbsp;<code>\\d</code>).</div>
+
+<p>Filter rule settings:</p>
+
+<ul>
+<li><code>action</code> (<em>string</em>): action to perform on the processed records (see &ldquo;Actions&rdquo; section)</li>
+<li><code>target</code> (<em>string</em>): object to target (<code>origin</code>, <code>source</code>, <code>metric</code> or <code>all</code>)</li>
+<li><code>pattern</code> (<em>string</em>): pattern to match</li>
+<li><code>into</code> (<em>string</em>): replacement pattern</li>
+</ul>
+
+<p>Supported <code>target</code> (<em>string</em>) values:</p>
+
+<ul>
+<li><code>all</code>: match filter <code>pattern</code> on all names (default)</li>
+<li><code>origin</code>: match filter <code>pattern</code> on <em>origin</em> names only</li>
+<li><code>source</code>: match filter <code>pattern</code> on <em>source</em> names only</li>
+<li><code>metric</code>: match filter <code>pattern</code> on <em>metric</em> names only</li>
+</ul>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> in case of a pattern regexp syntax
+error, the filter will continue its initialization and discard the bogus rule (a warning message will be output in the
+logs).</div>
+
+<h2 id="actions">Actions</h2>
+
+<h3 id="rewrite">rewrite</h3>
+
+<p>Rewrite all received records <code>target</code> field by replacing all occurrences of <code>pattern</code> with the string value
+specified in the <code>rewrite</code> setting (can also be regular expression captured groups references).</p>
+
+<p>Example: rewrite sources (such as &ldquo;host3_example_net&rdquo; becomes &ldquo;host3.example.net&rdquo;), and metrics (such as
+&ldquo;cpu-0.cpu.system.value&rdquo; becomes &ldquo;cpu.0.system&rdquo;):</p>
+
+<pre><code class="language-javascript">&quot;filters&quot;: [
+  { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;_&quot;, &quot;into&quot;: &quot;.&quot; },
+  { &quot;action&quot;: &quot;rewrite&quot;, &quot;target&quot;: &quot;metric&quot;, &quot;pattern&quot;: &quot;^cpu-(\\d+)\\.cpu-(.+)\\.value$&quot;, &quot;into&quot;: &quot;cpu.$1.$2&quot; }
+]
+</code></pre>
+
+<h3 id="discard">discard</h3>
+
+<p>Discard all received records whose <code>target</code> match <code>pattern</code>.</p>
+
+<p>Example: discard all entries whose <em>source</em> match the pattern &ldquo;host3.example.net&rdquo;</p>
+
+<pre><code class="language-javascript">&quot;filters&quot;: [
+  { &quot;action&quot;: &quot;discard&quot;, &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;host3\\.example\\.net&quot; }
+]
+</code></pre>
+
+<h3 id="sieve">sieve</h3>
+
+<p>The <em>sieve</em> action does the opposite of <em>discard</em>: it only lets records whose <code>target</code> match <code>pattern</code> pass through.</p>
+
+<p>Example: only keep records whose <em>source</em> names end with &ldquo;.prod.example.net&rdquo;</p>
+
+<pre><code class="language-javascript">&quot;filters&quot;: [
+  { &quot;action&quot;: &quot;sieve&quot;, &quot;target&quot;: &quot;source&quot;, &quot;pattern&quot;: &quot;\\.prod\\.example\\.net$&quot; }
+]
+</code></pre>
+
+<h2 id="precedence">Precedence</h2>
+
+<p>When evaluating filtering chains, the precedence of actions is the following:</p>
+
+<pre><code>Sieve &gt; Discard &gt; Rewrite
+</code></pre>
+
+<div class="note"><span class="fa fa-info-circle"></span> <strong>Note:</strong> filtering rules are evaluated in the
+order you define them, so watch out for ordering issues when defining "chained" rules, as a
+<em>origin</em>/<em>source</em>/<em>metric</em> name may have been previously rewritten and a subsequent rule pattern
+may not match its original value.</div>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#filters">Filters</a>
+<ul>
+<li><a href="#actions">Actions</a>
+<ul>
+<li><a href="#rewrite">rewrite</a></li>
+<li><a href="#discard">discard</a></li>
+<li><a href="#sieve">sieve</a></li>
+</ul></li>
+<li><a href="#precedence">Precedence</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+

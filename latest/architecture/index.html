@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Architecture of Facette — Facette</title>
+	<meta name="description" content="Architecture of Facette time series data visualization software">
+	<meta name="keywords" content="architecture,catalog,collectd,connector,documentation,facette,graph,graphite,influxdb,kairosdb,metric,munin,origin,provider,rrdtool,source,time series">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="/assets/images/favicon.png">
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<div class="logo">
+		<a href="/"><img src="/assets/images/logo.png" alt="Facette"></a>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<li class="menuitem"><a href="https://blog.facette.io/"><span class="fa fa-bullhorn"></span> <span class="label">Blog</span></a></li>
+			<li class="menuitem"><a href="https://twitter.com/FacetteIO"><span class="fa fa-twitter"></span> <span class="label">Twitter</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette/releases"><span class="fa fa-arrow-circle-o-down"></span> <span class="label">Downloads</span></a></li>
+			<li class="menuitem"><a href="https://github.com/facette/facette"><span class="fa fa-github"></span> <span class="label">View on Github</span></a></li>
+		</ul>
+	</nav>
+</header>
+<article>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem active">
+				<a href="/latest/architecture/">Architecture of Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/installing/">Installing Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/configuration/">Configuration</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/usage/">Using Facette</a>
+			</li>
+			<li class="menuitem">
+				<a href="/latest/api/">API Documentation</a>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="architecture-of-facette">Architecture of Facette</h1>
+
+<p>Facette is a time series data (called <em>metrics</em>) visualization software, it doesn&rsquo;t collect nor store these data on its
+own. Through <a href="/latest/configuration/">providers</a>, it inventories other collect/storage tools&rsquo; local metrics, and
+queries those remote storage resources when the user requests time series data to be displayed on a graph.</p>
+
+<h2 id="the-big-picture">The Big Picture</h2>
+
+<p>Here is the big picture showing how Facette and its components are architectured, and how they interact with external
+resources:</p>
+
+<p><img src="/assets/images/schema-architecture.png" alt="Architecture Schema" /></p>
+
+<p>Facette consists of two main components: the <em>front-end</em> and the <em>back-end</em>. The <em>back-end</em> is the component that
+interacts via connectors with the resources actually storing time series data — called <em>origins</em> — or being the
+canonical interface to access them; the <em>front-end</em> is a web application – only making API calls to the <em>back-end</em> –
+that displays time series data on graphs.</p>
+
+<h2 id="the-catalog">The Catalog</h2>
+
+<p>Facette maintains an internal inventory of known <em>sources</em> and <em>metrics</em> from configured <em>origins</em> called the
+<strong>catalog</strong>. Here is a bit of terminology used in the software:</p>
+
+<h3 id="origin">Origin</h3>
+
+<p>An <em>origin</em> represents, as its name suggests, the origin of the back-end time series (e.g.
+<a href="https://collectd.org/">collectd</a>, <a href="http://munin-monitoring.org/">Munin</a>, <a href="https://graphiteapp.org/">Graphite</a>,
+<a href="https://kairosdb.github.io/">KairosDB</a>, <a href="https://influxdata.com">InfluxDB</a> etc). Those <em>origins</em> hold local sets of
+<em>sources</em> and <em>metrics</em>.</p>
+
+<h3 id="source">Source</h3>
+
+<p>A <em>source</em> represents an entity that generates <em>metrics</em>. These are usually host names, but can be services or
+applications names.</p>
+
+<h3 id="metric">Metric</h3>
+
+<p>A <em>metric</em> is a set of time-based data points (e.g. <a href="http://oss.oetiker.ch/rrdtool/">RRDtool</a> files) measured or
+collected by any monitoring or metering/profiling tool, that will be eventually displayed on graphs in Facette.</p>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#architecture-of-facette">Architecture of Facette</a>
+<ul>
+<li><a href="#the-big-picture">The Big Picture</a></li>
+<li><a href="#the-catalog">The Catalog</a>
+<ul>
+<li><a href="#origin">Origin</a></li>
+<li><a href="#source">Source</a></li>
+<li><a href="#metric">Metric</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</article>
+<footer>
+	Last updated on 2017-06-20 08:53:42 &#43;0200 CEST
+</footer>
+<script src="/assets/js/vendor.js"></script>
+</body>
+</html>
+
