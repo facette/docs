@@ -8,6 +8,9 @@ NPM_ARGS =
 GULP ?= node_modules/.bin/gulp
 GULP_ARGS =
 
+HUGO ?= hugo
+HUGO_ARGS =
+
 GIT ?= git
 
 all: build
@@ -20,6 +23,7 @@ clean-all: clean
 
 build: node_modules
 	$(GULP) $(GULP_ARGS) build --env $(BUILD_ENV)
+	$(HUGO) $(HUGO_ARGS) -d public
 
 release: clean
 	$(GIT) stash save before-gh-pages
