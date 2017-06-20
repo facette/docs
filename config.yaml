@@ -1,7 +1,11 @@
 ---
-baseurl: "http://docs.facette.io/"
-title: "Facette"
-disablerss: true
-sitemap:
-   changefreq: "monthly"
-   priority: 0.5
+baseURL: http://docs.facette.io/
+languageCode: en-us
+title: Facette
+
+metaDataFormat: yaml
+
+disableRSS: true
+useModTimeAsFallback: true
+
+# vim: ts=2 sw=2 et

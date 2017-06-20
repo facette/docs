@@ -1,0 +1,13 @@
+footer {
+	color: #aaa;
+	font-size: 0.95rem;
+	margin: 0 20rem;
+	padding: 2rem 4rem;
+}
+
+@media (max-width: 640px) {
+	footer {
+		margin: 0;
+		padding: 1rem 2rem;
+	}
+}

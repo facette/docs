@@ -1,31 +1,32 @@
-#!/usr/bin/make -f
 # -*- Makefile -*-
 
-SED ?= sed
+BUILD_ENV ?= production
+
+NPM ?= npm
+NPM_ARGS =
+
+GULP ?= node_modules/.bin/gulp
+GULP_ARGS =
 
 GIT ?= git
 
-MYTH ?= myth
-MYTH_ARGS =
-
-UGLIFYCSS ?= uglifycss
-UGLIFYCSS_ARGS =
-
-HUGO ?= hugo
-HUGO_ARGS =
-
-all: clean build
+all: build
 
 clean:
-	rm -rf public
+	rm -rf public/
 
-build:
-	$(GIT) checkout master
-	$(HUGO) $(HUGO_ARGS) -d public
-	$(MYTH) $(MYTH_ARGS) static/style.css public/style.src.css
-	$(UGLIFYCSS) $(UGLIFYCSS_ARGS) public/style.src.css >public/style.css
-	$(SED) -e "s/2008-01-01T00:00:00+00:00/`date +%FT%T%:z`/g" -i public/sitemap.xml
+clean-all: clean
+	rm -rf node_modules/
+
+build: node_modules
+	$(GULP) $(GULP_ARGS) build --env $(BUILD_ENV)
+
+release: clean
 	$(GIT) stash save before-gh-pages
+	$(MAKE) build
 	$(GIT) checkout gh-pages
 	cp -rf public/* .
 	rm -rf public
+
+node_modules:
+	$(NPM) $(NPM_ARGS) install

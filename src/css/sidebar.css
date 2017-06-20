@@ -1,0 +1,52 @@
+article > aside {
+	background-color: #f9f9f9;
+	bottom: 0;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	left: 0;
+	padding: 3.5rem 2rem 2rem;
+	position: fixed;
+	top: 3.5rem;
+	width: 20rem;
+}
+
+article > aside > nav {
+	flex: 1;
+}
+
+article > aside .menu {
+	line-height: 2rem;
+	list-style-type: none;
+}
+
+article > aside .menu > .menuitem {
+	margin: 0.5rem 0;
+}
+
+article > aside .menu > .menuitem a {
+	display: block;
+	padding: 0 1rem;
+	text-decoration: none;
+}
+
+article > aside .menu .menuitem.active > a,
+article > aside .menu .menuitem a:active,
+article > aside .menu .menuitem a:focus,
+article > aside .menu .menuitem a:hover {
+	background-color: #eee;
+	border-radius: 0.2rem;
+	padding: 0 1rem;
+}
+
+article > aside .menu > .menuitem .menuitem a {
+	padding-left: 3rem;
+}
+
+@media (max-width: 640px) {
+	article > aside {
+		padding: 1rem 2rem;
+		position: static;
+		width: auto;
+	}
+}

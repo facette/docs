@@ -1,0 +1,11 @@
+{
+  "name": "facette-docs",
+  "description": "Facette project documentation",
+  "homepage": "http://docs.facette.io/",
+  "dependencies": {
+    "font-awesome": "4.7.0",
+    "prism": "1.6.0",
+    "roboto-googlefont": "*",
+    "robotomono-googlefont": "*"
+  }
+}

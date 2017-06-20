@@ -1,0 +1,81 @@
+header {
+	align-items: center;
+	background-color: #333;
+	color: #fff;
+	display: flex;
+	height: 3.5rem;
+	left: 0;
+	line-height: 3.5rem;
+	margin-bottom: 0.35rem;
+	padding: 0 2rem;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 100;
+}
+
+header::after {
+	background: url(../images/ribbon.svg) 0 0 / 100% no-repeat;
+	content: '';
+	height: 0.35rem;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 100%;
+}
+
+header a {
+	text-decoration: none;
+}
+
+header > .logo img {
+	height: 32px;
+	vertical-align: middle;
+}
+
+header > nav {
+	flex: 1;
+}
+
+header > nav > .menu {
+	display: flex;
+	justify-content: flex-end;
+	list-style-type: none;
+}
+
+header > nav > .menu > .menuitem a {
+	align-items: center;
+	box-sizing: border-box;
+	display: flex;
+	height: 3.5rem;
+	padding: 0 1rem;
+}
+
+header > nav > .menu > .menuitem a:active,
+header > nav > .menu > .menuitem a:focus,
+header > nav > .menu > .menuitem a:hover {
+	background-color: #4d4d4d;
+}
+
+header > nav > .menu > .menuitem .fa {
+	font-size: 1.5rem;
+	margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+	header {
+		padding: 0 1rem;
+	}
+
+	header > nav > .menu > .menuitem a {
+		width: 3.5rem;
+	}
+
+	header > nav > .menu > .menuitem .fa {
+		margin: 0;
+	}
+
+	header > nav > .menu > .menuitem .label {
+		display: none;
+	}
+}

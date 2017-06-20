@@ -1,0 +1,26 @@
+{
+  "name": "robotomono-googlefont",
+  "license": "APACHE2",
+  "authors": [
+    "Christian Robertson"
+  ],
+  "homepage": "https://fonts.google.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/google-fonts-bower/robotomono-bower.git"
+  },
+  "description": "Roboto Mono font",
+  "keywords": [
+    "font",
+    "MONOSPACE"
+  ],
+  "_release": "64d5f132b4",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "64d5f132b4a09344fd0f4f9ad349ea33ee160406"
+  },
+  "_source": "https://github.com/google-fonts-bower/robotomono-bower.git",
+  "_target": "*",
+  "_originalSource": "robotomono-googlefont"
+}
