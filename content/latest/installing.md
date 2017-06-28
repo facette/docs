@@ -69,7 +69,6 @@ need to install the <strong>nodejs-legacy</strong> package for Node.js dependenc
 At the top the sources directory, run the build command:
 
 ```
-make build-depends
 make
 make install
 ```
