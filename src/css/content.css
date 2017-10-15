@@ -112,7 +112,9 @@ section table code {
 }
 
 section pre {
+	overflow: auto;
 	padding: 0.5rem;
+	text-overflow: ellipsis;
 }
 
 section table {
