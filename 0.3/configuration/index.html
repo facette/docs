@@ -210,11 +210,12 @@ underscore-escaped hostname dots back with dots; besides, this provider will sel
   &quot;connector&quot;: {
     &quot;type&quot;: &quot;graphite&quot;,
     &quot;url&quot;: &quot;https://graphite.mycorporation.net/&quot;,
-    &quot;allow_insecure_tls&quot;: true
+    &quot;allow_insecure_tls&quot;: true,
+    &quot;pattern&quot;: &quot;(?P&lt;source&gt;[^\\.]+)\\.(?P&lt;metric&gt;.+)&quot;
   },
 
   &quot;filters&quot;: [
-    { &quot;pattern&quot;: &quot;_&quot;, &quot;rewrite&quot;: &quot;.&quot;, &quot;target&quot;: &quot;source&quot; }
+    { &quot;action&quot;: &quot;rewrite&quot;, &quot;pattern&quot;: &quot;_&quot;, &quot;rewrite&quot;: &quot;.&quot;, &quot;target&quot;: &quot;source&quot; }
   ],
 
   &quot;refresh_interval&quot;: 3600
@@ -249,7 +250,7 @@ underscore-escaped hostname dots back with dots; besides, this provider will sel
 
 </article>
 <footer>
-	Last updated on 2017-10-15 08:39:37.897774236 &#43;0200 CEST
+	Last updated on 2017-10-25 11:49:25.300374342 &#43;0200 CEST
 </footer>
 <script src="/assets/js/vendor.js"></script>
 </body>
