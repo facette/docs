@@ -178,11 +178,12 @@ underscore-escaped hostname dots back with dots; besides, this provider will sel
   "connector": {
     "type": "graphite",
     "url": "https://graphite.mycorporation.net/",
-    "allow_insecure_tls": true
+    "allow_insecure_tls": true,
+    "pattern": "(?P<source>[^\\.]+)\\.(?P<metric>.+)"
   },
 
   "filters": [
-    { "pattern": "_", "rewrite": ".", "target": "source" }
+    { "action": "rewrite", "pattern": "_", "rewrite": ".", "target": "source" }
   ],
 
   "refresh_interval": 3600
