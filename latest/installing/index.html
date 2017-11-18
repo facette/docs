@@ -104,7 +104,7 @@ directory, set the <code>PREFIX</code> variable:</p>
 </code></pre>
 
 <p>The resulting service binary comes with the support for all back-end drivers and provider connectors. To build a
-version that suits to specific needs set <code>BUILD_TAGS</code> variable with a list a revelant tags, separated by commas.</p>
+version that suits to specific needs set <code>BUILD_TAGS</code> variable with a list a revelant tags, separated by spaces.</p>
 
 <h4 id="build-tags">Build Tags</h4>
 
@@ -120,21 +120,6 @@ version that suits to specific needs set <code>BUILD_TAGS</code> variable with a
 <tr>
 <td align="left"><code>builtin_assets</code></td>
 <td align="left">Embed front-end assests in binary</td>
-</tr>
-
-<tr>
-<td align="left"><code>disable_backend_mysql</code></td>
-<td align="left">Disable support of MySQL back-end driver</td>
-</tr>
-
-<tr>
-<td align="left"><code>disable_backend_pgsql</code></td>
-<td align="left">Disable support of PostgreqSQL back-end driver</td>
-</tr>
-
-<tr>
-<td align="left"><code>disable_backend_sqlite</code></td>
-<td align="left">Disable support of SQLite back-end driver</td>
 </tr>
 
 <tr>
@@ -160,6 +145,21 @@ version that suits to specific needs set <code>BUILD_TAGS</code> variable with a
 <tr>
 <td align="left"><code>disable_connector_rrd</code></td>
 <td align="left">Disable support of RRDtool provider connector</td>
+</tr>
+
+<tr>
+<td align="left"><code>disable_driver_mysql</code></td>
+<td align="left">Disable support of MySQL back-end driver</td>
+</tr>
+
+<tr>
+<td align="left"><code>disable_driver_pgsql</code></td>
+<td align="left">Disable support of PostgreqSQL back-end driver</td>
+</tr>
+
+<tr>
+<td align="left"><code>disable_driver_sqlite</code></td>
+<td align="left">Disable support of SQLite back-end driver</td>
 </tr>
 </tbody>
 </table>
@@ -215,7 +215,7 @@ version that suits to specific needs set <code>BUILD_TAGS</code> variable with a
 
 </article>
 <footer>
-	Last updated on 2017-10-25 11:46:12.075257822 &#43;0200 CEST
+	Last updated on 2017-11-18 07:11:25.284769568 &#43;0100 CET
 </footer>
 <script src="/assets/js/vendor.js"></script>
 </body>
