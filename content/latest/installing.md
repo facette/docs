@@ -81,21 +81,21 @@ sudo make PREFIX=/path/to/directory install
 ```
 
 The resulting service binary comes with the support for all back-end drivers and provider connectors. To build a
-version that suits to specific needs set `BUILD_TAGS` variable with a list a revelant tags, separated by commas.
+version that suits to specific needs set `BUILD_TAGS` variable with a list a revelant tags, separated by spaces.
 
 #### Build Tags
 
 | Tag                          | Description                                    |
 |:-----------------------------|:-----------------------------------------------|
 | `builtin_assets`             | Embed front-end assests in binary              |
-| `disable_backend_mysql`      | Disable support of MySQL back-end driver       |
-| `disable_backend_pgsql`      | Disable support of PostgreqSQL back-end driver |
-| `disable_backend_sqlite`     | Disable support of SQLite back-end driver      |
 | `disable_connector_facette`  | Disable support of Facette provider connector  |
 | `disable_connector_graphite` | Disable support of Graphite provider connector |
 | `disable_connector_influxdb` | Disable support of InfluxDB provider connector |
 | `disable_connector_kairosdb` | Disable support of KairosDB provider connector |
 | `disable_connector_rrd`      | Disable support of RRDtool provider connector  |
+| `disable_driver_mysql`       | Disable support of MySQL back-end driver       |
+| `disable_driver_pgsql`       | Disable support of PostgreqSQL back-end driver |
+| `disable_driver_sqlite`      | Disable support of SQLite back-end driver      |
 
 ### Additional Targets
 
