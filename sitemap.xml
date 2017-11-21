@@ -3,128 +3,128 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://docs.facette.io/latest/configuration/</loc>
+    <lastmod>2017-11-21T13:27:36+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://docs.facette.io/0.3/api/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/architecture/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/architecture/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/bulk/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/catalog/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/api/catalog/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://docs.facette.io/latest/configuration/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/configuration/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/configuration/filters/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/api/status/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/info/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/installing/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/installing/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/library/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/api/library/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/api/plots/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/configuration/connectors/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/providers/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/series/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/api/server/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/usage/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/usage/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T11:43:01+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -135,7 +135,7 @@
   
   <url>
     <loc>http://docs.facette.io/latest/</loc>
-    <lastmod>2017-11-18T07:11:25+01:00</lastmod>
+    <lastmod>2017-11-21T13:27:36+01:00</lastmod>
     <priority>0</priority>
   </url>
   
