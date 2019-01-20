@@ -1,7 +1,7 @@
 ---
 title: Catalog API
 menu:
-  main-prev:
+  main-0_3:
     parent: API Documentation
     weight: 20
 keywords:
@@ -13,7 +13,7 @@ keywords:
 - origin
 - plot
 - source
-version: prev
+version: "0.3"
 ---
 
 # Catalog API

@@ -2,7 +2,7 @@
 title: Installing Facette
 description: Installation methods of Facette time series data visualization software (version 0.3)
 menu:
-  main-prev:
+  main-0_3:
     weight: 20
 keywords:
 - debian
@@ -16,7 +16,7 @@ keywords:
 - pandoc
 - rrdtool
 - ubuntu
-version: prev
+version: "0.3"
 ---
 
 # Installing Facette

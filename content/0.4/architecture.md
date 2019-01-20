@@ -2,7 +2,7 @@
 title: Architecture of Facette
 description: Architecture of Facette time series data visualization software
 menu:
-  main-latest:
+  main-0_4:
     weight: 10
 keywords:
 - architecture
@@ -22,7 +22,7 @@ keywords:
 - rrdtool
 - source
 - time series
-version: "latest"
+version: "0.4"
 ---
 
 # Architecture of Facette

@@ -1,7 +1,7 @@
 ---
 title: Plots API
 menu:
-  main-prev:
+  main-0_3:
     parent: API Documentation
     weight: 30
 keywords:
@@ -11,7 +11,7 @@ keywords:
 - graph
 - library
 - plot
-version: prev
+version: "0.3"
 ---
 
 # Plots API

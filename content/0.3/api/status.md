@@ -1,7 +1,7 @@
 ---
 title: HTTP Status Codes
 menu:
-  main-prev:
+  main-0_3:
     parent: API Documentation
     weight: 40
 keywords:
@@ -12,7 +12,7 @@ keywords:
 - group
 - http
 - status
-version: prev
+version: "0.3"
 ---
 
 # HTTP Status Codes

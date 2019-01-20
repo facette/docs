@@ -2,7 +2,7 @@
 title: Using Facette
 description: Usage of Facette time series data visualization software
 menu:
-  main-latest:
+  main-0_4:
     weight: 40
 keywords:
 - backup
@@ -18,7 +18,7 @@ keywords:
 - service
 - usage
 - utility
-version: "latest"
+version: "0.4"
 ---
 
 # Using Facette

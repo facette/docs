@@ -2,7 +2,7 @@
 title: Installing Facette
 description: Installation methods of Facette time series data visualization software
 menu:
-  main-latest:
+  main-0_4:
     weight: 20
 keywords:
 - build
@@ -24,7 +24,7 @@ keywords:
 - requirements
 - rrdtool
 - ubuntu
-version: "latest"
+version: "0.4"
 ---
 
 # Installing Facette

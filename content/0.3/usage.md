@@ -2,7 +2,7 @@
 title: Using Facette
 description: Usage of Facette time series data visualization software (version 0.3)
 menu:
-  main-prev:
+  main-0_3:
     weight: 40
 keywords:
 - apache
@@ -14,7 +14,7 @@ keywords:
 - ssl
 - tls
 - usage
-version: prev
+version: "0.3"
 ---
 
 # Using Facette

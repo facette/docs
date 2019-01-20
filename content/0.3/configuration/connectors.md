@@ -1,7 +1,7 @@
 ---
 title: Provider Connectors
 menu:
-  main-prev:
+  main-0_3:
     parent: Configuring Facette
     weight: 10
 keywords:
@@ -23,7 +23,7 @@ keywords:
 - settings
 - tls
 - upstream
-version: prev
+version: "0.3"
 ---
 
 # Provider Connectors

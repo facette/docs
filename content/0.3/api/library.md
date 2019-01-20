@@ -1,7 +1,7 @@
 ---
 title: Library API
 menu:
-  main-prev:
+  main-0_3:
     parent: API Documentation
     weight: 30
 keywords:
@@ -14,7 +14,7 @@ keywords:
 - metric
 - origin
 - source
-version: prev
+version: "0.3"
 ---
 
 # Library API

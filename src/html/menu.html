@@ -1,6 +1,6 @@
 <aside>
 	<nav>
-		<ul class="menu">{{ $currentNode := . }}{{ $menuName := (printf "main-%s" .Params.Version) }}{{ $currentMenu := index .Site.Menus $menuName }}{{ range $currentMenu }}
+		<ul class="menu">{{ $currentNode := . }}{{ $menuName := (printf "main-%s" (replace .Params.Version "." "_")) }}{{ $currentMenu := index .Site.Menus $menuName }}{{ range $currentMenu }}
 			<li class="menuitem{{ if $currentNode.IsMenuCurrent $menuName . }} active{{ end }}">
 				<a href="{{ .URL }}">{{ .Name }}</a>{{ if .HasChildren }}{{ if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }}
 				<ul class="menu">{{ range .Children }}

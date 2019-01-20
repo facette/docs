@@ -1,7 +1,7 @@
 ---
 title: Facette
 description: Time series data visualization software
-version: latest
+version: "latest"
 ---
 
 ![Logo](/assets/images/logo-main.png)

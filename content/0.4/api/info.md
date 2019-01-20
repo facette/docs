@@ -1,9 +1,9 @@
 ---
 title: Information
 menu:
-  main-latest:
+  main-0_4:
     parent: API Documentation
-version: "latest"
+version: "0.4"
 ---
 
 # Information

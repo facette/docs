@@ -2,7 +2,7 @@
 title: API Documentation
 description: API documentation of Facette time series data visualization software (version 0.3)
 menu:
-  main-prev:
+  main-0_3:
     weight: 50
 keywords:
 - api
@@ -22,7 +22,7 @@ keywords:
 - restful
 - source
 - time series
-version: prev
+version: "0.3"
 ---
 
 # API Documentation

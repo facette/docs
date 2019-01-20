@@ -1,7 +1,7 @@
 ---
 title: Filters
 menu:
-  main-prev:
+  main-0_3:
     parent: Configuring Facette
     weight: 20
 keywords:
@@ -18,7 +18,7 @@ keywords:
 - rewrite
 - settings
 - sieve
-version: prev
+version: "0.3"
 ---
 
 # Filters

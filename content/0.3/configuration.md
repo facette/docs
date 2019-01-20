@@ -2,7 +2,7 @@
 title: Configuring Facette
 description: Configuration of Facette time series data visualization software (version 0.3)
 menu:
-  main-prev:
+  main-0_3:
     weight: 30
 keywords:
 - bind
@@ -26,7 +26,7 @@ keywords:
 - socket
 - tcp
 - unix
-version: prev
+version: "0.3"
 ---
 
 # Configuration

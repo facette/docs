@@ -1,7 +1,7 @@
 ---
 title: Server API
 menu:
-  main-prev:
+  main-0_3:
     parent: API Documentation
     weight: 10
 keywords:
@@ -11,7 +11,7 @@ keywords:
 - facette
 - group
 - server
-version: prev
+version: "0.3"
 ---
 
 # Server API
