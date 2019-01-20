@@ -31,19 +31,19 @@
 	<nav>
 		<ul class="menu">
 			<li class="menuitem">
-				<a href="/latest/architecture/">Architecture of Facette</a>
+				<a href="/0.4/architecture/">Architecture of Facette</a>
 			</li>
 			<li class="menuitem">
-				<a href="/latest/installing/">Installing Facette</a>
+				<a href="/0.4/installing/">Installing Facette</a>
 			</li>
 			<li class="menuitem active">
-				<a href="/latest/configuration/">Configuration</a>
+				<a href="/0.4/configuration/">Configuration</a>
 			</li>
 			<li class="menuitem">
-				<a href="/latest/usage/">Using Facette</a>
+				<a href="/0.4/usage/">Using Facette</a>
 			</li>
 			<li class="menuitem">
-				<a href="/latest/api/">API Documentation</a>
+				<a href="/0.4/api/">API Documentation</a>
 			</li>
 		</ul>
 	</nav>
@@ -73,129 +73,143 @@ not specified, Facette will look for the <code>/etc/facette/facette.yaml</code> 
 
 <tbody>
 <tr>
-<td align="left"><code>cache.path</code></td>
+<td align="left"><code>listen</code></td>
 <td align="center">string</td>
-<td align="left"><code>var/cache</code></td>
-<td align="left">Cache directory path</td>
+<td align="left"><code>localhost:12003</code></td>
+<td align="left">Socket to listen on (use <code>unix:/path/to/facette.sock</code> for UNIX socket)</td>
 </tr>
 
 <tr>
-<td align="left"><code>defaults.time_range</code></td>
-<td align="center">string</td>
-<td align="left"><code>-1h</code></td>
-<td align="left">Default time range for plots retrieval</td>
-</tr>
-
-<tr>
-<td align="left"><code>http.base_path</code></td>
+<td align="left"><code>socket_mode</code></td>
 <td align="center">string</td>
 <td align="left"></td>
-<td align="left">Root path behind which the service is located (e.g. <code>/facette</code>)</td>
+<td align="left">UNIX socket file mode (e.g. <code>0400</code>)</td>
 </tr>
 
 <tr>
-<td align="left"><code>http.enable_ui</code></td>
-<td align="center">bool</td>
-<td align="left"><code>true</code></td>
-<td align="left">Front-end activation flag</td>
+<td align="left"><code>socket_user</code></td>
+<td align="center">string</td>
+<td align="left"></td>
+<td align="left">UNIX socket file owner (e.g. <code>facette</code>)</td>
 </tr>
 
 <tr>
-<td align="left"><code>http.expose_version</code></td>
-<td align="center">bool</td>
-<td align="left"><code>false</code></td>
-<td align="left">Prevent build details from being exposed in API</td>
+<td align="left"><code>socket_group</code></td>
+<td align="center">string</td>
+<td align="left"></td>
+<td align="left">UNIX socket file group (e.g. <code>facette</code>)</td>
 </tr>
 
 <tr>
-<td align="left"><code>http.graceful_timeout</code></td>
+<td align="left"><code>graceful_timeout</code></td>
 <td align="center">int</td>
 <td align="left"><code>30</code></td>
 <td align="left">Timeout before forcefully shutdown remaining connections</td>
 </tr>
 
 <tr>
-<td align="left"><code>http.listen</code></td>
+<td align="left"><code>root_path</code></td>
 <td align="center">string</td>
-<td align="left"><code>localhost:12003</code></td>
-<td align="left">Socket to listen on (use <code>unix:/path/to/facette.sock?mode=0644&amp;user=facette&amp;group=facette</code> for UNIX socket)</td>
+<td align="left"></td>
+<td align="left">Root path behind which the service is located (e.g. <code>/facette</code>)</td>
 </tr>
 
 <tr>
-<td align="left"><code>http.read_only</code></td>
-<td align="center">bool</td>
-<td align="left"><code>false</code></td>
-<td align="left">Read-only flag, preventing modifications through API calls</td>
-</tr>
-
-<tr>
-<td align="left"><code>logger.file.level</code></td>
-<td align="center">string</td>
-<td align="left"><code>info</code></td>
-<td align="left">File logging level (<code>error</code>, <code>warning</code>, <code>notice</code>, <code>info</code> or <code>debug</code>)</td>
-</tr>
-
-<tr>
-<td align="left"><code>logger.file.path</code></td>
+<td align="left"><code>log_path</code></td>
 <td align="center">string</td>
 <td align="left"></td>
 <td align="left">Logging file path (if <code>-</code> logging goes to <em>stdout</em>; if empty file logging is disabled)</td>
 </tr>
 
 <tr>
-<td align="left"><code>logger.syslog.address</code></td>
+<td align="left"><code>log_level</code></td>
 <td align="center">string</td>
-<td align="left"></td>
-<td align="left">Syslog logging server address (if empty, host-local logging is performed)</td>
+<td align="left"><code>info</code></td>
+<td align="left">File logging level (<code>error</code>, <code>warning</code>, <code>notice</code>, <code>info</code> or <code>debug</code>)</td>
 </tr>
 
 <tr>
-<td align="left"><code>logger.syslog.facility</code></td>
-<td align="center">string</td>
-<td align="left"><code>daemon</code></td>
-<td align="left">Syslog logging <a href="https://en.wikipedia.org/wiki/Syslog#Facility">facility</a>)</td>
-</tr>
-
-<tr>
-<td align="left"><code>logger.syslog.level</code></td>
+<td align="left"><code>syslog_level</code></td>
 <td align="center">string</td>
 <td align="left"></td>
 <td align="left">Syslog logging level (<code>error</code>, <code>warning</code>, <code>notice</code>, <code>info</code> or <code>debug</code>; if empty syslog logging is disabled)</td>
 </tr>
 
 <tr>
-<td align="left"><code>logger.syslog.tag</code></td>
+<td align="left"><code>syslog_facility</code></td>
+<td align="center">string</td>
+<td align="left"><code>daemon</code></td>
+<td align="left">Syslog logging <a href="https://en.wikipedia.org/wiki/Syslog#Facility">facility</a>)</td>
+</tr>
+
+<tr>
+<td align="left"><code>syslog_tag</code></td>
 <td align="center">string</td>
 <td align="left"><code>facette</code></td>
 <td align="left">Syslog logging tag</td>
 </tr>
 
 <tr>
-<td align="left"><code>logger.syslog.transport</code></td>
+<td align="left"><code>syslog_address</code></td>
+<td align="center">string</td>
+<td align="left"></td>
+<td align="left">Syslog logging server address (if empty, host-local logging is performed)</td>
+</tr>
+
+<tr>
+<td align="left"><code>syslog_transport</code></td>
 <td align="center">string</td>
 <td align="left"><code>udp</code></td>
 <td align="left">Syslog logging network transport protocol (<code>tcp</code>, <code>udp</code> or <code>unix</code>)</td>
 </tr>
 
 <tr>
-<td align="left"><code>storage.debug</code></td>
-<td align="center">bool</td>
-<td align="left"><code>false</code></td>
-<td align="left">Enable back-end storage debugging</td>
-</tr>
-
-<tr>
-<td align="left"><code>storage.driver</code></td>
+<td align="left"><code>backend.driver</code></td>
 <td align="center">string</td>
 <td align="left"><code>sqlite</code></td>
 <td align="left">Back-end storage driver name (<code>sqlite</code>, <code>pgsql</code> or <code>mysql</code>)</td>
 </tr>
 
 <tr>
-<td align="left"><code>storage.*</code></td>
+<td align="left"><code>backend.*</code></td>
 <td align="center"></td>
 <td align="left"></td>
 <td align="left"><em>See &ldquo;Back-end Settings&rdquo; below for details</em></td>
+</tr>
+
+<tr>
+<td align="left"><code>frontend.enabled</code></td>
+<td align="center">bool</td>
+<td align="left"><code>true</code></td>
+<td align="left">Front-end activation flag</td>
+</tr>
+
+<tr>
+<td align="left"><code>frontend.assets_dir</code></td>
+<td align="center">string</td>
+<td align="left"></td>
+<td align="left">Front-end assets directory path (not used when compiling with builtin assets)</td>
+</tr>
+
+<tr>
+<td align="left"><code>default_time_range</code></td>
+<td align="center">string</td>
+<td align="left"><code>-1h</code></td>
+<td align="left">Default time range for plots retrieval</td>
+</tr>
+
+<tr>
+<td align="left"><code>hide_build_details</code></td>
+<td align="center">bool</td>
+<td align="left"><code>false</code></td>
+<td align="left">Prevent build details from being exposed in API</td>
+</tr>
+
+<tr>
+<td align="left"><code>read_only</code></td>
+<td align="center">bool</td>
+<td align="left"><code>false</code></td>
+<td align="left">Read-only flag, preventing modifications through API calls</td>
 </tr>
 </tbody>
 </table>
@@ -216,7 +230,7 @@ not specified, Facette will look for the <code>/etc/facette/facette.yaml</code> 
 
 <tbody>
 <tr>
-<td align="left"><code>storage.path</code></td>
+<td align="left"><code>backend.path</code></td>
 <td align="center">string</td>
 <td align="left">data.db</td>
 <td align="left">SQLite database file path</td>
@@ -238,35 +252,35 @@ not specified, Facette will look for the <code>/etc/facette/facette.yaml</code> 
 
 <tbody>
 <tr>
-<td align="left"><code>storage.host</code></td>
+<td align="left"><code>backend.host</code></td>
 <td align="center">string</td>
 <td align="left">localhost</td>
 <td align="left">PostgreSQL host address</td>
 </tr>
 
 <tr>
-<td align="left"><code>storage.port</code></td>
+<td align="left"><code>backend.port</code></td>
 <td align="center">int</td>
 <td align="left">5432</td>
 <td align="left">PostgreSQL host port</td>
 </tr>
 
 <tr>
-<td align="left"><code>storage.dbname</code></td>
+<td align="left"><code>backend.dbname</code></td>
 <td align="center">string</td>
 <td align="left">facette</td>
 <td align="left">PostgreSQL database name</td>
 </tr>
 
 <tr>
-<td align="left"><code>storage.user</code></td>
+<td align="left"><code>backend.user</code></td>
 <td align="center">string</td>
 <td align="left">facette</td>
 <td align="left">PostgreSQL user name</td>
 </tr>
 
 <tr>
-<td align="left"><code>storage.password</code></td>
+<td align="left"><code>backend.password</code></td>
 <td align="center">string</td>
 <td align="left"></td>
 <td align="left">PostgreSQL user password</td>
@@ -288,35 +302,35 @@ not specified, Facette will look for the <code>/etc/facette/facette.yaml</code> 
 
 <tbody>
 <tr>
-<td align="left"><code>storage.host</code></td>
+<td align="left"><code>backend.host</code></td>
 <td align="center">string</td>
 <td align="left">localhost</td>
 <td align="left">MySQL host address</td>
 </tr>
 
 <tr>
-<td align="left"><code>storage.port</code></td>
+<td align="left"><code>backend.port</code></td>
 <td align="center">int</td>
 <td align="left">3306</td>
 <td align="left">MySQL host port</td>
 </tr>
 
 <tr>
-<td align="left"><code>storage.dbname</code></td>
+<td align="left"><code>backend.dbname</code></td>
 <td align="center">string</td>
 <td align="left">facette</td>
 <td align="left">MySQL database name</td>
 </tr>
 
 <tr>
-<td align="left"><code>storage.user</code></td>
+<td align="left"><code>backend.user</code></td>
 <td align="center">string</td>
 <td align="left">facette</td>
 <td align="left">MySQL user name</td>
 </tr>
 
 <tr>
-<td align="left"><code>storage.password</code></td>
+<td align="left"><code>backend.password</code></td>
 <td align="center">string</td>
 <td align="left"></td>
 <td align="left">MySQL user password</td>
