@@ -1,7 +1,9 @@
 </article>
+{{- if .GitInfo }}
 <footer>
-	Last updated on {{ .Date }}
+	Last updated on {{ .GitInfo.AuthorDate }}
 </footer>
+{{- end }}
 <script src="/assets/js/vendor.js"></script>
 </body>
 </html>
