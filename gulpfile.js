@@ -67,7 +67,6 @@ gulp.task('build', [
     'build-style',
     'copy-script',
     'copy-style',
-    'build-html'
 ]);
 
 gulp.task('copy-script', function() {
@@ -102,10 +101,4 @@ gulp.task('copy-style', function() {
     gulp.src(config.files.vendor.images)
         .pipe(chmod(644))
         .pipe(gulp.dest('static/assets/images'));
-});
-
-gulp.task('build-html', function() {
-    gulp.src(config.files.html)
-        .pipe(chmod(644))
-        .pipe(gulp.dest('layouts/partials'));
 });
