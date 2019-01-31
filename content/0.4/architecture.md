@@ -23,6 +23,8 @@ keywords:
 - source
 - time series
 version: "0.4"
+aliases:
+- /0.4
 ---
 
 # Architecture of Facette

@@ -23,6 +23,8 @@ keywords:
 - source
 - time series
 version: "latest"
+aliases:
+- /latest
 ---
 
 # Architecture of Facette
