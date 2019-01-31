@@ -4,56 +4,69 @@
   
   <url>
     <loc>http://docs.facette.io/0.3/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/api/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/api/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/architecture/</loc>
+    <lastmod>2019-01-31T08:52:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/architecture/</loc>
+    <lastmod>2019-01-31T08:52:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/architecture/</loc>
+    <lastmod>2019-01-31T08:52:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/api/bulk/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/bulk/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/api/catalog/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/catalog/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/api/catalog/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
@@ -63,91 +76,113 @@
   
   <url>
     <loc>http://docs.facette.io/0.4/configuration/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/configuration/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/configuration/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/configuration/filters/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/api/status/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/api/info/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/info/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/installing/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/installing/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/installing/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/api/library/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/library/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/api/library/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/api/plots/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/configuration/connectors/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/api/providers/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/providers/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/api/series/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/api/series/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.3/api/server/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
@@ -157,14 +192,17 @@
   
   <url>
     <loc>http://docs.facette.io/0.3/usage/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/usage/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/latest/usage/</loc>
+    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
   </url>
   
 </urlset>
