@@ -4,14 +4,12 @@
   
   <url>
     <loc>http://docs.facette.io/0.3/</loc>
-    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-01-31T08:52:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://docs.facette.io/0.4/</loc>
-    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-01-31T08:52:44+01:00</lastmod>
   </url>
   
   <url>
@@ -67,11 +65,6 @@
   <url>
     <loc>http://docs.facette.io/0.3/api/catalog/</loc>
     <lastmod>2019-01-20T11:52:31+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://docs.facette.io/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -131,8 +124,7 @@
   
   <url>
     <loc>http://docs.facette.io/latest/</loc>
-    <lastmod>2019-01-20T11:52:31+01:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-01-31T08:52:44+01:00</lastmod>
   </url>
   
   <url>
@@ -183,11 +175,6 @@
   <url>
     <loc>http://docs.facette.io/0.3/api/server/</loc>
     <lastmod>2019-01-20T11:52:31+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://docs.facette.io/tags/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
