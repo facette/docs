@@ -6,6 +6,8 @@ title: Facette
 disableHugoGeneratorInject: true
 disableKinds:
 - RSS
+- taxonomy
+- taxonomyTerm
 enableGitInfo: true
 metaDataFormat: yaml
 
